@@ -4,6 +4,7 @@
 #include <string>
 #include "Commands/Command.h"
 #include "Subsystems/ExampleSubsystem.h"
+#include "Subsystems/Intake.h"
 #include "OI.h"
 #include "WPILib.h"
 
@@ -20,6 +21,7 @@ public:
 	static void init();
 	// Create a single static instance of all of your subsystems
 	static ExampleSubsystem *chassis;
+	static Intake *intake;
 	static OI *oi;
 };
 
