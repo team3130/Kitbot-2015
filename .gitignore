@@ -28,4 +28,4 @@
 *.app
 
 # language
-.settings/*.xml
+*.settings.xml
