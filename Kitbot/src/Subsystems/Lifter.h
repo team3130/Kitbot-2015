@@ -9,17 +9,18 @@ class Lifter: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	Encoder m_cEncoderL;
-	Encoder m_cEncoderR;
-	DigitalInput m_cLimitSwitch;
-	SpeedController m_cLiftMotorL;
-	SpeedController m_cLiftMotorR;
-	float m_fRateDifference = 0;
+	DigitalInput* m_cLimitSwitch;
+	Talon* m_cLiftMotorL;
+	Talon* m_cLiftMotorR;
+	double m_dRateDifference;
+	double m_dlifterPosition;
 public:
+	Encoder* m_cEncoderL;
+	Encoder* m_cEncoderR;
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
-	void Move(GenericHID *gamepad);
+	void SetDirection(int direction);
 };
 
 #endif

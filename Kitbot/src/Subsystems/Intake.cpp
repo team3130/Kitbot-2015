@@ -4,8 +4,8 @@
 
 Intake::Intake() : Subsystem("Intake")
 {
-	intake_left = new SpeedController(INTAKEL);
-	intake_right = new SpeedController(INTAKER);
+	intake_left = new Talon(INTAKEL);
+	intake_right = new Talon(INTAKER);
 }
 
 Intake::~Intake(){
@@ -24,8 +24,9 @@ void Intake::InitDefaultCommand()
 
 //Sets speed of intake mechanism
 void Intake::Speed(float speed){
-	intake_left.SpeedController::Set(speed);
-	intake_right.SpeedController::Set(-speed);
+	//TODO: Change orientation later depending on actual motor orientation
+	intake_left->SetSpeed(speed);
+	intake_right->SetSpeed(-speed);
 }
 
 //set intake in, out, or neutral depending on current status and buttons pressed
@@ -33,20 +34,15 @@ void Intake::HandleObjects(int status)
 {
 	float speed;
 	//determines direction of intake depending on received intake status
-	switch(status){
-		case 0:
-			speed = 0;
-			break;
-		case 1:
-			speed = 1;
-			break;
-		case -1:
-			speed = -1;
-			break;
-		default:
-			speed = 0;
-			break;
+	if(status == 1){
+		speed = 1;
+	}else if(status == -1){
+		speed = -1;
+	}else{
+		speed = 0;
 	}
-	intake_left.SpeedController::Set(speed);
-	intake_right.SpeedController::Set(-speed);
+
+	//TODO: Change orientation later depending on actual motor orientation
+	intake_left->SetSpeed(speed);
+	intake_right->SetSpeed(-speed);
 }
