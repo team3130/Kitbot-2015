@@ -17,6 +17,10 @@ const int RIGHTMOTOR = 1;
 const int INTAKEL = 2;
 const int INTAKER = 3;
 
+//buttons and axes
+const int INTAKEIN = 8;
+const int INTAKEOUT = 9;
+
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:
 //const int RANGE_FINDER_PORT = 1;

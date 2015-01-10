@@ -2,8 +2,8 @@
 
 ControlRollers::ControlRollers()
 {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
+	Requires(intake);
+	intakeStatus = 0;
 }
 
 // Called just before this Command runs the first time
@@ -15,7 +15,18 @@ void ControlRollers::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlRollers::Execute()
 {
-	chassis->Drive(oi->stickL,oi->stickR);
+	//determines the proposed intake status using gamepad buttons
+	//buttons must be held down to maintain intake position
+	//intake position will default to 0 when no buttons are pressed
+	if(oi->gamepad->GetRawButton(INTAKEIN)){
+		intakeStatus = 1;
+	}else if(oi->gamepad->GetRawButton(INTAKEOUT)){
+		intakeStatus = -1;
+	}else{
+		intakeStatus = 0;
+	}
+
+	intake->TakeObjects(intakeStatus);
 }
 
 // Make this return true when this Command no longer needs to run execute()
