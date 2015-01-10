@@ -14,7 +14,7 @@ private:
 	DigitalInput m_cLimitSwitch;
 	SpeedController m_cLiftMotorL;
 	SpeedController m_cLiftMotorR;
-	float m_fRateDifference;
+	float m_fRateDifference = 0;
 public:
 	Lifter();
 	void InitDefaultCommand();
