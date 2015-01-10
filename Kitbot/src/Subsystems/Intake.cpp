@@ -24,8 +24,8 @@ void Intake::InitDefaultCommand()
 
 //Sets speed of intake mechanism
 void Intake::Speed(float speed){
-	intake_left->Set(speed, 0);
-	intake_right->Set(-speed, 0);
+	intake_left.SpeedController::Set(speed);
+	intake_right.SpeedController::Set(-speed);
 }
 
 //set intake in, out, or neutral depending on current status and buttons pressed
@@ -47,6 +47,6 @@ void Intake::HandleObjects(int status)
 			speed = 0;
 			break;
 	}
-	intake_left->Set(speed, 0);
-	intake_right->Set(-speed, 0);
+	intake_left.SpeedController::Set(speed);
+	intake_right.SpeedController::Set(-speed);
 }

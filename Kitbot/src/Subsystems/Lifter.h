@@ -17,6 +17,7 @@ private:
 	float m_fRateDifference = 0;
 public:
 	Lifter();
+	~Lifter();
 	void InitDefaultCommand();
 	void Move(GenericHID *gamepad);
 };

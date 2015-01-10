@@ -18,15 +18,15 @@ void ControlRollers::Execute()
 	//determines the proposed intake status using gamepad buttons
 	//buttons must be held down to maintain intake position
 	//intake position will default to 0 when no buttons are pressed
-	if(oi->gamepad->GetRawButton(INTAKEIN)){
+	if(oi->gamepad->GetRawButton(B_INTAKEIN)){
 		intakeStatus = 1;
-	}else if(oi->gamepad->GetRawButton(INTAKEOUT)){
+	}else if(oi->gamepad->GetRawButton(B_INTAKEOUT)){
 		intakeStatus = -1;
 	}else{
 		intakeStatus = 0;
 	}
 
-	intake->TakeObjects(intakeStatus);
+	intake->HandleObjects(intakeStatus);
 }
 
 // Make this return true when this Command no longer needs to run execute()

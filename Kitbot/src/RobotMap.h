@@ -26,10 +26,11 @@ const int ENCODERL = 6;
 const int ENCODERR = 7;
 
 //buttons and axes
+
 const int B_LIFTERUP = 6;
 const int B_LIFTERDOWN = 7;
-const int INTAKEIN = 8;
-const int INTAKEOUT = 9;
+const int B_INTAKEIN = 8;
+const int B_INTAKEOUT = 9;
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:
