@@ -12,8 +12,8 @@
  
 // For example to map the left and right motors, you could define the
 // following variables to use with your drivetrain subsystem.
-const int LEFTMOTOR = 1;
-const int RIGHTMOTOR = 0;
+const int LEFTMOTOR = 0;
+const int RIGHTMOTOR = 1;
 const int INTAKEL = 2;
 const int INTAKER = 3;
 

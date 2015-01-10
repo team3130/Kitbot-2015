@@ -28,4 +28,5 @@
 *.app
 
 # language
-*.settings.xml
+Kitbot/.settings/language.settings.xml
+
