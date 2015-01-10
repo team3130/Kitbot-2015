@@ -8,6 +8,7 @@
 #include "Subsystems/Lifter.h"
 #include "OI.h"
 #include "WPILib.h"
+#include "RobotMap.h"
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
