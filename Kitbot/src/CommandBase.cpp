@@ -2,11 +2,13 @@
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/Intake.h"
 #include "Commands/Scheduler.h"
+#include "Subsystems/Lifter.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
 ExampleSubsystem* CommandBase::chassis = NULL;
 Intake* CommandBase::intake = NULL;
 OI* CommandBase::oi = NULL;
+Lifter* CommandBase::lifter = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -26,4 +28,5 @@ void CommandBase::init()
 	chassis = new ExampleSubsystem();
 	intake = new Intake();
 	oi = new OI();
+	lifter = new Lifter();
 }

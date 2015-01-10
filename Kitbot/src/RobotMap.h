@@ -16,6 +16,8 @@ const int LEFTMOTOR = 0;
 const int RIGHTMOTOR = 1;
 const int INTAKEL = 2;
 const int INTAKER = 3;
+const int LIFTERL = 4;
+const int LIFTERR = 5;
 
 //buttons and axes
 const int INTAKEIN = 8;
