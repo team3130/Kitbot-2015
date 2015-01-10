@@ -8,6 +8,14 @@ Lifter::Lifter()
 
 }
 
+Lifter::~Lifter(){
+	delete m_cEncoderL;
+	delete m_cEncoderR;
+	delete m_cLimitSwitch;
+	delete m_cLiftMotorL;
+	delete m_cLiftMotorR;
+}
+
 void Lifter::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
@@ -19,6 +27,7 @@ void Lifter::InitDefaultCommand()
 
 void Lifter::Move(GenericHID *gamepad)
 {
-	m_cLiftMotorL.SpeedController::Set()
-	m_cLiftMotorR.SpeedController::Set()
+	//placeholder values
+	m_cLiftMotorL.SpeedController::Set(0);
+	m_cLiftMotorR.SpeedController::Set(0);
 }

@@ -16,7 +16,7 @@ void ControlLifter::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlLifter::Execute()
 {
-	chassis->Drive(oi->stickL,oi->stickR);
+	//lifter->Move(oi->stickL,oi->stickR);
 }
 
 // Make this return true when this Command no longer needs to run execute()

@@ -20,8 +20,8 @@ const int LIFTERL = 4;
 const int LIFTERR = 5;
 
 //buttons and axes
-const int INTAKEIN = 8;
-const int INTAKEOUT = 9;
+const int B_INTAKEIN = 8;
+const int B_INTAKEOUT = 9;
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:
