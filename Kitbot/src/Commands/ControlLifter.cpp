@@ -26,6 +26,7 @@ void ControlLifter::Execute()
 	{
 		m_nMoveDirection = -1;
 	}
+	else{m_nMoveDirection = 0;}
 }
 
 // Make this return true when this Command no longer needs to run execute()
