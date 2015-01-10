@@ -6,7 +6,9 @@ ExampleSubsystem::ExampleSubsystem()
 	: Subsystem("ExampleSubsystem")
 	, m_drive(LEFTMOTOR,RIGHTMOTOR)
 {
-
+	m_drive.SetSafetyEnabled(false);
+	//m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);
+	//m_drive.SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
 }
 
 void ExampleSubsystem::InitDefaultCommand()

@@ -3,7 +3,7 @@
 ExampleCommand::ExampleCommand()
 {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
+	Requires(chassis);
 }
 
 // Called just before this Command runs the first time
