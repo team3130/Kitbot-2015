@@ -12,6 +12,8 @@ private:
 	Talon* m_cLiftMotorL;
 	Talon* m_cLiftMotorR;
 	double m_dLifterPosition;
+	double m_dEncoderLeftValue;
+	double m_dEncoderRightValue;
 public:
 	DigitalInput* m_cLimitSwitch;
 	Encoder* m_cEncoderL;

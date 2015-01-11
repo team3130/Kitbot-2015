@@ -40,14 +40,16 @@ double Lifter::getRightSpeed(){
 //Keeps motors level
 void Lifter::Balance(float fDirection)
 {
+	m_dEncoderLeftValue = m_cEncoderL->Get();
+	m_dEncoderRightValue = m_cEncoderR->Get();
 	//Get fraction from difference in encoder values
 	//fDirection ensures that difference will be same proportion for all axis values
 	//Code will only do something if fDirection is not 0, aka stick is not neutral
 	if(fDirection != 0){
 		double dRateDifference;
 		//prevents divide-by-zero errors in case of encoders at 0
-		if((m_cEncoderL->Get()+m_cEncoderR->Get()) != 0){
-			dRateDifference = fDirection*(m_cEncoderL->Get()-m_cEncoderR->Get())/(m_cEncoderL->Get()+m_cEncoderR->Get());
+		if((m_dEncoderLeftValue+m_dEncoderRightValue) != 0){
+			dRateDifference = fDirection*(m_dEncoderLeftValue-m_dEncoderRightValue)/(m_dEncoderLeftValue+m_dEncoderRightValue);
 		}else{
 			dRateDifference = 0;
 		}
