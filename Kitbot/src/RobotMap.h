@@ -16,8 +16,9 @@ const int LEFTMOTOR = 0;
 const int RIGHTMOTOR = 1;
 
 // Intake
-const int INTAKEL = 2;
-const int INTAKER = 3;
+const int INTAKER = 2;
+const int INTAKEL = 3;
+
 
 //Lifter
 const int LIFTERL = 4;
@@ -30,12 +31,18 @@ const int LIFTERSWITCH = 10;
 
 //buttons and axes
 
-const int B_LIFTERUP = 6;
-const int B_LIFTERDOWN = 8;
-const int B_INTAKEROTATECCW = 1;
-const int B_INTAKEIN = 2;
-const int B_INTAKEROTATECW = 3;
-const int B_INTAKEOUT = 4;
+
+//buttons lifters
+
+const int B_LIFTERUP = 6;        //right bumper
+const int B_LIFTERDOWN = 8;		//right trigger
+
+//buttons intake
+
+const int B_INTAKEROTATECCW = 1;   // x button
+const int B_INTAKEIN = 2;		   // a button
+const int B_INTAKEROTATECW = 3;    // y button
+const int B_INTAKEOUT = 4;		   // b button
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:
