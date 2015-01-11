@@ -45,3 +45,11 @@ void Lifter::SetDirection(int direction)
 	m_cLiftMotorL->SetSpeed(speed);
 	m_cLiftMotorR->SetSpeed(speed);
 }
+
+double Lifter::getLeftSpeed(){
+	return m_cLiftMotorL->Get();
+}
+
+double Lifter::getRightSpeed(){
+	return m_cLiftMotorR->Get();
+}

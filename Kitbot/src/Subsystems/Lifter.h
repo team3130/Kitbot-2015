@@ -21,6 +21,8 @@ public:
 	~Lifter();
 	void InitDefaultCommand();
 	void SetDirection(int direction);
+	double getLeftSpeed();
+	double getRightSpeed();
 };
 
 #endif
