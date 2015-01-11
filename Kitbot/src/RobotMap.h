@@ -31,9 +31,11 @@ const int LIFTERSWITCH = 10;
 //buttons and axes
 
 const int B_LIFTERUP = 6;
-const int B_LIFTERDOWN = 7;
-const int B_INTAKEIN = 8;
-const int B_INTAKEOUT = 9;
+const int B_LIFTERDOWN = 8;
+const int B_INTAKEROTATECCW = 1;
+const int B_INTAKEIN = 2;
+const int B_INTAKEROTATECW = 3;
+const int B_INTAKEOUT = 4;
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:

@@ -16,7 +16,7 @@ public:
 	~Intake();
 	void InitDefaultCommand();
 	void Speed(float speed);
-	void HandleObjects(int status);
+	void HandleObjects(int leftIntake, int rightIntake);
 };
 
 #endif

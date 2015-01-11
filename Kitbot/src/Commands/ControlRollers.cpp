@@ -3,7 +3,8 @@
 ControlRollers::ControlRollers()
 {
 	Requires(intake);
-	intakeStatus = 0;
+	m_nleftIntake = 0;
+	m_nrightIntake = 0;
 }
 
 // Called just before this Command runs the first time
@@ -19,14 +20,23 @@ void ControlRollers::Execute()
 	//buttons must be held down to maintain intake position
 	//intake position will default to 0 when no buttons are pressed
 	if(oi->gamepad->GetRawButton(B_INTAKEIN)){
-		intakeStatus = 1;
+		m_nleftIntake = 1;
+		m_nrightIntake = 1;
 	}else if(oi->gamepad->GetRawButton(B_INTAKEOUT)){
-		intakeStatus = -1;
+		m_nleftIntake = -1;
+		m_nrightIntake = -1;
+	}else if(oi->gamepad->GetRawButton(B_INTAKEROTATECCW)){
+		m_nleftIntake = 1;
+		m_nrightIntake = -1;
+	}else if(oi->gamepad->GetRawButton(B_INTAKEROTATECW)){
+		m_nleftIntake = -1;
+		m_nrightIntake = 1;
 	}else{
-		intakeStatus = 0;
+		m_nleftIntake = 0;
+		m_nrightIntake = 0;
 	}
 
-	intake->HandleObjects(intakeStatus);
+	intake->HandleObjects(m_nleftIntake, m_nrightIntake);
 }
 
 // Make this return true when this Command no longer needs to run execute()

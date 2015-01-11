@@ -7,7 +7,8 @@
 class ControlRollers: public CommandBase
 {
 public:
-	int intakeStatus;
+	int m_nleftIntake;
+	int m_nrightIntake;
 	ControlRollers();
 	void Initialize();
 	void Execute();

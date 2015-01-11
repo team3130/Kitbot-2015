@@ -2,8 +2,6 @@
 
 ControlLifter::ControlLifter()
 {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
 	Requires(lifter);
 	m_nMoveDirection = 0;
 }
@@ -26,7 +24,10 @@ void ControlLifter::Execute()
 	{
 		m_nMoveDirection = -1;
 	}
-	else{m_nMoveDirection = 0;}
+	else{
+		m_nMoveDirection = 0;
+	}
+	lifter->SetDirection(m_nMoveDirection);
 }
 
 // Make this return true when this Command no longer needs to run execute()
