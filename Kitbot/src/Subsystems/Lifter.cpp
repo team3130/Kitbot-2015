@@ -46,7 +46,7 @@ void Lifter::Balance(float fDirection)
 		m_cLiftMotorL->SetSpeed(fDirection/dRateDifference);
 		m_cLiftMotorR->SetSpeed(fDirection*dRateDifference);
 	}
-	else
+	else if(not m_cLimitSwitch->Get())
 	{
 		m_cLiftMotorL->SetSpeed(fDirection*dRateDifference);
 		m_cLiftMotorR->SetSpeed(fDirection/dRateDifference);

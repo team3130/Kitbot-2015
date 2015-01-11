@@ -1,0 +1,43 @@
+#include "ResetLifter.h"
+
+ResetLifter::ResetLifter()
+{
+	Requires(lifter);
+}
+
+// Called just before this Command runs the first time
+void ResetLifter::Initialize()
+{
+
+}
+
+// Called repeatedly when this Command is scheduled to run
+void ResetLifter::Execute()
+{
+	//lifter->Move(oi->stickL,oi->stickR);
+	lifter->Balance(-1);
+	if(lifter->m_cLimitSwitch->Get())
+	{
+		lifter->m_cEncoderL->Reset();
+		lifter->m_cEncoderR->Reset();
+	}
+}
+
+// Make this return true when this Command no longer needs to run execute()
+bool ResetLifter::IsFinished()
+{
+	return false;
+}
+
+// Called once after isFinished returns true
+void ResetLifter::End()
+{
+
+}
+
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+void ResetLifter::Interrupted()
+{
+
+}
