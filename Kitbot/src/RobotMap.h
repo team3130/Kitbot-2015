@@ -30,8 +30,7 @@ const int LIFTERSWITCH = 10;
 
 //buttons and axes
 
-const int B_LIFTERUP = 6;
-const int B_LIFTERDOWN = 8;
+const int A_LIFTER = 4;
 const int B_INTAKEROTATECCW = 1;
 const int B_INTAKEIN = 2;
 const int B_INTAKEROTATECW = 3;

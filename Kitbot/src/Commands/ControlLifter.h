@@ -7,7 +7,6 @@
 class ControlLifter: public CommandBase
 {
 public:
-	int m_nMoveDirection;
 	ControlLifter();
 	void Initialize();
 	void Execute();

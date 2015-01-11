@@ -12,17 +12,16 @@ private:
 	DigitalInput* m_cLimitSwitch;
 	Talon* m_cLiftMotorL;
 	Talon* m_cLiftMotorR;
-	double m_dRateDifference;
-	double m_dlifterPosition;
+	double m_dLifterPosition;
 public:
 	Encoder* m_cEncoderL;
 	Encoder* m_cEncoderR;
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
-	void SetDirection(int direction);
 	double getLeftSpeed();
 	double getRightSpeed();
+	void Balance(float direction);
 };
 
 #endif

@@ -3,7 +3,6 @@
 ControlLifter::ControlLifter()
 {
 	Requires(lifter);
-	m_nMoveDirection = 0;
 }
 
 // Called just before this Command runs the first time
@@ -16,18 +15,7 @@ void ControlLifter::Initialize()
 void ControlLifter::Execute()
 {
 	//lifter->Move(oi->stickL,oi->stickR);
-	if(oi->gamepad->GetRawButton(B_LIFTERUP))
-	{
-		m_nMoveDirection = 1;
-	}
-	else if(oi->gamepad->GetRawButton(B_LIFTERDOWN))
-	{
-		m_nMoveDirection = -1;
-	}
-	else{
-		m_nMoveDirection = 0;
-	}
-	lifter->SetDirection(m_nMoveDirection);
+	lifter->Balance(-oi->gamepad->GetRawAxis(A_LIFTER));
 }
 
 // Make this return true when this Command no longer needs to run execute()

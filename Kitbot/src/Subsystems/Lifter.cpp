@@ -10,8 +10,7 @@ Lifter::Lifter()
 	m_cLimitSwitch = new DigitalInput(LIFTERSWITCH);
 	m_cEncoderL = new Encoder(ENCODERL_A, ENCODERL_B, false);
 	m_cEncoderR = new Encoder(ENCODERR_A, ENCODERR_B, false);
-	m_dRateDifference = 0;
-	m_dlifterPosition = 0;
+	m_dLifterPosition = 0;
 }
 
 Lifter::~Lifter(){
@@ -31,25 +30,25 @@ void Lifter::InitDefaultCommand()
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void Lifter::SetDirection(int direction)
-{
-	float speed;
-	if(direction == 1){
-		speed = 1;
-	}else if(direction == -1){
-		speed = -1;
-	}else{
-		speed = 0;
-	}
-	//TODO: Change orientation later depending on actual motor orientation
-	m_cLiftMotorL->SetSpeed(speed);
-	m_cLiftMotorR->SetSpeed(speed);
-}
-
 double Lifter::getLeftSpeed(){
 	return m_cLiftMotorL->Get();
 }
 
 double Lifter::getRightSpeed(){
 	return m_cLiftMotorR->Get();
+}
+//Keeps motors level
+void Lifter::Balance(float fDirection)
+{
+	double dRateDifference = float(m_cEncoderL->Get())/m_cEncoderR->Get();
+	if(fDirection > 0)
+	{
+		m_cLiftMotorL->SetSpeed(fDirection/dRateDifference);
+		m_cLiftMotorR->SetSpeed(fDirection*dRateDifference);
+	}
+	else
+	{
+		m_cLiftMotorL->SetSpeed(fDirection*dRateDifference);
+		m_cLiftMotorR->SetSpeed(fDirection/dRateDifference);
+	}
 }
