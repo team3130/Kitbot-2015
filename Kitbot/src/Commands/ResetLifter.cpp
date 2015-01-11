@@ -16,11 +16,6 @@ void ResetLifter::Execute()
 {
 	//lifter->Move(oi->stickL,oi->stickR);
 	lifter->Balance(-1);
-	if(lifter->m_cLimitSwitch->Get())
-	{
-		lifter->m_cEncoderL->Reset();
-		lifter->m_cEncoderR->Reset();
-	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

@@ -40,15 +40,22 @@ double Lifter::getRightSpeed(){
 //Keeps motors level
 void Lifter::Balance(float fDirection)
 {
-	double dRateDifference = float(m_cEncoderL->Get())/m_cEncoderR->Get();
+	// Get fraction from difference in encoder values. When less than 1 left is higher,
+	// when greater than 1 right is higher.
+	double dRateDifference = 1-(1/(m_cEncoderL->Get()-m_cEncoderR->Get()));
 	if(fDirection > 0)
+	{
+		m_cLiftMotorL->SetSpeed(fDirection*dRateDifference);
+		m_cLiftMotorR->SetSpeed(fDirection/dRateDifference);
+	}
+	else if(not m_cLimitSwitch->Get())
 	{
 		m_cLiftMotorL->SetSpeed(fDirection/dRateDifference);
 		m_cLiftMotorR->SetSpeed(fDirection*dRateDifference);
 	}
-	else if(not m_cLimitSwitch->Get())
-	{
-		m_cLiftMotorL->SetSpeed(fDirection*dRateDifference);
-		m_cLiftMotorR->SetSpeed(fDirection/dRateDifference);
+	//reset enocders when lifter is at the bottom
+	if(m_cLimitSwitch->Get()){
+		m_cEncoderL->Reset();
+		m_cEncoderR->Reset();
 	}
 }
