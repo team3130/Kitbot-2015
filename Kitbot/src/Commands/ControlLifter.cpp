@@ -14,7 +14,6 @@ void ControlLifter::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlLifter::Execute()
 {
-	//lifter->Move(oi->stickL,oi->stickR);
 	lifter->Balance(-oi->gamepad->GetRawAxis(A_LIFTER));
 }
 
