@@ -29,8 +29,6 @@ const int ENCODERR_A = 8;
 const int ENCODERR_B = 9;
 const int LIFTERSWITCH = 10;
 
-//Bin Lifter
-const int BINROTATOR = 11;
 
 //buttons and axes
 

@@ -3,7 +3,6 @@
 #include "Subsystems/Intake.h"
 #include "Commands/Scheduler.h"
 #include "Subsystems/Lifter.h"
-#include "Subsystems/BinIntake.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
 ExampleSubsystem* CommandBase::chassis = NULL;

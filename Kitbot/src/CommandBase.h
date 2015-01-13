@@ -6,7 +6,6 @@
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/Intake.h"
 #include "Subsystems/Lifter.h"
-#include "Subsystems/BinIntake.h"
 #include "OI.h"
 #include "WPILib.h"
 #include "RobotMap.h"
