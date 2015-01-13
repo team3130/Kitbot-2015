@@ -2,7 +2,7 @@
 
 ControlBinLifter::ControlBinLifter()
 {
-	Requires(binintake);
+	Requires(intake);
 }
 
 // Called just before this Command runs the first time
