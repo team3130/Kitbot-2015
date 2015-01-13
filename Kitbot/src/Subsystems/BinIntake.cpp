@@ -6,6 +6,7 @@ BinIntake::BinIntake()
 	: Subsystem("BinIntake")
 {
 		m_cBinRotateMotor = new Talon(BINROTATOR);
+		m_cBinLiftMotor = new Talon(BINLIFTER);
 
 }
 

@@ -31,6 +31,7 @@ const int LIFTERSWITCH = 10;
 
 //Bin Lifter
 const int BINROTATOR = 11;
+const int BINLIFTER = 12;
 
 //buttons and axes
 
