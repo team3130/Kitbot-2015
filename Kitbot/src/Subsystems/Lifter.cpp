@@ -11,6 +11,8 @@ Lifter::Lifter()
 	m_cEncoderL = new Encoder(ENCODERL_A, ENCODERL_B, false);
 	m_cEncoderR = new Encoder(ENCODERR_A, ENCODERR_B, false);
 	m_dLifterPosition = 0;
+	m_dEncoderLeftValue=0;
+	m_dEncoderRightValue=0;
 }
 
 Lifter::~Lifter(){
