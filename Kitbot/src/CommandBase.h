@@ -26,7 +26,6 @@ public:
 	static Intake *intake;
 	static OI *oi;
 	static Lifter *lifter;
-	static BinIntake *binintake;
 };
 
 #endif

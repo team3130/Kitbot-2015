@@ -4,13 +4,13 @@
 
 Intake::Intake() : Subsystem("Intake")
 {
-	m_cintake_left = new Talon(INTAKEL);
-	m_cintake_right = new Talon(INTAKER);
+	m_cIntake_left = new Talon(INTAKEL);
+	m_cIntake_right = new Talon(INTAKER);
 }
 
 Intake::~Intake(){
-	delete m_cintake_left;
-	delete m_cintake_right;
+	delete m_cIntake_left;
+	delete m_cIntake_right;
 }
 
 void Intake::InitDefaultCommand()
@@ -25,8 +25,8 @@ void Intake::InitDefaultCommand()
 //Sets speed of intake mechanism
 void Intake::Speed(float speed){
 	//TODO: Change orientation later depending on actual motor orientation
-	m_cintake_left->SetSpeed(speed);
-	m_cintake_right->SetSpeed(-speed);
+	m_cIntake_left->SetSpeed(speed);
+	m_cIntake_right->SetSpeed(-speed);
 }
 
 //set intake in, out, or neutral depending on current status and buttons pressed
@@ -51,14 +51,14 @@ void Intake::HandleObjects(int leftIntake, int rightIntake)
 	}
 
 	//TODO: Change orientation later depending on actual motor orientation
-	m_cintake_left->SetSpeed(leftSpeed);
-	m_cintake_right->SetSpeed(rightSpeed);
+	m_cIntake_left->SetSpeed(leftSpeed);
+	m_cIntake_right->SetSpeed(rightSpeed);
 }
 
 double Intake::getLeftSpeed(){
-	return m_cintake_left->Get();
+	return m_cIntake_left->Get();
 }
 
 double Intake::getRightSpeed(){
-	return m_cintake_right->Get();
+	return m_cIntake_right->Get();
 }

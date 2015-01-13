@@ -9,7 +9,6 @@ ExampleSubsystem* CommandBase::chassis = NULL;
 Intake* CommandBase::intake = NULL;
 OI* CommandBase::oi = NULL;
 Lifter* CommandBase::lifter = NULL;
-BinIntake* CommandBase::binintake = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -30,5 +29,4 @@ void CommandBase::init()
 	intake = new Intake();
 	oi = new OI();
 	lifter = new Lifter();
-	binintake = new BinIntake();
 }

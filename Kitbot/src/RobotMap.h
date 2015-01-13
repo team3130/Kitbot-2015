@@ -12,13 +12,13 @@
  
 // For example to map the left and right motors, you could define the
 // following variables to use with your drivetrain subsystem.
+//Drive Train/Chassis
 const int LEFTMOTOR = 0;
 const int RIGHTMOTOR = 1;
 
-// Intake
+//Intake
 const int INTAKER = 2;
 const int INTAKEL = 3;
-
 
 //Lifter
 const int LIFTERL = 4;
@@ -29,21 +29,14 @@ const int ENCODERR_A = 8;
 const int ENCODERR_B = 9;
 const int LIFTERSWITCH = 10;
 
-
 //Bin Lifter
+const int BINLIFTER = 11;
 
-const int BINLIFTER = 12;
-
-
-//buttons and axes
-
-
+////buttons and axes
 //buttons lifters
-
 const int A_LIFTER = 4;           //right thumbstick
 
 //buttons intake
-
 const int B_INTAKEROTATECCW = 1;   // x button
 const int B_INTAKEIN = 2;		   // a button
 const int B_INTAKEROTATECW = 3;    // y button
