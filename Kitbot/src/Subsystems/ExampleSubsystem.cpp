@@ -7,8 +7,15 @@ ExampleSubsystem::ExampleSubsystem()
 	, m_drive(LEFTMOTOR,RIGHTMOTOR)
 {
 	m_drive.SetSafetyEnabled(false);
+	m_bIsUsingGyro = false;
+	gyro  = new Gyro(C_GYRO);
 	//m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);
 	//m_drive.SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
+}
+
+ExampleSubsystem::~ExampleSubsystem()
+{
+	delete gyro;
 }
 
 void ExampleSubsystem::InitDefaultCommand()
@@ -23,4 +30,9 @@ void ExampleSubsystem::InitDefaultCommand()
 void ExampleSubsystem::Drive(GenericHID *leftStick, GenericHID *rightStick, bool squaredInputs)
 {
 	m_drive.TankDrive(leftStick, rightStick, squaredInputs);
+}
+
+bool ExampleSubsystem::CanUseGyro()
+{
+ return m_bIsUsingGyro;
 }
