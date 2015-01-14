@@ -12,6 +12,8 @@ private:
 	bool m_bIsUsingGyro;
 public:
 	Gyro* gyro;
+	Encoder* m_cEncoderL;
+	Encoder* m_cEncoderR;
 	RobotDrive m_drive;
 	ExampleSubsystem();
 	~ExampleSubsystem();

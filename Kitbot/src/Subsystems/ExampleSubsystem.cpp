@@ -7,6 +7,8 @@ ExampleSubsystem::ExampleSubsystem()
 	, m_drive(LEFTMOTOR,RIGHTMOTOR)
 {
 	m_drive.SetSafetyEnabled(false);
+	m_cEncoderL =Encoder(DRIVE_ENCODERL_A,DRIVE_ENCODERL_B);
+	m_cEncoderR =Encoder(DRIVE_ENCODERR_A,DRIVE_ENCODERR_B);
 	m_bIsUsingGyro = false;
 	gyro  = new Gyro(C_GYRO);
 	//m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);

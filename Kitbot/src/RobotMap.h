@@ -15,6 +15,10 @@
 //Drive Train/Chassis
 const int LEFTMOTOR = 0;
 const int RIGHTMOTOR = 1;
+const int DRIVE_ENCODERL_A = 12;
+const int DRIVE_ENCODERL_B = 13;
+const int DRIVE_ENCODERR_A = 14;
+const int DRIVE_ENCODERR_B = 15;
 
 //Intake
 const int INTAKER = 2;
