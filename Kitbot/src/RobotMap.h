@@ -40,10 +40,10 @@ const int BINLIFTER = 11;
 const int C_GYRO = 3;
 
 ////buttons and axes
-//buttons lifters
+//lifters
 const int A_LIFTER = 4;           //right thumbstick
 
-//buttons intake
+//intake
 const int B_INTAKEROTATECCW = 1;   // x button
 const int B_INTAKEIN = 2;		   // a button
 const int B_INTAKEROTATECW = 3;    // y button

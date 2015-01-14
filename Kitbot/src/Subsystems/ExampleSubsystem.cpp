@@ -36,5 +36,5 @@ void ExampleSubsystem::Drive(GenericHID *leftStick, GenericHID *rightStick, bool
 
 bool ExampleSubsystem::CanUseGyro()
 {
- return m_bIsUsingGyro;
+	return m_bIsUsingGyro;
 }

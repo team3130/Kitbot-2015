@@ -7,11 +7,11 @@
 
 class DriveStraightGyro: public PIDCommand{
 private:
-	const float m_dKp = 0.1; //arbitrary constant to correct turning
+	const float m_dKp = 0.3; //arbitrary constant to correct turning
 	Timer timer;
 	double goalTime;
 	double moveSpeed;
-	ExampleSubsystem* chassis;	//from commandbase. we aren't a subclass of it b/c of deadly diamond of death
+	ExampleSubsystem* chassis;
 public:
 	DriveStraightGyro(const char *name);
 	void SetGoal(double time, double speed);
@@ -21,7 +21,7 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 	virtual double ReturnPIDInput();
-	virtual void UsePIDOutput();
+	virtual void UsePIDOutput(float currentSpeed);
 };
 
 #endif
