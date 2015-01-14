@@ -9,10 +9,10 @@ class ExampleSubsystem: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	RobotDrive m_drive;
 	bool m_bIsUsingGyro;
 public:
 	Gyro* gyro;
+	RobotDrive m_drive;
 	ExampleSubsystem();
 	~ExampleSubsystem();
 	bool CanUseGyro();

@@ -7,7 +7,7 @@
 
 class DriveStraightGyro: public PIDCommand{
 private:
-	//static const double driftK = 1.0/180.0;
+	const float m_dKp = 0.1; //arbitrary constant to correct turning
 	Timer timer;
 	double goalTime;
 	double moveSpeed;
@@ -21,7 +21,7 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 	virtual double ReturnPIDInput();
-	virtual void UsePIDOutput(double output);
+	virtual void UsePIDOutput();
 };
 
 #endif

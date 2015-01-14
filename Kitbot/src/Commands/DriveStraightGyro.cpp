@@ -3,13 +3,13 @@
 
 // Used be constructed with (300,0.05,1,0,0,0)
 DriveStraightGyro::DriveStraightGyro(const char *name): PIDCommand(name,0,0,0){
-	Requires(CommandBase::chassis);
-	this->chassis = CommandBase::chassis;
+	Requires(chassis);
 	//SmartDashboard::PutData(this);
 	SmartDashboard::PutNumber("NO ENCODER Straight PID P",-3000);
 	SmartDashboard::PutNumber("NO ENCODER Straight PID I",0);
 	SmartDashboard::PutNumber("NO ENCODER Straight PID D",0);
-	SetGoal(1,0.8);
+	UsePIDOutput();
+	//SetGoal(1,0.8);
 	//SmartDashboard::PutData(this);
 }
 
@@ -30,8 +30,9 @@ void DriveStraightGyro::Initialize() {
 	GetPIDController()->SetSetpoint(0);
 	//chassis->InitEncoders();
 	//chassis->DumbRobot();
-	timer.Reset();
-	timer.Start();
+	//timer.Reset();
+	//timer.Start();
+	chassis->gyro->InitGyro();
 	chassis->gyro->Reset();
 }
 
@@ -41,25 +42,33 @@ void DriveStraightGyro::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveStraightGyro::IsFinished(){
+	/*
 	SmartDashboard::PutNumber("timer", timer.Get());
 	SmartDashboard::PutNumber("goal", goalTime);
 	if(timer.Get()>goalTime)return true;
 	else return false;
+	*/
+	return false;
 }
 
 double DriveStraightGyro::ReturnPIDInput(){
 	return chassis->gyro->GetAngle();
 }
 
-void DriveStraightGyro::UsePIDOutput(double output){
+void DriveStraightGyro::UsePIDOutput(){
+	float angle = ReturnPIDInput();
+	chassis->m_drive.Drive(0,-angle * m_dKp);
+
+	/*
 	if(timer.Get()<=goalTime){
-		//chassis->Drive(moveSpeed,0);
+
 	}
+	*/
 }
 
 // Called once after isFinished returns true
 void DriveStraightGyro::End() {
-	//chassis->Drive(0,0);
+
 }
 
 // Called when another command which requires one or more of the same
