@@ -37,7 +37,7 @@ const int LIFTERSWITCH = 10;
 const int BINLIFTER = 11;
 
 // Analog Input channels
-const int C_GYRO = 3;
+const int C_GYRO = 0;
 
 ////buttons and axes
 //lifters

@@ -24,8 +24,8 @@ ExampleSubsystem::~ExampleSubsystem()
 void ExampleSubsystem::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new ExampleCommand());
-	SetDefaultCommand(new GyroTest());
+	SetDefaultCommand(new ExampleCommand());
+	//SetDefaultCommand(new GyroTest());
 }
 
 // Put methods for controlling this subsystem

@@ -8,7 +8,7 @@ GyroTest::GyroTest()
 // Called just before this Command runs the first time
 void GyroTest::Initialize()
 {
-	goalTime = 1.5;
+	goalTime = 1;
 	moveSpeed = 0.5;
 	chassis->gyro->InitGyro();
 	chassis->gyro->Reset();

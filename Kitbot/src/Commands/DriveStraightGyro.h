@@ -21,7 +21,7 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 	virtual double ReturnPIDInput();
-	virtual void UsePIDOutput(float currentSpeed);
+	virtual void UsePIDOutput(double outputAngle);
 };
 
 #endif
