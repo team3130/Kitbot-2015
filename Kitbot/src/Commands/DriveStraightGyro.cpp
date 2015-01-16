@@ -42,14 +42,16 @@ bool DriveStraightGyro::IsFinished(){
 
 double DriveStraightGyro::ReturnPIDInput(){
 	double ret = CommandBase::chassis->gyro->GetAngle();
-	SmartDashboard::PutNumber("Gyro: ", ret);
+	double rot = CommandBase::chassis->gyro->GetRate();
+	SmartDashboard::PutNumber("Gyro Current Angle: ", ret);
+	SmartDashboard::PutNumber("Gyro Rotation Rate: ", rot);
 	return ret;
 }
 
 void DriveStraightGyro::UsePIDOutput(double outputAngle){
 	if(gyroMode)
 	{
-		CommandBase::chassis->m_drive.TankDrive(moveSpeed+outputAngle,moveSpeed-outputAngle);
+		CommandBase::chassis->m_drive.TankDrive(moveSpeed-outputAngle,moveSpeed+outputAngle);
 	}
 	else
 	{

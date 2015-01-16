@@ -19,6 +19,8 @@ ExampleSubsystem::ExampleSubsystem()
 ExampleSubsystem::~ExampleSubsystem()
 {
 	delete gyro;
+	delete m_cEncoderL;
+	delete m_cEncoderR;
 }
 
 void ExampleSubsystem::InitDefaultCommand()
