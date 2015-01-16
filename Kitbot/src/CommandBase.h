@@ -6,6 +6,7 @@
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/Intake.h"
 #include "Subsystems/Lifter.h"
+#include "Subsystems/Output.h"
 #include "OI.h"
 #include "WPILib.h"
 #include "RobotMap.h"
@@ -22,6 +23,7 @@ public:
 	CommandBase();
 	static void init();
 	// Create a single static instance of all of your subsystems
+	static Output *output;
 	static ExampleSubsystem *chassis;
 	static Intake *intake;
 	static OI *oi;
