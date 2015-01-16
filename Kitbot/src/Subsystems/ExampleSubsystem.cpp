@@ -1,6 +1,6 @@
 #include "ExampleSubsystem.h"
 #include "../RobotMap.h"
-#include "../Commands/ExampleCommand.h"
+#include "../Commands/DriveStraightGyro.h"
 #include "../Commands/GyroTest.h"
 
 ExampleSubsystem::ExampleSubsystem()
@@ -12,8 +12,8 @@ ExampleSubsystem::ExampleSubsystem()
 	m_cEncoderR = new Encoder(DRIVE_ENCODERR_A,DRIVE_ENCODERR_B);
 	m_bIsUsingGyro = false;
 	gyro  = new Gyro(C_GYRO);
-	//m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);
-	//m_drive.SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
+	m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor, true);
+	m_drive.SetInvertedMotor(RobotDrive::kRearRightMotor, true);
 }
 
 ExampleSubsystem::~ExampleSubsystem()
@@ -24,7 +24,7 @@ ExampleSubsystem::~ExampleSubsystem()
 void ExampleSubsystem::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
-	SetDefaultCommand(new ExampleCommand());
+	SetDefaultCommand(new DriveStraightGyro("Default drive"));
 	//SetDefaultCommand(new GyroTest());
 }
 
