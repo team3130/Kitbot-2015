@@ -7,6 +7,7 @@
 // Initialize a single static instance of all of your subsystems to NULL
 ExampleSubsystem* CommandBase::chassis = NULL;
 Intake* CommandBase::intake = NULL;
+Output* CommandBase::output = NULL;
 OI* CommandBase::oi = NULL;
 Lifter* CommandBase::lifter = NULL;
 
@@ -27,6 +28,7 @@ void CommandBase::init()
 	// line should be repeated for each subsystem in the project.
 	chassis = new ExampleSubsystem();
 	intake = new Intake();
+	output = new Output();
 	oi = new OI();
 	lifter = new Lifter();
 }
