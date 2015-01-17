@@ -12,8 +12,8 @@ ExampleSubsystem::ExampleSubsystem()
 	m_cEncoderR = new Encoder(DRIVE_ENCODERR_A,DRIVE_ENCODERR_B);
 	m_bIsUsingGyro = false;
 	gyro  = new Gyro(C_GYRO);
-	m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor, true);
-	m_drive.SetInvertedMotor(RobotDrive::kRearRightMotor, true);
+	//m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor, true);
+	//m_drive.SetInvertedMotor(RobotDrive::kRearRightMotor, true);
 }
 
 ExampleSubsystem::~ExampleSubsystem()

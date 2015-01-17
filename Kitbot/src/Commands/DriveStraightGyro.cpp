@@ -18,13 +18,15 @@ DriveStraightGyro::DriveStraightGyro(const char *name)
 void DriveStraightGyro::Initialize() {
 	double currentAngle = CommandBase::chassis->gyro->GetAngle();
 	GetPIDController()->SetSetpoint(currentAngle);
-	GetPIDController()->Enable();
+	//GetPIDController()->Enable();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void DriveStraightGyro::Execute() {
 	moveSpeed = CommandBase::oi->stickL->GetY();
-	moveTurn = CommandBase::oi->stickR->GetX();
+	moveTurn = -CommandBase::oi->stickR->GetX();
+
+	CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed,moveTurn);
 	if(fabs(moveTurn)>0.2)
 	{
 		gyroMode = false;
