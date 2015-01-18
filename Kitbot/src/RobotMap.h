@@ -25,13 +25,11 @@ const int INTAKER = 2;
 const int INTAKEL = 3;
 
 //Lifter
-const int LIFTERL = 4;
-const int LIFTERR = 5;
-const int ENCODERL_A = 6;
-const int ENCODERL_B = 7;
-const int ENCODERR_A = 8;
-const int ENCODERR_B = 9;
-const int LIFTERSWITCH = 10;
+const int LIFTER = 4;
+const int ENCODER_A = 5;
+const int ENCODER_B = 6;
+const int LIFTERSWITCHBOT = 7;
+const int LIFTERSWITCHTOP = 8;
 
 //Bin Lifter
 const int BINLIFTER = 11;

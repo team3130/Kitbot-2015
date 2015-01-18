@@ -15,7 +15,7 @@ void ResetLifter::Initialize()
 void ResetLifter::Execute()
 {
 	//lifter->Move(oi->stickL,oi->stickR);
-	lifter->Balance(-1);
+	lifter->moveLifter(-1);
 }
 
 // Make this return true when this Command no longer needs to run execute()
