@@ -11,6 +11,7 @@ private:
 	// for methods that implement subsystem capabilities
 	bool m_bIsUsingGyro;
 public:
+	BuiltInAccelerometer* accelerometer;
 	Gyro* gyro;
 	Encoder* m_cEncoderL;
 	Encoder* m_cEncoderR;

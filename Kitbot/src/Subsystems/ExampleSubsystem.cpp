@@ -2,6 +2,7 @@
 #include "../RobotMap.h"
 #include "../Commands/DriveStraightGyro.h"
 #include "../Commands/GyroTest.h"
+#include "../Commands/AccelerometerTest.h"
 
 ExampleSubsystem::ExampleSubsystem()
 	: Subsystem("ExampleSubsystem")
@@ -12,6 +13,7 @@ ExampleSubsystem::ExampleSubsystem()
 	m_cEncoderR = new Encoder(DRIVE_ENCODERR_A,DRIVE_ENCODERR_B);
 	m_bIsUsingGyro = false;
 	gyro  = new Gyro(C_GYRO);
+	accelerometer = new BuiltInAccelerometer();
 	//m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor, true);
 	//m_drive.SetInvertedMotor(RobotDrive::kRearRightMotor, true);
 }
