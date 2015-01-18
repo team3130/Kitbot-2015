@@ -9,6 +9,7 @@
 #include "Subsystems/Lifter.h"
 #include "Subsystems/Output.h"
 #include "Subsystems/MooseLifter.h"
+#include "Subsystems/AntlerMoose.h"
 #include "OI.h"
 #include "WPILib.h"
 #include "RobotMap.h"
@@ -32,6 +33,7 @@ public:
 	static OI *oi;
 	static Lifter *lifter;
 	static MooseLifter *mooseLifter;
+	static AntlerMoose *antlerMoose;
 };
 
 #endif

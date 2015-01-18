@@ -13,6 +13,7 @@ Output* CommandBase::output = NULL;
 OI* CommandBase::oi = NULL;
 Lifter* CommandBase::lifter = NULL;
 MooseLifter* CommandBase::mooseLifter = NULL;
+AntlerMoose* CommandBase::antlerMoose = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -36,4 +37,5 @@ void CommandBase::init()
 	oi = new OI();
 	lifter = new Lifter();
 	mooseLifter = new MooseLifter();
+	antlerMoose = new AntlerMoose();
 }
