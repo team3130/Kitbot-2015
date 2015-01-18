@@ -70,10 +70,11 @@ void Lifter::InitDefaultCommand()
 // will change orientation if lift winch runs opposite direction
 void Lifter::moveLifter(float speed)
 {
-	if((speed > 0 and m_cLimitSwitchTop != 1) or (speed < 0 and m_cLimitSwitchTop != 1)){
-		m_cLiftMotor->SetSpeed(speed);
+	float fSpeed = speed;
+	if((fSpeed > 0 and not m_cLimitSwitchTop) or (fSpeed < 0 and not m_cLimitSwitchTop)){
+		m_cLiftMotor->SetSpeed(fSpeed);
 	}
-	if(m_cLimitSwitchBot == 1){
+	if(m_cLimitSwitchBot){
 		m_cEncoder->Reset();
 	}
 }
