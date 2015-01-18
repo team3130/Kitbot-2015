@@ -12,6 +12,7 @@ IntakeArms* CommandBase::intakearms = NULL;
 Output* CommandBase::output = NULL;
 OI* CommandBase::oi = NULL;
 Lifter* CommandBase::lifter = NULL;
+MooseLifter* CommandBase::mooseLifter = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -34,4 +35,5 @@ void CommandBase::init()
 	output = new Output();
 	oi = new OI();
 	lifter = new Lifter();
+	mooseLifter = new MooseLifter();
 }

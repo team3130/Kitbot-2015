@@ -8,6 +8,7 @@
 #include "Subsystems/IntakeArms.h"
 #include "Subsystems/Lifter.h"
 #include "Subsystems/Output.h"
+#include "Subsystems/MooseLifter.h"
 #include "OI.h"
 #include "WPILib.h"
 #include "RobotMap.h"
@@ -30,6 +31,7 @@ public:
 	static IntakeArms *intakearms;
 	static OI *oi;
 	static Lifter *lifter;
+	static MooseLifter *mooseLifter;
 };
 
 #endif
