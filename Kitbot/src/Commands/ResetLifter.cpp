@@ -21,7 +21,7 @@ void ResetLifter::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool ResetLifter::IsFinished()
 {
-	return false;
+	return lifter->GetLimitSwitchBot();
 }
 
 // Called once after isFinished returns true

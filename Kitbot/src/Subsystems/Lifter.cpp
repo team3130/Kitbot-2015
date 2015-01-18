@@ -53,13 +53,13 @@ void Lifter::InitDefaultCommand()
 			m_cLiftMotorL->SetSpeed(fDirection-dRateDifference);
 			m_cLiftMotorR->SetSpeed(fDirection+dRateDifference);
 		}
-		else if(not m_cLimitSwitchBot->Get())
+		else if(!GetLimitSwitchBot())
 		{
 			m_cLiftMotorL->SetSpeed(fDirection+dRateDifference);
 			m_cLiftMotorR->SetSpeed(fDirection-dRateDifference);
 		}
 		//reset encoders when lifter is at the bottom
-		if(m_cLimitSwitchBot->Get()){
+		if(GetLimitSwitchBot()){
 			m_cEncoderL->Reset();
 			m_cEncoderR->Reset();
 		}
@@ -70,10 +70,20 @@ void Lifter::InitDefaultCommand()
 // will change orientation if lift winch runs opposite direction
 void Lifter::moveLifter(float speed)
 {
-	if((speed > 0 and !m_cLimitSwitchTop->Get()) or (speed < 0 and !m_cLimitSwitchBot->Get())){
+	if((speed > 0 and !GetLimitSwitchTop()) or (speed < 0 and !GetLimitSwitchBot())){
 		m_cLiftMotor->SetSpeed(speed);
 	}
 	if(m_cLimitSwitchBot->Get()){
 		m_cEncoder->Reset();
 	}
+}
+
+bool Lifter::GetLimitSwitchTop()
+{
+	return m_cLimitSwitchTop->Get();
+}
+
+bool Lifter::GetLimitSwitchBot()
+{
+	return m_cLimitSwitchBot->Get();
 }
