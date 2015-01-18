@@ -2,7 +2,7 @@
 #include "math.h"
 
 // Used be constructed with (300,0.05,1,0,0,0)
-DriveStraightGyro::DriveStraightGyro(const char *name): PIDCommand(name,1,0,0){
+DriveStraightGyro::DriveStraightGyro(const char *name): PIDCommand(name,  0.5  ,  30  ,  10  ){
 	Requires(CommandBase::chassis);
 	this->chassis = CommandBase::chassis;
 	moveSpeed = 0;
@@ -41,7 +41,7 @@ bool DriveStraightGyro::IsFinished(){
 
 double DriveStraightGyro::ReturnPIDInput(){
 	double ret = chassis->gyro->GetAngle();
-	return ret / 20.0;
+	return ret;
 }
 
 void DriveStraightGyro::UsePIDOutput(double outputAngle){
