@@ -23,6 +23,7 @@ const int DRIVE_ENCODERR_B = 15;
 //Intake
 const int INTAKER = 2;
 const int INTAKEL = 3;
+const int INTAKEARMS = 9;
 
 //Lifter
 const int LIFTER = 4;

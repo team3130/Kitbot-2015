@@ -5,6 +5,7 @@
 #include "Commands/Command.h"
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/Intake.h"
+#include "Subsystems/IntakeArms.h"
 #include "Subsystems/Lifter.h"
 #include "Subsystems/Output.h"
 #include "OI.h"
@@ -26,6 +27,7 @@ public:
 	static Output *output;
 	static ExampleSubsystem *chassis;
 	static Intake *intake;
+	static IntakeArms *intakearms;
 	static OI *oi;
 	static Lifter *lifter;
 };
