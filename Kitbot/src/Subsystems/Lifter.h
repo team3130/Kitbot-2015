@@ -9,22 +9,19 @@ class Lifter: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	Talon* m_cLiftMotorL;
-	Talon* m_cLiftMotorR;
+	Talon* m_cLiftMotor;
 	double m_dLifterPosition;
-	double m_dEncoderLeftValue;
-	double m_dEncoderRightValue;
+	double m_dEncoderValue;
 public:
-	DigitalInput* m_cLimitSwitch;
-	Encoder* m_cEncoderL;
-	Encoder* m_cEncoderR;
+	DigitalInput* m_cLimitSwitchTop;
+	DigitalInput* m_cLimitSwitchBot;
+	Encoder* m_cEncoder;
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
-	bool getLimitSwitch(){return m_cLimitSwitch->Get();}
-	double getLeftSpeed();
-	double getRightSpeed();
 	void Balance(float direction);
+	void moveLifter(float speed);
+
 };
 
 #endif

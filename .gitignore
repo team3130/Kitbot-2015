@@ -29,5 +29,7 @@
 
 # language
 Kitbot/.settings/language.settings.xml
+Kitbot/sysProps.xml
+*~
 
 Kitbot/sysProps.xml

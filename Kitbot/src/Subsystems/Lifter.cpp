@@ -5,22 +5,19 @@
 Lifter::Lifter()
 	: Subsystem("Lifter")
 {
-	m_cLiftMotorL = new Talon(LIFTERL);
-	m_cLiftMotorR = new Talon(LIFTERR);
-	m_cLimitSwitch = new DigitalInput(LIFTERSWITCH);
-	m_cEncoderL = new Encoder(ENCODERL_A, ENCODERL_B, false);
-	m_cEncoderR = new Encoder(ENCODERR_A, ENCODERR_B, false);
+	m_cLiftMotor = new Talon(LIFTER);
+	m_cLimitSwitchTop = new DigitalInput(LIFTERSWITCHTOP);
+	m_cLimitSwitchBot = new DigitalInput(LIFTERSWITCHBOT);
+	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
 	m_dLifterPosition = 0;
-	m_dEncoderLeftValue=0;
-	m_dEncoderRightValue=0;
+	m_dEncoderValue=0;
 }
 
 Lifter::~Lifter(){
-	delete m_cEncoderL;
-	delete m_cEncoderR;
-	delete m_cLimitSwitch;
-	delete m_cLiftMotorL;
-	delete m_cLiftMotorR;
+	delete m_cEncoder;
+	delete m_cLimitSwitchTop;
+	delete m_cLimitSwitchBot;
+	delete m_cLiftMotor;
 }
 
 void Lifter::InitDefaultCommand()
@@ -32,15 +29,9 @@ void Lifter::InitDefaultCommand()
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-double Lifter::getLeftSpeed(){
-	return m_cLiftMotorL->Get();
-}
 
-double Lifter::getRightSpeed(){
-	return m_cLiftMotorR->Get();
-}
 //Keeps motors level
-void Lifter::Balance(float fDirection)
+/*void Lifter::Balance(float fDirection)
 {
 	m_dEncoderLeftValue = m_cEncoderL->Get();
 	m_dEncoderRightValue = m_cEncoderR->Get();
@@ -62,15 +53,27 @@ void Lifter::Balance(float fDirection)
 			m_cLiftMotorL->SetSpeed(fDirection-dRateDifference);
 			m_cLiftMotorR->SetSpeed(fDirection+dRateDifference);
 		}
-		else if(not m_cLimitSwitch->Get())
+		else if(not m_cLimitSwitchBot->Get())
 		{
 			m_cLiftMotorL->SetSpeed(fDirection+dRateDifference);
 			m_cLiftMotorR->SetSpeed(fDirection-dRateDifference);
 		}
 		//reset encoders when lifter is at the bottom
-		if(m_cLimitSwitch->Get()){
+		if(m_cLimitSwitchBot->Get()){
 			m_cEncoderL->Reset();
 			m_cEncoderR->Reset();
 		}
+	}
+}
+*/
+
+// will change orientation if lift winch runs opposite direction
+void Lifter::moveLifter(float speed)
+{
+	if((speed > 0 and !m_cLimitSwitchTop->Get()) or (speed < 0 and !m_cLimitSwitchBot->Get())){
+		m_cLiftMotor->SetSpeed(speed);
+	}
+	if(m_cLimitSwitchBot->Get()){
+		m_cEncoder->Reset();
 	}
 }
