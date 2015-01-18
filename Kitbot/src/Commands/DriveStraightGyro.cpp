@@ -5,6 +5,8 @@
 DriveStraightGyro::DriveStraightGyro(const char *name): PIDCommand(name,  0.07  ,  0  ,  0.2  ){
 	Requires(CommandBase::chassis);
 	moveSpeed = 0;
+	moveTurn = 0;
+	gyroMode = false;
 	GetPIDController()->Disable();
 	Requires(CommandBase::chassis);
 	CommandBase::chassis->gyro->InitGyro();
@@ -13,9 +15,6 @@ DriveStraightGyro::DriveStraightGyro(const char *name): PIDCommand(name,  0.07  
 
 // Called just before this Command runs the first time
 void DriveStraightGyro::Initialize() {
-	double currentAngle = CommandBase::chassis->gyro->GetAngle();
-	GetPIDController()->SetSetpoint(currentAngle);
-	//GetPIDController()->Enable();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -23,14 +22,22 @@ void DriveStraightGyro::Execute() {
 	moveSpeed = CommandBase::oi->stickL->GetY();
 	moveTurn = -CommandBase::oi->stickR->GetX();
 
-	CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed,moveTurn);
 	if(fabs(moveTurn)>0.2)
 	{
-		gyroMode = false;
+		if(gyroMode) {
+			gyroMode = false;
+			GetPIDController()->Disable();
+		}
+		CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed,moveTurn);
 	}
 	else
 	{
-		gyroMode = true;
+		if(!gyroMode) {
+			gyroMode = true;
+			double currentAngle = CommandBase::chassis->gyro->GetAngle();
+			GetPIDController()->SetSetpoint(currentAngle);
+			GetPIDController()->Enable();
+		}
 	}
 }
 
@@ -50,7 +57,7 @@ double DriveStraightGyro::ReturnPIDInput(){
 void DriveStraightGyro::UsePIDOutput(double outputAngle){
 	if(gyroMode)
 	{
-		CommandBase::chassis->m_drive.TankDrive(moveSpeed-outputAngle,moveSpeed+outputAngle);
+		CommandBase::chassis->m_drive.TankDrive(moveSpeed+outputAngle,moveSpeed-outputAngle);
 	}
 	else
 	{
