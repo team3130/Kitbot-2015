@@ -21,7 +21,7 @@ void DriveStraightGyro::Initialize() {
 void DriveStraightGyro::Execute() {
 	moveSpeed = CommandBase::oi->stickL->GetY();
 	moveTurn = -CommandBase::oi->stickR->GetX();
-	double turnLimit = CommandBase::oi->stickR->GetY();
+	double turnLimit = CommandBase::oi->stickR->GetZ();
 
 	if(fabs(moveTurn) > turnLimit)
 	{
