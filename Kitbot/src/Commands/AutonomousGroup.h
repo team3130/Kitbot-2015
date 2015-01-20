@@ -6,7 +6,7 @@
 #include "ControlLifter.h"
 #include "ControlRollers.h"
 
-class AutonomousGroup: public CommandBase
+class AutonomousGroup: public CommandGroup
 {
 private:
 	ControlLifter* m_cAutonLifter;

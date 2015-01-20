@@ -4,6 +4,8 @@ AutonomousGroup::AutonomousGroup()
 {
 	m_cAutonRollers = new ControlRollers();
 	m_cAutonLifter = new ControlLifter();
+	AddSequential(m_cAutonRollers);
+	AddSequential(m_cAutonLifter);
 }
 
 AutonomousGroup::~AutonomousGroup()
