@@ -21,8 +21,9 @@ void DriveStraightGyro::Initialize() {
 void DriveStraightGyro::Execute() {
 	moveSpeed = CommandBase::oi->stickL->GetY();
 	moveTurn = -CommandBase::oi->stickR->GetX();
+	double turnLimit = CommandBase::oi->stickR->GetY();
 
-	if(fabs(moveTurn)>0.2)
+	if(fabs(moveTurn) > turnLimit)
 	{
 		if(gyroMode) {
 			gyroMode = false;
