@@ -20,7 +20,8 @@ public:
 	~MooseLifter();
 	void InitDefaultCommand();
 	void Balance(float direction);
-	void moveMooseLifter(float speed);
+	void MoveMooseLifterMotor(float speed);
+	void MoveMooseLifterSolonoid(float direction);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
 

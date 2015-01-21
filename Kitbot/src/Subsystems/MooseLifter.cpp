@@ -29,10 +29,18 @@ void MooseLifter::InitDefaultCommand()
 // here. Call these from Commands.
 
 // will change orientation if lift winch runs opposite direction
-void MooseLifter::moveMooseLifter(float speed)
+void MooseLifter::MoveMooseLifterMotor(float speed)
 {
 	if((speed > 0 and !GetLimitSwitchTop()) or (speed < 0 and !GetLimitSwitchBot())){
 		m_cMooseLiftMotor->SetSpeed(speed);
+	}
+}
+
+void MooseLifter::MoveMooseLifterSolonoid(float direction)
+{
+	if((direction > 0 and !GetLimitSwitchTop()) or (direction < 0 and !GetLimitSwitchBot())){
+		if(direction > 0){m_cMooseSolonoid->Set(1);}
+		else if(direction < 0){m_cMooseSolonoid->Set(0);}
 	}
 }
 

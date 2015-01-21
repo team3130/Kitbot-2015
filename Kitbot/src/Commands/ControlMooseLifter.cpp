@@ -15,10 +15,10 @@ void ControlMooseLifter::Initialize()
 void ControlMooseLifter::Execute()
 {
 	if(-oi->gamepad->GetRawButton(B_MOOSELIFTERUP)){
-		mooseLifter->moveMooseLifter(1);
+		mooseLifter->MoveMooseLifterSolonoid(1);
 	}
 	else if(-oi->gamepad->GetRawButton(B_MOOSELIFTERDOWN)){
-		mooseLifter->moveMooseLifter(-1);
+		mooseLifter->MoveMooseLifterSolonoid(-1);
 	}
 }
 
