@@ -5,8 +5,8 @@
 MooseLifter::MooseLifter()
 	: Subsystem("MooseLifter")
 {
-	m_cMooseLiftMotor = new Talon(MOOSELIFTER);
-	m_cMooseSolonoid = new Solenoid(MOOSELIFTER);
+	m_cMooseLiftMotor = new Jaguar(MOOSELIFTER);
+	m_cMooseSolenoid = new Solenoid(MOOSELIFTER);
 	m_cLimitSwitchTop = new DigitalInput(MOOSELIFTERSWITCHTOP);
 	m_cLimitSwitchBot = new DigitalInput(MOOSELIFTERSWITCHBOT);
 	m_dLifterPosition = 0;
@@ -17,6 +17,7 @@ MooseLifter::~MooseLifter(){
 	delete m_cLimitSwitchTop;
 	delete m_cLimitSwitchBot;
 	delete m_cMooseLiftMotor;
+	delete m_cMooseSolenoid;
 }
 
 void MooseLifter::InitDefaultCommand()
@@ -39,8 +40,8 @@ void MooseLifter::MoveMooseLifterMotor(float speed)
 void MooseLifter::MoveMooseLifterSolonoid(float direction)
 {
 	if((direction > 0 and !GetLimitSwitchTop()) or (direction < 0 and !GetLimitSwitchBot())){
-		if(direction > 0){m_cMooseSolonoid->Set(1);}
-		else if(direction < 0){m_cMooseSolonoid->Set(0);}
+		if(direction > 0){m_cMooseSolenoid->Set(1);}
+		else if(direction < 0){m_cMooseSolenoid->Set(0);}
 	}
 }
 

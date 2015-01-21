@@ -9,10 +9,10 @@ class MooseLifter: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	Talon* m_cMooseLiftMotor;
+	Jaguar* m_cMooseLiftMotor;
 	DigitalInput* m_cLimitSwitchTop;
 	DigitalInput* m_cLimitSwitchBot;
-	Solenoid* m_cMooseSolonoid;
+	Solenoid* m_cMooseSolenoid;
 	double m_dLifterPosition;
 	double m_dEncoderValue;
 public:
