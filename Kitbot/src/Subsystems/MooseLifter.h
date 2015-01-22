@@ -10,10 +10,10 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	Jaguar* m_cMooseLiftMotor;
-	DigitalInput* m_cLimitSwitchTop;
-	DigitalInput* m_cLimitSwitchBot;
+	DigitalInput* m_cMooseLimitSwitchTop;
+	DigitalInput* m_cMooseLimitSwitchBot;
 	Solenoid* m_cMooseSolenoid;
-	double m_dLifterPosition;
+	double m_dMooseLifterPosition;
 	double m_dEncoderValue;
 public:
 	MooseLifter();

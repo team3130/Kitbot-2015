@@ -57,8 +57,11 @@ void Intake::HandleObjects(int leftIntake, int rightIntake)
 
 double Intake::getLeftSpeed(){
 	return m_cIntake_left->Get();
+	SmartDashboard::PutNumber("Intake-Left Speed", m_cIntake_left->Get());
 }
 
 double Intake::getRightSpeed(){
 	return m_cIntake_right->Get();
+	SmartDashboard::PutNumber("Intake-Right Speed", m_cIntake_right->Get());
+
 }

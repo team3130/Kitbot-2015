@@ -17,6 +17,8 @@ void AccelerometerTest::Execute()
 {
 xSpeed = chassis->accelerometer->GetX();
 ySpeed = chassis->accelerometer->GetY();
+SmartDashboard::PutNumber("X Speed", xSpeed);
+SmartDashboard::PutNumber("Y Speed", ySpeed);
 }
 
 // Make this return true when this Command no longer needs to run execute()

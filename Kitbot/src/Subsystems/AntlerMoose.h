@@ -10,8 +10,8 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	Talon* m_cAntlerMooseMotor;
-	DigitalInput* m_cLimitSwitchTop;
-	DigitalInput* m_cLimitSwitchBot;
+	DigitalInput* m_cAntlerLimitSwitchTop;
+	DigitalInput* m_cAntlerLimitSwitchBot;
 	double m_dLifterPosition;
 	double m_dEncoderValue;
 public:

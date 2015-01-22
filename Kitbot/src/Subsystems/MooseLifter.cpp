@@ -7,15 +7,15 @@ MooseLifter::MooseLifter()
 {
 	m_cMooseLiftMotor = new Jaguar(MOOSELIFTER);
 	m_cMooseSolenoid = new Solenoid(MOOSELIFTER);
-	m_cLimitSwitchTop = new DigitalInput(MOOSELIFTERSWITCHTOP);
-	m_cLimitSwitchBot = new DigitalInput(MOOSELIFTERSWITCHBOT);
-	m_dLifterPosition = 0;
+	m_cMooseLimitSwitchTop = new DigitalInput(MOOSELIFTERSWITCHTOP);
+	m_cMooseLimitSwitchBot = new DigitalInput(MOOSELIFTERSWITCHBOT);
+	m_dMooseLifterPosition = 0;
 	m_dEncoderValue=0;
 }
 
 MooseLifter::~MooseLifter(){
-	delete m_cLimitSwitchTop;
-	delete m_cLimitSwitchBot;
+	delete m_cMooseLimitSwitchTop;
+	delete m_cMooseLimitSwitchBot;
 	delete m_cMooseLiftMotor;
 	delete m_cMooseSolenoid;
 }
@@ -47,10 +47,13 @@ void MooseLifter::MoveMooseLifterSolonoid(float direction)
 
 bool MooseLifter::GetLimitSwitchTop()
 {
-	return m_cLimitSwitchTop->Get();
+	return m_cMooseLimitSwitchTop->Get();
+	SmartDashboard::PutBoolean("Moose-Top Limit Switch", m_cMooseLimitSwitchTop->Get());
 }
 
 bool MooseLifter::GetLimitSwitchBot()
 {
-	return m_cLimitSwitchBot->Get();
+	return m_cMooseLimitSwitchBot->Get();
+	SmartDashboard::PutBoolean("Moose-Top Limit Switch", m_cMooseLimitSwitchBot->Get());
+
 }

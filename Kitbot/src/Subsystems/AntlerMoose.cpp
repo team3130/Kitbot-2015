@@ -6,15 +6,15 @@ AntlerMoose::AntlerMoose()
 	: Subsystem("AntlerMoose")
 {
 	m_cAntlerMooseMotor = new Talon(MOOSELIFTER);
-	m_cLimitSwitchTop = new DigitalInput(ANTLERMOOSESWITCHTOP);
-	m_cLimitSwitchBot = new DigitalInput(ANTLERMOOSESWITCHBOT);
+	m_cAntlerLimitSwitchTop = new DigitalInput(ANTLERMOOSESWITCHTOP);
+	m_cAntlerLimitSwitchBot = new DigitalInput(ANTLERMOOSESWITCHBOT);
 	m_dLifterPosition = 0;
 	m_dEncoderValue=0;
 }
 
 AntlerMoose::~AntlerMoose(){
-	delete m_cLimitSwitchTop;
-	delete m_cLimitSwitchBot;
+	delete m_cAntlerLimitSwitchTop;
+	delete m_cAntlerLimitSwitchBot;
 	delete m_cAntlerMooseMotor;
 }
 
@@ -37,10 +37,10 @@ void AntlerMoose::moveAntlerMoose(float speed)
 
 bool AntlerMoose::GetLimitSwitchTop()
 {
-	return m_cLimitSwitchTop->Get();
+	return m_cAntlerLimitSwitchTop->Get();
 }
 
 bool AntlerMoose::GetLimitSwitchBot()
 {
-	return m_cLimitSwitchBot->Get();
+	return m_cAntlerLimitSwitchBot->Get();
 }
