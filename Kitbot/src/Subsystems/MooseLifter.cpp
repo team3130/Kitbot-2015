@@ -7,10 +7,9 @@ MooseLifter::MooseLifter()
 {
 	m_cMooseLiftMotor = new Jaguar(MOOSELIFTER);
 	m_cMooseSolenoid = new Solenoid(MOOSELIFTER);
+	m_cMooseLock = new Solenoid(MOOSELOCK);
 	m_cMooseLimitSwitchTop = new DigitalInput(MOOSELIFTERSWITCHTOP);
 	m_cMooseLimitSwitchBot = new DigitalInput(MOOSELIFTERSWITCHBOT);
-	m_dMooseLifterPosition = 0;
-	m_dEncoderValue=0;
 }
 
 MooseLifter::~MooseLifter(){
@@ -18,6 +17,7 @@ MooseLifter::~MooseLifter(){
 	delete m_cMooseLimitSwitchBot;
 	delete m_cMooseLiftMotor;
 	delete m_cMooseSolenoid;
+	delete m_cMooseLock;
 }
 
 void MooseLifter::InitDefaultCommand()
@@ -26,22 +26,21 @@ void MooseLifter::InitDefaultCommand()
 	SetDefaultCommand(new ControlMooseLifter());
 }
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+void MooseLifter::MoveMooseLifterSolenoid(bool direction)
+{
+	m_cMooseSolenoid->Set(direction);
+}
+
+void MooseLifter::MoveMooseLock(bool activated)
+{
+	m_cMooseLock->Set(activated);
+}
 
 // will change orientation if lift winch runs opposite direction
 void MooseLifter::MoveMooseLifterMotor(float speed)
 {
 	if((speed > 0 and !GetLimitSwitchTop()) or (speed < 0 and !GetLimitSwitchBot())){
 		m_cMooseLiftMotor->SetSpeed(speed);
-	}
-}
-
-void MooseLifter::MoveMooseLifterSolonoid(float direction)
-{
-	if((direction > 0 and !GetLimitSwitchTop()) or (direction < 0 and !GetLimitSwitchBot())){
-		if(direction > 0){m_cMooseSolenoid->Set(1);}
-		else if(direction < 0){m_cMooseSolenoid->Set(0);}
 	}
 }
 
