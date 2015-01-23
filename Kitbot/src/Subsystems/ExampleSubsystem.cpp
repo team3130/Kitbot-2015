@@ -28,7 +28,7 @@ ExampleSubsystem::~ExampleSubsystem()
 void ExampleSubsystem::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
-	SetDefaultCommand(new DriveStraightGyro("Default drive"));
+	SetDefaultCommand(new DriveStraightGyro());
 	//SetDefaultCommand(new GyroTest());
 }
 

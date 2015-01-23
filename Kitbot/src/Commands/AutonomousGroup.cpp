@@ -30,9 +30,18 @@ AutonomousGroup::AutonomousGroup()
 
 AutonomousGroup::~AutonomousGroup()
 {
-	delete m_cAutonRollers1;
+	delete m_cAutonDrive1;
+	delete m_cAutonDrive2;
+	delete m_cAutonDrive3;
+	delete m_cAutonDrive4;
+	delete m_cAutonDrive5;
 	delete m_cAutonLifter1;
-
+	delete m_cAutonLifter2;
+	delete m_cAutonLifter3;
+	delete m_cAutonRollers1;
+	delete m_cAutonRollers2;
+	delete m_cAutonRollers3;
+	delete m_cAutonRollers4;
 }
 
 // Called just before this Command runs the first time

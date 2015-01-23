@@ -3,10 +3,9 @@
 
 #include "../CommandBase.h"
 #include "WPILib.h"
+#include "DriveStraightGyro.h"
 #include "ControlLifter.h"
 #include "ControlRollers.h"
-#include "DriveStraightGyro.h"
-
 
 class AutonomousGroup: public CommandGroup
 {
@@ -23,9 +22,6 @@ private:
 	DriveStraightGyro* m_cAutonDrive3;
 	DriveStraightGyro* m_cAutonDrive4;
 	DriveStraightGyro* m_cAutonDrive5;
-
-
-
 public:
 	AutonomousGroup();
 	~AutonomousGroup();
