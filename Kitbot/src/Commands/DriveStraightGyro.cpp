@@ -2,8 +2,8 @@
 #include <math.h>
 
 // Used be constructed with (300,0.05,1,0,0,0)
-DriveStraightGyro::DriveStraightGyro(const char *name)
-	: PIDCommand(name, 1/20, 0, 0)
+DriveStraightGyro::DriveStraightGyro()
+	: PIDCommand(1/20, 0, 0)
 	, moveSpeed(0)
 	, moveTurn(0)
 	, gyroMode(false)
@@ -12,6 +12,19 @@ DriveStraightGyro::DriveStraightGyro(const char *name)
 	Requires(CommandBase::chassis);
 	CommandBase::chassis->gyro->InitGyro();
 	CommandBase::chassis->gyro->Reset();
+}
+
+DriveStraightGyro::DriveStraightGyro(float fL, float fR)
+	: PIDCommand(1/20, 0, 0)
+	, moveSpeed(0)
+	, moveTurn(0)
+	, gyroMode(false)
+{
+	GetPIDController()->Disable();
+	Requires(CommandBase::chassis);
+	CommandBase::chassis->gyro->InitGyro();
+	CommandBase::chassis->gyro->Reset();
+
 }
 
 // Called just before this Command runs the first time

@@ -11,7 +11,8 @@ private:
 	double	moveTurn;
 	bool	gyroMode;
 public:
-	DriveStraightGyro(const char *name);
+	DriveStraightGyro();
+	DriveStraightGyro(float fL, float fR);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
