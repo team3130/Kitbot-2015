@@ -9,6 +9,8 @@ class AccelerometerTest: public CommandBase
 private:
 	double xSpeed;
 	double ySpeed;
+	double xAcceleration;
+	double yAcceleration;
 
 public:
 	AccelerometerTest();
