@@ -13,15 +13,14 @@ private:
 	DigitalInput* m_cMooseLimitSwitchTop;
 	DigitalInput* m_cMooseLimitSwitchBot;
 	Solenoid* m_cMooseSolenoid;
-	double m_dMooseLifterPosition;
-	double m_dEncoderValue;
+	Solenoid* m_cMooseLock;
 public:
 	MooseLifter();
 	~MooseLifter();
 	void InitDefaultCommand();
-	void Balance(float direction);
 	void MoveMooseLifterMotor(float speed);
-	void MoveMooseLifterSolonoid(float direction);
+	void MoveMooseLifterSolenoid(bool direction);
+	void MoveMooseLock(bool activated);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
 

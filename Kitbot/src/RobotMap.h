@@ -37,6 +37,7 @@ const int BINLIFTER = 11;
 
 //Moose
 const int MOOSELIFTER = 10;
+const int MOOSELOCK = 20;
 const int MOOSELIFTERSWITCHTOP = 16;
 const int MOOSELIFTERSWITCHBOT = 17;
 const int ANTLERMOOSESWITCHTOP = 18;
