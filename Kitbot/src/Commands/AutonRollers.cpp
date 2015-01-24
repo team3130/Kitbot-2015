@@ -9,6 +9,8 @@ AutonRollers::AutonRollers()
 	m_bRollersExecute = false;
 }
 
+
+
 // Called just before this Command runs the first time
 void AutonRollers::Initialize()
 {
@@ -30,23 +32,18 @@ void AutonRollers::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool AutonRollers::IsFinished()
 {
-	if(m_nTimer <= 0){
-		m_bRollersExecute = false;
-		return true;
-	}else{
-		return false;
-	}
+	return (m_nTimer <= 0);
 }
 
 // Called once after isFinished returns true
 void AutonRollers::End()
 {
-
+	m_bRollersExecute = false;
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void AutonRollers::Interrupted()
 {
-
+	End();
 }

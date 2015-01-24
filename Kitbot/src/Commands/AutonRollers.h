@@ -12,6 +12,8 @@ public:
 	bool m_bRollersExecute;
 	int m_nTimer;
 	AutonRollers();
+	void InIntake(){m_nLeftIntake=1;m_nRightIntake=1;};
+	void OutIntake(){m_nLeftIntake=-1;m_nRightIntake=-1;};
 	void Initialize();
 	void Execute();
 	bool IsFinished();

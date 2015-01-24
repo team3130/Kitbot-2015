@@ -16,6 +16,10 @@ public:
 	int m_nDrivePowerL;
 	bool gyroMode;
 	AutonDriveStraight();
+	void GoForwards(){m_nDrivePowerL = 1;m_nDrivePowerR = 1;};
+	void TurnLeft(){m_nDrivePowerL = -1;m_nDrivePowerR = 1;};
+	void TurnRight(){m_nDrivePowerL = 1;m_nDrivePowerR = -1;};
+	void GoBackwards(){m_nDrivePowerL = -1;m_nDrivePowerR = -1;};
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
