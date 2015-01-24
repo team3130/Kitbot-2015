@@ -9,7 +9,6 @@ class AutonDriveStraight: public PIDCommand{
 private:
 	double	moveSpeed;
 	double	moveTurn;
-	bool m_bUpdateTimer;
 public:
 	bool m_bExecute;
 	int m_nTimer;
@@ -24,7 +23,6 @@ public:
 	virtual void Interrupted();
 	virtual double ReturnPIDInput();
 	virtual void UsePIDOutput(double outputAngle);
-	void UpdateTimer(int TimerVal);
 };
 
 #endif

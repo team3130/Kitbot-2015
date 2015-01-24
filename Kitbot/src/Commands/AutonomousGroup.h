@@ -5,7 +5,7 @@
 #include "WPILib.h"
 #include "AutonDriveStraight.h"
 #include "ControlLifter.h"
-#include "ControlRollers.h"
+#include "AutonRollers.h"
 
 class AutonomousGroup: public CommandGroup
 {
@@ -13,10 +13,10 @@ private:
 	ControlLifter* m_cAutonLifter1;
 	ControlLifter* m_cAutonLifter2;
 	ControlLifter* m_cAutonLifter3;
-	ControlRollers* m_cAutonRollers1;
-	ControlRollers* m_cAutonRollers2;
-	ControlRollers* m_cAutonRollers3;
-	ControlRollers* m_cAutonRollers4;
+	AutonRollers* m_cAutonRollers1;
+	AutonRollers* m_cAutonRollers2;
+	AutonRollers* m_cAutonRollers3;
+	AutonRollers* m_cAutonRollers4;
 	AutonDriveStraight* m_cAutonDrive1;
 	AutonDriveStraight* m_cAutonDrive2;
 	AutonDriveStraight* m_cAutonDrive3;

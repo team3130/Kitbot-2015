@@ -12,8 +12,7 @@ AutonDriveStraight::AutonDriveStraight()
 	Requires(CommandBase::chassis);
 	m_nDrivePowerL = 0;
 	m_nDrivePowerR = 0;
-	m_nTimer = 0;
-	m_bUpdateTimer = true;
+	m_nTimer = 1;
 	m_bExecute = false;
 	CommandBase::chassis->gyro->InitGyro();
 	CommandBase::chassis->gyro->Reset();
@@ -35,8 +34,8 @@ void AutonDriveStraight::Execute() {
 }
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDriveStraight::IsFinished(){
-	if(m_nTimer==0){
-		m_bUpdateTimer = true;
+	if(m_nTimer <= 0){
+		m_bExecute=false;
 		return true;
 	}
 	else{return false;}
@@ -70,10 +69,4 @@ void AutonDriveStraight::End() {
 // subsystems is scheduled to run
 void AutonDriveStraight::Interrupted() {
 	End();
-}
-
-void AutonDriveStraight::UpdateTimer(int TimerIn){
-	if (m_bUpdateTimer){
-		m_nTimer = TimerIn;
-	}
 }

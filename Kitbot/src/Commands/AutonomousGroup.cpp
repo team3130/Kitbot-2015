@@ -2,10 +2,10 @@
 
 AutonomousGroup::AutonomousGroup()
 {
-	m_cAutonRollers1 = new ControlRollers();
-	m_cAutonRollers2 = new ControlRollers();
-	m_cAutonRollers3 = new ControlRollers();
-	m_cAutonRollers4 = new ControlRollers();
+	m_cAutonRollers1 = new AutonRollers();
+	m_cAutonRollers2 = new AutonRollers();
+	m_cAutonRollers3 = new AutonRollers();
+	m_cAutonRollers4 = new AutonRollers();
 	m_cAutonLifter1 = new ControlLifter();
 	m_cAutonLifter2 = new ControlLifter();
 	m_cAutonLifter3 = new ControlLifter();
@@ -47,16 +47,19 @@ AutonomousGroup::~AutonomousGroup()
 // Called just before this Command runs the first time
 void AutonomousGroup::Initialize()
 {
+	// Will change values once robot speed and positioning is known.
+	m_cAutonDrive1->m_nDrivePowerL=1,m_cAutonDrive1->m_nDrivePowerR=1;
+	m_cAutonDrive1->m_nTimer = 20,m_cAutonDrive1->gyroMode=true;
 
+	m_cAutonRollers1->m_nLeftIntake=1,m_cAutonRollers1->m_nRightIntake=1;
+	m_cAutonRollers1->m_nTimer=20;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutonomousGroup::Execute()
 {
-	// Will change values once robot speed and positioning is known.
-	m_cAutonDrive1->m_nDrivePowerL=1,m_cAutonDrive1->m_nDrivePowerR=1;
-	m_cAutonDrive1->UpdateTimer(20),m_cAutonDrive1->gyroMode=true;
 	m_cAutonDrive1->m_bExecute=true;
+	m_cAutonRollers1->m_bRollersExecute=true;
 }
 
 // Make this return true when this Command no longer needs to run execute()
