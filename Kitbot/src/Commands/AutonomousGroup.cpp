@@ -10,8 +10,6 @@ AutonomousGroup::AutonomousGroup()
 	m_cAutonLifter2 = new AutonLifter();
 	m_cAutonLifter3 = new AutonLifter();
 	m_cAutonLifter4 = new AutonLifter();
-	m_cAutonLifter5 = new AutonLifter();
-	m_cAutonLifter6 = new AutonLifter();
 	m_cAutonDrive1 = new AutonDriveStraight();
 	m_cAutonDrive2 = new AutonDriveStraight();
 	m_cAutonDrive3 = new AutonDriveStraight();
@@ -28,6 +26,7 @@ AutonomousGroup::AutonomousGroup()
 	AddParallel(m_cAutonLifter3);
 	AddSequential(m_cAutonDrive4);
 	AddSequential(m_cAutonDrive5);
+	AddSequential(m_cAutonLifter4);
 	AddSequential(m_cAutonRollers4);
 }
 
@@ -41,6 +40,7 @@ AutonomousGroup::~AutonomousGroup()
 	delete m_cAutonLifter1;
 	delete m_cAutonLifter2;
 	delete m_cAutonLifter3;
+	delete m_cAutonLifter4;
 	delete m_cAutonRollers1;
 	delete m_cAutonRollers2;
 	delete m_cAutonRollers3;
@@ -81,11 +81,13 @@ void AutonomousGroup::Initialize()
 	m_cAutonRollers4->m_nTimer = 20;
 
 		//Lifter
-	m_cAutonLifter1->m_nLifterDirection = 1;
+	m_cAutonLifter1->m_b2StageOn = true;
 
-	m_cAutonLifter2->m_nLifterDirection = 1;
+	m_cAutonLifter2->m_b2StageOn = true;
 
-	m_cAutonLifter3->m_nLifterDirection = 1;
+	m_cAutonLifter3->m_b2StageOn = true;
+
+	m_cAutonLifter4->m_b2StageOn = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -94,14 +96,15 @@ void AutonomousGroup::Execute()
 	m_cAutonDrive1->m_bExecute = true;
 	m_cAutonRollers1->m_bRollersExecute = true;
 	m_cAutonLifter1->m_bLifterExecute = true;
-	m_cAutonDrive2->m_bExecute = true;
+	if(m_cAutonLifter1->lifter->GetLimitSwitchBot()){m_cAutonDrive2->m_bExecute = true;}
 	m_cAutonRollers2->m_bRollersExecute = true;
 	m_cAutonLifter2->m_bLifterExecute = true;
-	m_cAutonDrive3->m_bExecute = true;
+	if(m_cAutonLifter2->lifter->GetLimitSwitchBot()){m_cAutonDrive3->m_bExecute = true;}
 	m_cAutonRollers3->m_bRollersExecute = true;
 	m_cAutonLifter3->m_bLifterExecute = true;
-	m_cAutonDrive4->m_bExecute = true;
+	if(m_cAutonLifter3->lifter->GetLimitSwitchBot()){m_cAutonDrive4->m_bExecute = true;}
 	m_cAutonDrive5->m_bExecute = true;
+	m_cAutonLifter4->m_bLifterExecute = true;
 	m_cAutonRollers4->m_bRollersExecute = true;
 }
 

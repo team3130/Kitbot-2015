@@ -8,7 +8,9 @@ class AutonLifter: public CommandBase
 {
 public:
 	bool m_bLifterExecute;
-	int m_nLifterDirection;
+	bool m_b2StageOn;
+	bool m_bStage1Done;
+	bool m_bStage2Done;
 	AutonLifter();
 	void Initialize();
 	void Execute();
