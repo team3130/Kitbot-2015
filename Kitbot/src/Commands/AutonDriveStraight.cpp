@@ -1,0 +1,61 @@
+#include "AutonDriveStraight.h"
+#include <math.h>
+
+// Used be constructed with (300,0.05,1,0,0,0)
+DriveStraightGyro::DriveStraightGyro()
+	: PIDCommand(1/20, 0, 0)
+	, moveSpeed(0)
+	, moveTurn(0)
+	, gyroMode(false)
+{
+	GetPIDController()->Disable();
+	Requires(CommandBase::chassis);
+	CommandBase::chassis->gyro->InitGyro();
+	CommandBase::chassis->gyro->Reset();
+}
+
+// Called just before this Command runs the first time
+void DriveStraightGyro::Initialize() {
+	double currentAngle = CommandBase::chassis->gyro->GetAngle();
+	GetPIDController()->SetSetpoint(currentAngle);
+	//GetPIDController()->Enable();
+}
+
+// Called repeatedly when this Command is scheduled to run
+void DriveStraightGyro::Execute() {
+	CommandBase::chassis->m_drive.TankDrive(m_nDrivePowerL, m_nDrivePowerR);
+}
+// Make this return true when this Command no longer needs to run execute()
+bool DriveStraightGyro::IsFinished(){
+	return false; //! CommandBase::oi->rightPrecision->Get();
+}
+
+double DriveStraightGyro::ReturnPIDInput(){
+	double ret = CommandBase::chassis->gyro->GetAngle();
+	double rot = CommandBase::chassis->gyro->GetRate();
+	SmartDashboard::PutNumber("Gyro Current Angle: ", ret);
+	SmartDashboard::PutNumber("Gyro Rotation Rate: ", rot);
+	return ret;
+}
+
+void DriveStraightGyro::UsePIDOutput(double outputAngle){
+	if(gyroMode)
+	{
+		CommandBase::chassis->m_drive.TankDrive(moveSpeed-outputAngle,moveSpeed+outputAngle);
+	}
+	else
+	{
+		CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed,moveTurn);
+	}
+}
+
+// Called once after isFinished returns true
+void DriveStraightGyro::End() {
+	GetPIDController()->Disable();
+}
+
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+void DriveStraightGyro::Interrupted() {
+	End();
+}

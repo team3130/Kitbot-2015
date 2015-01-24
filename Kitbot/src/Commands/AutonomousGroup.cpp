@@ -2,6 +2,8 @@
 
 AutonomousGroup::AutonomousGroup()
 {
+	m_cAutonRollers = 0;
+	m_cAutonLifter = 0;
 	m_cAutonRollers1 = new ControlRollers();
 	m_cAutonRollers2 = new ControlRollers();
 	m_cAutonRollers3 = new ControlRollers();
@@ -47,7 +49,6 @@ AutonomousGroup::~AutonomousGroup()
 // Called just before this Command runs the first time
 void AutonomousGroup::Initialize()
 {
-
 
 }
 
