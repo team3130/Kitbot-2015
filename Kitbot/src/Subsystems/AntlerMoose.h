@@ -1,26 +1,25 @@
-#ifndef LIFTER_H
-#define LIFTER_H
+#ifndef ANTLER_MOOSE_H
+#define ANTLER_MOOSE_H
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-class Lifter: public Subsystem
+class AntlerMoose: public Subsystem
 {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	Talon* m_cLiftMotor;
-	DigitalInput* m_cLimitSwitchTop;
-	DigitalInput* m_cLimitSwitchBot;
+	Talon* m_cAntlerMooseMotor;
+	DigitalInput* m_cAntlerLimitSwitchTop;
+	DigitalInput* m_cAntlerLimitSwitchBot;
 	double m_dLifterPosition;
 	double m_dEncoderValue;
 public:
-	Encoder* m_cEncoder;
-	Lifter();
-	~Lifter();
+	AntlerMoose();
+	~AntlerMoose();
 	void InitDefaultCommand();
 	void Balance(float direction);
-	void moveLifter(float speed);
+	void moveAntlerMoose(float speed);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
 

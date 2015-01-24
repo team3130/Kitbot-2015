@@ -5,8 +5,11 @@
 #include "Commands/Command.h"
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/Intake.h"
+#include "Subsystems/IntakeArms.h"
 #include "Subsystems/Lifter.h"
 #include "Subsystems/Output.h"
+#include "Subsystems/MooseLifter.h"
+#include "Subsystems/AntlerMoose.h"
 #include "OI.h"
 #include "WPILib.h"
 #include "RobotMap.h"
@@ -26,8 +29,11 @@ public:
 	static Output *output;
 	static ExampleSubsystem *chassis;
 	static Intake *intake;
+	static IntakeArms *intakearms;
 	static OI *oi;
 	static Lifter *lifter;
+	static MooseLifter *mooseLifter;
+	static AntlerMoose *antlerMoose;
 };
 
 #endif
