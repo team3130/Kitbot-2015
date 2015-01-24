@@ -28,18 +28,21 @@ void AccelerometerTest::Execute()
 	SmartDashboard::PutNumber("Delta T", dT);
 	if(dT <= 0) return;
 
-	xAcceleration = accelerometer->GetX();
-	yAcceleration = accelerometer->GetY();
+	//Acceleration returns g-forces, multiplied by g to get SI units
+	xAcceleration = accelerometer->GetX() * GRAVITY_ACC;
+	yAcceleration = accelerometer->GetY() * GRAVITY_ACC;
 
 	SmartDashboard::PutNumber("X Acceleration", xAcceleration);
 	SmartDashboard::PutNumber("Y Acceleration", yAcceleration);
 
+	//"integral" of accleration = speed
 	xSpeed += xAcceleration * dT;
 	ySpeed += yAcceleration * dT;
 
 	SmartDashboard::PutNumber("X Speed", xSpeed);
 	SmartDashboard::PutNumber("Y Speed", ySpeed);
 
+	//"integral" of speed = position
 	x += xSpeed * dT;
 	y += ySpeed * dT;
 

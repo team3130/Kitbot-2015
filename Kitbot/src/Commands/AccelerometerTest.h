@@ -14,9 +14,10 @@ private:
 	double ySpeed;
 	double xAcceleration;
 	double yAcceleration;
-	Accelerometer* accelerometer;
+	BuiltInAccelerometer* accelerometer;
 	Timer* timer;
 public:
+	const double GRAVITY_ACC = 9.81;
 	AccelerometerTest();
 	void Initialize();
 	void Execute();
