@@ -17,6 +17,7 @@ AccelerometerTest::AccelerometerTest()
 void AccelerometerTest::Initialize()
 {
 	timer->Reset();
+	timer->Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -24,6 +25,7 @@ void AccelerometerTest::Execute()
 {
 	dT = timer->Get();
 	timer->Reset();
+	SmartDashboard::PutNumber("Delta T", dT);
 	if(dT <= 0) return;
 
 	xAcceleration = accelerometer->GetX();
