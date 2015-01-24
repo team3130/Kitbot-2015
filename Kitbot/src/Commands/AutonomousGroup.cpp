@@ -6,9 +6,12 @@ AutonomousGroup::AutonomousGroup()
 	m_cAutonRollers2 = new AutonRollers();
 	m_cAutonRollers3 = new AutonRollers();
 	m_cAutonRollers4 = new AutonRollers();
-	m_cAutonLifter1 = new ControlLifter();
-	m_cAutonLifter2 = new ControlLifter();
-	m_cAutonLifter3 = new ControlLifter();
+	m_cAutonLifter1 = new AutonLifter();
+	m_cAutonLifter2 = new AutonLifter();
+	m_cAutonLifter3 = new AutonLifter();
+	m_cAutonLifter4 = new AutonLifter();
+	m_cAutonLifter5 = new AutonLifter();
+	m_cAutonLifter6 = new AutonLifter();
 	m_cAutonDrive1 = new AutonDriveStraight();
 	m_cAutonDrive2 = new AutonDriveStraight();
 	m_cAutonDrive3 = new AutonDriveStraight();
@@ -48,18 +51,58 @@ AutonomousGroup::~AutonomousGroup()
 void AutonomousGroup::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
-	m_cAutonDrive1->m_nDrivePowerL=1,m_cAutonDrive1->m_nDrivePowerR=1;
-	m_cAutonDrive1->m_nTimer = 20,m_cAutonDrive1->gyroMode=true;
+		//Drive
+	m_cAutonDrive1->m_nDrivePowerL = 1,m_cAutonDrive1->m_nDrivePowerR = 1;
+	m_cAutonDrive1->m_nTimer = 20,m_cAutonDrive1->gyroMode = true;
 
-	m_cAutonRollers1->m_nLeftIntake=1,m_cAutonRollers1->m_nRightIntake=1;
-	m_cAutonRollers1->m_nTimer=20;
+	m_cAutonDrive2->m_nDrivePowerL = 1,m_cAutonDrive2->m_nDrivePowerR = 1;
+	m_cAutonDrive2->m_nTimer = 20,m_cAutonDrive2->gyroMode = true;
+
+	m_cAutonDrive3->m_nDrivePowerL = 1,m_cAutonDrive3->m_nDrivePowerR = 1;
+	m_cAutonDrive3->m_nTimer = 20,m_cAutonDrive3->gyroMode = true;
+
+	m_cAutonDrive4->m_nDrivePowerL = 1,m_cAutonDrive4->m_nDrivePowerR = -1;
+	m_cAutonDrive4->m_nTimer = 10,m_cAutonDrive4->gyroMode = false;
+
+	m_cAutonDrive5->m_nDrivePowerL = 1,m_cAutonDrive5->m_nDrivePowerR = 1;
+	m_cAutonDrive5->m_nTimer = 20,m_cAutonDrive5->gyroMode = true;
+
+		//Rollers
+	m_cAutonRollers1->m_nLeftIntake = 1,m_cAutonRollers1->m_nRightIntake = 1;
+	m_cAutonRollers1->m_nTimer = 20;
+
+	m_cAutonRollers2->m_nLeftIntake = 1,m_cAutonRollers2->m_nRightIntake = 1;
+	m_cAutonRollers2->m_nTimer = 20;
+
+	m_cAutonRollers3->m_nLeftIntake = 1,m_cAutonRollers3->m_nRightIntake = 1;
+	m_cAutonRollers3->m_nTimer = 20;
+
+	m_cAutonRollers4->m_nLeftIntake = -1,m_cAutonRollers4->m_nRightIntake = -1;
+	m_cAutonRollers4->m_nTimer = 20;
+
+		//Lifter
+	m_cAutonLifter1->m_nLifterDirection = 1;
+
+	m_cAutonLifter2->m_nLifterDirection = 1;
+
+	m_cAutonLifter3->m_nLifterDirection = 1;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutonomousGroup::Execute()
 {
-	m_cAutonDrive1->m_bExecute=true;
-	m_cAutonRollers1->m_bRollersExecute=true;
+	m_cAutonDrive1->m_bExecute = true;
+	m_cAutonRollers1->m_bRollersExecute = true;
+	m_cAutonLifter1->m_bLifterExecute = true;
+	m_cAutonDrive2->m_bExecute = true;
+	m_cAutonRollers2->m_bRollersExecute = true;
+	m_cAutonLifter2->m_bLifterExecute = true;
+	m_cAutonDrive3->m_bExecute = true;
+	m_cAutonRollers3->m_bRollersExecute = true;
+	m_cAutonLifter3->m_bLifterExecute = true;
+	m_cAutonDrive4->m_bExecute = true;
+	m_cAutonDrive5->m_bExecute = true;
+	m_cAutonRollers4->m_bRollersExecute = true;
 }
 
 // Make this return true when this Command no longer needs to run execute()

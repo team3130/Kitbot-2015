@@ -4,15 +4,18 @@
 #include "../CommandBase.h"
 #include "WPILib.h"
 #include "AutonDriveStraight.h"
-#include "ControlLifter.h"
+#include "AutonLifter.h"
 #include "AutonRollers.h"
 
 class AutonomousGroup: public CommandGroup
 {
 private:
-	ControlLifter* m_cAutonLifter1;
-	ControlLifter* m_cAutonLifter2;
-	ControlLifter* m_cAutonLifter3;
+	AutonLifter* m_cAutonLifter1;
+	AutonLifter* m_cAutonLifter2;
+	AutonLifter* m_cAutonLifter3;
+	AutonLifter* m_cAutonLifter4;
+	AutonLifter* m_cAutonLifter5;
+	AutonLifter* m_cAutonLifter6;
 	AutonRollers* m_cAutonRollers1;
 	AutonRollers* m_cAutonRollers2;
 	AutonRollers* m_cAutonRollers3;
