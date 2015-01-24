@@ -19,15 +19,17 @@ DriveStraightGyro::DriveStraightGyro(const char *name): PIDCommand(name,  0  ,  
 
 // Called just before this Command runs the first time
 void DriveStraightGyro::Initialize() {
-	double np = prefs->GetDouble("Gyro PID P");
-	double ni = prefs->GetDouble("Gyro PID I");
-	double nd = prefs->GetDouble("Gyro PID D");
-	GetPIDController()->SetPID(np,ni,nd);
-	//prefs->Save(); //commented out for possibly issues with constant rewriting of flash memory
+
 }
 
 // Called repeatedly when this Command is scheduled to run
 void DriveStraightGyro::Execute() {
+	np = prefs->GetDouble("Gyro PID P");
+	ni = prefs->GetDouble("Gyro PID I");
+	nd = prefs->GetDouble("Gyro PID D");
+	GetPIDController()->SetPID(np,ni,nd);
+	//prefs->Save(); //commented out for safety issues with constant rewriting of flash memory
+
 	moveSpeed = CommandBase::oi->stickL->GetY();
 	moveTurn = -CommandBase::oi->stickR->GetX();
 	double turnLimit = CommandBase::oi->stickR->GetZ();

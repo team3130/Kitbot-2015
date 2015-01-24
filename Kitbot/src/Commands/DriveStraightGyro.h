@@ -8,6 +8,7 @@
 class DriveStraightGyro: public PIDCommand{
 private:
 	Preferences* prefs;
+	double np, ni, nd;
 	double	moveSpeed;
 	double	moveTurn;
 	bool	gyroMode;
