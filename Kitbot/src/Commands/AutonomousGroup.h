@@ -3,7 +3,7 @@
 
 #include "../CommandBase.h"
 #include "WPILib.h"
-#include "DriveStraightGyro.h"
+#include "AutonDriveStraight.h"
 #include "ControlLifter.h"
 #include "ControlRollers.h"
 
@@ -17,11 +17,11 @@ private:
 	ControlRollers* m_cAutonRollers2;
 	ControlRollers* m_cAutonRollers3;
 	ControlRollers* m_cAutonRollers4;
-	DriveStraightGyro* m_cAutonDrive1;
-	DriveStraightGyro* m_cAutonDrive2;
-	DriveStraightGyro* m_cAutonDrive3;
-	DriveStraightGyro* m_cAutonDrive4;
-	DriveStraightGyro* m_cAutonDrive5;
+	AutonDriveStraight* m_cAutonDrive1;
+	AutonDriveStraight* m_cAutonDrive2;
+	AutonDriveStraight* m_cAutonDrive3;
+	AutonDriveStraight* m_cAutonDrive4;
+	AutonDriveStraight* m_cAutonDrive5;
 public:
 	AutonomousGroup();
 	~AutonomousGroup();

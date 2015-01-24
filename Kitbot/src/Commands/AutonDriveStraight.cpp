@@ -2,7 +2,7 @@
 #include <math.h>
 
 // Used be constructed with (300,0.05,1,0,0,0)
-DriveStraightGyro::DriveStraightGyro()
+AutonDriveStraight::AutonDriveStraight()
 	: PIDCommand(1/20, 0, 0)
 	, moveSpeed(0)
 	, moveTurn(0)
@@ -10,27 +10,39 @@ DriveStraightGyro::DriveStraightGyro()
 {
 	GetPIDController()->Disable();
 	Requires(CommandBase::chassis);
+	m_nDrivePowerL = 0;
+	m_nDrivePowerR = 0;
+	m_nTimer = 0;
+	m_bUpdateTimer = true;
+	m_bExecute = false;
 	CommandBase::chassis->gyro->InitGyro();
 	CommandBase::chassis->gyro->Reset();
 }
 
 // Called just before this Command runs the first time
-void DriveStraightGyro::Initialize() {
+void AutonDriveStraight::Initialize() {
 	double currentAngle = CommandBase::chassis->gyro->GetAngle();
 	GetPIDController()->SetSetpoint(currentAngle);
 	//GetPIDController()->Enable();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DriveStraightGyro::Execute() {
-	CommandBase::chassis->m_drive.TankDrive(m_nDrivePowerL, m_nDrivePowerR);
+void AutonDriveStraight::Execute() {
+	if(m_bExecute){
+		CommandBase::chassis->m_drive.TankDrive(m_nDrivePowerL, m_nDrivePowerR);
+		m_nTimer -= 1;	//Causes driving to stop after Timer runs down
+	}
 }
 // Make this return true when this Command no longer needs to run execute()
-bool DriveStraightGyro::IsFinished(){
-	return false; //! CommandBase::oi->rightPrecision->Get();
+bool AutonDriveStraight::IsFinished(){
+	if(m_nTimer==0){
+		m_bUpdateTimer = true;
+		return true;
+	}
+	else{return false;}
 }
 
-double DriveStraightGyro::ReturnPIDInput(){
+double AutonDriveStraight::ReturnPIDInput(){
 	double ret = CommandBase::chassis->gyro->GetAngle();
 	double rot = CommandBase::chassis->gyro->GetRate();
 	SmartDashboard::PutNumber("Gyro Current Angle: ", ret);
@@ -38,24 +50,30 @@ double DriveStraightGyro::ReturnPIDInput(){
 	return ret;
 }
 
-void DriveStraightGyro::UsePIDOutput(double outputAngle){
+void AutonDriveStraight::UsePIDOutput(double outputAngle){
 	if(gyroMode)
 	{
-		CommandBase::chassis->m_drive.TankDrive(moveSpeed-outputAngle,moveSpeed+outputAngle);
+		CommandBase::chassis->m_drive.TankDrive(m_nDrivePowerL-outputAngle,m_nDrivePowerR+outputAngle);
 	}
 	else
 	{
-		CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed,moveTurn);
+		CommandBase::chassis->m_drive.TankDrive(m_nDrivePowerL, m_nDrivePowerR);
 	}
 }
 
 // Called once after isFinished returns true
-void DriveStraightGyro::End() {
+void AutonDriveStraight::End() {
 	GetPIDController()->Disable();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void DriveStraightGyro::Interrupted() {
+void AutonDriveStraight::Interrupted() {
 	End();
+}
+
+void AutonDriveStraight::UpdateTimer(int TimerIn){
+	if (m_bUpdateTimer){
+		m_nTimer = TimerIn;
+	}
 }

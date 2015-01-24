@@ -14,19 +14,6 @@ DriveStraightGyro::DriveStraightGyro()
 	CommandBase::chassis->gyro->Reset();
 }
 
-DriveStraightGyro::DriveStraightGyro(float fL, float fR)
-	: PIDCommand(1/20, 0, 0)
-	, moveSpeed(0)
-	, moveTurn(0)
-	, gyroMode(false)
-{
-	GetPIDController()->Disable();
-	Requires(CommandBase::chassis);
-	CommandBase::chassis->gyro->InitGyro();
-	CommandBase::chassis->gyro->Reset();
-
-}
-
 // Called just before this Command runs the first time
 void DriveStraightGyro::Initialize() {
 	double currentAngle = CommandBase::chassis->gyro->GetAngle();

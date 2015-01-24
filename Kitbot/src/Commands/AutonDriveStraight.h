@@ -1,22 +1,22 @@
-#ifndef DRIVE_STRAIGHT_GYRO_H
-#define DRIVE_STRAIGHT_GYRO_H
+#ifndef AUTON_DRIVE_H
+#define AUTON_DRIVE_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 #include "../Subsystems/ExampleSubsystem.h"
 
-class DriveStraightGyro: public PIDCommand{
+class AutonDriveStraight: public PIDCommand{
 private:
 	double	moveSpeed;
 	double	moveTurn;
+	bool m_bUpdateTimer;
 public:
-	bool execute = false;
-	int m_nTimer = 0;
-	int m_nDrivePowerR = 0;
-	int m_nDrivePowerL = 0;
+	bool m_bExecute;
+	int m_nTimer;
+	int m_nDrivePowerR;
+	int m_nDrivePowerL;
 	bool gyroMode;
-	DriveStraightGyro();
-	DriveStraightGyro(float fL, float fR);
+	AutonDriveStraight();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
@@ -24,6 +24,7 @@ public:
 	virtual void Interrupted();
 	virtual double ReturnPIDInput();
 	virtual void UsePIDOutput(double outputAngle);
+	void UpdateTimer(int TimerVal);
 };
 
 #endif
