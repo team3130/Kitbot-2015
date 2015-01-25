@@ -15,6 +15,7 @@ void ControlLifter::Initialize()
 void ControlLifter::Execute()
 {
 	lifter->moveLifter(-oi->gamepad->GetRawAxis(A_LIFTER));
+	lifter->pushLifter(oi->gamepad->GetRawAxis(A_PUSHER));
 }
 
 // Make this return true when this Command no longer needs to run execute()
