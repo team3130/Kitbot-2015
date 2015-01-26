@@ -31,7 +31,7 @@ void DriveStraightGyro::Execute() {
 	//prefs->Save(); //commented out for safety issues with constant rewriting of flash memory
 
 	moveSpeed = CommandBase::oi->stickL->GetY();
-	moveTurn = -CommandBase::oi->stickR->GetX();
+	moveTurn =  CommandBase::oi->stickR->GetX();
 	double turnLimit = CommandBase::oi->stickR->GetZ();
 
 	if(fabs(moveTurn) > turnLimit)

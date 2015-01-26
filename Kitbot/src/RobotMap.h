@@ -27,17 +27,17 @@ const int INTAKEARMS = 9;
 
 //Lifter
 const int LIFTER = 4;
+const int PUSHER =23;
 const int ENCODER_A = 5;
 const int ENCODER_B = 6;
 const int LIFTERSWITCHBOT = 7;
 const int LIFTERSWITCHTOP = 8;
-
-//Bin Lifter
-const int BINLIFTER = 11;
+const int LIFTERSWITCHIN = 21;
+const int LIFTERSWITCHOUT = 22;
 
 //Moose
 const int MOOSELIFTER = 10;
-const int MOOSELOCK = 20;
+const int MOOSELOCK = 11;
 const int MOOSELIFTERSWITCHTOP = 16;
 const int MOOSELIFTERSWITCHBOT = 17;
 const int ANTLERMOOSESWITCHTOP = 18;
@@ -48,7 +48,8 @@ const int C_GYRO = 0;
 
 ////buttons and axes
 //lifters
-const int A_LIFTER = 4;           //right thumbstick
+const int A_LIFTER = 1;           //right thumbstick
+const int A_PUSHER = 2;			  //left thumbstick
 
 //intake
 const int B_INTAKEROTATECCW = 1;   // x button

@@ -4,6 +4,7 @@
 #include "Subsystems/IntakeArms.h"
 #include "Commands/Scheduler.h"
 #include "Subsystems/Lifter.h"
+#include "Subsystems/Pusher.h"
 #include "Commands/AccelerometerTest.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
@@ -13,6 +14,7 @@ IntakeArms* CommandBase::intakearms = NULL;
 Output* CommandBase::output = NULL;
 OI* CommandBase::oi = NULL;
 Lifter* CommandBase::lifter = NULL;
+Pusher* CommandBase::pusher = NULL;
 MooseLifter* CommandBase::mooseLifter = NULL;
 AntlerMoose* CommandBase::antlerMoose = NULL;
 
@@ -39,6 +41,7 @@ void CommandBase::init()
 	output = new Output();
 	oi = new OI();
 	lifter = new Lifter();
+	pusher = new Pusher();
 	mooseLifter = new MooseLifter();
 	antlerMoose = new AntlerMoose();
 	FPS = new AccelerometerTest();

@@ -83,8 +83,9 @@ bool Lifter::GetLimitSwitchTop()
 	return m_cLimitSwitchTop->Get();
 	SmartDashboard::PutBoolean("Lifter-Top Limit Switch", m_cLimitSwitchTop->Get());
 }
+
 bool Lifter::GetLimitSwitchBot()
 {
 	return m_cLimitSwitchBot->Get();
-	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLimitSwitchTop->Get());
+	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLimitSwitchBot->Get());
 }
