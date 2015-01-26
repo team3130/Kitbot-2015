@@ -12,9 +12,13 @@ DriveStraightGyro::DriveStraightGyro(const char *name): PIDCommand(name,  0  ,  
 	Requires(CommandBase::chassis);
 	CommandBase::chassis->gyro->InitGyro();
 	CommandBase::chassis->gyro->Reset();
-	prefs->PutDouble("Gyro PID P",0.07);
-	prefs->PutDouble("Gyro PID I",0);
-	prefs->PutDouble("Gyro PID D",0.2);
+	prefs->PutDouble("GyroPIDP",0.07);
+	prefs->PutDouble("GyroPIDI",0);
+	prefs->PutDouble("GyroPIDD",0.2);
+	SmartDashboard::PutNumber("DB/Slider 0", 0.07 / 0.1 );
+	SmartDashboard::PutNumber("DB/Slider 1", 0.0 / 0.1 );
+	SmartDashboard::PutNumber("DB/Slider 2", 0.2 / 0.1 );
+
 }
 
 // Called just before this Command runs the first time
@@ -24,9 +28,12 @@ void DriveStraightGyro::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveStraightGyro::Execute() {
-	np = prefs->GetDouble("Gyro PID P");
-	ni = prefs->GetDouble("Gyro PID I");
-	nd = prefs->GetDouble("Gyro PID D");
+	//np = prefs->GetDouble("GyroPIDP");
+	//ni = prefs->GetDouble("GyroPIDI");
+	//nd = prefs->GetDouble("GyroPIDD");
+	np = SmartDashboard::GetNumber("DB/Slider 0") * 0.1;
+	ni = SmartDashboard::GetNumber("DB/Slider 1") * 0.1;
+	nd = SmartDashboard::GetNumber("DB/Slider 2") * 0.1;
 	GetPIDController()->SetPID(np,ni,nd);
 	//prefs->Save(); //commented out for safety issues with constant rewriting of flash memory
 
@@ -69,7 +76,7 @@ double DriveStraightGyro::ReturnPIDInput(){
 void DriveStraightGyro::UsePIDOutput(double outputAngle){
 	if(gyroMode)
 	{
-		CommandBase::chassis->m_drive.TankDrive(moveSpeed+outputAngle,moveSpeed-outputAngle);
+		CommandBase::chassis->m_drive.TankDrive(moveSpeed-outputAngle,moveSpeed+outputAngle);
 	}
 	else
 	{
