@@ -1,37 +1,37 @@
-#include "ControlLifter.h"
+#include "ControlPusher.h"
 
-ControlLifter::ControlLifter()
+ControlPusher::ControlPusher()
 {
-	Requires(lifter);
+	Requires(pusher);
 }
 
 // Called just before this Command runs the first time
-void ControlLifter::Initialize()
+void ControlPusher::Initialize()
 {
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ControlLifter::Execute()
+void ControlPusher::Execute()
 {
-	lifter->moveLifter(-oi->gamepad->GetRawAxis(A_LIFTER));
+	pusher->pushLifter(oi->gamepad->GetRawAxis(A_PUSHER));
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ControlLifter::IsFinished()
+bool ControlPusher::IsFinished()
 {
 	return false;
 }
 
 // Called once after isFinished returns true
-void ControlLifter::End()
+void ControlPusher::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ControlLifter::Interrupted()
+void ControlPusher::Interrupted()
 {
 
 }

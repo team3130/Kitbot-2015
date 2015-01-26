@@ -6,11 +6,8 @@ Lifter::Lifter()
 	: Subsystem("Lifter")
 {
 	m_cLiftMotor = new Talon(LIFTER);
-	m_cPushMotor = new Talon(PUSHER);
 	m_cLimitSwitchTop = new DigitalInput(LIFTERSWITCHTOP);
 	m_cLimitSwitchBot = new DigitalInput(LIFTERSWITCHBOT);
-	m_cLimitSwitchIn = new DigitalInput(LIFTERSWITCHIN);
-	m_cLimitSwitchOut = new DigitalInput(LIFTERSWITCHOUT);
 	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
 	m_dLifterPosition = 0;
 	m_dEncoderValue=0;
@@ -20,10 +17,7 @@ Lifter::~Lifter(){
 	delete m_cEncoder;
 	delete m_cLimitSwitchTop;
 	delete m_cLimitSwitchBot;
-	delete m_cLimitSwitchIn;
-	delete m_cLimitSwitchOut;
 	delete m_cLiftMotor;
-	delete m_cPushMotor;
 }
 
 void Lifter::InitDefaultCommand()
@@ -84,14 +78,6 @@ void Lifter::moveLifter(float speed)
 	}
 }
 
-//will change orientation if pusher screw runs opposite direction
-void Lifter::pushLifter(float speed)
-{
-	if((speed > 0 and !GetLimitSwitchOut()) or (speed < 0 and !GetLimitSwitchIn())){
-		m_cPushMotor->SetSpeed(speed);
-	}
-}
-
 bool Lifter::GetLimitSwitchTop()
 {
 	return m_cLimitSwitchTop->Get();
@@ -102,16 +88,4 @@ bool Lifter::GetLimitSwitchBot()
 {
 	return m_cLimitSwitchBot->Get();
 	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLimitSwitchBot->Get());
-}
-
-bool Lifter::GetLimitSwitchIn()
-{
-	return m_cLimitSwitchIn->Get();
-	SmartDashboard::PutBoolean("Lifter-Inner Limit Switch", m_cLimitSwitchIn->Get());
-}
-
-bool Lifter::GetLimitSwitchOut()
-{
-	return m_cLimitSwitchOut->Get();
-	SmartDashboard::PutBoolean("Lifter-Outer Limit Switch", m_cLimitSwitchOut->Get());
 }
