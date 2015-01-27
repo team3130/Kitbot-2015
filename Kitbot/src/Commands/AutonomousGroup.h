@@ -6,6 +6,7 @@
 #include "AutonDriveStraight.h"
 #include "AutonLifter.h"
 #include "AutonRollers.h"
+#include "AutonPusher.h"
 
 class AutonomousGroup: public CommandGroup
 {
@@ -17,7 +18,7 @@ private:
 	AutonRollers* m_cAutonRollers1;
 	AutonRollers* m_cAutonRollers2;
 	AutonRollers* m_cAutonRollers3;
-	AutonRollers* m_cAutonRollers4;
+	AutonPusher* m_cAutonOutput;
 	AutonDriveStraight* m_cAutonDrive1;
 	AutonDriveStraight* m_cAutonDrive2;
 	AutonDriveStraight* m_cAutonDrive3;
