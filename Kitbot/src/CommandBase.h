@@ -7,6 +7,7 @@
 #include "Subsystems/Intake.h"
 #include "Subsystems/IntakeArms.h"
 #include "Subsystems/Lifter.h"
+#include "Subsystems/Pusher.h"
 #include "Subsystems/Output.h"
 #include "Subsystems/MooseLifter.h"
 #include "Subsystems/AntlerMoose.h"
@@ -32,6 +33,7 @@ public:
 	static IntakeArms *intakearms;
 	static OI *oi;
 	static Lifter *lifter;
+	static Pusher *pusher;
 	static MooseLifter *mooseLifter;
 	static AntlerMoose *antlerMoose;
 };
