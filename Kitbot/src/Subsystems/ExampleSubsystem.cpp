@@ -5,11 +5,14 @@
 
 ExampleSubsystem::ExampleSubsystem()
 	: Subsystem("ExampleSubsystem")
-	, m_drive(LEFTMOTOR,RIGHTMOTOR)
+	, m_drive(2,LEFTMOTOR,3,RIGHTMOTOR)
 {
 	m_drive.SetSafetyEnabled(false);
 	m_drive.SetInvertedMotor(m_drive.kRearLeftMotor, true);
 	m_drive.SetInvertedMotor(m_drive.kRearRightMotor, true);
+	m_drive.SetInvertedMotor(m_drive.kFrontLeftMotor, true);
+	m_drive.SetInvertedMotor(m_drive.kFrontRightMotor, true);
+
 	m_cEncoderL = new Encoder(DRIVE_ENCODERL_A,DRIVE_ENCODERL_B);
 	m_cEncoderR = new Encoder(DRIVE_ENCODERR_A,DRIVE_ENCODERR_B);
 	m_bIsUsingGyro = false;
