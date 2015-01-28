@@ -17,33 +17,33 @@ const int LEFTBACKMOTOR = 0;
 const int RIGHTBACKMOTOR = 1;
 const int LEFTFRONTMOTOR = 2;
 const int RIGHTFRONTMOTOR = 3;
-const int DRIVE_ENCODERL_A = 12;
-const int DRIVE_ENCODERL_B = 13;
-const int DRIVE_ENCODERR_A = 14;
-const int DRIVE_ENCODERR_B = 15;
+const int DRIVE_ENCODERL_A = 4;
+const int DRIVE_ENCODERL_B = 5;
+const int DRIVE_ENCODERR_A = 6;
+const int DRIVE_ENCODERR_B = 7;
 
 //Intake
-const int INTAKER = 2;
-const int INTAKEL = 3;
-const int INTAKEARMS = 9;
+const int INTAKER = 8;
+const int INTAKEL = 9;
+const int INTAKEARMS = 0;		//Solenoid
 
 //Lifter
-const int LIFTER = 4;
-const int PUSHER =23;
-const int ENCODER_A = 5;
-const int ENCODER_B = 6;
-const int LIFTERSWITCHBOT = 7;
-const int LIFTERSWITCHTOP = 8;
-const int LIFTERSWITCHIN = 21;
-const int LIFTERSWITCHOUT = 22;
+const int LIFTER = 10;
+const int PUSHER = 11;
+const int ENCODER_A = 12;
+const int ENCODER_B = 13;
+const int LIFTERSWITCHBOT = 14;
+const int LIFTERSWITCHTOP = 15;
+const int LIFTERSWITCHIN = 16;
+const int LIFTERSWITCHOUT = 17;
 
 //Moose
-const int MOOSELIFTER = 10;
-const int MOOSELOCK = 11;
-const int MOOSELIFTERSWITCHTOP = 16;
-const int MOOSELIFTERSWITCHBOT = 17;
-const int ANTLERMOOSESWITCHTOP = 18;
-const int ANTLERMOOSESWITCHBOT = 19;
+const int MOOSELIFTER = 1;		//Solenoid
+const int MOOSELOCK = 2;		//Solenoid
+const int MOOSELIFTERSWITCHTOP = 18;
+const int MOOSELIFTERSWITCHBOT = 19;
+const int ANTLERMOOSESWITCHTOP = 20;
+const int ANTLERMOOSESWITCHBOT = 21;
 
 // Analog Input channels
 const int C_GYRO = 0;
