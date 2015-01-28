@@ -19,4 +19,17 @@ That should work with already existing OpenCV testing projects.
 
 Whenever you create a new robot project and are going to use OpenCV follow these steps:
 
+1. Right-click on the project and select "Propertirs". Go to "C/C++ Build" -> "Settings".
+
+2. Under tab "Tool Settings" select "Cross G++ Compiler" -> "Includes" (not to confuse with "Cross GCC Compiler")
+
+3. Click the icon with a green plus sign "Add..." and add "${WPILIB}/OpenCV/include"
+
+4. Go to "Cross G++ Linker" -> "Libraries" and add...
+   * Libraries: "opencv_core", "opencv_highgui", "opencv_imgproc"
+   * Library search path: "${WPILIB}/OpenCV/lib_OpenCV"
+
+5. Go to "Cross G++ Linker" -> "Miscellaneous" and add a "Other options (-Xlinker)":
+   * -rpath "${WPILIB}/OpenCV/lib_OpenCV"
+   * -rpath "${WPILIB}/OpenCV/lib_cpp"
 

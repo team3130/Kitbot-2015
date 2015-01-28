@@ -125,8 +125,6 @@ JoystickVideo::JoystickVideo(const char* name) : CommandBase(name) {
 }
 // Called just before this Command runs the first time
 void JoystickVideo::Initialize() {
-	chassis->InitEncoders();
-	chassis->SmartRobot();
 	std::cout << "Entering the vision mode...\n";
 	//After Opening Camera we need to configure the returned image setting
 	//all opencv v4l2 camera controls scale from 0.0 - 1.0
@@ -139,9 +137,9 @@ void JoystickVideo::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void JoystickVideo::Execute() {
-	double powerR = oi->rightJoystick->GetY();
+	double powerR = oi->stickR->GetY();
 	if(fabs(powerR)<0.1) powerR = 0;
-	double powerL = oi->leftJoystick->GetY();
+	double powerL = oi->stickL->GetY();
 	if(fabs(powerL)<0.1) powerL = 0;
 	double power = (powerL + powerR)/2;
 	double turn = 0;
@@ -185,12 +183,12 @@ void JoystickVideo::Execute() {
 	}
 
 	
-	chassis->arcadeDrive(power,turn);
+	chassis->m_drive.ArcadeDrive(power,turn);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool JoystickVideo::IsFinished() {
-	return !oi->straightMode->Get();
+	return !oi->rightPrecision->Get();
 }
 
 // Called once after isFinished returns true
