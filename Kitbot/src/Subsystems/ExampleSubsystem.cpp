@@ -5,7 +5,7 @@
 
 ExampleSubsystem::ExampleSubsystem()
 	: Subsystem("ExampleSubsystem")
-	, m_drive(LEFTMOTOR,RIGHTMOTOR)
+	, m_drive(LEFTFRONTMOTOR,LEFTBACKMOTOR,RIGHTFRONTMOTOR,RIGHTBACKMOTOR)
 {
 	m_drive.SetSafetyEnabled(false);
 	m_drive.SetInvertedMotor(m_drive.kRearLeftMotor, true);

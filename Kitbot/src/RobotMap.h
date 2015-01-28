@@ -13,12 +13,14 @@
 // For example to map the left and right motors, you could define the
 // following variables to use with your drivetrain subsystem.
 //Drive Train/Chassis
-const int LEFTMOTOR = 0;
-const int RIGHTMOTOR = 1;
+const int LEFTBACKMOTOR = 0;
+const int RIGHTBACKMOTOR = 1;
 const int DRIVE_ENCODERL_A = 12;
 const int DRIVE_ENCODERL_B = 13;
 const int DRIVE_ENCODERR_A = 14;
 const int DRIVE_ENCODERR_B = 15;
+const int LEFTFRONTMOTOR = 9;
+const int RIGHTFRONTMOTOR = 20;
 
 //Intake
 const int INTAKER = 2;
