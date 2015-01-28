@@ -1,37 +1,38 @@
-#include "ControlLifter.h"
+#include "ResetPusher.h"
 
-ControlLifter::ControlLifter()
+ResetPusher::ResetPusher()
 {
-	Requires(lifter);
+	Requires(pusher);
 }
 
 // Called just before this Command runs the first time
-void ControlLifter::Initialize()
+void ResetPusher::Initialize()
 {
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ControlLifter::Execute()
+void ResetPusher::Execute()
 {
-	lifter->moveLifter(-oi->gamepad->GetRawAxis(A_LIFTER));
+	//lifter->Move(oi->stickL,oi->stickR);
+	pusher->pushLifter(-1);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ControlLifter::IsFinished()
+bool ResetPusher::IsFinished()
 {
-	return false;
+	return pusher->GetLimitSwitchIn();
 }
 
 // Called once after isFinished returns true
-void ControlLifter::End()
+void ResetPusher::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ControlLifter::Interrupted()
+void ResetPusher::Interrupted()
 {
 
 }

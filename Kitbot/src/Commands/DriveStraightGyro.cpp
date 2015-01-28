@@ -24,7 +24,7 @@ void DriveStraightGyro::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void DriveStraightGyro::Execute() {
 	moveSpeed = CommandBase::oi->stickL->GetY();
-	moveTurn = -CommandBase::oi->stickR->GetX();
+	moveTurn = CommandBase::oi->stickR->GetX();
 
 	CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed,moveTurn);
 	if(fabs(moveTurn)>0.2)
@@ -43,11 +43,11 @@ bool DriveStraightGyro::IsFinished(){
 }
 
 double DriveStraightGyro::ReturnPIDInput(){
-	double ret = CommandBase::chassis->gyro->GetAngle();
-	double rot = CommandBase::chassis->gyro->GetRate();
-	SmartDashboard::PutNumber("Gyro Current Angle: ", ret);
-	SmartDashboard::PutNumber("Gyro Rotation Rate: ", rot);
-	return ret;
+	double dRet = CommandBase::chassis->gyro->GetAngle();
+	double dRot = CommandBase::chassis->gyro->GetRate();
+	SmartDashboard::PutNumber("Gyro Current Angle: ", dRet);
+	SmartDashboard::PutNumber("Gyro Rotation rate: ", dRot);
+	return dRet;
 }
 
 void DriveStraightGyro::UsePIDOutput(double outputAngle){
