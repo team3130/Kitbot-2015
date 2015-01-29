@@ -2,11 +2,9 @@
 /* Copyright (c) 2014 FRC-3130 "ERROR 3130". All Rights Reserved.          */
 /* Open Source Software - may be modified, shared, used and reused by FRC  */
 /* teams under the same license as the WPILib code itself.                 */
-/* Authors: Ashwin Chetty                                                  */
 /*-------------------------------------------------------------------------*/
 
 #include "JoystickVideo.h"
-
 #include <iostream>
 
 std::string cascade_name = "cascade.xml";
@@ -67,8 +65,8 @@ void JoystickVideo::detectAndDisplay( cv::Mat frame, DataPoint* dp )
 	cv::Mat frame_gray;
 	static int iframe = 0;
 
-	cvtColor( frame, frame_gray, CV_BGR2GRAY );
-	equalizeHist( frame_gray, frame_gray );
+	cv::cvtColor( frame, frame_gray, CV_BGR2GRAY );
+	cv::equalizeHist( frame_gray, frame_gray );
 
 	//-- Detect found
 	logo_cascade.detectMultiScale(

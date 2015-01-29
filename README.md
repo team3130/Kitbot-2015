@@ -1,7 +1,7 @@
 # Kitbot-2015
 The Robot built out of Kit Of Parts for Recycle Rush 2015 season
 
-Installing OpenCV
+## Installing OpenCV
 
 Checkout the repository "2168_Vision_Example" from GitHub https://github.com/Team2168/2168_Vision_Example
 
@@ -15,9 +15,15 @@ Copy the following directories from the 2168_Vision_Example repository into that
 Also create a new directory in there (your new "wpilib\OpenCV" directory) and name it "include".
 Copy the content of 2168_Vision_Example\_Includes\OpenCV\2.4.10 into that new "include" directory
 
+## Hack WPILIB so it won't conflict with OpenCV
+
+Find the WPILib.h file. Usually it is stored in C:\Users\<your username>\wpilib\cpp\current\include\
+Open it in a text editor and change the line #8 "#define REAL" to something like "#define REAL_ROBOT"
+The keyword "REAL" is used in OpenCV in a data type enumeration.
+
 That should work with already existing OpenCV testing projects.
 
-Whenever you create a new robot project and are going to use OpenCV follow these steps:
+## Whenever you create a new robot project to use OpenCV
 
 1. Right-click on the project and select "Propertirs". Go to "C/C++ Build" -> "Settings".
 

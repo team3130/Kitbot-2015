@@ -7,7 +7,8 @@
 #ifndef MOVIE_VIDEO_H
 #define MOVIE_VIDEO_H
 
-#include "opencv2/opencv.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/objdetect/objdetect.hpp"
 
 #include "../CommandBase.h"
@@ -15,8 +16,6 @@
 #include <time.h>
 #include <list>
 #include <math.h>
-//#include <stdio.h>
-//#include <stdlib.h>
 
 typedef struct DPstruct {
 	clock_t	clk;
