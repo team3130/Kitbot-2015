@@ -6,20 +6,19 @@ const double kCalibratedDistance_ft			= 10.0;
 const double kdDistanceBetweenReference_ft	= 1.2;
 const double k90DegreesInRadians			= 1.57079633;
 
-// defines
-#define MARKER_ONE				0
-#define MARKER_TWO				1
-#define MARKER_THREE			2
-#define MARKER_FOUR				3
+const int MARKER_ONE = 0;
+const int MARKER_TWO = 1;
+const int MARKER_THREE = 2;
+const int MARKER_FOUR = 3;
 
-#define POINT_UPPER_RIGHT_X		0
-#define POINT_UPPER_RIGHT_Y		1
-#define POINT_UPPER_LEFT_X		2
-#define POINT_UPPER_LEFT_Y		3
-#define POINT_LOWER_LEFT_X		4
-#define POINT_LOWER_LEFT_Y		5
-#define POINT_LOWER_RIGHT_X		6
-#define POINT_LOWER_RIGHT_Y		7
+const int POINT_UPPER_RIGHT_X = 0;
+const int POINT_UPPER_RIGHT_Y = 1;
+const int POINT_UPPER_LEFT_X = 2;
+const int POINT_UPPER_LEFT_Y = 3;
+const int POINT_LOWER_LEFT_X = 4;
+const int POINT_LOWER_LEFT_Y = 5;
+const int POINT_LOWER_RIGHT_X = 6;
+const int POINT_LOWER_RIGHT_Y = 7;
 
 // constructor
 DistanceTracking::DistanceTracking() {
@@ -86,10 +85,6 @@ int DistanceTracking::GetMarkerData( NumberArray & coords, SPointRect * rcMarker
 		double dRightCenterX;
 
 		int iNumRects = coords.size() / 8;
-	
-		// can't handle zer or anything greater than 4
-		if (( iNumRects <= 0 ) || ( iNumRects > 4 ))
-			return 0;
 
 		// DriverStationLCD * pDriverStation = DriverStationLCD::GetInstance();
 		// pDriverStation->PrintfLine(DriverStationLCD::kUser_Line1, "0 = %.1lf,%.1lf", coords.get(POINT_UPPER_RIGHT_X),coords.get(POINT_UPPER_RIGHT_Y));
@@ -152,10 +147,6 @@ int DistanceTracking::GetMarkerSizes( NumberArray & coords, double * dMarkerHeig
 	try 
 	{
 		int iNumRects = coords.size() / 8;
-	
-		// can't handle zer or anything greater than 4
-		if (( iNumRects <= 0 ) || ( iNumRects > 4 ))
-			return 0;
 		
 		// iterate for all four rects
 		for ( int i=0; i<iNumRects; i++ ) {			
@@ -209,9 +200,6 @@ double DistanceTracking::GetDistanceToTarget() {
 
 			// gets marker data from the coords data, sorted from left to right
 			int iNumRects = GetMarkerData( coords, rcMarkerRects, dMarkerHeights, dMarkerWidths );
-
-			if (( iNumRects < 2 ) || ( iNumRects > 4 ))
-				return 0.0;
 
 			int iLeftVerticalMarker=MARKER_ONE;
 
