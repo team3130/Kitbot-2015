@@ -17,20 +17,9 @@ typedef struct SPointRect {
 	SDoublePoint ptLL;
 } SPointRect;
 
-typedef struct SCoordSort {
-	double	dULX;
-	int		iIndex;
-} SCoordSort;
-
-private:
-	double		LawOfCosines(const double & dA, const double & dB, const double & dC);
-	int 		GetMarkerData( NumberArray & coords, SPointRect * rcMarkerRects, double * dMarkerHeights=NULL, double * dMarkerWidths=NULL );
-	int 		GetMarkerSizes( NumberArray & coords, double * dMarkerHeights, double * dMarkerWidths, double * dMarkerCenterX );
-
 public:
 				DistanceTracking();
 	double 		GetDistanceToTarget();
-	int			countNoTable;
 };
 
 #endif
