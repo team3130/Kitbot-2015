@@ -23,10 +23,6 @@ typedef struct SCoordSort {
 } SCoordSort;
 
 private:
-	double 		findTriangleHeight(const double & dSideA, const double & dSideB, const double & dTotalBase);
-	double		findRectangleHeight(const SPointRect & rect);
-	double		findRectangleWidth(const SPointRect & rect);
-	void		SortCoords( SCoordSort * coords, int size );
 	double		LawOfCosines(const double & dA, const double & dB, const double & dC);
 	int 		GetMarkerData( NumberArray & coords, SPointRect * rcMarkerRects, double * dMarkerHeights=NULL, double * dMarkerWidths=NULL );
 	int 		GetMarkerSizes( NumberArray & coords, double * dMarkerHeights, double * dMarkerWidths, double * dMarkerCenterX );
@@ -37,8 +33,6 @@ public:
 	bool 		IsClosestTargetHot();
 	bool		IsAimedTargetHot();
 	int			countNoTable;
-	int			countZeroRectangles;
-	int			countTooMany;
 };
 
 #endif
