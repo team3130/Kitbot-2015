@@ -30,8 +30,6 @@ private:
 public:
 				DistanceTracking();
 	double 		GetDistanceToTarget();
-	bool 		IsClosestTargetHot();
-	bool		IsAimedTargetHot();
 	int			countNoTable;
 };
 
