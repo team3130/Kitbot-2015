@@ -6,8 +6,6 @@ const double kCalibratedDistance_ft			= 10.0;
 const double kdDistanceBetweenReference_ft	= 1.2;
 const double k90DegreesInRadians			= 1.57079633;
 
-const int MARKER_ONE = 0;
-
 // constructor
 DistanceTracking::DistanceTracking() {
 }
@@ -42,9 +40,16 @@ double DistanceTracking::GetDistanceToTarget() {
 			double dImageWidth = pNetworkTable->GetNumber("IMAGE_WIDTH");
 			double dImageHeight = pNetworkTable->GetNumber("IMAGE_HEIGHT");
 
-			int iLeftVerticalMarker=MARKER_ONE;
+			SPointRect CogBox;
 
-			int iRightVerticalMarker = iLeftVerticalMarker + 1;
+			CogBox.ptUL.x = cog.x - dCogWidth/2.0;
+			CogBox.ptUL.y = cog.y + dCogWidth/2.0;
+			CogBox.ptUR.x = cog.x + dCogWidth/2.0;
+			CogBox.ptUR.y = cog.y + dCogWidth/2.0;
+			CogBox.ptLL.x = cog.x - dCogWidth/2.0;
+			CogBox.ptLL.y = cog.y - dCogWidth/2.0;
+			CogBox.ptLR.x = cog.x + dCogWidth/2.0;
+			CogBox.ptLR.y = cog.y - dCogWidth/2.0;
 
 			// calculate the center point of the image
 			double dImageCenterX = dImageWidth / 2.0;
@@ -83,6 +88,8 @@ double DistanceTracking::GetDistanceToTarget() {
 
 			// calculate the distance, based on other two sides
 			//dDistance_ft = sqrt((dDistanceBase_ft*dDistanceBase_ft) + (dHeight_ft*dHeight_ft));
+
+			dDistance_ft = 1020 * pow(dCogWidth, -1.2);
 		}
 	
 		return dDistance_ft;

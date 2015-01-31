@@ -16,10 +16,9 @@ typedef struct SPointRect {
 	SDoublePoint ptLR;
 	SDoublePoint ptLL;
 } SPointRect;
-
 public:
-				DistanceTracking();
-	double 		GetDistanceToTarget();
+	DistanceTracking();
+	double 	GetDistanceToTarget();
 };
 
 #endif
