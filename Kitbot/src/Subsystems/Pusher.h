@@ -9,7 +9,7 @@ class Pusher: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	Talon* m_cPushMotor;
+	CANTalon* m_cPushMotor;
 	DigitalInput* m_cLimitSwitchIn;
 	DigitalInput* m_cLimitSwitchOut;
 public:

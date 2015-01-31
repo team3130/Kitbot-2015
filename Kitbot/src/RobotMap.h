@@ -60,10 +60,10 @@ const int B_INTAKEROTATECW = 3;    // y button
 const int B_INTAKEOUT = 4;		   // b button
 
 //MooseLifter
-const int B_MOOSELIFTERUP = 8;
-const int B_MOOSELIFTERDOWN = 6;
-const int B_ANTLERMOOSEUP = 7;
-const int B_ANTLERMOOSEDOWN = 5;
+const int B_MOOSELIFTERUP = 8;		//right trigger
+const int B_MOOSELIFTERDOWN = 6;	//right bumper
+const int B_ANTLERMOOSEUP = 7;		//left trigger
+const int B_ANTLERMOOSEDOWN = 5;	//left bumper
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:

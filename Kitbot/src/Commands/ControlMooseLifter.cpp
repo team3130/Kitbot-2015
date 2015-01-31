@@ -14,11 +14,11 @@ void ControlMooseLifter::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlMooseLifter::Execute()
 {
-	if(-oi->gamepad->GetRawButton(B_MOOSELIFTERUP)){
-		mooseLifter->MoveMooseLifterSolenoid(false);
-	}
-	else if(-oi->gamepad->GetRawButton(B_MOOSELIFTERDOWN)){
+	if(oi->gamepad->GetRawButton(B_MOOSELIFTERUP)){
 		mooseLifter->MoveMooseLifterSolenoid(true);
+	}
+	else if(oi->gamepad->GetRawButton(B_MOOSELIFTERDOWN)){
+		mooseLifter->MoveMooseLifterSolenoid(false);
 	}
 }
 

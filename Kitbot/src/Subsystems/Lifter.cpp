@@ -5,7 +5,7 @@
 Lifter::Lifter()
 	: Subsystem("Lifter")
 {
-	m_cLiftMotor = new Talon(LIFTER);
+	m_cLiftMotor = new CANTalon(LIFTER);
 	m_cLimitSwitchTop = new DigitalInput(LIFTERSWITCHTOP);
 	m_cLimitSwitchBot = new DigitalInput(LIFTERSWITCHBOT);
 	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
@@ -71,7 +71,7 @@ void Lifter::InitDefaultCommand()
 void Lifter::moveLifter(float speed)
 {
 	if((speed > 0 and !GetLimitSwitchTop()) or (speed < 0 and !GetLimitSwitchBot())){
-		m_cLiftMotor->SetSpeed(speed);
+		m_cLiftMotor->Set(speed);
 	}
 	if(m_cLimitSwitchBot->Get()){
 		m_cEncoder->Reset();

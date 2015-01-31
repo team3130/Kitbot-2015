@@ -5,7 +5,7 @@
 Pusher::Pusher()
 	: Subsystem("Pusher")
 {
-	m_cPushMotor = new Talon(PUSHER);
+	m_cPushMotor = new CANTalon(PUSHER);
 	m_cLimitSwitchIn = new DigitalInput(LIFTERSWITCHIN);
 	m_cLimitSwitchOut = new DigitalInput(LIFTERSWITCHOUT);
 }
@@ -26,7 +26,7 @@ void Pusher::InitDefaultCommand()
 void Pusher::pushLifter(float speed)
 {
 	if((speed > 0 and !GetLimitSwitchOut()) or (speed < 0 and !GetLimitSwitchIn())){
-		m_cPushMotor->SetSpeed(speed);
+		m_cPushMotor->Set(speed);
 	}
 }
 
