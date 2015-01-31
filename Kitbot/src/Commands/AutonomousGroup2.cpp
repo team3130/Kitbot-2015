@@ -1,15 +1,20 @@
 #include "AutonomousGroup2.h"
 
-AutonomousGroup::AutonomousGroup()
+AutonomousGroup2::AutonomousGroup2()
 {
 	m_cAntlerMoose1 = new AutonAntlerMoose();
 	m_cMooseLifter1 = new AutonMooseLifter();
 	m_cMooseLifter2 = new AutonMooseLifter();
 	m_cAutonDrive1 = new AutonDriveStraight();
 	m_cAutonDrive2 = new AutonDriveStraight();
+	AddSequential(m_cAutonDrive1);
+	AddSequential(m_cMooseLifter1);
+	AddSequential(m_cAutonDrive2);
+	AddSequential(m_cMooseLifter2);
+	AddSequential(m_cAntlerMoose1);
 }
 
-AutonomousGroup::~AutonomousGroup()
+AutonomousGroup2::~AutonomousGroup2()
 {
 	delete m_cAutonDrive1;
 	delete m_cAutonDrive2;
@@ -19,14 +24,14 @@ AutonomousGroup::~AutonomousGroup()
 }
 
 // Called just before this Command runs the first time
-void AutonomousGroup::Initialize()
+void AutonomousGroup2::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
 		//Drive
 	m_cAutonDrive1->m_nDrivePowerL = 1,m_cAutonDrive1->m_nDrivePowerR = 1;
 	m_cAutonDrive1->m_nTimer = 20,m_cAutonDrive1->gyroMode = true;
 
-	m_cAutonDrive2->m_nDrivePowerL = 1,m_cAutonDrive2->m_nDrivePowerR = 1;
+	m_cAutonDrive2->m_nDrivePowerL = -1,m_cAutonDrive2->m_nDrivePowerR = -1;
 	m_cAutonDrive2->m_nTimer = 20,m_cAutonDrive2->gyroMode = true;
 
 		//Moose Lifter
@@ -39,26 +44,30 @@ void AutonomousGroup::Initialize()
 }
 
 // Called repeatedly when this Command is scheduled to run
-void AutonomousGroup::Execute()
+void AutonomousGroup2::Execute()
 {
-
+	m_cAutonDrive1->m_bExecute = true;
+	m_cMooseLifter1->m_bMooseExecute = true;
+	m_cAutonDrive2->m_bExecute = true;
+	m_cMooseLifter2->m_bMooseExecute = true;
+	m_cAntlerMoose1->m_bAntlerMooseExecute = true;
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool AutonomousGroup::IsFinished()
+bool AutonomousGroup2::IsFinished()
 {
 	return false;
 }
 
 // Called once after isFinished returns true
-void AutonomousGroup::End()
+void AutonomousGroup2::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void AutonomousGroup::Interrupted()
+void AutonomousGroup2::Interrupted()
 {
 	End();
 }

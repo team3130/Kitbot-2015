@@ -42,8 +42,7 @@ const int MOOSELIFTER = 1;		//Solenoid
 const int MOOSELOCK = 2;		//Solenoid
 const int MOOSELIFTERSWITCHTOP = 18;
 const int MOOSELIFTERSWITCHBOT = 19;
-const int ANTLERMOOSESWITCHTOP = 20;
-const int ANTLERMOOSESWITCHBOT = 21;
+const int ANTLERMOOSELOCK = 3;	//Solenoid
 
 // Analog Input channels
 const int C_GYRO = 0;
@@ -62,8 +61,6 @@ const int B_INTAKEOUT = 4;		   // b button
 //MooseLifter
 const int B_MOOSELIFTERUP = 8;
 const int B_MOOSELIFTERDOWN = 6;
-const int B_ANTLERMOOSEUP = 7;
-const int B_ANTLERMOOSEDOWN = 5;
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:

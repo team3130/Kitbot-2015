@@ -7,7 +7,7 @@
 #include "AutonAntlerMoose.h"
 #include "AutonMooseLifter.h"
 
-class AutonomousGroup: public CommandGroup
+class AutonomousGroup2: public CommandGroup
 {
 private:
 	AutonMooseLifter* m_cMooseLifter1;
@@ -16,8 +16,8 @@ private:
 	AutonDriveStraight* m_cAutonDrive1;
 	AutonDriveStraight* m_cAutonDrive2;
 public:
-	AutonomousGroup();
-	~AutonomousGroup();
+	AutonomousGroup2();
+	~AutonomousGroup2();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

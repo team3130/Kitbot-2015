@@ -5,7 +5,7 @@
 AntlerMoose::AntlerMoose()
 	: Subsystem("AntlerMoose")
 {
-	m_cAntlerMooseLock = new Solenoid;
+	m_cAntlerMooseLock = new Solenoid(ANTLERMOOSELOCK);
 }
 
 AntlerMoose::~AntlerMoose(){
