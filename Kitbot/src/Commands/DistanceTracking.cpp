@@ -89,6 +89,7 @@ double DistanceTracking::GetDistanceToTarget() {
 			// calculate the distance, based on other two sides
 			//dDistance_ft = sqrt((dDistanceBase_ft*dDistanceBase_ft) + (dHeight_ft*dHeight_ft));
 
+			//dDistance_ft = (120.0 / dCogDensity) * 1020 * pow(dCogWidth, -1.2);
 			dDistance_ft = 1020 * pow(dCogWidth, -1.2);
 		}
 	
