@@ -9,7 +9,6 @@
 
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/objdetect/objdetect.hpp"
 
 #include "../CommandBase.h"
 #include "WPILib.h"
@@ -17,21 +16,9 @@
 #include <list>
 #include <math.h>
 
-typedef struct DPstruct {
-	clock_t	clk;
-	int		x;
-	int 	size;
-} DataPoint;
-typedef std::list<DataPoint>::iterator DataPointer;
-
 class JoystickVideo: public CommandBase {
 private:
-	const double PERIOD = 3;
-	cv::CascadeClassifier logo_cascade;
-	std::list<DataPoint> tracker;
-	cv::VideoCapture capture;
-	std::string cameraIP;
-	bool cascade_ok;
+	Task* vthread;
 public:
 	JoystickVideo(const char* name);
 	virtual void Initialize();
@@ -39,8 +26,6 @@ public:
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
-	int trackTarget( cv::Mat frame, DataPoint dp );
-	void detectAndDisplay( cv::Mat frame, DataPoint* dp );
 };
 
 #endif
