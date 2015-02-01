@@ -9,12 +9,13 @@ class IntakeArms: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	Solenoid* m_cIntakeControl;
+	Solenoid* m_cIntakeSolenoidL;
+	Solenoid* m_cIntakeSolenoidR;
 public:
 	IntakeArms();
 	~IntakeArms();
 	void InitDefaultCommand();
-	void ControlArms(bool isExtend);
+	void ControlArms(bool isExtendL, bool isExtendR);
 };
 
 #endif

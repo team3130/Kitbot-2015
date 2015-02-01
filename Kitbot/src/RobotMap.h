@@ -35,16 +35,16 @@ const int LIFTERSWITCHIN = 16;
 const int LIFTERSWITCHOUT = 17;
 
 //Moose
-
 const int MOOSELIFTERSWITCHTOP = 18;
 const int MOOSELIFTERSWITCHBOT = 19;
 const int ANTLERMOOSESWITCHTOP = 20;
 const int ANTLERMOOSESWITCHBOT = 21;
 
 //Solenoids
-const int INTAKEARMS = 0;
-const int MOOSELIFTER = 1;
-const int MOOSELOCK = 2;
+const int INTAKEARML = 0;
+const int INTAKEARMR = 1;
+const int MOOSELIFTER = 2;
+const int MOOSELOCK = 3;
 
 // CAN Channels
 const int COMPRESSOR = 1;		//Controls compressor

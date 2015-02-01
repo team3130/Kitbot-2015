@@ -4,11 +4,13 @@
 
 IntakeArms::IntakeArms() : Subsystem("IntakeArms")
 {
-	m_cIntakeControl = new Solenoid(INTAKEARMS);
+	m_cIntakeSolenoidL = new Solenoid(INTAKEARML);
+	m_cIntakeSolenoidR = new Solenoid(INTAKEARMR);
 }
 
 IntakeArms::~IntakeArms(){
-	delete m_cIntakeControl;
+	delete m_cIntakeSolenoidL;
+	delete m_cIntakeSolenoidR;
 }
 
 void IntakeArms::InitDefaultCommand()
@@ -19,7 +21,8 @@ void IntakeArms::InitDefaultCommand()
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void IntakeArms::ControlArms(bool isExtend)
+void IntakeArms::ControlArms(bool isExtendL, bool isExtendR)
 {
-	m_cIntakeControl->Set(isExtend);
+	m_cIntakeSolenoidL->Set(isExtendL);
+	m_cIntakeSolenoidR->Set(isExtendR);
 }
