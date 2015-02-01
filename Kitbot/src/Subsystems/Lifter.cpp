@@ -9,6 +9,7 @@ Lifter::Lifter()
 	m_cLimitSwitchTop = new DigitalInput(LIFTERSWITCHTOP);
 	m_cLimitSwitchBot = new DigitalInput(LIFTERSWITCHBOT);
 	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
+	m_cLiftMotor->SetControlMode(m_cLiftMotor->kPercentVbus);
 	m_dLifterPosition = 0;
 	m_dEncoderValue=0;
 }
