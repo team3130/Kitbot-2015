@@ -9,6 +9,7 @@ class DriveStraightGyro: public PIDCommand{
 private:
 	double	moveSpeed;
 	double	moveTurn;
+	double speedMultiplier;
 	bool	gyroMode;
 public:
 	DriveStraightGyro(const char *name);

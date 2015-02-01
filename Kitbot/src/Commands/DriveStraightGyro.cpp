@@ -25,8 +25,9 @@ void DriveStraightGyro::Initialize() {
 void DriveStraightGyro::Execute() {
 	moveSpeed = CommandBase::oi->stickL->GetY();
 	moveTurn = CommandBase::oi->stickR->GetX();
+	speedMultiplier = (-0.5 * CommandBase::oi->stickL->GetZ()) + 0.5;
 
-	CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed,moveTurn);
+	CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed * speedMultiplier,moveTurn);
 	if(fabs(moveTurn)>0.2)
 	{
 		gyroMode = false;
@@ -53,11 +54,11 @@ double DriveStraightGyro::ReturnPIDInput(){
 void DriveStraightGyro::UsePIDOutput(double outputAngle){
 	if(gyroMode)
 	{
-		CommandBase::chassis->m_drive.TankDrive(moveSpeed-outputAngle,moveSpeed+outputAngle);
+		CommandBase::chassis->m_drive.TankDrive((moveSpeed-outputAngle) * speedMultiplier,(moveSpeed+outputAngle) * speedMultiplier);
 	}
 	else
 	{
-		CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed,moveTurn);
+		CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed * speedMultiplier,moveTurn);
 	}
 }
 

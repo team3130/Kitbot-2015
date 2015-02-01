@@ -5,7 +5,7 @@
 Pusher::Pusher()
 	: Subsystem("Pusher")
 {
-	m_cPushMotor = new CANTalon(COMPRESSOR, PUSHER);
+	m_cPushMotor = new CANTalon(PUSHER);
 	m_cLimitSwitchIn = new DigitalInput(LIFTERSWITCHIN);
 	m_cLimitSwitchOut = new DigitalInput(LIFTERSWITCHOUT);
 	m_cPushMotor->SetControlMode(CANSpeedController::kPercentVbus);
