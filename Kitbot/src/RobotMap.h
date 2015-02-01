@@ -25,7 +25,8 @@ const int DRIVE_ENCODERR_B = 7;
 //Intake
 const int INTAKER = 8;
 const int INTAKEL = 9;
-const int INTAKEARMS = 0;		//Solenoid
+const int INTAKEARML = 0;		//Solenoid
+const int INTAKEARMR = 1;		//Solenoid
 
 //Lifter
 const int LIFTER = 10;
@@ -38,8 +39,8 @@ const int LIFTERSWITCHIN = 16;
 const int LIFTERSWITCHOUT = 17;
 
 //Moose
-const int MOOSELIFTER = 1;		//Solenoid
-const int MOOSELOCK = 2;		//Solenoid
+const int MOOSELIFTER = 2;		//Solenoid
+const int MOOSELOCK = 3;		//Solenoid
 const int MOOSELIFTERSWITCHTOP = 18;
 const int MOOSELIFTERSWITCHBOT = 19;
 const int ANTLERMOOSESWITCHTOP = 20;
