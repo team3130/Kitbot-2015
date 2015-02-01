@@ -36,6 +36,7 @@ public:
 	static Pusher *pusher;
 	static MooseLifter *mooseLifter;
 	static AntlerMoose *antlerMoose;
+	static Compressor *compressor;
 };
 
 #endif

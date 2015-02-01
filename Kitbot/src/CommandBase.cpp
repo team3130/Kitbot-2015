@@ -18,6 +18,7 @@ Pusher* CommandBase::pusher = NULL;
 MooseLifter* CommandBase::mooseLifter = NULL;
 AntlerMoose* CommandBase::antlerMoose = NULL;
 
+Compressor* CommandBase::compressor = NULL;
 AccelerometerTest* FPS = NULL;
 
 CommandBase::CommandBase(char const *name) :
@@ -45,6 +46,8 @@ void CommandBase::init()
 	mooseLifter = new MooseLifter();
 	antlerMoose = new AntlerMoose();
 	FPS = new AccelerometerTest();
+	compressor = new Compressor();
+	compressor->Start();
 	//FPS->Start();
 	SmartDashboard::PutData(FPS);
 }

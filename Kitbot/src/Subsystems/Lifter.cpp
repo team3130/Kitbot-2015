@@ -5,7 +5,7 @@
 Lifter::Lifter()
 	: Subsystem("Lifter")
 {
-	m_cLiftMotor = new CANTalon(LIFTER);
+	m_cLiftMotor = new CANTalon(COMPRESSOR, LIFTER);
 	m_cLimitSwitchTop = new DigitalInput(LIFTERSWITCHTOP);
 	m_cLimitSwitchBot = new DigitalInput(LIFTERSWITCHBOT);
 	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);

@@ -25,11 +25,8 @@ const int DRIVE_ENCODERR_B = 7;
 //Intake
 const int INTAKER = 8;
 const int INTAKEL = 9;
-const int INTAKEARMS = 0;		//Solenoid
 
 //Lifter
-const int LIFTER = 10;			//CANTalons have CAN ports needed to be assigned
-const int PUSHER = 11;			//CANTalons have CAN ports needed to be assigned
 const int ENCODER_A = 12;
 const int ENCODER_B = 13;
 const int LIFTERSWITCHBOT = 14;
@@ -38,12 +35,24 @@ const int LIFTERSWITCHIN = 16;
 const int LIFTERSWITCHOUT = 17;
 
 //Moose
-const int MOOSELIFTER = 1;		//Solenoid
-const int MOOSELOCK = 2;		//Solenoid
+
 const int MOOSELIFTERSWITCHTOP = 18;
 const int MOOSELIFTERSWITCHBOT = 19;
 const int ANTLERMOOSESWITCHTOP = 20;
 const int ANTLERMOOSESWITCHBOT = 21;
+
+//Solenoids
+const int INTAKEARMS = 0;
+const int MOOSELIFTER = 1;
+const int MOOSELOCK = 2;
+
+// CAN Channels
+const int COMPRESSOR = 1;		//Controls compressor
+const int LIFTER = 2;			//CANTalons CAN ports need to be assigned
+const int PUSHER = 3;			//CANTalons CAN ports need to be assigned
+
+// Relays
+const int C_COMPRESSOR_RELAY = 1;
 
 // Analog Input channels
 const int C_GYRO = 0;
