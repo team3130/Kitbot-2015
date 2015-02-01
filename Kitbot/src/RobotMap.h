@@ -51,9 +51,6 @@ const int COMPRESSOR = 1;		//Controls compressor
 const int LIFTER = 2;			//CANTalons CAN ports need to be assigned
 const int PUSHER = 3;			//CANTalons CAN ports need to be assigned
 
-// Relays
-const int C_COMPRESSOR_RELAY = 1;
-
 // Analog Input channels
 const int C_GYRO = 0;
 

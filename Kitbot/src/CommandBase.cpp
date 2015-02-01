@@ -46,7 +46,7 @@ void CommandBase::init()
 	mooseLifter = new MooseLifter();
 	antlerMoose = new AntlerMoose();
 	FPS = new AccelerometerTest();
-	compressor = new Compressor();
+	compressor = new Compressor(COMPRESSOR);
 	compressor->Start();
 	//FPS->Start();
 	SmartDashboard::PutData(FPS);

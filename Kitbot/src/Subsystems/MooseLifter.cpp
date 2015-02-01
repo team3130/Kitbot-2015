@@ -6,8 +6,8 @@ MooseLifter::MooseLifter()
 	: Subsystem("MooseLifter")
 {
 	m_cMooseLiftMotor = new Jaguar(MOOSELIFTER);
-	m_cMooseSolenoid = new Solenoid(MOOSELIFTER);
-	m_cMooseLock = new Solenoid(MOOSELOCK);
+	m_cMooseSolenoid = new Solenoid(COMPRESSOR, MOOSELIFTER);
+	m_cMooseLock = new Solenoid(COMPRESSOR, MOOSELOCK);
 	m_cMooseLimitSwitchTop = new DigitalInput(MOOSELIFTERSWITCHTOP);
 	m_cMooseLimitSwitchBot = new DigitalInput(MOOSELIFTERSWITCHBOT);
 }

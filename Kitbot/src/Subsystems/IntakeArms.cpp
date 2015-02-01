@@ -4,8 +4,8 @@
 
 IntakeArms::IntakeArms() : Subsystem("IntakeArms")
 {
-	m_cIntakeSolenoidL = new Solenoid(INTAKEARML);
-	m_cIntakeSolenoidR = new Solenoid(INTAKEARMR);
+	m_cIntakeSolenoidL = new Solenoid(COMPRESSOR, INTAKEARML);
+	m_cIntakeSolenoidR = new Solenoid(COMPRESSOR, INTAKEARMR);
 }
 
 IntakeArms::~IntakeArms(){
