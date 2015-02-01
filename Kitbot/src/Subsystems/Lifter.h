@@ -9,7 +9,7 @@ class Lifter: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	CANTalon* m_cLiftMotor;
+	SpeedController* m_cLiftMotor;
 	DigitalInput* m_cLimitSwitchTop;
 	DigitalInput* m_cLimitSwitchBot;
 	double m_dLifterPosition;
