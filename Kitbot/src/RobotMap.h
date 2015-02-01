@@ -28,8 +28,8 @@ const int INTAKEL = 9;
 const int INTAKEARMS = 0;		//Solenoid
 
 //Lifter
-const int LIFTER = 10;
-const int PUSHER = 11;
+const int LIFTER = 10;			//CANTalons have CAN ports needed to be assigned
+const int PUSHER = 11;			//CANTalons have CAN ports needed to be assigned
 const int ENCODER_A = 12;
 const int ENCODER_B = 13;
 const int LIFTERSWITCHBOT = 14;
