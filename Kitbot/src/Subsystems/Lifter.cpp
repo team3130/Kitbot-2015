@@ -5,13 +5,14 @@
 Lifter::Lifter()
 	: Subsystem("Lifter")
 {
-	m_cLiftMotor = new TalonSRX(7 /*LIFTER*/);
+	m_cLiftMotor = new CANTalon(LIFTER);
 	m_cLimitSwitchTop = new DigitalInput(LIFTERSWITCHTOP);
 	m_cLimitSwitchBot = new DigitalInput(LIFTERSWITCHBOT);
 	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
-	//m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
+	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	m_dLifterPosition = 0;
 	m_dEncoderValue=0;
+	//m_cEncoder->SetDistancePerPulse(0.01);
 }
 
 Lifter::~Lifter(){
@@ -71,12 +72,17 @@ void Lifter::InitDefaultCommand()
 // will change orientation if lift winch runs opposite direction
 void Lifter::moveLifter(float speed)
 {
-	if((speed > 0 and !GetLimitSwitchTop()) or (speed < 0 and !GetLimitSwitchBot())){
-		m_cLiftMotor->Set(speed);
-	}
-	if(m_cLimitSwitchBot->Get()){
-		m_cEncoder->Reset();
-	}
+	//if((speed > 0 and !GetLimitSwitchTop()) or (speed < 0 and !GetLimitSwitchBot())){
+	m_cLiftMotor->Set(speed);
+	//}
+	//if(m_cLimitSwitchBot->Get()){
+	//	m_cEncoder->Reset();
+	//}
+}
+
+void Lifter::moveLifterToGoal(int goal)
+{
+	//m_cEncoder->GetDistance();
 }
 
 bool Lifter::GetLimitSwitchTop()

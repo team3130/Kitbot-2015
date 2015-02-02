@@ -56,8 +56,8 @@ const int C_GYRO = 0;
 
 ////buttons and axes
 //lifters
-const int A_LIFTER = 1;           //right thumbstick
-const int A_PUSHER = 2;			  //left thumbstick
+const int A_LIFTER = 1;           //left thumbstick up and down
+const int A_PUSHER = 2;			  //left thumbstick right and left
 
 //intake
 const int B_INTAKEROTATECCW = 1;   // x button

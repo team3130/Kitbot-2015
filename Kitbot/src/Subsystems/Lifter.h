@@ -9,7 +9,7 @@ class Lifter: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	SpeedController* m_cLiftMotor;
+	CANTalon* m_cLiftMotor;
 	DigitalInput* m_cLimitSwitchTop;
 	DigitalInput* m_cLimitSwitchBot;
 	double m_dLifterPosition;
@@ -21,6 +21,7 @@ public:
 	void InitDefaultCommand();
 	void Balance(float direction);
 	void moveLifter(float speed);
+	void moveLifterToGoal(int goal);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
 
