@@ -10,7 +10,7 @@
 static cv::VideoCapture capture;
 
 
-int videoProcess()
+int videoProcess(...)
 {
 	std::cerr<< "This is videoProcess thread" << std::endl;
 	if( capture.open(0, 640,480,7.5) )
@@ -21,24 +21,27 @@ int videoProcess()
 	else
 	{
 		std::cout << "Error: can not connect to the camera\n";
+		return 1;
 	}
+
+	while( true )
+	{
+		cv::Mat frame;
+		capture.read(frame);
+
+		if( !frame.empty() )
+		{
+			//-- Show what you got
+			//cv::imshow( window_name, frame );
+			cv::imwrite("test.jpg",frame);
+		}
+		else
+		{
+			std::cout << "Weird.. no frame\n";
+		}
+	}
+
 	return 0;
-
-	cv::Mat frame;
-	//capture.read(frame);
-
-	if( !frame.empty() )
-	{
-		//-- Show what you got
-		//cv::imshow( window_name, frame );
-		cv::imwrite("test.jpg",frame);
-	}
-	else
-	{
-		std::cout << "Weird.. no frame\n";
-	}
-
-
 }
 
 
