@@ -67,8 +67,7 @@ const int B_INTAKEOUT = 3;		   // top button on top of joystick
 //MooseLifter
 const int B_MOOSELIFTERUP = 8;		//right trigger
 const int B_MOOSELIFTERDOWN = 6;	//right bumper
-const int B_ANTLERMOOSEUP = 7;		//left trigger
-const int B_ANTLERMOOSEDOWN = 5;	//left bumper
+const int B_ANTLERMOOSETOGGLE = 7;		//left trigger
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:

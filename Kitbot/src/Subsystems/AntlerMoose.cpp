@@ -5,16 +5,12 @@
 AntlerMoose::AntlerMoose()
 	: Subsystem("AntlerMoose")
 {
-	m_cAntlerLimitSwitchTop = new DigitalInput(ANTLERMOOSESWITCHTOP);
-	m_cAntlerLimitSwitchBot = new DigitalInput(ANTLERMOOSESWITCHBOT);
-	m_cAntlerMooseLock = new Solenoid(MOOSELOCK);
-	m_dLifterPosition = 0;
-	m_dEncoderValue=0;
+	m_cAntlerMooseSolenoid = new Solenoid(MOOSELOCK);
+	m_bActivated = false;
 }
 
 AntlerMoose::~AntlerMoose(){
-	delete m_cAntlerLimitSwitchTop;
-	delete m_cAntlerLimitSwitchBot;
+	delete m_cAntlerMooseSolenoid;
 }
 
 void AntlerMoose::InitDefaultCommand()
@@ -25,21 +21,8 @@ void AntlerMoose::InitDefaultCommand()
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-
-// will change orientation if lift winch runs opposite direction
-void AntlerMoose::moveAntlerMoose(float speed)
+void AntlerMoose::MoveAntlerLockSolenoid()
 {
-	if((speed > 0 and !GetLimitSwitchTop()) or (speed < 0 and !GetLimitSwitchBot())){
-		//m_cAntlerMooseMotor->SetSpeed(speed);
-	}
-}
-
-bool AntlerMoose::GetLimitSwitchTop()
-{
-	return m_cAntlerLimitSwitchTop->Get();
-}
-
-bool AntlerMoose::GetLimitSwitchBot()
-{
-	return m_cAntlerLimitSwitchBot->Get();
+	m_bActivated = !m_bActivated;
+	m_cAntlerMooseSolenoid->Set(m_bActivated);
 }
