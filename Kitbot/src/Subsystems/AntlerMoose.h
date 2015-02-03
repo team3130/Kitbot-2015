@@ -16,7 +16,7 @@ private:
 public:
 	AntlerMoose();
 	~AntlerMoose();
-	Solenoid m_cAntlerMooseLock;
+	Solenoid* m_cAntlerMooseLock;
 	void InitDefaultCommand();
 	void Balance(float direction);
 	void moveAntlerMoose(float speed);
