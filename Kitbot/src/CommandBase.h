@@ -8,7 +8,6 @@
 #include "Subsystems/IntakeArms.h"
 #include "Subsystems/Lifter.h"
 #include "Subsystems/Pusher.h"
-#include "Subsystems/Output.h"
 #include "Subsystems/MooseLifter.h"
 #include "Subsystems/AntlerMoose.h"
 #include "OI.h"
@@ -27,7 +26,6 @@ public:
 	CommandBase();
 	static void init();
 	// Create a single static instance of all of your subsystems
-	static Output *output;
 	static ExampleSubsystem *chassis;
 	static Intake *intake;
 	static IntakeArms *intakearms;

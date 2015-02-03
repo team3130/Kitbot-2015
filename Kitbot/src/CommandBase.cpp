@@ -11,7 +11,6 @@
 ExampleSubsystem* CommandBase::chassis = NULL;
 Intake* CommandBase::intake = NULL;
 IntakeArms* CommandBase::intakearms = NULL;
-Output* CommandBase::output = NULL;
 OI* CommandBase::oi = NULL;
 Lifter* CommandBase::lifter = NULL;
 Pusher* CommandBase::pusher = NULL;
@@ -39,7 +38,6 @@ void CommandBase::init()
 	chassis = new ExampleSubsystem();
 	intake = new Intake();
 	intakearms = new IntakeArms();
-	output = new Output();
 	oi = new OI();
 	lifter = new Lifter();
 	pusher = new Pusher();
