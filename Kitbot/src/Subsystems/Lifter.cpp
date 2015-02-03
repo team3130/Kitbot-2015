@@ -3,7 +3,7 @@
 #include "../Commands/ControlLifter.h"
 
 Lifter::Lifter()
-	: Subsystem("Lifter")
+	: PIDSubsystem("Lifter",0,0,0)
 {
 	m_cLiftMotor = new CANTalon(LIFTER);
 	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
@@ -70,13 +70,19 @@ void Lifter::InitDefaultCommand()
 void Lifter::moveLifter(float goal)
 {
 	m_cEncoder->GetDistance();
-	//when manual control set, gamepad axis controls lifter directly
-	//when deactivated, directional buttons control goals and left thumb button activates movement
-	//probably change control of this into command
 	m_cLiftMotor->Set(goal);
 	if(GetLimitSwitchBot()){
 		m_cEncoder->Reset();
 	}
+}
+
+double Lifter::ReturnPIDInput(){
+	SmartDashboard::GetNumber("Encoder-Rate", m_cEncoder->GetRate());
+	return m_cEncoder->GetDistance();
+}
+
+void Lifter::UsePIDOutput(double output){
+	m_cLiftMotor->Set(output);
 }
 
 bool Lifter::GetLimitSwitchTop()
@@ -99,11 +105,4 @@ void Lifter::SwitchManualControl()
 bool Lifter::GetManualControl()
 {
 	return m_bManualControl;
-}
-
-double Lifter::GetEncoderValue()
-{
-	return m_cEncoder->GetRate();
-	SmartDashboard::GetNumber("Encoder-Rate", m_cEncoder->GetRate());
-
 }
