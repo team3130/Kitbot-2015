@@ -10,20 +10,20 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	CANTalon* m_cLiftMotor;
-	DigitalInput* m_cLimitSwitchTop;
-	DigitalInput* m_cLimitSwitchBot;
 	double m_dLifterPosition;
 	double m_dEncoderValue;
+	bool m_bManualControl;
 public:
 	Encoder* m_cEncoder;
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
 	void Balance(float direction);
-	void moveLifter(float speed);
-	void moveLifterToGoal(int goal);
+	void moveLifter(float goal);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
+	void SwitchManualControl();
+	bool GetManualControl();
 
 };
 

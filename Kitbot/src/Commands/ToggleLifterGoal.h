@@ -1,15 +1,13 @@
-#ifndef CONTROL_LIFTER_H
-#define CONTROL_LIFTER_H
+#ifndef TOGGLE_LIFTER_GOAL_H
+#define TOGGLE_LIFTER_GOAL_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class ControlLifter: public CommandBase
+class ToggleLifterGoal: public CommandBase
 {
-private:
-	int goal;
 public:
-	ControlLifter();
+	ToggleLifterGoal();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

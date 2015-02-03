@@ -12,7 +12,7 @@ public:
 	Joystick*	stickL;
 	Joystick*	stickR;
 	Joystick*	gamepad;
-	JoystickButton* rightPrecision;
+	JoystickButton* LifterGoalToggle;
 };
 
 #endif

@@ -29,10 +29,6 @@ const int INTAKEL = 9;
 //Lifter
 const int ENCODER_A = 12;
 const int ENCODER_B = 13;
-const int LIFTERSWITCHBOT = 14;
-const int LIFTERSWITCHTOP = 15;
-const int LIFTERSWITCHIN = 16;
-const int LIFTERSWITCHOUT = 17;
 
 //Moose
 const int MOOSELIFTERSWITCHTOP = 18;
@@ -58,12 +54,15 @@ const int C_GYRO = 0;
 //lifters
 const int A_LIFTER = 1;           //left thumbstick up and down
 const int A_PUSHER = 2;			  //left thumbstick right and left
+const int A_GOALSET1 = 5;			//directional pad left and right
+const int A_GOALSET2 = 6;			//directional pad up and down
+const int B_LIFTERGOAL = 11;		//left thumbstick button
 
 //intake
-const int B_INTAKEROTATECCW = 1;   // x button
-const int B_INTAKEIN = 2;		   // a button
-const int B_INTAKEROTATECW = 3;    // y button
-const int B_INTAKEOUT = 4;		   // b button
+const int B_INTAKEROTATECCW = 4;   // left button on top of joystick
+const int B_INTAKEIN = 2;		   // bottom button on top of joystick
+const int B_INTAKEROTATECW = 5;    // right button on top of joystick
+const int B_INTAKEOUT = 3;		   // top button on top of joystick
 
 //MooseLifter
 const int B_MOOSELIFTERUP = 8;		//right trigger

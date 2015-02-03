@@ -6,19 +6,16 @@ Lifter::Lifter()
 	: Subsystem("Lifter")
 {
 	m_cLiftMotor = new CANTalon(LIFTER);
-	m_cLimitSwitchTop = new DigitalInput(LIFTERSWITCHTOP);
-	m_cLimitSwitchBot = new DigitalInput(LIFTERSWITCHBOT);
 	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
 	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	m_dLifterPosition = 0;
 	m_dEncoderValue=0;
-	//m_cEncoder->SetDistancePerPulse(0.01);
+	m_bManualControl = true;
+	m_cEncoder->SetDistancePerPulse(0.01); //purely arbitrary constant just for testing
 }
 
 Lifter::~Lifter(){
 	delete m_cEncoder;
-	delete m_cLimitSwitchTop;
-	delete m_cLimitSwitchBot;
 	delete m_cLiftMotor;
 }
 
@@ -70,29 +67,36 @@ void Lifter::InitDefaultCommand()
 */
 
 // will change orientation if lift winch runs opposite direction
-void Lifter::moveLifter(float speed)
+void Lifter::moveLifter(float goal)
 {
-	//if((speed > 0 and !GetLimitSwitchTop()) or (speed < 0 and !GetLimitSwitchBot())){
-	m_cLiftMotor->Set(speed);
-	//}
-	//if(m_cLimitSwitchBot->Get()){
-	//	m_cEncoder->Reset();
-	//}
-}
-
-void Lifter::moveLifterToGoal(int goal)
-{
-	//m_cEncoder->GetDistance();
+	m_cEncoder->GetDistance();
+	//when manual control set, gamepad axis controls lifter directly
+	//when deactivated, directional buttons control goals and left thumb button activates movement
+	//probably change control of this into command
+	m_cLiftMotor->Set(goal);
+	if(GetLimitSwitchBot()){
+		m_cEncoder->Reset();
+	}
 }
 
 bool Lifter::GetLimitSwitchTop()
 {
-	return m_cLimitSwitchTop->Get();
-	SmartDashboard::PutBoolean("Lifter-Top Limit Switch", m_cLimitSwitchTop->Get());
+	SmartDashboard::PutBoolean("Lifter-Top Limit Switch", m_cLiftMotor->GetForwardLimitOK());
+	return m_cLiftMotor->GetForwardLimitOK();
 }
 
 bool Lifter::GetLimitSwitchBot()
 {
-	return m_cLimitSwitchBot->Get();
-	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLimitSwitchBot->Get());
+	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLiftMotor->GetReverseLimitOK());
+	return m_cLiftMotor->GetReverseLimitOK();
+}
+
+void Lifter::SwitchManualControl()
+{
+	m_bManualControl = !m_bManualControl;
+}
+
+bool Lifter::GetManualControl()
+{
+	return m_bManualControl;
 }

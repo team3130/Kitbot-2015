@@ -10,15 +10,13 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	CANTalon* m_cPushMotor;
-	DigitalInput* m_cLimitSwitchIn;
-	DigitalInput* m_cLimitSwitchOut;
 public:
 	Pusher();
 	~Pusher();
 	void InitDefaultCommand();
 	void pushLifter(float speed);
-	bool GetLimitSwitchIn();
 	bool GetLimitSwitchOut();
+	bool GetLimitSwitchIn();
 
 };
 

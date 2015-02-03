@@ -1,11 +1,12 @@
 #include "OI.h"
 #include "Commands/DriveStraightGyro.h"
+#include "Commands/ToggleLifterGoal"
 
 OI::OI()
 {
 	stickL = new Joystick(0);
 	stickR = new Joystick(1);
 	gamepad = new Joystick(2);
-	//rightPrecision = new JoystickButton(stickL, 1);
-	//rightPrecision->WhenPressed(new DriveStraightGyro("Test Gyro"));
+	LifterGoalToggle = new JoystickButton(gamepad, 9);
+	LifterGoalToggle->WhenPressed(new ToggleLifterGoal());
 }
