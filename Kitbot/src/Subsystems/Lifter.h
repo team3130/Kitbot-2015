@@ -23,7 +23,6 @@ public:
 	void moveLifter(float speed);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
-	double GetEncoderValue();
 
 };
 

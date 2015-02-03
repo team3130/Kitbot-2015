@@ -52,10 +52,6 @@ const int C_GYRO = 0;
 //lifters
 const int A_LIFTER = 1;           //right thumbstick
 const int A_PUSHER = 2;			  //left thumbstick
-const int B_POSITION_ONE = 9;      //currently a random button. Should be changed later.
-const int B_POSITION_TWO = 10;	   //currently a random button. Should be changed later.
-const int b_POSITION_THREE = 11;   //currently a random button. Should be changed later.
-
 
 //intake
 const int B_INTAKEROTATECCW = 1;   // x button

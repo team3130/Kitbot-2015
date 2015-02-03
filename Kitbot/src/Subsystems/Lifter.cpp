@@ -89,10 +89,3 @@ bool Lifter::GetLimitSwitchBot()
 	return m_cLimitSwitchBot->Get();
 	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLimitSwitchBot->Get());
 }
-
-double Lifter::GetEncoderValue()
-{
-	return m_cEncoder->GetRate();
-	SmartDashboard::PutNumber("Encoder-Rate", m_cEncoder->GetRate());
-
-}
