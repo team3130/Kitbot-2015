@@ -24,6 +24,7 @@ public:
 	bool GetLimitSwitchBot();
 	void SwitchManualControl();
 	bool GetManualControl();
+	double GetEncoderValue();
 
 };
 

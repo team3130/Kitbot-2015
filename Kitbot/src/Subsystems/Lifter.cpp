@@ -100,3 +100,10 @@ bool Lifter::GetManualControl()
 {
 	return m_bManualControl;
 }
+
+double Lifter::GetEncoderValue()
+{
+	return m_cEncoder->GetRate();
+	SmartDashboard::GetNumber("Encoder-Rate", m_cEncoder->GetRate());
+
+}
