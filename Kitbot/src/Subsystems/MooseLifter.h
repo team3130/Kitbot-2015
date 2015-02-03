@@ -12,6 +12,7 @@ private:
 	Jaguar* m_cMooseLiftMotor;
 	DigitalInput* m_cMooseLimitSwitchTop;
 	DigitalInput* m_cMooseLimitSwitchBot;
+	DigitalInput* m_cMoosePositionSensor;
 	Solenoid* m_cMooseSolenoid;
 	Solenoid* m_cMooseLock;
 public:

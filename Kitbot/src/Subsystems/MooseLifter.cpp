@@ -10,6 +10,7 @@ MooseLifter::MooseLifter()
 	m_cMooseLock = new Solenoid(COMPRESSOR, MOOSELOCK);
 	m_cMooseLimitSwitchTop = new DigitalInput(MOOSELIFTERSWITCHTOP);
 	m_cMooseLimitSwitchBot = new DigitalInput(MOOSELIFTERSWITCHBOT);
+	m_cMoosePositionSensor = new DigitalInput(MOOSEPOSITIONSENSOR);
 }
 
 MooseLifter::~MooseLifter(){

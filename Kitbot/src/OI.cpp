@@ -1,6 +1,6 @@
 #include "OI.h"
 #include "Commands/DriveStraightGyro.h"
-#include "Commands/ToggleLifterGoal"
+#include "Commands/ToggleLifterGoal.h"
 
 OI::OI()
 {

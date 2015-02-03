@@ -17,8 +17,14 @@ void ControlLifter::Execute()
 	if(lifter->GetManualControl()){
 		lifter->moveLifter(-oi->gamepad->GetRawAxis(A_LIFTER));
 	}else{
-		if(oi->gamepad->GetRawAxis(A_GOALSET1) == 1 && oi->gamepad->GetRawAxis(A_GOALSET2) == 0){
+		if(oi->gamepad->GetRawButton(A_LIFTERGOAL1) == 1){
 			goal = 1;
+		}else if(oi->gamepad->GetRawButton(A_LIFTERGOAL2) == 1){
+			goal = 2;
+		}else if(oi->gamepad->GetRawButton(A_LIFTERGOAL3) == 1){
+			goal = 3;
+		}else if(oi->gamepad->GetRawButton(A_LIFTERGOAL4) == 1){
+			goal = 4;
 		}
 	}
 }
