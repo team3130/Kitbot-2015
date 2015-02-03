@@ -5,6 +5,7 @@ AutonomousGroup::AutonomousGroup()
 	m_cAutonRollers1 = new AutonRollers();
 	m_cAutonRollers2 = new AutonRollers();
 	m_cAutonRollers3 = new AutonRollers();
+	m_cAutonRollers4 = new AutonRollers();
 	m_cAutonOutput = new AutonPusher();
 	m_cAutonLifter1 = new AutonLifter();
 	m_cAutonLifter2 = new AutonLifter();
@@ -27,6 +28,7 @@ AutonomousGroup::AutonomousGroup()
 	AddSequential(m_cAutonDrive4);
 	AddSequential(m_cAutonDrive5);
 	AddSequential(m_cAutonLifter4);
+	AddParallel(m_cAutonRollers4);
 	AddSequential(m_cAutonOutput);
 }
 
@@ -44,6 +46,7 @@ AutonomousGroup::~AutonomousGroup()
 	delete m_cAutonRollers1;
 	delete m_cAutonRollers2;
 	delete m_cAutonRollers3;
+	delete m_cAutonRollers4;
 	delete m_cAutonOutput;
 }
 
@@ -77,6 +80,9 @@ void AutonomousGroup::Initialize()
 	m_cAutonRollers3->m_nLeftIntake = 1,m_cAutonRollers3->m_nRightIntake = 1;
 	m_cAutonRollers3->m_nTimer = 20;
 
+	m_cAutonRollers4->m_nLeftIntake = -1,m_cAutonRollers4->m_nRightIntake = -1;
+	m_cAutonRollers4->m_nTimer = 20;
+
 		//Output
 	m_cAutonOutput->m_fDirection = 1;
 
@@ -105,6 +111,7 @@ void AutonomousGroup::Execute()
 	if(m_cAutonLifter3->lifter->GetLimitSwitchBot()){m_cAutonDrive4->m_bExecute = true;}
 	m_cAutonDrive5->m_bExecute = true;
 	m_cAutonLifter4->m_bLifterExecute = true;
+	m_cAutonRollers4->m_bRollersExecute = true;
 	m_cAutonOutput->m_bPusherExecute = true;
 }
 
