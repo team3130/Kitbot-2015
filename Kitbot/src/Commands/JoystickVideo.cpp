@@ -7,38 +7,39 @@
 #include "JoystickVideo.h"
 #include <iostream>
 
-static cv::VideoCapture capture;
-
-
 int videoProcess(...)
 {
-	std::cerr<< "This is videoProcess thread" << std::endl;
+	cv::VideoCapture capture;
 	if( capture.open(0, 640,480,7.5) )
 	{
-		std::cout<<capture.get(CV_CAP_PROP_FRAME_WIDTH)<<std::endl;
-		std::cout<<capture.get(CV_CAP_PROP_FRAME_HEIGHT)<<std::endl;
+		std::cerr<<capture.get(CV_CAP_PROP_FRAME_WIDTH)<<std::endl;
+		std::cerr<<capture.get(CV_CAP_PROP_FRAME_HEIGHT)<<std::endl;
+		//After Opening Camera we need to configure the returned image setting
+		//all opencv v4l2 camera controls scale from 0.0 - 1.0
+
+		capture.set(CV_CAP_PROP_EXPOSURE_AUTO, 1);
+		//capture.set(CV_CAP_PROP_EXPOSURE_ABSOLUTE, 0.8);
+		capture.set(CV_CAP_PROP_BRIGHTNESS, 0.5);
+		capture.set(CV_CAP_PROP_CONTRAST, 0.5);
 	}
 	else
 	{
-		std::cout << "Error: can not connect to the camera\n";
+		std::cerr << "Error: can not connect to the camera\n";
 		return 1;
 	}
 
 	while( true )
 	{
 		cv::Mat frame;
+		std::vector<unsigned char> outBuffer;
 		capture.read(frame);
 
-		if( !frame.empty() )
+		if( frame.empty() )
 		{
-			//-- Show what you got
-			//cv::imshow( window_name, frame );
-			cv::imwrite("test.jpg",frame);
+			std::cerr << "Weird.. no frame\n";
+			break;
 		}
-		else
-		{
-			std::cout << "Weird.. no frame\n";
-		}
+		cv::imencode("jpg",frame,outBuffer);
 	}
 
 	return 0;
@@ -50,21 +51,14 @@ JoystickVideo::JoystickVideo(const char* name) : CommandBase(name)
 {
 	vthread = new Task("VideoProcess", videoProcess);
 	Requires(chassis);
-	//-- 2. Read the video stream
 }
 
 
 // Called just before this Command runs the first time
 void JoystickVideo::Initialize() {
 	std::cout << "Entering the vision mode...\n";
-	//After Opening Camera we need to configure the returned image setting
-	//all opencv v4l2 camera controls scale from 0.0 - 1.0
-
-	capture.set(CV_CAP_PROP_EXPOSURE_AUTO, 1);
-	//capture.set(CV_CAP_PROP_EXPOSURE_ABSOLUTE, 0.8);
-	capture.set(CV_CAP_PROP_BRIGHTNESS, 0.5);
-	capture.set(CV_CAP_PROP_CONTRAST, 0.5);
-	vthread->Start();
+	if(vthread->IsSuspended()) vthread->Resume();
+	else vthread->Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -86,7 +80,7 @@ bool JoystickVideo::IsFinished() {
 
 // Called once after isFinished returns true
 void JoystickVideo::End() {
-	vthread->Stop();
+	vthread->Suspend();
 }
 
 // Called when another command which requires one or more of the same
