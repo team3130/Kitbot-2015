@@ -3,6 +3,8 @@
 ControlAntlerMoose::ControlAntlerMoose()
 {
 	Requires(antlerMoose);
+	m_bRan = false;
+	m_bAntlerLockOn = true;
 }
 
 // Called just before this Command runs the first time
@@ -15,7 +17,9 @@ void ControlAntlerMoose::Initialize()
 void ControlAntlerMoose::Execute()
 {
 	if(oi->gamepad->GetRawButton(B_ANTLERMOOSETOGGLE)){
-		antlerMoose->MoveAntlerLockSolenoid();
+		antlerMoose->m_cAntlerMooseLock->Set(m_bAntlerLockOn);
+		m_bAntlerLockOn = !m_bAntlerLockOn;
+		m_bRan = true;
 	}
 }
 

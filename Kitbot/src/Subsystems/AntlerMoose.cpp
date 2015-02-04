@@ -5,12 +5,11 @@
 AntlerMoose::AntlerMoose()
 	: Subsystem("AntlerMoose")
 {
-	m_cAntlerMooseSolenoid = new Solenoid(MOOSELOCK);
-	m_bActivated = false;
+	m_cAntlerMooseLock = new Solenoid(MOOSELOCK);
 }
 
 AntlerMoose::~AntlerMoose(){
-	delete m_cAntlerMooseSolenoid;
+	delete m_cAntlerMooseLock;
 }
 
 void AntlerMoose::InitDefaultCommand()
@@ -21,8 +20,7 @@ void AntlerMoose::InitDefaultCommand()
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void AntlerMoose::MoveAntlerLockSolenoid()
+void AntlerMoose::MoveAntlerLock(bool activated)
 {
-	m_bActivated = !m_bActivated;
-	m_cAntlerMooseSolenoid->Set(m_bActivated);
+	m_cAntlerMooseLock->Set(activated);
 }
