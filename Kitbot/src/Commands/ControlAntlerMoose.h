@@ -7,8 +7,6 @@
 class ControlAntlerMoose: public CommandBase
 {
 public:
-	bool m_bRan;
-	bool m_bAntlerLockOn;
 	ControlAntlerMoose();
 	void Initialize();
 	void Execute();

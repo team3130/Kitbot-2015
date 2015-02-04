@@ -5,7 +5,8 @@
 AntlerMoose::AntlerMoose()
 	: Subsystem("AntlerMoose")
 {
-	m_cAntlerMooseLock = new Solenoid(MOOSELOCK);
+	m_cAntlerMooseLock = new Solenoid(COMPRESSOR, MOOSELOCK);
+	m_bActivated = false;
 }
 
 AntlerMoose::~AntlerMoose(){
@@ -15,12 +16,12 @@ AntlerMoose::~AntlerMoose(){
 void AntlerMoose::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
-	SetDefaultCommand(new ControlAntlerMoose());
 }
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void AntlerMoose::MoveAntlerLock(bool activated)
+void AntlerMoose::MoveAntlerLock()
 {
-	m_cAntlerMooseLock->Set(activated);
+	m_bActivated = !m_bActivated;
+	m_cAntlerMooseLock->Set(m_bActivated);
 }

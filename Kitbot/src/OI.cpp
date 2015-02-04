@@ -1,12 +1,16 @@
 #include "OI.h"
 #include "Commands/DriveStraightGyro.h"
-#include "Commands/ToggleLifterGoal.h"
+#include "Commands/ResetLifter.h"
+#include "Commands/ControlMooseLifter.h"
+#include "Commands/ControlAntlerMoose.h"
 
 OI::OI()
 {
 	stickL = new Joystick(0);
 	stickR = new Joystick(1);
 	gamepad = new Joystick(2);
-	LifterGoalToggle = new JoystickButton(gamepad, 9);
-	LifterGoalToggle->WhenPressed(new ToggleLifterGoal());
+	MooseLifterToggle = new JoystickButton(gamepad, 8);
+	AntlerMooseToggle = new JoystickButton(gamepad, 7);
+	MooseLifterToggle->WhenReleased(new ControlMooseLifter());
+	AntlerMooseToggle->WhenReleased(new ControlAntlerMoose());
 }

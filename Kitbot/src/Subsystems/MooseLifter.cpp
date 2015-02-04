@@ -6,28 +6,24 @@ MooseLifter::MooseLifter()
 	: Subsystem("MooseLifter")
 {
 	m_cMooseSolenoid = new Solenoid(COMPRESSOR, MOOSELIFTER);
-	m_cMooseLock = new Solenoid(COMPRESSOR, MOOSELOCK);
+	m_cMoosePrevent = new Solenoid(COMPRESSOR, MOOSEPREVENT);
 	m_cMoosePositionSensor = new DigitalInput(MOOSEPOSITIONSENSOR);
+	m_bActivated = false;
 }
 
 MooseLifter::~MooseLifter(){
 	delete m_cMooseSolenoid;
-	delete m_cMooseLock;
+	delete m_cMoosePrevent;
 	delete m_cMoosePositionSensor;
 }
 
 void MooseLifter::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
-	SetDefaultCommand(new ControlMooseLifter());
 }
 
-void MooseLifter::MoveMooseLifterSolenoid(bool direction)
+void MooseLifter::MoveMooseLifterSolenoid()
 {
-	m_cMooseSolenoid->Set(direction);
-}
-
-void MooseLifter::MoveMooseLock(bool activated)
-{
-	m_cMooseLock->Set(activated);
+	m_bActivated = !m_bActivated;
+	m_cMooseSolenoid->Set(m_bActivated);
 }

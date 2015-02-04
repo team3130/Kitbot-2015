@@ -11,12 +11,13 @@ private:
 	// for methods that implement subsystem capabilities
 	DigitalInput* m_cMoosePositionSensor;
 	Solenoid* m_cMooseSolenoid;
-	Solenoid* m_cMooseLock;
+	Solenoid* m_cMoosePrevent;
+	bool m_bActivated;
 public:
 	MooseLifter();
 	~MooseLifter();
 	void InitDefaultCommand();
-	void MoveMooseLifterSolenoid(bool direction);
+	void MoveMooseLifterSolenoid();
 	void MoveMooseLock(bool activated);
 
 };

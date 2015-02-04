@@ -39,7 +39,8 @@ const int MOOSEPOSITIONSENSOR = 20;
 const int INTAKEARML = 0;
 const int INTAKEARMR = 1;
 const int MOOSELIFTER = 2;
-const int MOOSELOCK = 3;
+const int MOOSELOCK = 3;		//Controls Antlers Solenoid
+const int MOOSEPREVENT = 4;		//Prevents Moose from going up any further
 
 // CAN Channels
 const int COMPRESSOR = 1;		//Controls compressor
@@ -52,22 +53,16 @@ const int C_GYRO = 0;
 ////buttons and axes
 //lifters
 const int A_LIFTER = 1;           //left thumbstick up and down
-const int A_PUSHER = 2;			  //left thumbstick right and left
-const int A_LIFTERGOAL1 = 1;
-const int A_LIFTERGOAL2 = 2;
-const int A_LIFTERGOAL3 = 3;
-const int A_LIFTERGOAL4 = 4;
+const int A_PUSHER = 3;			  //right thumbstick up and down
+const int B_LIFTERGOAL1 = 1;
+const int B_LIFTERGOAL2 = 2;
+const int B_LIFTERGOAL3 = 3;
 
 //intake
 const int B_INTAKEROTATECCW = 4;   // left button on top of joystick
 const int B_INTAKEIN = 2;		   // bottom button on top of joystick
 const int B_INTAKEROTATECW = 5;    // right button on top of joystick
 const int B_INTAKEOUT = 3;		   // top button on top of joystick
-
-//MooseLifter
-const int B_MOOSELIFTERUP = 8;		//right trigger
-const int B_MOOSELIFTERDOWN = 6;	//right bumper
-const int B_ANTLERMOOSETOGGLE = 7;		//left trigger
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:

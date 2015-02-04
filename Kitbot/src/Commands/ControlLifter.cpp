@@ -8,24 +8,19 @@ ControlLifter::ControlLifter()
 // Called just before this Command runs the first time
 void ControlLifter::Initialize()
 {
-	goal = 0; //default goal
+	goal = 0; //default goal at bottom
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ControlLifter::Execute()
 {
-	if(lifter->GetManualControl()){
-		lifter->moveLifter(-oi->gamepad->GetRawAxis(A_LIFTER));
-	}else{
-		if(oi->gamepad->GetRawButton(A_LIFTERGOAL1) == 1){
-			goal = 1;
-		}else if(oi->gamepad->GetRawButton(A_LIFTERGOAL2) == 1){
-			goal = 2;
-		}else if(oi->gamepad->GetRawButton(A_LIFTERGOAL3) == 1){
-			goal = 3;
-		}else if(oi->gamepad->GetRawButton(A_LIFTERGOAL4) == 1){
-			goal = 4;
-		}
+	lifter->moveLifter(-oi->gamepad->GetRawAxis(A_LIFTER));
+	if(oi->gamepad->GetRawButton(B_LIFTERGOAL1) == 1){
+		goal = 0;
+	}else if(oi->gamepad->GetRawButton(B_LIFTERGOAL2) == 1){
+		goal = 1;
+	}else if(oi->gamepad->GetRawButton(B_LIFTERGOAL3) == 1){
+		goal = 2;
 	}
 }
 
