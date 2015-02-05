@@ -26,6 +26,7 @@ void DriveStraightGyro::Execute() {
 	moveSpeed = CommandBase::oi->stickL->GetY();
 	moveTurn = CommandBase::oi->stickR->GetX();
 	speedMultiplier = (-0.5 * CommandBase::oi->stickL->GetZ()) + 0.5;
+	SmartDashboard::PutBoolean("Magnet Sensor: ",CommandBase::mooseLifter->isHighEnough());
 
 	CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed * speedMultiplier,moveTurn);
 	if(fabs(moveTurn)>0.2)

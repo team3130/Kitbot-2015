@@ -72,13 +72,14 @@ void Lifter::moveLifter(float goal)
 	SmartDashboard::PutNumber("Encoder-Value", m_cEncoder->GetDistance());
 	m_cLiftMotor->Set(goal);
 	if(GetLimitSwitchBot()){
+		m_cLiftMotor->SetPosition(0);
 		m_cEncoder->Reset();
 	}
 }
 
 double Lifter::ReturnPIDInput(){
-	SmartDashboard::GetNumber("Encoder-Distance", m_cEncoder->GetDistance());
-	return m_cEncoder->GetDistance();
+	SmartDashboard::GetNumber("Encoder-Distance", m_cLiftMotor->GetEncPosition());
+	return m_cLiftMotor->GetEncPosition();
 }
 
 void Lifter::UsePIDOutput(double output){

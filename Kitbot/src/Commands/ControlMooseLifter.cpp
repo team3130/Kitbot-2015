@@ -12,12 +12,16 @@ void ControlMooseLifter::Initialize()
 {
 	m_bFinished = false;
 	m_bMooseUp = !m_bMooseUp;
+	mooseLifter->MoveMooseLock(false);
 	mooseLifter->MoveMooseLifterSolenoid(m_bMooseUp);
+	timer.Reset();
+	timer.Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ControlMooseLifter::Execute()
 {
+	SmartDashboard::PutBoolean("DB/LED 0",mooseLifter->isHighEnough());
 	if(m_bMooseUp)
 	{
 		if(mooseLifter->isHighEnough())
@@ -35,7 +39,7 @@ void ControlMooseLifter::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool ControlMooseLifter::IsFinished()
 {
-	return m_bFinished;
+	return m_bFinished or timer.Get() >= 2.0;
 }
 
 // Called once after isFinished returns true

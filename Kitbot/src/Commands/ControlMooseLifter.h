@@ -13,6 +13,7 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	Timer timer;
 private:
 	bool m_bMooseUp;
 	bool m_bFinished;

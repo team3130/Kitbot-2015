@@ -19,7 +19,7 @@ public:
 	void InitDefaultCommand();
 	void MoveMooseLifterSolenoid(bool pushUp);
 	void MoveMooseLock(bool stopMoving);
-	bool isHighEnough() { return m_cMoosePositionSensor->Get(); };
+	bool isHighEnough() { return !m_cMoosePositionSensor->Get(); };
 };
 
 #endif
