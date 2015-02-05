@@ -31,7 +31,7 @@ const int ENCODER_A = 12;
 const int ENCODER_B = 13;
 
 //Moose
-const int MOOSEPOSITIONSENSOR = 14;		//Change to Digital Input Output port 0
+const int MOOSEPOSITIONSENSOR = 0;		//Change to Digital Input Output port 0
 										//if available. Chris wired it there
 
 //Solenoids

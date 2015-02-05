@@ -22,8 +22,13 @@ void MooseLifter::InitDefaultCommand()
 	// Set the default command for a subsystem here.
 }
 
-void MooseLifter::MoveMooseLifterSolenoid()
+void MooseLifter::MoveMooseLock(bool stopMoving)
 {
-	m_bActivated = !m_bActivated;
-	m_cMooseSolenoid->Set(m_bActivated);
+	m_cMoosePrevent->Set(stopMoving);
+}
+
+void MooseLifter::MoveMooseLifterSolenoid(bool bActivate)
+{
+	m_bActivated = bActivate;
+	m_cMooseSolenoid->Set(bActivate);
 }

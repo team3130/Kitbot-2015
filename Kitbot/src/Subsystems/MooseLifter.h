@@ -17,9 +17,9 @@ public:
 	MooseLifter();
 	~MooseLifter();
 	void InitDefaultCommand();
-	void MoveMooseLifterSolenoid();
-	void MoveMooseLock(bool activated);
-
+	void MoveMooseLifterSolenoid(bool pushUp);
+	void MoveMooseLock(bool stopMoving);
+	bool isHighEnough() { return m_cMoosePositionSensor->Get(); };
 };
 
 #endif

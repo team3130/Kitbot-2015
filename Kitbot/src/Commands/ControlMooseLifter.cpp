@@ -1,6 +1,8 @@
 #include "ControlMooseLifter.h"
 
 ControlMooseLifter::ControlMooseLifter()
+	: m_bMooseUp(false)
+	, m_bFinished(false)
 {
 	Requires(mooseLifter);
 }
@@ -8,19 +10,32 @@ ControlMooseLifter::ControlMooseLifter()
 // Called just before this Command runs the first time
 void ControlMooseLifter::Initialize()
 {
-
+	m_bFinished = false;
+	m_bMooseUp = !m_bMooseUp;
+	mooseLifter->MoveMooseLifterSolenoid(m_bMooseUp);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ControlMooseLifter::Execute()
 {
-	mooseLifter->MoveMooseLifterSolenoid();
+	if(m_bMooseUp)
+	{
+		if(mooseLifter->isHighEnough())
+		{
+			mooseLifter->MoveMooseLock(true);
+			m_bFinished = true;
+		}
+	}
+	else
+	{
+		m_bFinished = true;
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ControlMooseLifter::IsFinished()
 {
-	return true;
+	return m_bFinished;
 }
 
 // Called once after isFinished returns true
