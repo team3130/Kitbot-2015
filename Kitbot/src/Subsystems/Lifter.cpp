@@ -9,8 +9,8 @@ Lifter::Lifter()
 	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
 	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	m_dLifterPosition = 0;
+	m_bIsCalibrated = false;
 	m_dEncoderValue=0;
-	m_bManualControl = true;
 	m_cEncoder->SetDistancePerPulse(0.01); //purely arbitrary constant just for testing
 }
 
@@ -77,12 +77,28 @@ void Lifter::moveLifter(float goal)
 }
 
 double Lifter::ReturnPIDInput(){
-	SmartDashboard::GetNumber("Encoder-Rate", m_cEncoder->GetRate());
+	SmartDashboard::GetNumber("Encoder-Distance", m_cEncoder->GetDistance());
 	return m_cEncoder->GetDistance();
 }
 
 void Lifter::UsePIDOutput(double output){
 	m_cLiftMotor->Set(output);
+}
+
+void Lifter::Calibrate(double setpoint){
+	SetSetpoint(0);
+}
+
+void Lifter::SetLifterDirect(double goal){
+	m_cLiftMotor->Set(goal);
+}
+
+void Lifter::ProjectSensors(){
+	SmartDashboard::PutNumber("Lifter Winch Distance", m_cEncoder->GetDistance());
+}
+
+void Lifter::SetGoalInches(double inches){
+	SetSetpoint(inches);
 }
 
 bool Lifter::GetLimitSwitchTop()
@@ -95,14 +111,4 @@ bool Lifter::GetLimitSwitchBot()
 {
 	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLiftMotor->GetReverseLimitOK());
 	return m_cLiftMotor->GetReverseLimitOK();
-}
-
-void Lifter::SwitchManualControl()
-{
-	m_bManualControl = !m_bManualControl;
-}
-
-bool Lifter::GetManualControl()
-{
-	return m_bManualControl;
 }

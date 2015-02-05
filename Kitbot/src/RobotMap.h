@@ -31,9 +31,8 @@ const int ENCODER_A = 12;
 const int ENCODER_B = 13;
 
 //Moose
-const int ANTLERMOOSESWITCHTOP = 18;
-const int ANTLERMOOSESWITCHBOT = 19;
-const int MOOSEPOSITIONSENSOR = 20;
+const int MOOSEPOSITIONSENSOR = 14;		//Change to Digital Input Output port 0
+										//if available. Chris wired it there
 
 //Solenoids
 const int INTAKEARML = 0;

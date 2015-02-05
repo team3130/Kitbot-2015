@@ -12,7 +12,7 @@ private:
 	CANTalon* m_cLiftMotor;
 	double m_dLifterPosition;
 	double m_dEncoderValue;
-	bool m_bManualControl;
+	bool m_bIsCalibrated;
 public:
 	Encoder* m_cEncoder;
 	Lifter();
@@ -22,10 +22,12 @@ public:
 	void moveLifter(float goal);
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
+	void Calibrate(double setpoint);
+	void SetLifterDirect(double goal);
+	void ProjectSensors();
+	void SetGoalInches(double inches);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
-	void SwitchManualControl();
-	bool GetManualControl();
 };
 
 #endif
