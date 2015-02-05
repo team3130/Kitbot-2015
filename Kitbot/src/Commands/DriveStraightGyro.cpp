@@ -12,6 +12,7 @@ DriveStraightGyro::DriveStraightGyro(const char *name)
 	Requires(CommandBase::chassis);
 	CommandBase::chassis->gyro->InitGyro();
 	CommandBase::chassis->gyro->Reset();
+	speedMultiplier = 0;
 }
 
 // Called just before this Command runs the first time
