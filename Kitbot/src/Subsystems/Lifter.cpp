@@ -69,7 +69,7 @@ void Lifter::InitDefaultCommand()
 // will change orientation if lift winch runs opposite direction
 void Lifter::moveLifter(float goal)
 {
-	m_cEncoder->GetDistance();
+	SmartDashboard::PutNumber("Encoder-Value", m_cEncoder->GetDistance());
 	m_cLiftMotor->Set(goal);
 	if(GetLimitSwitchBot()){
 		m_cEncoder->Reset();

@@ -3,6 +3,7 @@
 ControlLifter::ControlLifter()
 {
 	Requires(lifter);
+	goal = 0;
 }
 
 // Called just before this Command runs the first time
