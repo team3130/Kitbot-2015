@@ -9,11 +9,12 @@ class Lifter: public PIDSubsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	CANTalon* m_cLiftMotor;
+
 	double m_dLifterPosition;
 	double m_dEncoderValue;
 	bool m_bIsCalibrated;
 public:
+	CANTalon* m_cLiftMotor;
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
