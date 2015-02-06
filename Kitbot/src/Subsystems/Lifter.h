@@ -14,7 +14,6 @@ private:
 	double m_dEncoderValue;
 	bool m_bIsCalibrated;
 public:
-	Encoder* m_cEncoder;
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();

@@ -6,16 +6,13 @@ Lifter::Lifter()
 	: PIDSubsystem("Lifter",0,0,0)
 {
 	m_cLiftMotor = new CANTalon(LIFTER);
-	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
 	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	m_dLifterPosition = 0;
 	m_bIsCalibrated = false;
 	m_dEncoderValue=0;
-	m_cEncoder->SetDistancePerPulse(0.01); //purely arbitrary constant just for testing
 }
 
 Lifter::~Lifter(){
-	delete m_cEncoder;
 	delete m_cLiftMotor;
 }
 
@@ -69,11 +66,9 @@ void Lifter::InitDefaultCommand()
 // will change orientation if lift winch runs opposite direction
 void Lifter::moveLifter(float goal)
 {
-	SmartDashboard::PutNumber("Encoder-Value", m_cEncoder->Get());
 	m_cLiftMotor->Set(goal);
 	if(GetLimitSwitchBot()){
 		m_cLiftMotor->SetPosition(0);
-		m_cEncoder->Reset();
 	}
 }
 
@@ -94,10 +89,6 @@ void Lifter::SetLifterDirect(double goal){
 	m_cLiftMotor->Set(goal);
 }
 
-void Lifter::ProjectSensors(){
-	SmartDashboard::PutNumber("Lifter Winch Distance", m_cEncoder->GetDistance());
-}
-
 void Lifter::SetGoalInches(double inches){
 	SetSetpoint(inches);
 }
@@ -113,3 +104,8 @@ bool Lifter::GetLimitSwitchBot()
 	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLiftMotor->GetReverseLimitOK());
 	return m_cLiftMotor->GetReverseLimitOK();
 }
+void Lifter::ProjectSensors()
+{
+	SmartDashboard::PutNumber("Encoder-Value", m_cLiftMotor->GetPosition());
+}
+
