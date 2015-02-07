@@ -13,21 +13,17 @@ private:
 	double m_dLifterPosition;
 	double m_dEncoderValue;
 	bool m_bIsCalibrated;
-public:
 	CANTalon* m_cLiftMotor;
+public:
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
-	void Balance(float direction);
 	void moveLifter(float goal);
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
-	void Calibrate(double setpoint);
-	void SetLifterDirect(double goal);
-	void ProjectSensors();
-	void SetGoalInches(double inches);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
+	double GetPosition();
 };
 
 #endif

@@ -6,6 +6,7 @@
 #include "Subsystems/Pusher.h"
 #include "Subsystems/MooseLifter.h"
 #include "Subsystems/AntlerMoose.h"
+#include "Commands/RobotSensors.h"
 #include "Commands/Scheduler.h"
 #include "Commands/AccelerometerTest.h"
 
@@ -21,6 +22,7 @@ AntlerMoose* CommandBase::antlerMoose = NULL;
 
 Compressor* CommandBase::compressor = NULL;
 AccelerometerTest* FPS = NULL;
+RobotSensors* sensorsDash = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -46,8 +48,11 @@ void CommandBase::init()
 	mooseLifter = new MooseLifter();
 	antlerMoose = new AntlerMoose();
 	FPS = new AccelerometerTest();
+	sensorsDash = new RobotSensors();
 	compressor = new Compressor(COMPRESSOR);
 	compressor->Start();
+	sensorsDash->Start();
 	//FPS->Start();
 	SmartDashboard::PutData(FPS);
+	SmartDashboard::PutData(sensorsDash);
 }

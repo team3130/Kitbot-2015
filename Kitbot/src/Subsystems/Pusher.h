@@ -9,9 +9,8 @@ class Pusher: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-public:
 	CANTalon* m_cPushMotor;
-
+public:
 	Pusher();
 	~Pusher();
 	void InitDefaultCommand();

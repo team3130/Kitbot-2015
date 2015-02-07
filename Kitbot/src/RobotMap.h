@@ -62,7 +62,7 @@ const int C_GYRO = 0;
 
 //lifters
 const int A_LIFTER = 1;           //left thumbstick up and down
-const int A_PUSHER = 4;			  //right thumbstick up and down
+const int A_PUSHER = 3;			  //right thumbstick up and down
 const int B_LIFTERGOAL1 = 1;
 const int B_LIFTERGOAL2 = 2;
 const int B_LIFTERGOAL3 = 3;
