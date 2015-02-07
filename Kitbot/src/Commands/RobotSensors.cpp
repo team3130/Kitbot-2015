@@ -22,7 +22,8 @@ void RobotSensors::Execute()
 	SmartDashboard::PutBoolean("Pusher-In Limit Switch",CommandBase::pusher-> m_cPushMotor->GetReverseLimitOK());
 	SmartDashboard::PutBoolean("Lifter-Top Limit Switch",CommandBase::lifter-> m_cLiftMotor->GetForwardLimitOK());
 	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch",CommandBase::lifter-> m_cLiftMotor->GetReverseLimitOK());
-
+	SmartDashboard::PutBoolean("Pusher-Alive?",CommandBase::pusher->m_cPushMotor->IsAlive());
+	SmartDashboard::PutBoolean("Lifter-Alive?",CommandBase::lifter->m_cLiftMotor->IsAlive());
 
 }
 
