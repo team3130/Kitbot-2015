@@ -68,9 +68,9 @@ const int B_LIFTERGOAL2 = 2;
 const int B_LIFTERGOAL3 = 3;
 
 //intake
-const int B_INTAKEROTATECCW = 4;   // left button on top of joystick
+const int B_INTAKEROTATECCW = 5;   // left button on top of joystick
 const int B_INTAKEIN = 2;		   // bottom button on top of joystick
-const int B_INTAKEROTATECW = 5;    // right button on top of joystick
+const int B_INTAKEROTATECW = 4;    // right button on top of joystick
 const int B_INTAKEOUT = 3;		   // top button on top of joystick
 
 
