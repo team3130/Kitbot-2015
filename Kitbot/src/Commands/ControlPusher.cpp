@@ -15,6 +15,8 @@ void ControlPusher::Initialize()
 void ControlPusher::Execute()
 {
 	pusher->pushLifter(oi->gamepad->GetRawAxis(A_PUSHER));
+	SmartDashboard::PutBoolean("Pusher-Out Limit Switch",CommandBase::pusher-> m_cPushMotor->GetForwardLimitOK());
+	SmartDashboard::PutBoolean("Pusher-In Limit Switch",CommandBase::pusher-> m_cPushMotor->GetReverseLimitOK());
 }
 
 // Make this return true when this Command no longer needs to run execute()
