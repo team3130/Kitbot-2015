@@ -6,7 +6,6 @@ Lifter::Lifter()
 	: PIDSubsystem("Lifter",0,0,0)
 {
 	m_cLiftMotor = new CANTalon(LIFTER);
-	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	m_dLifterPosition = 0;
 	m_bIsCalibrated = false;
 	m_dEncoderValue=0;
@@ -67,8 +66,15 @@ void Lifter::InitDefaultCommand()
 // will change orientation if lift winch runs opposite direction
 void Lifter::moveLifter(float goal)
 {
-	m_cLiftMotor->Set(goal);
-	if(GetLimitSwitchBot()){
+	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
+	if(goal>0 and GetLimitSwitchTop()){
+		m_cLiftMotor->Set(goal);
+	}else if(goal<0 and GetLimitSwitchBot()){
+		m_cLiftMotor->Set(goal);
+	}else{
+			m_cLiftMotor->Set(0);
+	}
+	if(!GetLimitSwitchBot()){
 		m_cLiftMotor->SetPosition(0);
 	}
 }
