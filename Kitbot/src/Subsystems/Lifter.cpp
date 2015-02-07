@@ -10,6 +10,7 @@ Lifter::Lifter()
 	m_dLifterPosition = 0;
 	m_bIsCalibrated = false;
 	m_dEncoderValue=0;
+	m_cLiftMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 }
 
 Lifter::~Lifter(){

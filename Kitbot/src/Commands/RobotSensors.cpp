@@ -16,6 +16,7 @@ void RobotSensors::Execute()
 {
 	SmartDashboard::PutNumber("Intake-Left Speed",CommandBase::intake->m_cIntake_left->Get());
 	SmartDashboard::PutNumber("Intake-Right Speed",CommandBase::intake->m_cIntake_right->Get());
+	SmartDashboard::PutNumber("Encoder-ValueENC", CommandBase::lifter->m_cLiftMotor->GetEncPosition());
 	SmartDashboard::PutNumber("Encoder-Value", CommandBase::lifter->m_cLiftMotor->GetPosition());
 	SmartDashboard::PutBoolean("Pusher-Out Limit Switch",CommandBase::pusher-> m_cPushMotor->GetForwardLimitOK());
 	SmartDashboard::PutBoolean("Pusher-In Limit Switch",CommandBase::pusher-> m_cPushMotor->GetReverseLimitOK());
