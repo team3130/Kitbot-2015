@@ -1,15 +1,13 @@
-#ifndef CONTROL_LIFTER_H
-#define CONTROL_LIFTER_H
+#ifndef CONTROL_ANTLER_MOOSE_H
+#define CONTROL_ANTLER_MOOSE_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class ControlLifter: public CommandBase
+class ControlAntlerMoose: public CommandBase
 {
-private:
-	int goal;
 public:
-	ControlLifter();
+	ControlAntlerMoose();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

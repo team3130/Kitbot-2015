@@ -9,21 +9,17 @@ class MooseLifter: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	Jaguar* m_cMooseLiftMotor;
-	DigitalInput* m_cMooseLimitSwitchTop;
-	DigitalInput* m_cMooseLimitSwitchBot;
+	DigitalInput* m_cMoosePositionSensor;
 	Solenoid* m_cMooseSolenoid;
-	Solenoid* m_cMooseLock;
+	Solenoid* m_cMoosePrevent;
+	bool m_bActivated;
 public:
 	MooseLifter();
 	~MooseLifter();
 	void InitDefaultCommand();
-	void MoveMooseLifterMotor(float speed);
-	void MoveMooseLifterSolenoid(bool direction);
-	void MoveMooseLock(bool activated);
-	bool GetLimitSwitchTop();
-	bool GetLimitSwitchBot();
-
+	void MoveMooseLifterSolenoid(bool pushUp);
+	void MoveMooseLock(bool stopMoving);
+	bool isHighEnough() { return !m_cMoosePositionSensor->Get(); };
 };
 
 #endif

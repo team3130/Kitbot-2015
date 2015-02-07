@@ -1,13 +1,12 @@
-#ifndef STEP_EJECTION_H
-#define STEP_EJECTION_H
+#ifndef ROBOT_SENSORS_H
+#define ROBOT_SENSORS_H
 
 #include "../CommandBase.h"
-#include "WPILib.h"
 
-class StepEjection: public CommandBase
+class RobotSensors: public CommandBase
 {
 public:
-	StepEjection();
+	RobotSensors();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -16,3 +15,4 @@ public:
 };
 
 #endif
+

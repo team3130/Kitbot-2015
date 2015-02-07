@@ -5,6 +5,7 @@ AutonMooseLifter::AutonMooseLifter()
 	Requires(mooseLifter);
 	m_bMooseExecute = false;
 	m_bMooseOn = true;
+	m_bRan = false;
 }
 
 // Called just before this Command runs the first time
@@ -18,18 +19,13 @@ void AutonMooseLifter::Execute()
 {
 	if(m_bMooseExecute){
 		mooseLifter->MoveMooseLifterSolenoid(m_bMooseOn);
+		m_bRan = true;
 	}
 }
 // Make this return true when this Command no longer needs to run execute()
 bool AutonMooseLifter::IsFinished()
 {
-	if(m_bMooseExecute and m_bMooseOn){
-		return mooseLifter->GetLimitSwitchBot();
-	}else if(m_bMooseExecute and !m_bMooseOn){
-		return mooseLifter->GetLimitSwitchTop();
-	}else{
-		return false;
-	}
+	return m_bRan;
 }
 
 // Called once after isFinished returns true

@@ -9,6 +9,8 @@ class DriveStraightGyro: public PIDCommand{
 private:
 	double	moveSpeed;
 	double	moveTurn;
+	double speedMultiplier;
+	double turnMultiplier;
 	bool	gyroMode;
 public:
 	DriveStraightGyro();

@@ -15,7 +15,10 @@ void ControlIntakeArms::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlIntakeArms::Execute()
 {
-	intakearms->ControlArms(m_bArmsExtended);
+	bool extL = oi->stickL->GetTrigger();
+	bool extR = oi->stickR->GetTrigger();
+	intakearms->ControlArms(extL, extR);
+	m_bArmsExtended = extL & extR;
 }
 
 // Make this return true when this Command no longer needs to run execute()

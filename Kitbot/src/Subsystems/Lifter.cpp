@@ -3,20 +3,16 @@
 #include "../Commands/ControlLifter.h"
 
 Lifter::Lifter()
-	: Subsystem("Lifter")
+	: PIDSubsystem("Lifter",0,0,0)
 {
-	m_cLiftMotor = new Talon(LIFTER);
-	m_cLimitSwitchTop = new DigitalInput(LIFTERSWITCHTOP);
-	m_cLimitSwitchBot = new DigitalInput(LIFTERSWITCHBOT);
-	m_cEncoder = new Encoder(ENCODER_A, ENCODER_B, false);
+	m_cLiftMotor = new CANTalon(LIFTER);
+	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	m_dLifterPosition = 0;
+	m_bIsCalibrated = false;
 	m_dEncoderValue=0;
 }
 
 Lifter::~Lifter(){
-	delete m_cEncoder;
-	delete m_cLimitSwitchTop;
-	delete m_cLimitSwitchBot;
 	delete m_cLiftMotor;
 }
 
@@ -68,24 +64,48 @@ void Lifter::InitDefaultCommand()
 */
 
 // will change orientation if lift winch runs opposite direction
-void Lifter::moveLifter(float speed)
+void Lifter::moveLifter(float goal)
 {
-	if((speed > 0 and !GetLimitSwitchTop()) or (speed < 0 and !GetLimitSwitchBot())){
-		m_cLiftMotor->SetSpeed(speed);
+	m_cLiftMotor->Set(goal);
+	if(GetLimitSwitchBot()){
+		m_cLiftMotor->SetPosition(0);
 	}
-	if(m_cLimitSwitchBot->Get()){
-		m_cEncoder->Reset();
-	}
+}
+
+double Lifter::ReturnPIDInput(){
+	SmartDashboard::GetNumber("Encoder-Distance", m_cLiftMotor->GetEncPosition());
+	return m_cLiftMotor->GetEncPosition();
+}
+
+void Lifter::UsePIDOutput(double output){
+	m_cLiftMotor->Set(output);
+}
+
+void Lifter::Calibrate(double setpoint){
+	SetSetpoint(0);
+}
+
+void Lifter::SetLifterDirect(double goal){
+	m_cLiftMotor->Set(goal);
+}
+
+void Lifter::SetGoalInches(double inches){
+	SetSetpoint(inches);
 }
 
 bool Lifter::GetLimitSwitchTop()
 {
-	return m_cLimitSwitchTop->Get();
-	SmartDashboard::PutBoolean("Lifter-Top Limit Switch", m_cLimitSwitchTop->Get());
+	SmartDashboard::PutBoolean("Lifter-Top Limit Switch", m_cLiftMotor->GetForwardLimitOK());
+	return m_cLiftMotor->GetForwardLimitOK();
 }
 
 bool Lifter::GetLimitSwitchBot()
 {
-	return m_cLimitSwitchBot->Get();
-	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLimitSwitchBot->Get());
+	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLiftMotor->GetReverseLimitOK());
+	return m_cLiftMotor->GetReverseLimitOK();
 }
+void Lifter::ProjectSensors()
+{
+	SmartDashboard::PutNumber("Encoder-Value", m_cLiftMotor->GetPosition());
+}
+

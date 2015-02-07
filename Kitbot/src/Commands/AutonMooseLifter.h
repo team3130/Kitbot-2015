@@ -9,6 +9,7 @@ class AutonMooseLifter: public CommandBase
 public:
 	bool m_bMooseExecute;
 	bool m_bMooseOn;
+	bool m_bRan;
 	AutonMooseLifter();
 	void Initialize();
 	void Execute();

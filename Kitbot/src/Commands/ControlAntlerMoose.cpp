@@ -1,37 +1,37 @@
-#include "StepEjection.h"
+#include "ControlAntlerMoose.h"
 
-StepEjection::StepEjection()
+ControlAntlerMoose::ControlAntlerMoose()
 {
-	// Use Requires() here to declare subsystem dependencies
-	Requires(output);
+	Requires(antlerMoose);
 }
 
 // Called just before this Command runs the first time
-void StepEjection::Initialize()
+void ControlAntlerMoose::Initialize()
 {
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-void StepEjection::Execute()
+void ControlAntlerMoose::Execute()
 {
+	antlerMoose->MoveAntlerLock();
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool StepEjection::IsFinished()
+bool ControlAntlerMoose::IsFinished()
 {
-	return false;
+	return true;
 }
 
 // Called once after isFinished returns true
-void StepEjection::End()
+void ControlAntlerMoose::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void StepEjection::Interrupted()
+void ControlAntlerMoose::Interrupted()
 {
 
 }

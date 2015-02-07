@@ -4,26 +4,30 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-class Lifter: public Subsystem
+class Lifter: public PIDSubsystem
 {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	Talon* m_cLiftMotor;
-	DigitalInput* m_cLimitSwitchTop;
-	DigitalInput* m_cLimitSwitchBot;
+
 	double m_dLifterPosition;
 	double m_dEncoderValue;
+	bool m_bIsCalibrated;
 public:
-	Encoder* m_cEncoder;
+	CANTalon* m_cLiftMotor;
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
 	void Balance(float direction);
-	void moveLifter(float speed);
+	void moveLifter(float goal);
+	double ReturnPIDInput();
+	void UsePIDOutput(double output);
+	void Calibrate(double setpoint);
+	void SetLifterDirect(double goal);
+	void ProjectSensors();
+	void SetGoalInches(double inches);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
-
 };
 
 #endif
