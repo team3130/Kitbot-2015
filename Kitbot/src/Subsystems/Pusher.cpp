@@ -6,7 +6,6 @@ Pusher::Pusher()
 	: Subsystem("Pusher")
 {
 	m_cPushMotor = new CANTalon(PUSHER);
-	m_cPushMotor->SetControlMode(CANSpeedController::kPercentVbus);
 }
 
 Pusher::~Pusher(){
@@ -22,6 +21,7 @@ void Pusher::InitDefaultCommand()
 //will change orientation if pusher screw runs opposite direction
 void Pusher::pushLifter(float speed)
 {
+	m_cPushMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	m_cPushMotor->Set(speed);
 }
 

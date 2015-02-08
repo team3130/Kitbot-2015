@@ -24,17 +24,11 @@ const int INTAKEL = 9;
 /****** Digital I/O **********************/
 
 //Moose
-const int MOOSEPOSITIONSENSOR = 0;		//Change to Digital Input Output port 0
-										//if available. Chris wired it there
+const int MOOSEPOSITIONSENSOR = 0;
 const int DRIVE_ENCODERL_A = 4;
 const int DRIVE_ENCODERL_B = 5;
 const int DRIVE_ENCODERR_A = 6;
 const int DRIVE_ENCODERR_B = 7;
-
-//Lifter
-// Really? These should be via TalonSRX
-const int ENCODER_A = 12;
-const int ENCODER_B = 13;
 
 
 /****** Solenoids ************************/
@@ -49,8 +43,8 @@ const int MOOSEPREVENT = 4;		//Prevents Moose from going up any further
 /****** CAN Channels *********************/
 
 const int COMPRESSOR = 1;		//Controls compressor
-const int LIFTER = 2;			//CANTalons CAN ports need to be assigned
-const int PUSHER = 3;			//CANTalons CAN ports need to be assigned
+const int LIFTER = 2;
+const int PUSHER = 3;
 
 
 /****** Analog Input channels ************/
@@ -62,15 +56,15 @@ const int C_GYRO = 0;
 
 //lifters
 const int A_LIFTER = 1;           //left thumbstick up and down
-const int A_PUSHER = 4;			  //right thumbstick up and down
-const int B_LIFTERGOAL1 = 1;
+const int A_PUSHER = 3;			  //right thumbstick up and down
+const int B_LIFTERGOAL1 = 1;		//Face buttons are for goals for lifter
 const int B_LIFTERGOAL2 = 2;
 const int B_LIFTERGOAL3 = 3;
 
 //intake
-const int B_INTAKEROTATECCW = 5;   // left button on top of joystick
+const int B_INTAKEROTATECCW = 5;   // right button on top of joystick
 const int B_INTAKEIN = 2;		   // bottom button on top of joystick
-const int B_INTAKEROTATECW = 4;    // right button on top of joystick
+const int B_INTAKEROTATECW = 4;    // left button on top of joystick
 const int B_INTAKEOUT = 3;		   // top button on top of joystick
 
 
