@@ -8,7 +8,6 @@ class ControlLifter: public CommandBase
 {
 private:
 	bool manualMode;
-	int goal;
 public:
 	ControlLifter();
 	void Initialize();

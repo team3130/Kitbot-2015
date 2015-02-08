@@ -2,7 +2,6 @@
 
 ControlLifter::ControlLifter()
 	: manualMode(true)
-	, goal(0)
 {
 	Requires(lifter);
 }
@@ -10,7 +9,6 @@ ControlLifter::ControlLifter()
 // Called just before this Command runs the first time
 void ControlLifter::Initialize()
 {
-	goal = 0; //default goal at bottom
 	manualMode = true;
 }
 
@@ -23,28 +21,35 @@ void ControlLifter::Execute()
 		manualMode = true;
 		lifter->moveLifter(thumb);
 	}
-	else if(manualMode)
-	{
-		lifter->moveLifter(0);
-	}
+	else {
+		int goal = 0;
+		bool buttonPushed = false;
+		if(oi->gamepad->GetRawButton(B_PAD_A)){
+			goal = 0;
+			buttonPushed = true;
+		} else if(oi->gamepad->GetRawButton(B_PAD_B)){
+			goal = 1;
+			buttonPushed = true;
+		} else if(oi->gamepad->GetRawButton(B_PAD_X)){
+			goal = 2;
+			buttonPushed = true;
+		} else if(oi->gamepad->GetRawButton(B_PAD_Y)){
+			goal = 3;
+			buttonPushed = true;
+		}
 
-	if(oi->gamepad->GetRawButton(B_PAD_A)){
-		goal = 0;
-		manualMode = false;
-	} else if(oi->gamepad->GetRawButton(B_PAD_B)){
-		goal = 1;
-		manualMode = false;
-	} else if(oi->gamepad->GetRawButton(B_PAD_X)){
-		goal = 2;
-		manualMode = false;
-	} else if(oi->gamepad->GetRawButton(B_PAD_Y)){
-		goal = 3;
-		manualMode = false;
-	}
-
-	if(!manualMode)
-	{
-		lifter->toSetpoint(goal);
+		if(buttonPushed)
+		{
+			// Go to a preset position only when a button is pushed
+			// Turn off the manual mode too
+			manualMode = false;
+			lifter->toSetpoint(goal);
+		}
+		else if(manualMode)
+		{
+			// Stop the motor if nothing happened and we're still in manual mode
+			lifter->moveLifter(0);
+		}
 	}
 }
 
