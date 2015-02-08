@@ -42,6 +42,8 @@ void Lifter::toSetpoint(int goal)
 		return;
 	}
 	m_cLiftMotor->SetControlMode(CANSpeedController::kPosition);
+	m_cLiftMotor->SetPID(10,0,0);
+	m_cLiftMotor->EnableControl();
 	m_cLiftMotor->Set(setpoint);
 
 }
