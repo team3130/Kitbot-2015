@@ -11,6 +11,7 @@ Lifter::Lifter()
 	m_dEncoderValue=0;
 	m_cLiftMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	m_cLiftMotor->SetSensorDirection(true);
+	m_cLiftMotor->SetPID(0.05,0,0);
 }
 
 Lifter::~Lifter(){

@@ -28,7 +28,7 @@ void ControlLifter::Execute()
 		lifter->moveLifter(0);
 	}
 
-	if(oi->gamepad->GetRawButton(B_LIFTERGOAL1)){
+	else if(oi->gamepad->GetRawButton(B_LIFTERGOAL1)){
 		goal = 0;
 		manualMode = false;
 	}else if(oi->gamepad->GetRawButton(B_LIFTERGOAL2)){
