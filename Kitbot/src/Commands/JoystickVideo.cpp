@@ -6,8 +6,18 @@
 
 #include "JoystickVideo.h"
 #include <iostream>
+#include <pthread.h>
 
-int videoProcess(...)
+struct ProgParams
+{
+	bool USB_Cam;
+};
+
+
+pthread_t MJPEG;
+ProgParams params;
+
+void *videoProcess(void *)
 {
 	cv::VideoCapture capture;
 	if( capture.open(0, 640,480,7.5) )
@@ -25,7 +35,7 @@ int videoProcess(...)
 	else
 	{
 		std::cerr << "Error: can not connect to the camera\n";
-		return 1;
+		return NULL;
 	}
 
 	while( true )
@@ -39,26 +49,23 @@ int videoProcess(...)
 			std::cerr << "Weird.. no frame\n";
 			break;
 		}
-		cv::imencode("jpg",frame,outBuffer);
+		cv::imencode(".jpg",frame,outBuffer);
 	}
-
-	return 0;
+	return NULL;
 }
 
 
 
 JoystickVideo::JoystickVideo(const char* name) : CommandBase(name)
 {
-	vthread = new Task("VideoProcess", videoProcess);
 	Requires(chassis);
+	pthread_create(&MJPEG, NULL, videoProcess, &params);
 }
 
 
 // Called just before this Command runs the first time
 void JoystickVideo::Initialize() {
 	std::cout << "Entering the vision mode...\n";
-	if(vthread->IsSuspended()) vthread->Resume();
-	else vthread->Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -80,7 +87,6 @@ bool JoystickVideo::IsFinished() {
 
 // Called once after isFinished returns true
 void JoystickVideo::End() {
-	vthread->Suspend();
 }
 
 // Called when another command which requires one or more of the same
