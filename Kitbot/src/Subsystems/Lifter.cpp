@@ -3,13 +3,14 @@
 #include "../Commands/ControlLifter.h"
 
 Lifter::Lifter()
-	: PIDSubsystem("Lifter",0,0,0)
+	: PIDSubsystem("Lifter",0.05,0,0)
 {
 	m_cLiftMotor = new CANTalon(LIFTER);
 	m_dLifterPosition = 0;
 	m_bIsCalibrated = false;
 	m_dEncoderValue=0;
 	m_cLiftMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
+	m_cLiftMotor->SetSensorDirection(true);
 }
 
 Lifter::~Lifter(){
@@ -22,48 +23,28 @@ void Lifter::InitDefaultCommand()
 	SetDefaultCommand(new ControlLifter());
 }
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
-
-
-//Keeps motors level
-/*void Lifter::Balance(float fDirection)
+void Lifter::toSetpoint(int goal)
 {
-	m_dEncoderLeftValue = m_cEncoderL->Get();
-	m_dEncoderRightValue = m_cEncoderR->Get();
-	//Get fraction from difference in encoder values
-	//fDirection ensures that difference will be same proportion for all axis values
-	//Code will only do something if fDirection is not 0, aka stick is not neutral
-	if(fDirection != 0){
-		double dRateDifference;
-		//prevents divide-by-zero errors in case of encoders at 0
-		if((m_dEncoderLeftValue+m_dEncoderRightValue) != 0){
-			dRateDifference = fDirection*(m_dEncoderLeftValue-m_dEncoderRightValue)/(m_dEncoderLeftValue+m_dEncoderRightValue);
-		}else{
-			dRateDifference = 0;
-		}
-
-		//compensates for difference in motors using encoder rate difference
-		if(fDirection > 0)
-		{
-			m_cLiftMotorL->SetSpeed(fDirection-dRateDifference);
-			m_cLiftMotorR->SetSpeed(fDirection+dRateDifference);
-		}
-		else if(!GetLimitSwitchBot())
-		{
-			m_cLiftMotorL->SetSpeed(fDirection+dRateDifference);
-			m_cLiftMotorR->SetSpeed(fDirection-dRateDifference);
-		}
-		//reset encoders when lifter is at the bottom
-		if(GetLimitSwitchBot()){
-			m_cEncoderL->Reset();
-			m_cEncoderR->Reset();
-		}
+	double setpoint;
+	switch(goal) {
+	case 0:
+		setpoint = 0;
+		break;
+	case 1:
+		setpoint = Preferences::GetInstance()->GetInt("LifterLevel1");
+		break;
+	case 2:
+		setpoint = Preferences::GetInstance()->GetInt("LifterLevel2");
+		break;
+	default:
+		std::cerr << "ERRORL wrong lifter goal index" << std::endl;
+		return;
 	}
-}
-*/
+	m_cLiftMotor->SetControlMode(CANSpeedController::kPosition);
+	m_cLiftMotor->Set(setpoint);
 
-// will change orientation if lift winch runs opposite direction
+}
+
 void Lifter::moveLifter(float goal)
 {
 	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);

@@ -18,7 +18,7 @@ public:
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
-	void Balance(float direction);
+	void toSetpoint(int goal);
 	void moveLifter(float goal);
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);

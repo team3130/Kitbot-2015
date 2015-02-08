@@ -1,27 +1,47 @@
 #include "ControlLifter.h"
 
 ControlLifter::ControlLifter()
+	: manualMode(true)
+	, goal(0)
 {
 	Requires(lifter);
-	goal = 0;
 }
 
 // Called just before this Command runs the first time
 void ControlLifter::Initialize()
 {
 	goal = 0; //default goal at bottom
+	manualMode = true;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ControlLifter::Execute()
 {
-	lifter->moveLifter(-oi->gamepad->GetRawAxis(A_LIFTER));
+	double thumb = -oi->gamepad->GetRawAxis(A_LIFTER);
+	if(fabs(thumb) > 0.1)
+	{
+		manualMode = true;
+		lifter->moveLifter(thumb);
+	}
+	else if(manualMode)
+	{
+		lifter->moveLifter(0);
+	}
+
 	if(oi->gamepad->GetRawButton(B_LIFTERGOAL1)){
 		goal = 0;
+		manualMode = false;
 	}else if(oi->gamepad->GetRawButton(B_LIFTERGOAL2)){
 		goal = 1;
+		manualMode = false;
 	}else if(oi->gamepad->GetRawButton(B_LIFTERGOAL3)){
 		goal = 2;
+		manualMode = false;
+	}
+
+	if(!manualMode)
+	{
+		lifter->toSetpoint(goal);
 	}
 }
 
