@@ -57,9 +57,10 @@ const int C_GYRO = 0;
 //lifters
 const int A_LIFTER = 1;           //left thumbstick up and down
 const int A_PUSHER = 3;			  //right thumbstick up and down
-const int B_LIFTERGOAL1 = 1;		//Face buttons are for goals for lifter
-const int B_LIFTERGOAL2 = 2;
-const int B_LIFTERGOAL3 = 3;
+const int B_PAD_A = 2;		//Face buttons are for goals for lifter
+const int B_PAD_B = 3;
+const int B_PAD_X = 1;
+const int B_PAD_Y = 4;
 
 //intake
 const int B_INTAKEROTATECCW = 5;   // right button on top of joystick

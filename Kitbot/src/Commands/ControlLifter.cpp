@@ -28,14 +28,17 @@ void ControlLifter::Execute()
 		lifter->moveLifter(0);
 	}
 
-	if(oi->gamepad->GetRawButton(B_LIFTERGOAL1)){
+	if(oi->gamepad->GetRawButton(B_PAD_A)){
 		goal = 0;
 		manualMode = false;
-	}else if(oi->gamepad->GetRawButton(B_LIFTERGOAL2)){
+	} else if(oi->gamepad->GetRawButton(B_PAD_B)){
 		goal = 1;
 		manualMode = false;
-	}else if(oi->gamepad->GetRawButton(B_LIFTERGOAL3)){
+	} else if(oi->gamepad->GetRawButton(B_PAD_X)){
 		goal = 2;
+		manualMode = false;
+	} else if(oi->gamepad->GetRawButton(B_PAD_Y)){
+		goal = 3;
 		manualMode = false;
 	}
 
