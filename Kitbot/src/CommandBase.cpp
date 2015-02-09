@@ -54,4 +54,7 @@ void CommandBase::init()
 	compressor->Start();
 	//FPS->Start();
 	//SmartDashboard::PutData(FPS);
+	CameraServer::GetInstance()->SetQuality(50);
+	//the camera name (ex "cam0") can be found through the roborio web interface
+	CameraServer::GetInstance()->StartAutomaticCapture();
 }
