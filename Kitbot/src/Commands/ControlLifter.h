@@ -6,6 +6,8 @@
 
 class ControlLifter: public CommandBase
 {
+private:
+	bool manualMode;
 public:
 	ControlLifter();
 	void Initialize();

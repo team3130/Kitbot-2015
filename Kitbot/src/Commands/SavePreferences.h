@@ -1,13 +1,13 @@
-#ifndef CONTROL_BIN_INTAKE_H
-#define CONTROL_BIN_INTAKE_H
+#ifndef SAVE_PREFERENCES_H
+#define SAVE_PREFERENCES_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class ControlBinIntake: public CommandBase
+class SavePreferences: public CommandBase
 {
 public:
-	ControlBinIntake();
+	SavePreferences();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -1,6 +1,8 @@
 #include "ControlMooseLifter.h"
 
 ControlMooseLifter::ControlMooseLifter()
+	: m_bMooseUp(false)
+	, m_bFinished(false)
 {
 	Requires(mooseLifter);
 }
@@ -8,24 +10,35 @@ ControlMooseLifter::ControlMooseLifter()
 // Called just before this Command runs the first time
 void ControlMooseLifter::Initialize()
 {
-
+	m_bFinished = false;
+	m_bMooseUp = !m_bMooseUp;
+	mooseLifter->MoveMooseLock(false);
+	mooseLifter->MoveMooseLifterSolenoid(m_bMooseUp);
+	timer.Reset();
+	timer.Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ControlMooseLifter::Execute()
 {
-	if(-oi->gamepad->GetRawButton(B_MOOSELIFTERUP)){
-		mooseLifter->MoveMooseLifterSolenoid(false);
+	if(m_bMooseUp)
+	{
+		if(mooseLifter->isHighEnough())
+		{
+			mooseLifter->MoveMooseLock(true);
+			m_bFinished = true;
+		}
 	}
-	else if(-oi->gamepad->GetRawButton(B_MOOSELIFTERDOWN)){
-		mooseLifter->MoveMooseLifterSolenoid(true);
+	else
+	{
+		m_bFinished = true;
 	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ControlMooseLifter::IsFinished()
 {
-	return false;
+	return m_bFinished or timer.Get() >= 2.0;
 }
 
 // Called once after isFinished returns true

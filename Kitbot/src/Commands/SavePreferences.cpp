@@ -1,37 +1,34 @@
-#include "ControlBinIntake.h"
+#include "SavePreferences.h"
 
-ControlBinIntake::ControlBinIntake()
+SavePreferences::SavePreferences()
 {
-	Requires(intake);
 }
 
 // Called just before this Command runs the first time
-void ControlBinIntake::Initialize()
+void SavePreferences::Initialize()
 {
-
+	Preferences::GetInstance()->Save();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ControlBinIntake::Execute()
+void SavePreferences::Execute()
 {
-
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ControlBinIntake::IsFinished()
+bool SavePreferences::IsFinished()
 {
-	return false;
+	return true;
 }
 
 // Called once after isFinished returns true
-void ControlBinIntake::End()
+void SavePreferences::End()
 {
-
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ControlBinIntake::Interrupted()
+void SavePreferences::Interrupted()
 {
-
+	End();
 }

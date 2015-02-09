@@ -82,7 +82,7 @@ void JoystickVideo::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool JoystickVideo::IsFinished() {
-	return !oi->rightPrecision->Get();
+	return !oi->VideoTest->Get();
 }
 
 // Called once after isFinished returns true
