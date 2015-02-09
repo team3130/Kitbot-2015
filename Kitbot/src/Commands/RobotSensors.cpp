@@ -16,7 +16,6 @@ void RobotSensors::Execute()
 {
 	SmartDashboard::PutNumber("Intake-Left Speed",CommandBase::intake->m_cIntake_left->Get());
 	SmartDashboard::PutNumber("Intake-Right Speed",CommandBase::intake->m_cIntake_right->Get());
-	SmartDashboard::PutNumber("Encoder-ValueENC", CommandBase::lifter->m_cLiftMotor->GetEncPosition());
 	SmartDashboard::PutNumber("Encoder-Value", CommandBase::lifter->m_cLiftMotor->GetPosition());
 	SmartDashboard::PutBoolean("Pusher-Out Limit Switch",CommandBase::pusher-> m_cPushMotor->GetForwardLimitOK());
 	SmartDashboard::PutBoolean("Pusher-In Limit Switch",CommandBase::pusher-> m_cPushMotor->GetReverseLimitOK());
@@ -24,8 +23,9 @@ void RobotSensors::Execute()
 	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch",CommandBase::lifter-> m_cLiftMotor->GetReverseLimitOK());
 	SmartDashboard::PutBoolean("Pusher-Alive?",CommandBase::pusher->m_cPushMotor->IsAlive());
 	SmartDashboard::PutBoolean("Lifter-Alive?",CommandBase::lifter->m_cLiftMotor->IsAlive());
-	SmartDashboard::PutNumber("Lifter-Value", CommandBase::oi->gamepad->GetRawAxis(LIFTER));
-	SmartDashboard::PutNumber("Pusher-Value", CommandBase::oi->gamepad->GetRawAxis(PUSHER));
+	SmartDashboard::PutBoolean("Magnet Sensor",CommandBase::mooseLifter->isHighEnough());
+	SmartDashboard::PutNumber("Gyro Current Angle: ", chassis->gyro->GetAngle());
+	SmartDashboard::PutNumber("Gyro Rotation rate: ", chassis->gyro->GetRate());
 
 }
 

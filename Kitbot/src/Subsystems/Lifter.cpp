@@ -68,12 +68,10 @@ void Lifter::moveLifter(float goal)
 
 bool Lifter::GetLimitSwitchTop()
 {
-	SmartDashboard::PutBoolean("Lifter-Top Limit Switch", m_cLiftMotor->GetForwardLimitOK());
 	return m_cLiftMotor->GetForwardLimitOK();
 }
 
 bool Lifter::GetLimitSwitchBot()
 {
-	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", m_cLiftMotor->GetReverseLimitOK());
 	return m_cLiftMotor->GetReverseLimitOK();
 }

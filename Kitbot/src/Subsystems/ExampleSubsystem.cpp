@@ -1,7 +1,6 @@
 #include "ExampleSubsystem.h"
 #include "../RobotMap.h"
-#include "../Commands/DriveStraightGyro.h"
-#include "../Commands/GyroTest.h"
+#include "../Commands/ExampleCommand.h"
 
 ExampleSubsystem::ExampleSubsystem()
 	: Subsystem("ExampleSubsystem")
@@ -29,16 +28,15 @@ ExampleSubsystem::~ExampleSubsystem()
 void ExampleSubsystem::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
-	SetDefaultCommand(new DriveStraightGyro("Default drive"));
-	//SetDefaultCommand(new GyroTest());
+	SetDefaultCommand(new ExampleCommand());
 }
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void ExampleSubsystem::Drive(GenericHID *leftStick, GenericHID *rightStick, bool squaredInputs)
+void ExampleSubsystem::Drive(double move, double turn, bool quad)
 {
-	m_drive.TankDrive(leftStick, rightStick, squaredInputs);
+	m_drive.ArcadeDrive(move, turn, quad);
 }
 
 bool ExampleSubsystem::CanUseGyro()

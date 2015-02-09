@@ -19,7 +19,7 @@ public:
 	~ExampleSubsystem();
 	bool CanUseGyro();
 	void InitDefaultCommand();
-	void Drive(GenericHID *leftStick, GenericHID *rightStick, bool squaredInputs = true);
+	void Drive(double move, double turn, bool squaredInputs = true);
 };
 
 #endif

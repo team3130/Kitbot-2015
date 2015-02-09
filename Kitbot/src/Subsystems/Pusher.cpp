@@ -27,12 +27,10 @@ void Pusher::pushLifter(float speed)
 
 bool Pusher::GetLimitSwitchOut()
 {
-	SmartDashboard::PutBoolean("Pusher-Out Limit Switch", m_cPushMotor->GetForwardLimitOK());
 	return m_cPushMotor->GetForwardLimitOK();
 }
 
 bool Pusher::GetLimitSwitchIn()
 {
-	SmartDashboard::PutBoolean("Pusher-In Limit Switch", m_cPushMotor->GetReverseLimitOK());
 	return m_cPushMotor->GetReverseLimitOK();
 }
