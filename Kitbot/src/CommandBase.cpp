@@ -8,6 +8,7 @@
 #include "Subsystems/AntlerMoose.h"
 #include "Commands/Scheduler.h"
 #include "Commands/AccelerometerTest.h"
+#include "Commands/SavePreferences.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
 ExampleSubsystem* CommandBase::chassis = NULL;
@@ -21,6 +22,7 @@ AntlerMoose* CommandBase::antlerMoose = NULL;
 
 Compressor* CommandBase::compressor = NULL;
 //AccelerometerTest* FPS = NULL;
+SavePreferences* save = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -37,6 +39,8 @@ void CommandBase::init()
 {
 	// Create a single static instance of all of your subsystems. The following
 	// line should be repeated for each subsystem in the project.
+	save = new SavePreferences();
+	SmartDashboard::PutData(save);
 	chassis = new ExampleSubsystem();
 	intake = new Intake();
 	intakearms = new IntakeArms();
