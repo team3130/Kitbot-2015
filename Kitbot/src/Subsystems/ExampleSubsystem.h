@@ -22,6 +22,7 @@ public:
 	void InitDefaultCommand();
 	void Drive(double move, double turn, bool squaredInputs = true);
 	double GetAngle() {return gyro->GetAngle();};
+	bool IsUsingGyro() {return m_bIsUsingGyro;};
 	void HoldAngle(double angle);
 	void GyroDrive(double move, bool squaredInputs = true);
 	virtual double ReturnPIDInput();
