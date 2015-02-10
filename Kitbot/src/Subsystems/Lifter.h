@@ -4,7 +4,7 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-class Lifter: public PIDSubsystem
+class Lifter: public Subsystem
 {
 private:
 	// It's desirable that everything possible under private except
@@ -18,14 +18,8 @@ public:
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
-	void Balance(float direction);
+	void toSetpoint(int goal);
 	void moveLifter(float goal);
-	double ReturnPIDInput();
-	void UsePIDOutput(double output);
-	void Calibrate(double setpoint);
-	void SetLifterDirect(double goal);
-	void ProjectSensors();
-	void SetGoalInches(double inches);
 	bool GetLimitSwitchTop();
 	bool GetLimitSwitchBot();
 };

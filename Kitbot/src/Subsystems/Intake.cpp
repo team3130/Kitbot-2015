@@ -50,10 +50,6 @@ void Intake::HandleObjects(int leftIntake, int rightIntake)
 		rightSpeed = 0;
 	}
 
-	SmartDashboard::PutNumber("Intake-Left Speed", m_cIntake_left->Get());
-	SmartDashboard::PutNumber("Intake-Right Speed", m_cIntake_right->Get());
-
-	//TODO: Change orientation later depending on actual motor orientation
 	m_cIntake_left->SetSpeed(leftSpeed);
 	m_cIntake_right->SetSpeed(rightSpeed);
 }

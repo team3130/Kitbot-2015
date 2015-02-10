@@ -21,7 +21,6 @@ void ControlMooseLifter::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlMooseLifter::Execute()
 {
-	SmartDashboard::PutBoolean("DB/LED 0",mooseLifter->isHighEnough());
 	if(m_bMooseUp)
 	{
 		if(mooseLifter->isHighEnough())

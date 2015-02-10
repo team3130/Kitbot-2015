@@ -6,6 +6,8 @@
 
 class ExampleCommand: public CommandBase
 {
+private:
+	bool m_bGyroMode;
 public:
 	ExampleCommand();
 	void Initialize();
