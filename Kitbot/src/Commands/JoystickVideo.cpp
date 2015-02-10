@@ -11,6 +11,7 @@
 struct ProgParams
 {
 	bool USB_Cam;
+	int detected_x;
 };
 
 const int H_MIN = 0;
@@ -29,6 +30,7 @@ const int MIN_OBJECT_AREA = FRAME_HEIGHT*FRAME_WIDTH/10.0;
 const int MAX_OBJECT_AREA = FRAME_HEIGHT*FRAME_WIDTH/1.5;
 
 pthread_t MJPEG;
+pthread_mutex_t xMutex = PTHREAD_MUTEX_INITIALIZER;
 ProgParams params;
 
 int trackFilteredObject(cv::Mat img)
@@ -78,8 +80,10 @@ int trackFilteredObject(cv::Mat img)
 	}
 }
 
-void *videoProcess(void *)
+void *videoProcess(void *args)
 {
+	ProgParams *param_ptr = (ProgParams *) args;
+
 	cv::VideoCapture capture;
 	if( capture.open(0, FRAME_WIDTH, FRAME_HEIGHT, 7.5) )
 	{
@@ -122,8 +126,12 @@ void *videoProcess(void *)
 		cv::erode(bitmap,bitmap,erodeElement);
 		cv::dilate(bitmap,bitmap,dilateElement);
 		cv::dilate(bitmap,bitmap,dilateElement);
-		trackFilteredObject(bitmap);
-		cv::imencode(".jpg",frame,outBuffer);
+		int x = trackFilteredObject(bitmap);
+		//cv::imencode(".jpg",frame,outBuffer);
+
+		pthread_mutex_lock(&xMutex);
+		param_ptr->detected_x = x;
+		pthread_mutex_unlock(&xMutex);
 	}
 	return NULL;
 }
@@ -149,9 +157,12 @@ void JoystickVideo::Execute() {
 	double powerL = oi->stickL->GetY();
 	if(fabs(powerL)<0.1) powerL = 0;
 	double power = (powerL + powerR)/2;
-	double turn = 0;
+	pthread_mutex_lock(&xMutex);
+	double turn = params.detected_x * (2.0/FRAME_WIDTH);
+	pthread_mutex_unlock(&xMutex);
 
-	chassis->m_drive.ArcadeDrive(power,turn);
+	SmartDashboard::PutNumber("Vision returns", turn);
+	chassis->m_drive.ArcadeDrive(power,turn,false);
 }
 
 // Make this return true when this Command no longer needs to run execute()
