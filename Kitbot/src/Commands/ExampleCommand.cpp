@@ -1,6 +1,7 @@
 #include "ExampleCommand.h"
 
 ExampleCommand::ExampleCommand()
+	: m_bGyroMode(false)
 {
 	// Use Requires() here to declare subsystem dependencies
 	Requires(chassis);
@@ -19,7 +20,19 @@ void ExampleCommand::Execute()
 	double moveTurn = CommandBase::oi->stickR->GetX();
 	double speedMultiplier = (-0.5 * CommandBase::oi->stickL->GetZ()) + 0.5;
 	double turnMultiplier = (-0.5 * CommandBase::oi->stickR->GetZ()) + 0.5;
-	chassis->Drive(moveSpeed * speedMultiplier, moveTurn * turnMultiplier);
+	if(oi->stickR->GetRawButton(8)) {
+		if(m_bGyroMode) {
+			chassis->GyroDrive(moveSpeed * speedMultiplier);
+		}
+		else {
+			m_bGyroMode = true;
+			chassis->HoldAngle(chassis->GetAngle());
+		}
+	}
+	else {
+		m_bGyroMode = false;
+		chassis->Drive(moveSpeed * speedMultiplier, moveTurn * turnMultiplier);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
