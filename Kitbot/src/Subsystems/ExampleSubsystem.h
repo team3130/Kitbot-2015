@@ -14,8 +14,10 @@ private:
 	double moveSpeed;
 public:
 	Gyro* gyro;
-	Encoder* m_cEncoderL;
-	Encoder* m_cEncoderR;
+	Encoder* m_cEncoderUL;
+	Encoder* m_cEncoderUR;
+	Encoder* m_cEncoderLL;
+	Encoder* m_cEncoderLR;
 	RobotDrive m_drive;
 	ExampleSubsystem();
 	~ExampleSubsystem();
