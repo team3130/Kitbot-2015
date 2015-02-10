@@ -5,6 +5,8 @@
 
 class RobotSensors: public CommandBase
 {
+private:
+	AnalogInput* range;
 public:
 	RobotSensors();
 	void Initialize();
