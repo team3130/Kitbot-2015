@@ -19,6 +19,7 @@
 class JoystickVideo: public CommandBase {
 private:
 	//Task* vthread;
+	Timer timer;
 public:
 	JoystickVideo(const char* name);
 	virtual void Initialize();

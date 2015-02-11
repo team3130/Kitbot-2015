@@ -138,7 +138,9 @@ void *videoProcess(void *args)
 
 
 
-JoystickVideo::JoystickVideo(const char* name) : CommandBase(name)
+JoystickVideo::JoystickVideo(const char* name)
+	: CommandBase(name)
+	, timer()
 {
 	Requires(chassis);
 	pthread_create(&MJPEG, NULL, videoProcess, &params);
@@ -148,21 +150,29 @@ JoystickVideo::JoystickVideo(const char* name) : CommandBase(name)
 // Called just before this Command runs the first time
 void JoystickVideo::Initialize() {
 	std::cout << "Entering the vision mode...\n";
+	chassis->HoldAngle(chassis->GetAngle());
+	timer.Reset();
+	timer.Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void JoystickVideo::Execute() {
-	double powerR = oi->stickR->GetY();
-	if(fabs(powerR)<0.1) powerR = 0;
-	double powerL = oi->stickL->GetY();
-	if(fabs(powerL)<0.1) powerL = 0;
-	double power = (powerL + powerR)/2;
-	pthread_mutex_lock(&xMutex);
-	double turn = params.detected_x * (2.0/FRAME_WIDTH);
-	pthread_mutex_unlock(&xMutex);
+	double power = oi->stickL->GetY();
+	double speedMultiplier = (-0.5 * oi->stickL->GetZ()) + 0.5;
 
-	SmartDashboard::PutNumber("Vision returns", turn);
-	chassis->m_drive.ArcadeDrive(power,turn,false);
+	if(timer.Get() > 1.5) {
+		pthread_mutex_lock(&xMutex);
+		int target = params.detected_x;
+		pthread_mutex_unlock(&xMutex);
+
+		double angle = 69.0 * target / FRAME_WIDTH;
+
+		SmartDashboard::PutNumber("Vision returns", target);
+		chassis->HoldAngle(chassis->GetAngle() + angle);
+		timer.Reset();
+		timer.Start();
+	}
+	chassis->GyroDrive(power*speedMultiplier);
 }
 
 // Make this return true when this Command no longer needs to run execute()
