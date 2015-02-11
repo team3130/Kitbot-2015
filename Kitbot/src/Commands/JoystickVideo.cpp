@@ -179,7 +179,7 @@ void JoystickVideo::Execute() {
 		double angle = 69.0 * target / FRAME_WIDTH;
 
 		SmartDashboard::PutNumber("Vision returns", target);
-		chassis->HoldAngle(chassis->GetAngle() + angle);
+		chassis->HoldAngle(angle);
 		timer.Reset();
 		timer.Start();
 	}
