@@ -3,7 +3,6 @@
 ExampleCommand::ExampleCommand()
 	: m_bGyroMode(false)
 {
-	// Use Requires() here to declare subsystem dependencies
 	Requires(chassis);
 }
 
@@ -20,16 +19,14 @@ void ExampleCommand::Execute()
 	double moveTurn = CommandBase::oi->stickR->GetX();
 	double speedMultiplier = (-0.5 * CommandBase::oi->stickL->GetZ()) + 0.5;
 	double turnMultiplier = (-0.5 * CommandBase::oi->stickR->GetZ()) + 0.5;
-	if(oi->stickR->GetRawButton(8)) {
+	if(moveTurn < 0.03 and moveTurn > -0.03) {
 		if(m_bGyroMode) {
 			chassis->GyroDrive(moveSpeed * speedMultiplier);
-		}
-		else {
+		}else{
 			m_bGyroMode = true;
 			chassis->HoldAngle(chassis->GetAngle());
 		}
-	}
-	else {
+	}else{
 		m_bGyroMode = false;
 		chassis->Drive(moveSpeed * speedMultiplier, moveTurn * turnMultiplier);
 	}

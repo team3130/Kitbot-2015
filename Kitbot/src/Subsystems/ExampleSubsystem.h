@@ -14,14 +14,17 @@ private:
 	double moveSpeed;
 public:
 	Gyro* gyro;
-	Encoder* m_cEncoderL;
-	Encoder* m_cEncoderR;
+	Encoder* m_cEncoderUL;
+	Encoder* m_cEncoderUR;
+	Encoder* m_cEncoderLL;
+	Encoder* m_cEncoderLR;
 	RobotDrive m_drive;
 	ExampleSubsystem();
 	~ExampleSubsystem();
 	void InitDefaultCommand();
 	void Drive(double move, double turn, bool squaredInputs = true);
 	double GetAngle() {return gyro->GetAngle();};
+	bool IsUsingGyro() {return m_bIsUsingGyro;};
 	void HoldAngle(double angle);
 	void GyroDrive(double move, bool squaredInputs = true);
 	virtual double ReturnPIDInput();
