@@ -22,6 +22,7 @@ ExampleSubsystem::ExampleSubsystem()
 	m_bIsUsingGyro = true;
 	GetPIDController()->Disable();
 	gyro->InitGyro();
+	gyro->Reset();
 }
 
 ExampleSubsystem::~ExampleSubsystem()
