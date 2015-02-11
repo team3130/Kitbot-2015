@@ -2,7 +2,7 @@
 
 ExampleCommand::ExampleCommand()
 	: m_bGyroMode(false)
-	, m_bGyroPrep(false)
+	, m_bGyroPrep(true)
 	, m_GyroTimer()
 {
 	Requires(chassis);
@@ -13,8 +13,8 @@ void ExampleCommand::Initialize()
 {
 	chassis->HoldAngle(chassis->GetAngle());
 	m_GyroTimer.Reset();
-	m_bGyroMode = true;
-	m_bGyroPrep = false;
+	m_bGyroMode = false;
+	m_bGyroPrep = true;
 }
 
 // Called repeatedly when this Command is scheduled to run
