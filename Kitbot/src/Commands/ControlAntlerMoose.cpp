@@ -14,18 +14,13 @@ void ControlAntlerMoose::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlAntlerMoose::Execute()
 {
-	if(-oi->gamepad->GetRawButton(B_ANTLERMOOSEUP)){
-		antlerMoose->moveAntlerMoose(1);
-	}
-	else if(-oi->gamepad->GetRawButton(B_ANTLERMOOSEDOWN)){
-		antlerMoose->moveAntlerMoose(-1);
-	}
+	antlerMoose->MoveAntlerLock();
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ControlAntlerMoose::IsFinished()
 {
-	return false;
+	return true;
 }
 
 // Called once after isFinished returns true

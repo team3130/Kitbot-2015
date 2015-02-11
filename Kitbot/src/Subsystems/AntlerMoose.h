@@ -9,20 +9,13 @@ class AntlerMoose: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	Talon* m_cAntlerMooseMotor;
-	DigitalInput* m_cAntlerLimitSwitchTop;
-	DigitalInput* m_cAntlerLimitSwitchBot;
-	double m_dLifterPosition;
-	double m_dEncoderValue;
+	Solenoid* m_cAntlerMooseLock;
+	bool m_bActivated;
 public:
 	AntlerMoose();
 	~AntlerMoose();
 	void InitDefaultCommand();
-	void Balance(float direction);
-	void moveAntlerMoose(float speed);
-	bool GetLimitSwitchTop();
-	bool GetLimitSwitchBot();
-
+	void MoveAntlerLock();
 };
 
 #endif

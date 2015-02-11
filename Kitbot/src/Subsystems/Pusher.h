@@ -7,18 +7,14 @@
 class Pusher: public Subsystem
 {
 private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
-	Talon* m_cPushMotor;
-	DigitalInput* m_cLimitSwitchIn;
-	DigitalInput* m_cLimitSwitchOut;
+	CANTalon* m_cPushMotor;
 public:
 	Pusher();
 	~Pusher();
 	void InitDefaultCommand();
 	void pushLifter(float speed);
-	bool GetLimitSwitchIn();
-	bool GetLimitSwitchOut();
+	bool GetLimitSwitchOut(){return m_cPushMotor->GetForwardLimitOK();};
+	bool GetLimitSwitchIn(){return m_cPushMotor->GetReverseLimitOK();};
 
 };
 

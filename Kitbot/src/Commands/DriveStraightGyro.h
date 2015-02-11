@@ -11,6 +11,8 @@ private:
 	double np, ni, nd;
 	double	moveSpeed;
 	double	moveTurn;
+	double speedMultiplier;
+	double turnMultiplier;
 	bool	gyroMode;
 public:
 	DriveStraightGyro(const char *name);

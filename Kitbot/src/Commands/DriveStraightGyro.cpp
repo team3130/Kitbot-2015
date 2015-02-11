@@ -4,7 +4,6 @@
 // Used be constructed with (300,0.05,1,0,0,0)
 DriveStraightGyro::DriveStraightGyro(const char *name): PIDCommand(name,  0  ,  0  ,  0  ){
 	Requires(CommandBase::chassis);
-	prefs = Preferences::GetInstance();
 	moveSpeed = 0;
 	moveTurn = 0;
 	gyroMode = false;
@@ -12,13 +11,14 @@ DriveStraightGyro::DriveStraightGyro(const char *name): PIDCommand(name,  0  ,  
 	Requires(CommandBase::chassis);
 	CommandBase::chassis->gyro->InitGyro();
 	CommandBase::chassis->gyro->Reset();
-	prefs->PutDouble("GyroPIDP",0.07);
-	prefs->PutDouble("GyroPIDI",0);
-	prefs->PutDouble("GyroPIDD",0.2);
+	Preferences::GetInstance()->PutDouble("GyroPIDP",0.07);
+	Preferences::GetInstance()->PutDouble("GyroPIDI",0);
+	Preferences::GetInstance()->PutDouble("GyroPIDD",0.2);
 	SmartDashboard::PutNumber("DB/Slider 0", 0.07 / 0.1 );
 	SmartDashboard::PutNumber("DB/Slider 1", 0.0 / 0.1 );
 	SmartDashboard::PutNumber("DB/Slider 2", 0.2 / 0.1 );
-
+	speedMultiplier = 0;
+	turnMultiplier = 0;
 }
 
 // Called just before this Command runs the first time
@@ -42,6 +42,12 @@ void DriveStraightGyro::Execute() {
 	double turnLimit = CommandBase::oi->stickR->GetZ();
 
 	if(fabs(moveTurn) > turnLimit)
+	moveTurn = CommandBase::oi->stickR->GetX();
+	speedMultiplier = (-0.5 * CommandBase::oi->stickL->GetZ()) + 0.5;
+	turnMultiplier = (-0.5 * CommandBase::oi->stickR->GetZ()) + 0.5;
+
+	CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed * speedMultiplier,moveTurn);
+	if(fabs(moveTurn)>0.2)
 	{
 		if(gyroMode) {
 			gyroMode = false;
@@ -66,21 +72,18 @@ bool DriveStraightGyro::IsFinished(){
 }
 
 double DriveStraightGyro::ReturnPIDInput(){
-	double ret = CommandBase::chassis->gyro->GetAngle();
-	double rot = CommandBase::chassis->gyro->GetRate();
-	SmartDashboard::PutNumber("Gyro Current Angle: ", ret);
-	SmartDashboard::PutNumber("Gyro Rotation Rate: ", rot);
-	return ret;
+	double dRet = CommandBase::chassis->gyro->GetAngle();
+	return dRet;
 }
 
 void DriveStraightGyro::UsePIDOutput(double outputAngle){
 	if(gyroMode)
 	{
-		CommandBase::chassis->m_drive.TankDrive(moveSpeed-outputAngle,moveSpeed+outputAngle);
+		CommandBase::chassis->m_drive.TankDrive((moveSpeed-outputAngle) * speedMultiplier,(moveSpeed+outputAngle) * speedMultiplier);
 	}
 	else
 	{
-		CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed,moveTurn);
+		CommandBase::chassis->m_drive.ArcadeDrive(moveSpeed * speedMultiplier,moveTurn);
 	}
 }
 
