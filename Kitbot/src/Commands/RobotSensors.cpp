@@ -18,8 +18,8 @@ void RobotSensors::Execute()
 	SmartDashboard::PutNumber("Intake-Left Speed",CommandBase::intake->m_cIntake_left->Get());
 	SmartDashboard::PutNumber("Intake-Right Speed",CommandBase::intake->m_cIntake_right->Get());
 	SmartDashboard::PutNumber("Encoder-Value", lifter->GetPosition());
-	SmartDashboard::PutBoolean("Pusher-Out Limit Switch",CommandBase::pusher-> m_cPushMotor->GetForwardLimitOK());
-	SmartDashboard::PutBoolean("Pusher-In Limit Switch",CommandBase::pusher-> m_cPushMotor->GetReverseLimitOK());
+	SmartDashboard::PutBoolean("Pusher-Out Limit Switch", pusher->GetLimitSwitchOut());
+	SmartDashboard::PutBoolean("Pusher-In Limit Switch", pusher->GetLimitSwitchIn());
 	SmartDashboard::PutBoolean("Lifter-Top Limit Switch", lifter->GetLimitSwitchTop());
 	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", lifter->GetLimitSwitchBot());
 	SmartDashboard::PutBoolean("Magnet Sensor",CommandBase::mooseLifter->isHighEnough());
