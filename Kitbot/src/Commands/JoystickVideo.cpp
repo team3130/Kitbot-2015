@@ -14,12 +14,23 @@ struct ProgParams
 	int detected_x;
 };
 
-const int H_MIN = 0;
-const int H_MAX = 255;
-const int S_MIN = 0;
-const int S_MAX = 127;
-const int V_MIN = 80;
-const int V_MAX = 175;
+/*
+// Grey tote
+const int H_MIN = 8;
+const int H_MAX = 48;
+const int S_MIN = 18;
+const int S_MAX = 81;
+const int V_MIN = 37;
+const int V_MAX = 156;
+*/
+// Yellow tote
+const int H_MIN = 8;
+const int H_MAX = 48;
+const int S_MIN = 160;
+const int S_MAX = 255;
+const int V_MIN = 128;
+const int V_MAX = 255;
+
 //default capture width and height
 const int FRAME_WIDTH = 640;
 const int FRAME_HEIGHT = 360;
