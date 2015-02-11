@@ -55,7 +55,7 @@ void ExampleSubsystem::Drive(double move, double turn, bool quad)
 
 void ExampleSubsystem::HoldAngle(double angle)
 {
-	GetPIDController()->SetSetpoint(angle);
+	GetPIDController()->SetSetpoint(GetAngle() + angle);
 	GetPIDController()->Enable();
 }
 
