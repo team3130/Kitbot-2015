@@ -3,6 +3,7 @@
 RobotSensors::RobotSensors()
 {
 	// Use Requires() here to declare subsystem dependencies
+	range = new AnalogInput(1);
 }
 
 // Called just before this Command runs the first time
@@ -26,7 +27,8 @@ void RobotSensors::Execute()
 	SmartDashboard::PutBoolean("Magnet Sensor",CommandBase::mooseLifter->isHighEnough());
 	SmartDashboard::PutNumber("Gyro Current Angle: ", chassis->gyro->GetAngle());
 	SmartDashboard::PutNumber("Gyro Rotation rate: ", chassis->gyro->GetRate());
-
+	SmartDashboard::PutNumber("Is Using Gyro?: ", chassis->IsUsingGyro());
+	SmartDashboard::PutNumber("Analog Input 1", range->GetValue());
 }
 
 // Make this return true when this Command no longer needs to run execute()
