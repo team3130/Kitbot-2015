@@ -11,7 +11,7 @@ ExampleCommand::ExampleCommand()
 // Called just before this Command runs the first time
 void ExampleCommand::Initialize()
 {
-	chassis->HoldAngle(chassis->GetAngle());
+	chassis->HoldAngle();
 	m_GyroTimer.Reset();
 	m_bGyroMode = false;
 	m_bGyroPrep = true;

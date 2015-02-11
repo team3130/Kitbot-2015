@@ -25,14 +25,10 @@ const int INTAKEL = 9;
 
 //Moose
 const int MOOSEPOSITIONSENSOR = 0;
-const int DRIVE_ENCODERLL_A = 1;
-const int DRIVE_ENCODERLL_B = 2;
-const int DRIVE_ENCODERLR_A = 3;
-const int DRIVE_ENCODERLR_B = 4;
-const int DRIVE_ENCODERUL_A = 5;
-const int DRIVE_ENCODERUL_B = 6;
-const int DRIVE_ENCODERUR_A = 7;
-const int DRIVE_ENCODERUR_B = 8;
+const int DRIVE_ENCODERL_A = 4;
+const int DRIVE_ENCODERL_B = 5;
+const int DRIVE_ENCODERR_A = 6;
+const int DRIVE_ENCODERR_B = 7;
 
 
 /****** Solenoids ************************/
