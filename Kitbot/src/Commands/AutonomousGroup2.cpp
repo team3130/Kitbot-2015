@@ -10,7 +10,7 @@ AutonomousGroup2::AutonomousGroup2()
 	AddSequential(m_cAutonDrive1);
 	AddSequential(m_cMooseLifter1);
 	AddSequential(m_cAutonDrive2);
-	AddSequential(m_cMooseLifter2);
+	AddParallel(m_cMooseLifter2);
 	AddSequential(m_cAntlerMoose1);
 }
 
@@ -29,10 +29,10 @@ void AutonomousGroup2::Initialize()
 	// Will change values once robot speed and positioning is known.
 		//Drive
 	m_cAutonDrive1->m_nDrivePowerL = 1,m_cAutonDrive1->m_nDrivePowerR = 1;
-	m_cAutonDrive1->m_nTimer = 20,m_cAutonDrive1->gyroMode = true;
+	m_cAutonDrive1->m_nEncoderStop = 1,m_cAutonDrive1->gyroMode = true;
 
-	m_cAutonDrive2->m_nDrivePowerL = -1,m_cAutonDrive2->m_nDrivePowerR = -1;
-	m_cAutonDrive2->m_nTimer = 20,m_cAutonDrive2->gyroMode = true;
+	m_cAutonDrive2->m_nDrivePowerL = -0.3,m_cAutonDrive2->m_nDrivePowerR = -0.3;
+	m_cAutonDrive2->m_nEncoderStop = 1,m_cAutonDrive2->gyroMode = true;
 
 		//Moose Lifter
 	m_cMooseLifter1->m_bMooseOn = true;

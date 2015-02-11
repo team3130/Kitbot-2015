@@ -14,7 +14,7 @@ private:
 	void RobotInit()
 	{
 		CommandBase::init();
-		autonomousCommand = new AutonomousGroup();
+		autonomousCommand = new AutonomousGroup2();
 		robotSensors = new RobotSensors();
 		lw = LiveWindow::GetInstance();
 	}

@@ -12,7 +12,7 @@ AutonDriveStraight::AutonDriveStraight()
 	Requires(CommandBase::chassis);
 	m_nDrivePowerL = 0;
 	m_nDrivePowerR = 0;
-	m_nTimer = 1;
+	m_nEncoderStop = 0;
 	m_bExecute = false;
 	CommandBase::chassis->gyro->InitGyro();
 	CommandBase::chassis->gyro->Reset();
@@ -29,24 +29,20 @@ void AutonDriveStraight::Initialize() {
 void AutonDriveStraight::Execute() {
 	if(m_bExecute){
 		CommandBase::chassis->m_drive.TankDrive(m_nDrivePowerL, m_nDrivePowerR);
-		m_nTimer -= 1;	//Causes driving to stop after Timer runs down
 	}
 }
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDriveStraight::IsFinished(){
-	if(m_nTimer <= 0){
+	if(CommandBase::chassis->m_cEncoderL->Get()==m_nEncoderStop){
 		m_bExecute=false;
 		return true;
 	}
-	else{return false;}
+	return false;
 }
 
 double AutonDriveStraight::ReturnPIDInput(){
-	double ret = CommandBase::chassis->gyro->GetAngle();
-	double rot = CommandBase::chassis->gyro->GetRate();
-	SmartDashboard::PutNumber("Gyro Current Angle: ", ret);
-	SmartDashboard::PutNumber("Gyro Rotation Rate: ", rot);
-	return ret;
+	double dRet = CommandBase::chassis->gyro->GetAngle();
+	return dRet;
 }
 
 void AutonDriveStraight::UsePIDOutput(double outputAngle){
