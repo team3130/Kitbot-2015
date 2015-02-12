@@ -6,9 +6,8 @@ Lifter::Lifter()
 	: Subsystem("Lifter")
 {
 	m_cLiftMotor = new CANTalon(LIFTER);
-	m_dLifterPosition = 0;
-	m_bIsCalibrated = false;
-	m_dEncoderValue=0;
+	m_cLiftMotor->ConfigLimitMode(CANTalon::kLimitMode_SwitchInputsOnly);
+	m_cLiftMotor->ConfigNeutralMode(CANTalon::kNeutralMode_Brake);
 	m_cLiftMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
 	m_cLiftMotor->SetSensorDirection(true);
 	m_cLiftMotor->SetPID(0.05,0,0);
@@ -66,12 +65,3 @@ void Lifter::moveLifter(float goal)
 	}
 }
 
-bool Lifter::GetLimitSwitchTop()
-{
-	return m_cLiftMotor->GetForwardLimitOK();
-}
-
-bool Lifter::GetLimitSwitchBot()
-{
-	return m_cLiftMotor->GetReverseLimitOK();
-}
