@@ -82,6 +82,7 @@ int trackFilteredObject(cv::Mat img)
 	{
 		// putText(cameraFeed,"Tracking Object",Point(0,50),2,1,Scalar(0,255,0),2);
 		// drawObject(x,y,cameraFeed);
+		std::cout << "An object detected at " << x << std::endl;
 		return x - FRAME_WIDTH/2;
 	}
 	else
@@ -161,7 +162,7 @@ JoystickVideo::JoystickVideo(const char* name)
 // Called just before this Command runs the first time
 void JoystickVideo::Initialize() {
 	std::cout << "Entering the vision mode...\n";
-	chassis->HoldAngle(chassis->GetAngle());
+	chassis->HoldAngle();
 	timer.Reset();
 	timer.Start();
 }
@@ -179,6 +180,7 @@ void JoystickVideo::Execute() {
 		double angle = 69.0 * target / FRAME_WIDTH;
 
 		SmartDashboard::PutNumber("Vision returns", target);
+		SmartDashboard::PutNumber("Vision angle", angle);
 		chassis->HoldAngle(angle);
 		timer.Reset();
 		timer.Start();
