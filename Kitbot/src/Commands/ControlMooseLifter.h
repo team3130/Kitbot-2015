@@ -8,15 +8,16 @@ class ControlMooseLifter: public CommandBase
 {
 public:
 	ControlMooseLifter();
+	~ControlMooseLifter();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	Timer timer;
 private:
-	bool m_bMooseUp;
-	bool m_bFinished;
+	bool m_bWatchLoop;
+	bool m_bNewStatus;
+	JoystickButton *m_Button;
 };
 
 #endif

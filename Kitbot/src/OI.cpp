@@ -9,8 +9,4 @@ OI::OI()
 	stickL = new Joystick(0);
 	stickR = new Joystick(1);
 	gamepad = new Joystick(2);
-	MooseLifterToggle = new JoystickButton(gamepad, 8);
-	AntlerMooseToggle = new JoystickButton(gamepad, 7);
-	MooseLifterToggle->WhenReleased(new ControlMooseLifter());
-	AntlerMooseToggle->WhenReleased(new ControlAntlerMoose());
 }
