@@ -56,19 +56,19 @@ void AutonomousGroup::Initialize()
 	// Will change values once robot speed and positioning is known.
 		//Drive
 	m_cAutonDrive1->m_nDrivePowerL = 1,m_cAutonDrive1->m_nDrivePowerR = 1;
-	m_cAutonDrive1->m_nTimer = 20,m_cAutonDrive1->gyroMode = true;
+	m_cAutonDrive1->m_nEncoderStop = 20,m_cAutonDrive1->gyroMode = true;
 
 	m_cAutonDrive2->m_nDrivePowerL = 1,m_cAutonDrive2->m_nDrivePowerR = 1;
-	m_cAutonDrive2->m_nTimer = 20,m_cAutonDrive2->gyroMode = true;
+	m_cAutonDrive2->m_nEncoderStop = 20,m_cAutonDrive2->gyroMode = true;
 
 	m_cAutonDrive3->m_nDrivePowerL = 1,m_cAutonDrive3->m_nDrivePowerR = 1;
-	m_cAutonDrive3->m_nTimer = 20,m_cAutonDrive3->gyroMode = true;
+	m_cAutonDrive3->m_nEncoderStop = 20,m_cAutonDrive3->gyroMode = true;
 
 	m_cAutonDrive4->m_nDrivePowerL = 1,m_cAutonDrive4->m_nDrivePowerR = -1;
-	m_cAutonDrive4->m_nTimer = 10,m_cAutonDrive4->gyroMode = false;
+	m_cAutonDrive4->m_nEncoderStop = 10,m_cAutonDrive4->gyroMode = false;
 
 	m_cAutonDrive5->m_nDrivePowerL = 1,m_cAutonDrive5->m_nDrivePowerR = 1;
-	m_cAutonDrive5->m_nTimer = 20,m_cAutonDrive5->gyroMode = true;
+	m_cAutonDrive5->m_nEncoderStop = 20,m_cAutonDrive5->gyroMode = true;
 
 		//Rollers
 	m_cAutonRollers1->m_nLeftIntake = 1,m_cAutonRollers1->m_nRightIntake = 1;

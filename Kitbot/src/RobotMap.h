@@ -25,7 +25,6 @@ const int INTAKEL = 9;
 
 //Moose
 const int MOOSEPOSITIONSENSOR = 0;
-<<<<<<< HEAD
 
 //Drive
 const int DRIVE_ENCODERL_A = 4;
