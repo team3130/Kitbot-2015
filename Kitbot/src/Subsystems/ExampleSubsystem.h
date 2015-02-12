@@ -9,6 +9,7 @@ class ExampleSubsystem: public PIDSubsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
+	double np, ni, nd;
 	bool m_bIsUsingGyro;
 	bool m_bSquaredDrive;
 	double moveSpeed;

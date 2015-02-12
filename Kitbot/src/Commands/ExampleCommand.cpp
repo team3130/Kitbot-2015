@@ -34,7 +34,7 @@ void ExampleCommand::Execute()
 		m_GyroTimer.Start();
 		m_bGyroPrep = false;
 	}
-	else if(m_GyroTimer.Get() > 2.0 && !m_bGyroMode){
+	else if(m_GyroTimer.Get() > 0.5 && !m_bGyroMode){
 		m_bGyroMode = true;
 		chassis->HoldAngle();
 	}
