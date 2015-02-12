@@ -10,7 +10,7 @@ AutonomousGroup2::AutonomousGroup2()
 	AddSequential(m_cAutonDrive1);
 	AddSequential(m_cMooseLifter1);
 	AddSequential(m_cAutonDrive2);
-	AddParallel(m_cMooseLifter2);
+	AddSequential(m_cMooseLifter2);
 	AddSequential(m_cAntlerMoose1);
 }
 
