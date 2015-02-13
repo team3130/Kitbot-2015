@@ -7,13 +7,20 @@
 
 class AutonDriveStraight: public PIDCommand{
 private:
-	double	moveSpeed;
-	double	moveTurn;
+	bool m_bGyroPrep;
+	bool m_bGyroMode;
+	Timer m_cGyroTimer;
 public:
 	bool m_bExecute;
-	int m_nEncoderStop;
-	int m_nDrivePowerR;
-	int m_nDrivePowerL;
+	static const double driftK = 1.0/180.0;
+	Timer timer;
+	double speed;
+	double goal;
+	double threshold;
+	double confirmTime;
+	double dumbDriveTime;
+	double keepAngle;
+	bool isConfirming;
 	bool gyroMode;
 	AutonDriveStraight();
 	virtual void Initialize();
@@ -22,7 +29,8 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 	virtual double ReturnPIDInput();
-	virtual void UsePIDOutput(double outputAngle);
+	void SetGoal(double dist, double thresh=0, double timeToWait=0, double ispeed=1);
+	virtual void UsePIDOutput(double output);
 };
 
 #endif
