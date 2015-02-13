@@ -28,8 +28,7 @@ void AutonomousGroup2::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
 		//Drive
-	m_cAutonDrive1->m_nDrivePowerL = 1,m_cAutonDrive1->m_nDrivePowerR = 1;
-	m_cAutonDrive1->m_nEncoderStop = 1,m_cAutonDrive1->gyroMode = true;
+	m_cAutonDrive1->speed = 1, m_cAutonDrive1->SetGoal()
 
 	m_cAutonDrive2->m_nDrivePowerL = -0.3,m_cAutonDrive2->m_nDrivePowerR = -0.3;
 	m_cAutonDrive2->m_nEncoderStop = 1,m_cAutonDrive2->gyroMode = true;

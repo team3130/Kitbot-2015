@@ -86,7 +86,7 @@ void AutonDriveStraight::UsePIDOutput(double output){
 	CommandBase::chassis->HoldAngle(0.0);
 	if(output>1)output=1;
 	if(output<-1)output=-1;
-
+	CommandBase::chassis->m_drive.ArcadeDrive(speed*output,0.0);
 }
 
 // Called once after isFinished returns true
