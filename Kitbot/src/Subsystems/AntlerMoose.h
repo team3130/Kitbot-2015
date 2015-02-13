@@ -17,8 +17,7 @@ public:
 	AntlerMoose();
 	~AntlerMoose();
 	void InitDefaultCommand();
-	void MoveAntlerLock();
-
+	void MoveAntlerLock(bool activate = true);
 };
 
 #endif

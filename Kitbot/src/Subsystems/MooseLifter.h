@@ -20,6 +20,7 @@ public:
 	void MoveMooseLifterSolenoid(bool pushUp);
 	void MoveMooseLock(bool stopMoving);
 	bool isHighEnough() { return !m_cMoosePositionSensor->Get(); };
+	bool isUp() { return m_bActivated; };
 };
 
 #endif

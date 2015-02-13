@@ -19,8 +19,8 @@ ExampleSubsystem::ExampleSubsystem()
 
 	m_cEncoderL->Reset();
 	m_cEncoderR->Reset();
-	m_cEncoderL->SetDistancePerPulse(PI*WHEEL_DIAMATER*WHEEL_ENCODER_RATIO);
-	m_cEncoderR->SetDistancePerPulse(PI*WHEEL_DIAMATER*WHEEL_ENCODER_RATIO);
+	m_cEncoderL->SetDistancePerPulse(WHEEL_ENCODER_RATIO);
+	m_cEncoderR->SetDistancePerPulse(WHEEL_ENCODER_RATIO);
 	gyro  = new Gyro(C_GYRO);
 	m_bIsUsingGyro = true;
 	GetPIDController()->Disable();

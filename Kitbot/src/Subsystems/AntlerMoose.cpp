@@ -15,14 +15,13 @@ AntlerMoose::~AntlerMoose(){
 
 void AntlerMoose::InitDefaultCommand()
 {
-	// Set the default command for a subsystem here.
-
+	SetDefaultCommand(new ControlAntlerMoose());
 }
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void AntlerMoose::MoveAntlerLock()
+void AntlerMoose::MoveAntlerLock(bool activate)
 {
-	m_bActivated = !m_bActivated;
+	m_bActivated = activate;
 	m_cAntlerMooseLock->Set(m_bActivated);
 }

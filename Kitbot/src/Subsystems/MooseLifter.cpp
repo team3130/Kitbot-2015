@@ -19,7 +19,7 @@ MooseLifter::~MooseLifter(){
 
 void MooseLifter::InitDefaultCommand()
 {
-	// Set the default command for a subsystem here.
+	SetDefaultCommand(new ControlMooseLifter());
 }
 
 void MooseLifter::MoveMooseLock(bool stopMoving)

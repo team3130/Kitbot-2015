@@ -8,11 +8,14 @@ class ControlAntlerMoose: public CommandBase
 {
 public:
 	ControlAntlerMoose();
+	~ControlAntlerMoose();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+private:
+	JoystickButton *m_Button;
 };
 
 #endif
