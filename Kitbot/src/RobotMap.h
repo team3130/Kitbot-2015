@@ -37,6 +37,7 @@ const int INTAKEARML = 0;
 const int INTAKEARMR = 1;
 const int MOOSELIFTER = 2;
 const int MOOSELOCK = 3;		//Controls Antlers Solenoid
+const int MOOSELOCK2 = 5;
 const int MOOSEPREVENT = 4;		//Prevents Moose from going up any further
 
 
