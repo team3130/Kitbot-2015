@@ -10,6 +10,11 @@
  * floating around.
  */
 
+//const values needed
+const double PI = 3.14159265358979323846;
+const double WHEEL_DIAMATER = 1;	//todo:Change value to wheel diamaters
+const double WHEEL_ENCODER_RATIO = 1;	//todo: Determine Value
+
 /****** PWM ports ************************/
 
 const int LEFTBACKMOTOR = 0;
