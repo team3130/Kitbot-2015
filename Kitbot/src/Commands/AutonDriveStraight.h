@@ -12,7 +12,6 @@ private:
 	Timer m_cGyroTimer;
 public:
 	bool m_bExecute;
-	static const double driftK = 1.0/180.0;
 	Timer timer;
 	double speed;
 	double goal;

@@ -69,23 +69,24 @@ double AutonDriveStraight::ReturnPIDInput(){
 	double totalDistance = 0;
 	int nEncoders = 0;
 
-		totalDistance += leftController->GetDistance();
+		totalDistance += CommandBase::chassis->m_cEncoderL->GetDistance();
 		nEncoders++;
 
-		totalDistance += rightController->GetDistance();
+		totalDistance += CommandBase::chassis->m_cEncoderR->GetDistance();
 		nEncoders++;
+
+	if(nEncoders>0){
+		return (totalDistance/nEncoders);
+	}else{
+		return 0;
 	}
 }
 
-void AutonDriveStraight::UsePIDOutput(double outputAngle){
-	if(gyroMode)
-	{
-		CommandBase::chassis->m_drive.TankDrive(m_nDrivePowerL-outputAngle,m_nDrivePowerR+outputAngle);
-	}
-	else
-	{
-		CommandBase::chassis->m_drive.TankDrive(m_nDrivePowerL, m_nDrivePowerR);
-	}
+void AutonDriveStraight::UsePIDOutput(double output){
+	CommandBase::chassis->HoldAngle(0.0);
+	if(output>1)output=1;
+	if(output<-1)output=-1;
+
 }
 
 // Called once after isFinished returns true

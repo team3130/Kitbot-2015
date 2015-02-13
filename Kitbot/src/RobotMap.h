@@ -14,6 +14,7 @@
 const double PI = 3.14159265358979323846;
 const double WHEEL_DIAMATER = 1;	//todo:Change value to wheel diamaters
 const double WHEEL_ENCODER_RATIO = 1;	//todo: Determine Value
+const double DRIVE_ENCODER_PPR = 256;
 
 /****** PWM ports ************************/
 
