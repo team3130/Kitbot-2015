@@ -21,12 +21,9 @@ ExampleSubsystem::ExampleSubsystem()
 	GetPIDController()->Disable();
 	gyro->InitGyro();
 	gyro->Reset();
-	Preferences::GetInstance()->PutDouble("Gyro_PID_P", 0.07);
-	Preferences::GetInstance()->PutDouble("Gyro_PID_I", 0);
-	Preferences::GetInstance()->PutDouble("Gyro_PID_D", 0.2);
-	SmartDashboard::PutNumber("DB/Slider 0", 0.07 / 0.1 );
-	SmartDashboard::PutNumber("DB/Slider 1", 0.0 / 0.1 );
-	SmartDashboard::PutNumber("DB/Slider 2", 0.2 / 0.1 );
+	SmartDashboard::PutNumber("DB/Slider 0", Preferences::GetInstance()->GetDouble("Gyro_PID_P")/0.1);
+	SmartDashboard::PutNumber("DB/Slider 1", Preferences::GetInstance()->GetDouble("Gyro_PID_I")/0.1);
+	SmartDashboard::PutNumber("DB/Slider 2", Preferences::GetInstance()->GetDouble("Gyro_PID_D")/0.1);
 }
 
 ExampleSubsystem::~ExampleSubsystem()
