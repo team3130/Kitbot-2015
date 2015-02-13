@@ -9,15 +9,14 @@ class AntlerMoose: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-
+	DoubleSolenoid* m_cAntlerMooseLock;
 	bool m_bActivated;
 
 public:
-	Solenoid* m_cAntlerMooseLock;
 	AntlerMoose();
 	~AntlerMoose();
 	void InitDefaultCommand();
-	void MoveAntlerLock(bool activate = true);
+	void MoveAntlerLock(bool status);
 };
 
 #endif
