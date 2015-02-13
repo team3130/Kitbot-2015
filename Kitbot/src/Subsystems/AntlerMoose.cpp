@@ -25,7 +25,7 @@ void AntlerMoose::MoveAntlerLock(bool status)
 	if(status){
 		m_cAntlerMooseLock->Set(DoubleSolenoid::kForward);
 	}else{
-		m_cAntlerMooseLock->Set(DoubleSolenoid::kOff);
+		m_cAntlerMooseLock->Set(DoubleSolenoid::kReverse);
 
 }
 }
