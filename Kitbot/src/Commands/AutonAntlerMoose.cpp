@@ -18,7 +18,7 @@ void AutonAntlerMoose::Initialize()
 void AutonAntlerMoose::Execute()
 {
 	if(m_bAntlerMooseExecute){
-		antlerMoose->m_cAntlerMooseLock->Set(m_bLockDisabled);
+		antlerMoose->MoveAntlerLock(m_bLockDisabled);
 		m_bRan = true;
 	}
 }

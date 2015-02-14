@@ -28,10 +28,9 @@ void AutonomousGroup2::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
 		//Drive
-	m_cAutonDrive1->speed = 1, m_cAutonDrive1->SetGoal()
+	m_cAutonDrive1->SetGoal(SmartDashboard::GetNumber("Drive-Distance"),0.0004,5,-0.6);
 
-	m_cAutonDrive2->m_nDrivePowerL = -0.3,m_cAutonDrive2->m_nDrivePowerR = -0.3;
-	m_cAutonDrive2->m_nEncoderStop = 1,m_cAutonDrive2->gyroMode = true;
+	m_cAutonDrive2->SetGoal(148.5,0.0004,5,0.3);
 
 		//Moose Lifter
 	m_cMooseLifter1->m_bMooseOn = true;
