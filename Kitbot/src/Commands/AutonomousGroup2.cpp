@@ -30,7 +30,7 @@ void AutonomousGroup2::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
 		//Drive
-	m_cAutonDrive1->SetGoal(Preferences::GetInstance()->GetDouble("Drive-Distance",54),0.5,5,-0.6);
+	m_cAutonDrive1->SetGoal(Preferences::GetInstance()->GetDouble("Drive-Distance",-54),0.5,5,0.6);
 
 	m_cAutonDrive2->SetGoal(148.5,0.5,5,0.3);
 

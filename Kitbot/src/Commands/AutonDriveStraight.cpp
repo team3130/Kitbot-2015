@@ -34,6 +34,8 @@ void AutonDriveStraight::Initialize() {
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
 	isConfirming = false;
+	CommandBase::chassis->m_cEncoderL->Reset();
+	CommandBase::chassis->m_cEncoderR->Reset();
 	CommandBase::chassis->HoldAngle(0.0);
 }
 
@@ -47,22 +49,9 @@ bool AutonDriveStraight::IsFinished(){
 }
 
 double AutonDriveStraight::ReturnPIDInput(){
-
-	double totalDistance = 0;
-	int nEncoders = 0;
-
-		totalDistance += CommandBase::chassis->m_cEncoderL->GetDistance();
-		nEncoders++;
-
-		totalDistance += CommandBase::chassis->m_cEncoderR->GetDistance();
-		nEncoders++;
-
-	if(nEncoders>0){
-		return (totalDistance/nEncoders);
-	}else{
-		return 0;
-	}
+	return CommandBase::chassis->GetDistance();
 }
+
 
 void AutonDriveStraight::UsePIDOutput(double output){
 	if(output>1)output=1;
