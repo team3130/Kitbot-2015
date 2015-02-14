@@ -20,11 +20,6 @@ private:
 	AutonRollers* m_cAutonRollers3;
 	AutonRollers* m_cAutonRollers4;
 	AutonPusher* m_cAutonOutput;
-	AutonDriveStraight* m_cAutonDrive1;
-	AutonDriveStraight* m_cAutonDrive2;
-	AutonDriveStraight* m_cAutonDrive3;
-	AutonDriveStraight* m_cAutonDrive4;
-	AutonDriveStraight* m_cAutonDrive5;
 public:
 	AutonomousGroup();
 	~AutonomousGroup();

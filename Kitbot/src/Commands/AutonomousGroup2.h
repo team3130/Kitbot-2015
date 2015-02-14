@@ -15,6 +15,7 @@ private:
 	AutonAntlerMoose* m_cAntlerMoose1;
 	AutonDriveStraight* m_cAutonDrive1;
 	AutonDriveStraight* m_cAutonDrive2;
+	AutonDriveStraight* m_cAutonDrive3;
 public:
 	AutonomousGroup2();
 	~AutonomousGroup2();

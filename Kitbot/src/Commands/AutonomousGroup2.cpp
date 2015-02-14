@@ -7,6 +7,7 @@ AutonomousGroup2::AutonomousGroup2()
 	m_cMooseLifter2 = new AutonMooseLifter();
 	m_cAutonDrive1 = new AutonDriveStraight();
 	m_cAutonDrive2 = new AutonDriveStraight();
+	m_cAutonDrive3 = new AutonDriveStraight();
 	AddSequential(m_cAutonDrive1);
 	AddSequential(m_cMooseLifter1);
 	AddSequential(m_cAutonDrive2);
@@ -18,6 +19,7 @@ AutonomousGroup2::~AutonomousGroup2()
 {
 	delete m_cAutonDrive1;
 	delete m_cAutonDrive2;
+	delete m_cAutonDrive3;
 	delete m_cAntlerMoose1;
 	delete m_cMooseLifter1;
 	delete m_cMooseLifter2;
@@ -31,6 +33,8 @@ void AutonomousGroup2::Initialize()
 	m_cAutonDrive1->SetGoal(SmartDashboard::GetNumber("Drive-Distance"),0.0004,5,-0.6);
 
 	m_cAutonDrive2->SetGoal(148.5,0.0004,5,0.3);
+
+	m_cAutonDrive3->SetGoal(6,0.0004,5,0.4);
 
 		//Moose Lifter
 	m_cMooseLifter1->m_bMooseOn = true;
