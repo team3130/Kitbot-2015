@@ -27,9 +27,9 @@ void AutonDriveStraight::SetGoal(double dist, double thresh, double timeToWait, 
 
 // Called just before this Command runs the first time
 void AutonDriveStraight::Initialize() {
-	double np=SmartDashboard::GetNumber("Straight PID P")/1000.;
-	double ni=SmartDashboard::GetNumber("Straight PID I")/1000.;
-	double nd=SmartDashboard::GetNumber("Straight PID D")/1000.;
+	double np=SmartDashboard::GetNumber("Straight PID P");
+	double ni=SmartDashboard::GetNumber("Straight PID I");
+	double nd=SmartDashboard::GetNumber("Straight PID D");
 	GetPIDController()->SetPID(np,ni,nd);
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
@@ -43,11 +43,7 @@ void AutonDriveStraight::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDriveStraight::IsFinished(){
-	if(CommandBase::chassis->GetDistance() < 0.2){
-		return true;
-	}else{
-		return false;
-	}
+	return GetPIDController()->OnTarget();
 }
 
 double AutonDriveStraight::ReturnPIDInput(){
