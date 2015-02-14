@@ -52,13 +52,15 @@ void Lifter::toSetpoint(int goal)
 
 void Lifter::moveLifter(float goal)
 {
-	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
-	if(goal>0 and GetLimitSwitchTop()){
+	if(goal>0.1 and GetLimitSwitchTop()){
+		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 		m_cLiftMotor->Set(goal);
-	}else if(goal<0 and GetLimitSwitchBot()){
+	}else if(goal<-0.1 and GetLimitSwitchBot()){
+		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 		m_cLiftMotor->Set(goal);
 	}else{
-			m_cLiftMotor->Set(0);
+		m_cLiftMotor->SetControlMode(CANSpeedController::kPosition);
+		m_cLiftMotor->Set(GetPosition());
 	}
 	if(!GetLimitSwitchBot()){
 		m_cLiftMotor->SetPosition(0);

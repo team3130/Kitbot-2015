@@ -25,6 +25,9 @@ void ExampleCommand::Execute()
 	double speedMultiplier = (-0.5 * CommandBase::oi->stickL->GetZ()) + 0.5;
 	double turnMultiplier = (-0.5 * CommandBase::oi->stickR->GetZ()) + 0.5;
 
+	chassis->Drive(moveSpeed * speedMultiplier, moveTurn * turnMultiplier);
+	return;
+
 	if(fabs(moveTurn) > 0.1) {
 		m_bGyroMode = false;
 		m_bGyroPrep = true;
