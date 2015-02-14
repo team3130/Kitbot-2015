@@ -11,22 +11,22 @@ AutonomousGroup::AutonomousGroup()
 	m_cAutonLifter2 = new AutonLifter();
 	m_cAutonLifter3 = new AutonLifter();
 	m_cAutonLifter4 = new AutonLifter();
-	m_cAutonDrive1 = new AutonDriveStraight();
-	m_cAutonDrive2 = new AutonDriveStraight();
-	m_cAutonDrive3 = new AutonDriveStraight();
-	m_cAutonDrive4 = new AutonDriveStraight();
-	m_cAutonDrive5 = new AutonDriveStraight();
-	AddSequential(m_cAutonDrive1);
-	AddSequential(m_cAutonRollers1);
-	AddParallel(m_cAutonLifter1);
-	AddSequential(m_cAutonDrive2);
+	//m_cAutonDrive1 = new AutonDriveStraight();
+	//m_cAutonDrive2 = new AutonDriveStraight();
+	//m_cAutonDrive3 = new AutonDriveStraight();
+	//m_cAutonDrive4 = new AutonDriveStraight();
+	//m_cAutonDrive5 = new AutonDriveStraight();
+	//AddSequential(m_cAutonDrive1);
+	//AddSequential(m_cAutonRollers1);
+	//AddParallel(m_cAutonLifter1);
+	//AddSequential(m_cAutonDrive2);
 	AddSequential(m_cAutonRollers2);
 	AddParallel(m_cAutonLifter2);
-	AddSequential(m_cAutonDrive3);
+	//AddSequential(m_cAutonDrive3);
 	AddSequential(m_cAutonRollers3);
 	AddParallel(m_cAutonLifter3);
-	AddSequential(m_cAutonDrive4);
-	AddSequential(m_cAutonDrive5);
+	//AddSequential(m_cAutonDrive4);
+	//AddSequential(m_cAutonDrive5);
 	AddSequential(m_cAutonLifter4);
 	AddParallel(m_cAutonRollers4);
 	AddSequential(m_cAutonOutput);
@@ -34,11 +34,11 @@ AutonomousGroup::AutonomousGroup()
 
 AutonomousGroup::~AutonomousGroup()
 {
-	delete m_cAutonDrive1;
-	delete m_cAutonDrive2;
-	delete m_cAutonDrive3;
-	delete m_cAutonDrive4;
-	delete m_cAutonDrive5;
+	//delete m_cAutonDrive1;
+	//delete m_cAutonDrive2;
+	//delete m_cAutonDrive3;
+	//delete m_cAutonDrive4;
+	//delete m_cAutonDrive5;
 	delete m_cAutonLifter1;
 	delete m_cAutonLifter2;
 	delete m_cAutonLifter3;
