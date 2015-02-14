@@ -44,9 +44,7 @@ void AutonomousGroup2::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void AutonomousGroup2::Execute()
 {
-	m_cAutonDrive1->m_bExecute = true;
 	m_cMooseLifter1->m_bMooseExecute = true;
-	m_cAutonDrive2->m_bExecute = true;
 	m_cMooseLifter2->m_bMooseExecute = true;
 	m_cAntlerMoose1->m_bAntlerMooseExecute = true;
 }

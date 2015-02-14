@@ -4,14 +4,10 @@
 // Used be constructed with (300,0.05,1,0,0,0)
 AutonDriveStraight::AutonDriveStraight()
 	: PIDCommand(1/20, 0, 0)
-	, m_bGyroPrep(true)
-	, m_bGyroMode(false)
-	, m_cGyroTimer()
 {
 	GetPIDController()->Disable();
 	Requires(CommandBase::chassis);
-	m_bExecute = false;
-	SmartDashboard::PutNumber("Straight PID P",-3000);
+	SmartDashboard::PutNumber("Straight PID P",0.1);
 	SmartDashboard::PutNumber("Straight PID I",0);
 	SmartDashboard::PutNumber("Straight PID D",0);
 }
@@ -21,8 +17,6 @@ void AutonDriveStraight::SetGoal(double dist, double thresh, double timeToWait, 
 	threshold=thresh;
 	confirmTime=timeToWait;
 	speed = ispeed;
-	if ( ispeed > 0.0 )
-		dumbDriveTime /= ispeed;
 	SmartDashboard::PutNumber(GetName()+"Straight Goal",goal);
 	SmartDashboard::PutNumber(GetName()+"Straight Threshold",thresh);
 	SmartDashboard::PutNumber(GetName()+"Straight Cooldown",timeToWait);
@@ -39,14 +33,14 @@ void AutonDriveStraight::Initialize() {
 	GetPIDController()->SetPID(np,ni,nd);
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
-	keepAngle = CommandBase::chassis->gyro->GetAngle();
-	timer.Reset();
-	timer.Start();
+	isConfirming = false;
+	CommandBase::chassis->HoldAngle(0.0);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutonDriveStraight::Execute() {
 }
+
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDriveStraight::IsFinished(){
 	if(GetPIDController()->OnTarget()){
@@ -58,8 +52,6 @@ bool AutonDriveStraight::IsFinished(){
 		return timer.Get() >= confirmTime;
 	}else{
 		isConfirming = false;
-		timer.Stop();
-		timer.Reset();
 	}
 	return false;
 }
@@ -83,15 +75,15 @@ double AutonDriveStraight::ReturnPIDInput(){
 }
 
 void AutonDriveStraight::UsePIDOutput(double output){
-	CommandBase::chassis->HoldAngle(0.0);
 	if(output>1)output=1;
 	if(output<-1)output=-1;
-	CommandBase::chassis->m_drive.ArcadeDrive(speed*output,0.0);
+	CommandBase::chassis->GyroDrive(speed*output);
 }
 
 // Called once after isFinished returns true
 void AutonDriveStraight::End() {
 	GetPIDController()->Disable();
+	CommandBase::chassis->GyroDrive(0);
 }
 
 // Called when another command which requires one or more of the same
