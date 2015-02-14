@@ -3,6 +3,11 @@
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+const double WHEEL_DIAMATER = 6;
+const double DRIVE_ENCODER_PPR = 256;
 
 class ExampleSubsystem: public PIDSubsystem
 {
@@ -28,7 +33,7 @@ public:
 	void GyroDrive(double move, bool squaredInputs = true);
 	virtual double ReturnPIDInput();
 	virtual void UsePIDOutput(double outputAngle);
-
+	double GetDistance();
 };
 
 #endif

@@ -14,7 +14,7 @@ void ControlPusher::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlPusher::Execute()
 {
-	pusher->pushLifter(-oi->gamepad->GetRawAxis(A_PUSHER));
+	pusher->pushLifter(oi->gamepad->GetRawAxis(A_PUSHER));
 }
 
 // Make this return true when this Command no longer needs to run execute()
