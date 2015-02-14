@@ -15,8 +15,6 @@ void RobotSensors::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void RobotSensors::Execute()
 {
-	SmartDashboard::PutNumber("Intake-Left Speed",CommandBase::intake->m_cIntake_left->Get());
-	SmartDashboard::PutNumber("Intake-Right Speed",CommandBase::intake->m_cIntake_right->Get());
 	SmartDashboard::PutNumber("Encoder-Value", lifter->GetPosition());
 	SmartDashboard::PutBoolean("Pusher-Out Limit Switch", pusher->GetLimitSwitchOut());
 	SmartDashboard::PutBoolean("Pusher-In Limit Switch", pusher->GetLimitSwitchIn());
@@ -25,8 +23,10 @@ void RobotSensors::Execute()
 	SmartDashboard::PutBoolean("Magnet Sensor",CommandBase::mooseLifter->isHighEnough());
 	SmartDashboard::PutNumber("Gyro Current Angle: ", chassis->gyro->GetAngle());
 	SmartDashboard::PutNumber("Gyro Rotation rate: ", chassis->gyro->GetRate());
-	SmartDashboard::PutNumber("Is Using Gyro?: ", chassis->IsUsingGyro());
+	SmartDashboard::PutBoolean("Is Using Gyro", chassis->IsUsingGyro());
 	SmartDashboard::PutNumber("Analog Input 1", range->GetValue());
+	SmartDashboard::PutNumber("Left Encoder", chassis->m_cEncoderL->GetDistance());
+	SmartDashboard::PutNumber("Right Encoder", chassis->m_cEncoderR->GetDistance());
 }
 
 // Make this return true when this Command no longer needs to run execute()
