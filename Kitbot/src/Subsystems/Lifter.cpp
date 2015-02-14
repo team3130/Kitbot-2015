@@ -9,7 +9,7 @@ Lifter::Lifter()
 	m_cLiftMotor->ConfigLimitMode(CANTalon::kLimitMode_SwitchInputsOnly);
 	m_cLiftMotor->ConfigNeutralMode(CANTalon::kNeutralMode_Brake);
 	m_cLiftMotor->SetFeedbackDevice(CANTalon::QuadEncoder);
-	m_cLiftMotor->SetSensorDirection(true);
+	m_cLiftMotor->SetSensorDirection(false);
 	m_cLiftMotor->SetPID(0.05,0,0);
 }
 
