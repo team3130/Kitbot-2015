@@ -43,17 +43,11 @@ void AutonDriveStraight::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDriveStraight::IsFinished(){
-	if(GetPIDController()->OnTarget()){
-		if(!isConfirming) {
-			isConfirming = true;
-			timer.Reset();
-			timer.Start();
-		}
-		return timer.Get() >= confirmTime;
+	if(CommandBase::chassis->GetDistance() < 0.2){
+		return true;
 	}else{
-		isConfirming = false;
+		return false;
 	}
-	return false;
 }
 
 double AutonDriveStraight::ReturnPIDInput(){

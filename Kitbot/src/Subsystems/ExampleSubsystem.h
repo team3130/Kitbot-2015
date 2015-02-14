@@ -6,8 +6,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-const double WHEEL_DIAMATER = 6;
-const double DRIVE_ENCODER_PPR = 256;
+/*const double WHEEL_DIAMATER = 6;
+const double DRIVE_ENCODER_PPR = 256;*/
 
 class ExampleSubsystem: public PIDSubsystem
 {
