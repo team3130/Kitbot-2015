@@ -27,6 +27,8 @@ void RobotSensors::Execute()
 	SmartDashboard::PutNumber("Analog Input 1", range->GetValue());
 	SmartDashboard::PutNumber("Left Encoder", chassis->m_cEncoderL->Get());
 	SmartDashboard::PutNumber("Right Encoder", chassis->m_cEncoderR->Get());
+	SmartDashboard::PutNumber("Left Distance", chassis->GetDistance());
+	SmartDashboard::PutNumber("Right Distance", chassis->GetDistance());
 }
 
 // Make this return true when this Command no longer needs to run execute()

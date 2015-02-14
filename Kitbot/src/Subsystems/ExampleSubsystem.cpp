@@ -16,6 +16,8 @@ ExampleSubsystem::ExampleSubsystem()
 
 	m_cEncoderL = new Encoder(DRIVE_ENCODERL_A,DRIVE_ENCODERL_B);
 	m_cEncoderR = new Encoder(DRIVE_ENCODERR_A,DRIVE_ENCODERR_B);
+	m_cEncoderL->SetDistancePerPulse(WHEEL_DIAMATER*M_PI/DRIVE_ENCODER_PPR);
+	m_cEncoderR->SetDistancePerPulse(WHEEL_DIAMATER*M_PI/DRIVE_ENCODER_PPR);
 	gyro  = new Gyro(C_GYRO);
 	m_bIsUsingGyro = true;
 	GetPIDController()->Disable();
@@ -77,4 +79,9 @@ double ExampleSubsystem::ReturnPIDInput()
 void ExampleSubsystem::UsePIDOutput(double outputAngle)
 {
 	m_drive.TankDrive(moveSpeed-outputAngle, moveSpeed+outputAngle, m_bSquaredDrive);
+}
+
+double ExampleSubsystem::GetDistance()
+{
+	return ( m_cEncoderL->GetDistance() + m_cEncoderR->GetDistance() ) / 2;
 }
