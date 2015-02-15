@@ -27,13 +27,15 @@ void AutonDriveStraight::SetGoal(double dist, double thresh, double timeToWait, 
 
 // Called just before this Command runs the first time
 void AutonDriveStraight::Initialize() {
-	double np=SmartDashboard::GetNumber("Straight PID P")/1000.;
-	double ni=SmartDashboard::GetNumber("Straight PID I")/1000.;
-	double nd=SmartDashboard::GetNumber("Straight PID D")/1000.;
+	double np=SmartDashboard::GetNumber("Straight PID P");
+	double ni=SmartDashboard::GetNumber("Straight PID I");
+	double nd=SmartDashboard::GetNumber("Straight PID D");
 	GetPIDController()->SetPID(np,ni,nd);
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
 	isConfirming = false;
+	CommandBase::chassis->m_cEncoderL->Reset();
+	CommandBase::chassis->m_cEncoderR->Reset();
 	CommandBase::chassis->HoldAngle(0.0);
 }
 
@@ -43,36 +45,13 @@ void AutonDriveStraight::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDriveStraight::IsFinished(){
-	if(GetPIDController()->OnTarget()){
-		if(!isConfirming) {
-			isConfirming = true;
-			timer.Reset();
-			timer.Start();
-		}
-		return timer.Get() >= confirmTime;
-	}else{
-		isConfirming = false;
-	}
-	return false;
+	return GetPIDController()->OnTarget();
 }
 
 double AutonDriveStraight::ReturnPIDInput(){
-
-	double totalDistance = 0;
-	int nEncoders = 0;
-
-		totalDistance += CommandBase::chassis->m_cEncoderL->GetDistance();
-		nEncoders++;
-
-		totalDistance += CommandBase::chassis->m_cEncoderR->GetDistance();
-		nEncoders++;
-
-	if(nEncoders>0){
-		return (totalDistance/nEncoders);
-	}else{
-		return 0;
-	}
+	return CommandBase::chassis->GetDistance();
 }
+
 
 void AutonDriveStraight::UsePIDOutput(double output){
 	if(output>1)output=1;
