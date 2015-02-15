@@ -8,6 +8,7 @@ class ControlLifter: public CommandBase
 {
 private:
 	bool manualMode;
+	Timer* timer;
 public:
 	ControlLifter();
 	void Initialize();
