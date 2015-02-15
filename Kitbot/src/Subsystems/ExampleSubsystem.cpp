@@ -83,5 +83,5 @@ void ExampleSubsystem::UsePIDOutput(double outputAngle)
 
 double ExampleSubsystem::GetDistance()
 {
-	return ( m_cEncoderL->GetDistance() + m_cEncoderR->GetDistance() ) / 2;
+	return ( m_cEncoderL->GetDistance() + m_cEncoderR->GetDistance() ) / 2.0;
 }
