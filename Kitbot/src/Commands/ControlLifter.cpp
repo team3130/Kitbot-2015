@@ -38,6 +38,14 @@ void ControlLifter::Execute()
 			buttonPushed = true;
 		}
 
+		//kept in case weapons officer wants default
+		/*if(buttonPushed){
+			// Go to a preset position only when a button is pushed
+			// Turn off the manual mode too
+			manualMode = false;
+			lifter->toSetpoint(goal);
+		}*/
+
 		//everytime button changes from previous state deactivates manual mode and sets new previous state
 		if(buttonPushed != buttonHold){
 			manualMode = false;
