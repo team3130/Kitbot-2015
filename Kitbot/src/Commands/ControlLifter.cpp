@@ -39,25 +39,25 @@ void ControlLifter::Execute()
 		}
 
 		if(buttonPushed and !(oi->gamepad->GetRawButton(B_PAD_A) or oi->gamepad->GetRawButton(B_PAD_B) or oi->gamepad->GetRawButton(B_PAD_X) or oi->gamepad->GetRawButton(B_PAD_Y)))
-				{
-					// Go to a preset position only when a button is pushed
-					// Turn off the manual mode too
-					manualMode = false;
-					lifter->toSetpoint(goal);
-				}
-				else if(buttonPushed){
-					timer->Reset();
-					timer->Start();
-					if(timer->Get() >= 3){
-						if(oi->gamepad->GetRawButton(B_PAD_B)){
-							Preferences::GetInstance()->PutInt("LifterLevel1B",lifter->m_cLiftMotor->GetPosition());
-						}else if(oi->gamepad->GetRawButton(B_PAD_X)){
-							Preferences::GetInstance()->PutInt("LifterLevel1X",lifter->m_cLiftMotor->GetPosition());
-						}else if(oi->gamepad->GetRawButton(B_PAD_Y)){
-							Preferences::GetInstance()->PutInt("LifterLevel1Y",lifter->m_cLiftMotor->GetPosition());
-						}
+			{
+				// Go to a preset position only when a button is pushed
+				// Turn off the manual mode too
+				manualMode = false;
+				lifter->toSetpoint(goal);
+			}
+			else if(buttonPushed){
+				timer->Reset();
+				timer->Start();
+				if(timer->Get() >= 3){
+					if(oi->gamepad->GetRawButton(B_PAD_B)){
+						Preferences::GetInstance()->PutInt("LifterLevel1B",lifter->GetPosition());
+					}else if(oi->gamepad->GetRawButton(B_PAD_X)){
+						Preferences::GetInstance()->PutInt("LifterLevel1X",lifter->GetPosition());
+					}else if(oi->gamepad->GetRawButton(B_PAD_Y)){
+						Preferences::GetInstance()->PutInt("LifterLevel1Y",lifter->GetPosition());
 					}
 				}
+			}
 		else if(manualMode)
 		{
 			// Stop the motor if nothing happened and we're still in manual mode
