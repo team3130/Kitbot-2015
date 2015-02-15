@@ -8,6 +8,8 @@ class ControlLifter: public CommandBase
 {
 private:
 	bool manualMode;
+	bool buttonHold;
+	int goal;
 	Timer* timer;
 public:
 	ControlLifter();

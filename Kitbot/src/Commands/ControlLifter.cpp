@@ -21,47 +21,44 @@ void ControlLifter::Execute()
 		manualMode = true;
 		lifter->moveLifter(thumb);
 	}
-	else {
-		int goal = 0;
-		bool buttonPushed = false;
-		if(oi->gamepad->GetRawButton(B_PAD_A)){
-			goal = 0;
-			buttonPushed = true;
-		} else if(oi->gamepad->GetRawButton(B_PAD_B)){
-			goal = 1;
-			buttonPushed = true;
-		} else if(oi->gamepad->GetRawButton(B_PAD_X)){
-			goal = 2;
-			buttonPushed = true;
-		} else if(oi->gamepad->GetRawButton(B_PAD_Y)){
-			goal = 3;
-			buttonPushed = true;
-		}
-
-		if(buttonPushed and !(oi->gamepad->GetRawButton(B_PAD_A) or oi->gamepad->GetRawButton(B_PAD_B) or oi->gamepad->GetRawButton(B_PAD_X) or oi->gamepad->GetRawButton(B_PAD_Y)))
-				{
-					// Go to a preset position only when a button is pushed
-					// Turn off the manual mode too
-					manualMode = false;
-					lifter->toSetpoint(goal);
-				}
-				else if(buttonPushed){
-					timer->Reset();
+		else {
+			bool buttonPushed = false;
+			if(oi->gamepad->GetRawButton(B_PAD_A)){
+				goal = 0;
+				buttonPushed = true;
+			} else if(oi->gamepad->GetRawButton(B_PAD_B)){
+				goal = 1;
+				buttonPushed = true;
+			} else if(oi->gamepad->GetRawButton(B_PAD_X)){
+				goal = 2;
+				buttonPushed = true;
+			} else if(oi->gamepad->GetRawButton(B_PAD_Y)){
+				goal = 3;
+				buttonPushed = true;
+			}
+			if(buttonPushed != buttonHold){
+				buttonHold = buttonPushed;
+				if(buttonPushed == true){
 					timer->Start();
-					if(timer->Get() >= 3){
-						if(oi->gamepad->GetRawButton(B_PAD_B)){
+				}
+				if(buttonPushed == false){
+					if(timer->Get() <= 3){
+						lifter->toSetpoint(goal);
+					}else{
+						if(goal == 1){
 							Preferences::GetInstance()->PutInt("LifterLevel1B",lifter->m_cLiftMotor->GetPosition());
-						}else if(oi->gamepad->GetRawButton(B_PAD_X)){
+						}else if(goal == 2){
 							Preferences::GetInstance()->PutInt("LifterLevel1X",lifter->m_cLiftMotor->GetPosition());
-						}else if(oi->gamepad->GetRawButton(B_PAD_Y)){
+						}else if(goal == 3){
 							Preferences::GetInstance()->PutInt("LifterLevel1Y",lifter->m_cLiftMotor->GetPosition());
-						}
 					}
 				}
-		else if(manualMode)
-		{
-			// Stop the motor if nothing happened and we're still in manual mode
-			lifter->moveLifter(0);
+			}
+			else if(manualMode)
+			{
+				// Stop the motor if nothing happened and we're still in manual mode
+				lifter->moveLifter(0);
+			}
 		}
 	}
 }

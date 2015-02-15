@@ -7,8 +7,9 @@
 class Lifter: public Subsystem
 {
 private:
-	CANTalon* m_cLiftMotor;
+
 public:
+	CANTalon* m_cLiftMotor;
 	Lifter();
 	~Lifter();
 	void InitDefaultCommand();
