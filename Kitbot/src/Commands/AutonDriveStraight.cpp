@@ -3,12 +3,9 @@
 
 // Used be constructed with (300,0.05,1,0,0,0)
 AutonDriveStraight::AutonDriveStraight()
-	: PIDCommand(1/20, 0, 0)
+	: PIDCommand(0.06, 0, 0.1)
 {
 	Requires(CommandBase::chassis);
-	SmartDashboard::PutNumber("Straight PID P",0.06);
-	SmartDashboard::PutNumber("Straight PID I",0);
-	SmartDashboard::PutNumber("Straight PID D",0.1);
 }
 
 void AutonDriveStraight::SetGoal(double dist, double thresh, double timeToWait, double ispeed) {
@@ -27,13 +24,8 @@ void AutonDriveStraight::SetGoal(double dist, double thresh, double timeToWait, 
 // Called just before this Command runs the first time
 void AutonDriveStraight::Initialize() {
 	GetPIDController()->Disable();
-	double np=SmartDashboard::GetNumber("Straight PID P");
-	double ni=SmartDashboard::GetNumber("Straight PID I");
-	double nd=SmartDashboard::GetNumber("Straight PID D");
-	GetPIDController()->SetPID(np,ni,nd);
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
-	isConfirming = false;
 	CommandBase::chassis->m_cEncoderL->Reset();
 	CommandBase::chassis->m_cEncoderR->Reset();
 	CommandBase::chassis->HoldAngle(0.0);

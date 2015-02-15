@@ -13,7 +13,6 @@ public:
 	double goal;
 	double threshold;
 	double confirmTime;
-	bool isConfirming;
 	AutonDriveStraight();
 	virtual void Initialize();
 	virtual void Execute();
