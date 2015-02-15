@@ -3,7 +3,7 @@
 #include "../Commands/ExampleCommand.h"
 
 ExampleSubsystem::ExampleSubsystem()
-	: PIDSubsystem("ExampleSubsystem", 0.0, 0.0, 0.0)
+	: PIDSubsystem("ExampleSubsystem", 0.07, 0.0, 0.2)
 	, m_bSquaredDrive(true)
 	, moveSpeed(0)
 	, m_drive(LEFTFRONTMOTOR,LEFTBACKMOTOR,RIGHTFRONTMOTOR,RIGHTBACKMOTOR)
@@ -23,9 +23,6 @@ ExampleSubsystem::ExampleSubsystem()
 	GetPIDController()->Disable();
 	gyro->InitGyro();
 	gyro->Reset();
-	SmartDashboard::PutNumber("DB/Slider 0", Preferences::GetInstance()->GetDouble("Gyro_PID_P"));
-	SmartDashboard::PutNumber("DB/Slider 1", Preferences::GetInstance()->GetDouble("Gyro_PID_I"));
-	SmartDashboard::PutNumber("DB/Slider 2", Preferences::GetInstance()->GetDouble("Gyro_PID_D"));
 }
 
 ExampleSubsystem::~ExampleSubsystem()
@@ -52,10 +49,6 @@ void ExampleSubsystem::Drive(double move, double turn, bool quad)
 
 void ExampleSubsystem::HoldAngle(double angle)
 {
-	np = SmartDashboard::GetNumber("DB/Slider 0");
-	ni = SmartDashboard::GetNumber("DB/Slider 1");
-	nd = SmartDashboard::GetNumber("DB/Slider 2");
-	GetPIDController()->SetPID(np,ni,nd);
 	GetPIDController()->SetSetpoint(GetAngle() + angle);
 	GetPIDController()->Enable();
 }
