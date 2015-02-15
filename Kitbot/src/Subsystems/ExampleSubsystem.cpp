@@ -23,9 +23,9 @@ ExampleSubsystem::ExampleSubsystem()
 	GetPIDController()->Disable();
 	gyro->InitGyro();
 	gyro->Reset();
-	SmartDashboard::PutNumber("DB/Slider 0", Preferences::GetInstance()->GetDouble("Gyro_PID_P")/0.1);
-	SmartDashboard::PutNumber("DB/Slider 1", Preferences::GetInstance()->GetDouble("Gyro_PID_I")/0.1);
-	SmartDashboard::PutNumber("DB/Slider 2", Preferences::GetInstance()->GetDouble("Gyro_PID_D")/0.1);
+	SmartDashboard::PutNumber("DB/Slider 0", Preferences::GetInstance()->GetDouble("Gyro_PID_P"));
+	SmartDashboard::PutNumber("DB/Slider 1", Preferences::GetInstance()->GetDouble("Gyro_PID_I"));
+	SmartDashboard::PutNumber("DB/Slider 2", Preferences::GetInstance()->GetDouble("Gyro_PID_D"));
 }
 
 ExampleSubsystem::~ExampleSubsystem()
@@ -52,9 +52,9 @@ void ExampleSubsystem::Drive(double move, double turn, bool quad)
 
 void ExampleSubsystem::HoldAngle(double angle)
 {
-	np = SmartDashboard::GetNumber("DB/Slider 0") * 0.1;
-	ni = SmartDashboard::GetNumber("DB/Slider 1") * 0.1;
-	nd = SmartDashboard::GetNumber("DB/Slider 2") * 0.1;
+	np = SmartDashboard::GetNumber("DB/Slider 0");
+	ni = SmartDashboard::GetNumber("DB/Slider 1");
+	nd = SmartDashboard::GetNumber("DB/Slider 2");
 	GetPIDController()->SetPID(np,ni,nd);
 	GetPIDController()->SetSetpoint(GetAngle() + angle);
 	GetPIDController()->Enable();
@@ -83,5 +83,5 @@ void ExampleSubsystem::UsePIDOutput(double outputAngle)
 
 double ExampleSubsystem::GetDistance()
 {
-	return ( m_cEncoderL->GetDistance() + m_cEncoderR->GetDistance() ) / -2;
+	return ( m_cEncoderL->GetDistance() + m_cEncoderR->GetDistance() ) / -2.0;
 }
