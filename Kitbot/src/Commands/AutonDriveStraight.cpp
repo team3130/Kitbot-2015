@@ -5,7 +5,6 @@
 AutonDriveStraight::AutonDriveStraight()
 	: PIDCommand(1/20, 0, 0)
 {
-	GetPIDController()->Disable();
 	Requires(CommandBase::chassis);
 	SmartDashboard::PutNumber("Straight PID P",0.1);
 	SmartDashboard::PutNumber("Straight PID I",0);
@@ -18,15 +17,16 @@ void AutonDriveStraight::SetGoal(double dist, double thresh, double timeToWait, 
 	confirmTime=timeToWait;
 	speed = ispeed;
 	SmartDashboard::PutNumber(GetName()+"Straight Goal",goal);
-	SmartDashboard::PutNumber(GetName()+"Straight Threshold",thresh);
-	SmartDashboard::PutNumber(GetName()+"Straight Cooldown",timeToWait);
-	SmartDashboard::PutNumber(GetName()+"Straight Speed",ispeed);
+	SmartDashboard::PutNumber(GetName()+"Straight Threshold",threshold);
+	SmartDashboard::PutNumber(GetName()+"Straight Cooldown",confirmTime);
+	SmartDashboard::PutNumber(GetName()+"Straight Speed",speed);
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
 }
 
 // Called just before this Command runs the first time
 void AutonDriveStraight::Initialize() {
+	GetPIDController()->Disable();
 	double np=SmartDashboard::GetNumber("Straight PID P");
 	double ni=SmartDashboard::GetNumber("Straight PID I");
 	double nd=SmartDashboard::GetNumber("Straight PID D");
@@ -37,6 +37,8 @@ void AutonDriveStraight::Initialize() {
 	CommandBase::chassis->m_cEncoderL->Reset();
 	CommandBase::chassis->m_cEncoderR->Reset();
 	CommandBase::chassis->HoldAngle(0.0);
+	GetPIDController()->Reset();
+	GetPIDController()->Enable();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -51,7 +53,6 @@ bool AutonDriveStraight::IsFinished(){
 double AutonDriveStraight::ReturnPIDInput(){
 	return CommandBase::chassis->GetDistance();
 }
-
 
 void AutonDriveStraight::UsePIDOutput(double output){
 	if(output>1)output=1;
