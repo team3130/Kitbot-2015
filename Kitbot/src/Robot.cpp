@@ -28,6 +28,7 @@ private:
 	{
 		if (autonomousCommand != NULL)
 			autonomousCommand->Start();
+		robotSensors->Start();
 	}
 
 	void AutonomousPeriodic()
@@ -43,7 +44,6 @@ private:
 		// this line or comment it out.
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
-		robotSensors->Start();
 	}
 
 	void TeleopPeriodic()

@@ -8,11 +8,13 @@ class Pusher: public Subsystem
 {
 private:
 	CANTalon* m_cPushMotor;
+	DigitalOutput* m_cInLED;
 public:
 	Pusher();
 	~Pusher();
 	void InitDefaultCommand();
 	void pushLifter(float speed);
+	void SwitchLED(bool status){m_cInLED->Set(status);};
 	bool GetLimitSwitchOut(){return m_cPushMotor->GetForwardLimitOK();};
 	bool GetLimitSwitchIn(){return m_cPushMotor->GetReverseLimitOK();};
 

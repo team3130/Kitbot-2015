@@ -25,6 +25,7 @@ const int INTAKEL = 9;
 
 //Moose
 const int MOOSEPOSITIONSENSOR = 0;
+const int PUSHER_LED = 1;
 const int DRIVE_ENCODERL_A = 4;
 const int DRIVE_ENCODERL_B = 5;
 const int DRIVE_ENCODERR_A = 6;
