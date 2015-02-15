@@ -37,9 +37,9 @@ const int DRIVE_ENCODERR_B = 7;
 const int INTAKEARML = 0;
 const int INTAKEARMR = 1;
 const int MOOSELIFTER = 2;
-const int MOOSELOCK = 3;		//Controls Antlers Solenoid
+const int LEFTANTLER = 3;		//Controls left antler
 const int MOOSEPREVENT = 4;		//Prevents Moose from going up any further
-const int MOOSELOCK2 = 5;
+const int RIGHTANTLER = 5;		//Controls right antler
 
 
 
@@ -70,6 +70,5 @@ const int B_INTAKEROTATECCW = 5;   // right button on top of joystick
 const int B_INTAKEIN = 2;		   // bottom button on top of joystick
 const int B_INTAKEROTATECW = 4;    // left button on top of joystick
 const int B_INTAKEOUT = 3;		   // top button on top of joystick
-
 
 #endif

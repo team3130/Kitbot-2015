@@ -6,6 +6,9 @@
 
 class ControlAntlerMoose: public CommandBase
 {
+private:
+	JoystickButton *m_ButtonLeft;
+	JoystickButton *m_ButtonRight;
 public:
 	ControlAntlerMoose();
 	~ControlAntlerMoose();
@@ -14,8 +17,6 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-private:
-	JoystickButton *m_Button;
 };
 
 #endif
