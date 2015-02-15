@@ -7,9 +7,9 @@ AutonDriveStraight::AutonDriveStraight()
 {
 	GetPIDController()->Disable();
 	Requires(CommandBase::chassis);
-	SmartDashboard::PutNumber("Straight PID P",0.1);
+	SmartDashboard::PutNumber("Straight PID P",0.06);
 	SmartDashboard::PutNumber("Straight PID I",0);
-	SmartDashboard::PutNumber("Straight PID D",0);
+	SmartDashboard::PutNumber("Straight PID D",0.1);
 }
 
 void AutonDriveStraight::SetGoal(double dist, double thresh, double timeToWait, double ispeed) {
@@ -37,6 +37,7 @@ void AutonDriveStraight::Initialize() {
 	CommandBase::chassis->m_cEncoderL->Reset();
 	CommandBase::chassis->m_cEncoderR->Reset();
 	CommandBase::chassis->HoldAngle(0.0);
+	GetPIDController()->Enable();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -45,7 +46,7 @@ void AutonDriveStraight::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDriveStraight::IsFinished(){
-	return GetPIDController()->OnTarget();
+	return false; //GetPIDController()->OnTarget();
 }
 
 double AutonDriveStraight::ReturnPIDInput(){
@@ -56,7 +57,7 @@ double AutonDriveStraight::ReturnPIDInput(){
 void AutonDriveStraight::UsePIDOutput(double output){
 	if(output>1)output=1;
 	if(output<-1)output=-1;
-	CommandBase::chassis->GyroDrive(speed*output);
+	CommandBase::chassis->GyroDrive(-speed*output);
 }
 
 // Called once after isFinished returns true

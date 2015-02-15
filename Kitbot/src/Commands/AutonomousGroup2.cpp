@@ -2,17 +2,18 @@
 
 AutonomousGroup2::AutonomousGroup2()
 {
-	m_cAntlerMoose1 = new AutonAntlerMoose();
-	m_cMooseLifter1 = new AutonMooseLifter();
-	m_cMooseLifter2 = new AutonMooseLifter();
+//	m_cAntlerMoose1 = new AutonAntlerMoose();
+//	m_cMooseLifter1 = new AutonMooseLifter();
+//	m_cMooseLifter2 = new AutonMooseLifter();
 	m_cAutonDrive1 = new AutonDriveStraight();
 	m_cAutonDrive2 = new AutonDriveStraight();
 	m_cAutonDrive3 = new AutonDriveStraight();
 	AddSequential(m_cAutonDrive1);
-	AddSequential(m_cMooseLifter1);
-	AddSequential(m_cAutonDrive2);
-	AddSequential(m_cMooseLifter2);
-	AddSequential(m_cAntlerMoose1);
+//	AddSequential(m_cMooseLifter1);
+//	AddSequential(m_cAutonDrive2);
+//	AddSequential(m_cMooseLifter2);
+//	AddSequential(m_cAutonDrive3);
+//	AddSequential(m_cAntlerMoose1);
 }
 
 AutonomousGroup2::~AutonomousGroup2()
@@ -30,27 +31,27 @@ void AutonomousGroup2::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
 		//Drive
-	m_cAutonDrive1->SetGoal(Preferences::GetInstance()->GetDouble("Drive-Distance",-54),0.5,5,0.6);
+	m_cAutonDrive1->SetGoal(Preferences::GetInstance()->GetDouble("Drive-Distance",-54),1.5,5,0.75);
 
-	m_cAutonDrive2->SetGoal(148.5,0.5,5,0.3);
+	m_cAutonDrive2->SetGoal(148.5,1.5,5,0.5);
 
-	m_cAutonDrive3->SetGoal(6,0.5,5,0.4);
+	m_cAutonDrive3->SetGoal(6,1.5,5,0.75);
 
 		//Moose Lifter
-	m_cMooseLifter1->m_bMooseOn = true;
+//	m_cMooseLifter1->m_bMooseOn = true;
 
-	m_cMooseLifter2->m_bMooseOn = false;
+//	m_cMooseLifter2->m_bMooseOn = false;
 
 		//Antler
-	m_cAntlerMoose1->m_bLockDisabled = true;
+//	m_cAntlerMoose1->m_bLockDisabled = true;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutonomousGroup2::Execute()
 {
-	m_cMooseLifter1->m_bMooseExecute = true;
-	m_cMooseLifter2->m_bMooseExecute = true;
-	m_cAntlerMoose1->m_bAntlerMooseExecute = true;
+//	m_cMooseLifter1->m_bMooseExecute = true;
+//	m_cMooseLifter2->m_bMooseExecute = true;
+//	m_cAntlerMoose1->m_bAntlerMooseExecute = true;
 }
 
 // Make this return true when this Command no longer needs to run execute()
