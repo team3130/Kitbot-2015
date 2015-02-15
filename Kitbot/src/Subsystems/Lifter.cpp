@@ -32,13 +32,13 @@ void Lifter::toSetpoint(int goal)
 		setpoint = 0;
 		break;
 	case 1:
-		setpoint = Preferences::GetInstance()->GetInt("LifterLevelB", 1000);
+		setpoint = Preferences::GetInstance()->GetInt("LifterLevelB", 1682);
 		break;
 	case 2:
-		setpoint = Preferences::GetInstance()->GetInt("LifterLevelX", 320);
+		setpoint = Preferences::GetInstance()->GetInt("LifterLevelX", 983);
 		break;
 	case 3:
-		setpoint = Preferences::GetInstance()->GetInt("LifterLevelY", 550);
+		setpoint = Preferences::GetInstance()->GetInt("LifterLevelY", 523);
 		break;
 	default:
 		std::cerr << "ERRORL wrong lifter goal index" << std::endl;
@@ -58,9 +58,10 @@ void Lifter::moveLifter(float goal)
 	}else if(goal<-0.1 and GetLimitSwitchBot()){
 		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 		m_cLiftMotor->Set(goal);
-	}else{
+	}else if(m_cLiftMotor->GetControlMode() == CANSpeedController::kPercentVbus){
 		m_cLiftMotor->SetControlMode(CANSpeedController::kPosition);
 		m_cLiftMotor->Set(GetPosition());
+		m_cLiftMotor->EnableControl();
 	}
 	if(!GetLimitSwitchBot()){
 		m_cLiftMotor->SetPosition(0);
