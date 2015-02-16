@@ -6,8 +6,8 @@ AntlerMoose::AntlerMoose()
 	: Subsystem("AntlerMoose")
 {
 	m_cAntlers = new DoubleSolenoid(COMPRESSOR, LEFTANTLER, RIGHTANTLER);
-	//false is considered to be up. TODO: Change if orientation does
-	m_bAntlersDown = false;
+	m_bAntlersDown = true;					//true is considered to be up
+	m_cAntlers->Set(DoubleSolenoid::kOff);	//initially idles
 }
 
 AntlerMoose::~AntlerMoose(){
@@ -22,12 +22,12 @@ void AntlerMoose::InitDefaultCommand()
 void AntlerMoose::ControlAntlers(int status)
 {
 	if(status == 1){
-		m_cAntlers->Set(DoubleSolenoid::kForward);
-		m_bAntlersDown = true;
-	}else if(status == -1){
-		m_cAntlers->Set(DoubleSolenoid::kReverse);
+		m_cAntlers->Set(DoubleSolenoid::kForward);	//1 is forward, down, and false
 		m_bAntlersDown = false;
+	}else if(status == -1){
+		m_cAntlers->Set(DoubleSolenoid::kReverse);	//-1 is reverse, up, and true
+		m_bAntlersDown = true;
 	}else{
-		m_cAntlers->Set(DoubleSolenoid::kOff);
+		m_cAntlers->Set(DoubleSolenoid::kOff);		//0 is off/idle. Should maintain current position
 	}
 }

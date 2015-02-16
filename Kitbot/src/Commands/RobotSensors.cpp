@@ -27,6 +27,7 @@ void RobotSensors::Execute()
 	SmartDashboard::PutNumber("Gyro Rotation rate: ", chassis->gyro->GetRate());
 	SmartDashboard::PutBoolean("Is Using Gyro", chassis->IsUsingGyro());
 	SmartDashboard::PutNumber("Analog Input 1", range->GetValue());
+	SmartDashboard::PutBoolean("Are Antlers Down", antlerMoose->IsAntlersDown());
 	SmartDashboard::PutNumber("Left Encoder", chassis->m_cEncoderL->GetDistance());
 	SmartDashboard::PutNumber("Right Encoder", chassis->m_cEncoderR->GetDistance());
 	SmartDashboard::PutNumber("Distance", chassis->GetDistance());
