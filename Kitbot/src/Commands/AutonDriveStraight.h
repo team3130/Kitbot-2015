@@ -20,7 +20,7 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 	virtual double ReturnPIDInput();
-	void SetGoal(double dist, double thresh=0.5, double timeToWait=0, double ispeed=0.5);
+	void SetGoal(double dist, double thresh=0.5, double ispeed=0.5);
 	virtual void UsePIDOutput(double output);
 };
 

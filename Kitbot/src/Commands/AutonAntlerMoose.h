@@ -8,14 +8,14 @@ class AutonAntlerMoose: public CommandBase
 {
 public:
 	Timer* timer;
-	bool m_bAntlerMooseExecute;
-	bool m_bRan;
+	double m_waitTime;
 	AutonAntlerMoose();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	void SetGoal(double timeout) { m_waitTime = timeout; };
 };
 
 #endif

@@ -8,14 +8,12 @@ AutonDriveStraight::AutonDriveStraight()
 	Requires(CommandBase::chassis);
 }
 
-void AutonDriveStraight::SetGoal(double dist, double thresh, double timeToWait, double ispeed) {
+void AutonDriveStraight::SetGoal(double dist, double thresh, double ispeed) {
 	goal=dist;
 	threshold=thresh;
-	confirmTime=timeToWait;
 	speed = ispeed;
 	SmartDashboard::PutNumber(GetName()+"Straight Goal",goal);
 	SmartDashboard::PutNumber(GetName()+"Straight Threshold",threshold);
-	SmartDashboard::PutNumber(GetName()+"Straight Cooldown",confirmTime);
 	SmartDashboard::PutNumber(GetName()+"Straight Speed",speed);
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
@@ -39,7 +37,7 @@ void AutonDriveStraight::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDriveStraight::IsFinished(){
-	return false; //GetPIDController()->OnTarget();
+	return GetPIDController()->OnTarget();
 }
 
 double AutonDriveStraight::ReturnPIDInput(){
@@ -47,9 +45,9 @@ double AutonDriveStraight::ReturnPIDInput(){
 }
 
 void AutonDriveStraight::UsePIDOutput(double output){
-	if(output>1)output=1;
-	if(output<-1)output=-1;
-	CommandBase::chassis->GyroDrive(-speed*output);
+	if(output > speed) output = speed;
+	if(output < -speed) output = -speed;
+	CommandBase::chassis->GyroDrive(-output);
 }
 
 // Called once after isFinished returns true

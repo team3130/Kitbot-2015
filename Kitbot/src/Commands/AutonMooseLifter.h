@@ -6,17 +6,20 @@
 
 class AutonMooseLifter: public CommandBase
 {
-public:
-	bool m_bMooseExecute;
-	bool m_bMooseOn;
-	bool m_bRan;
+private:
+	double m_waitTime;
+	double m_distance;
+	bool m_bMooseUp;
+	bool m_bDone;
 	Timer* timer;
+public:
 	AutonMooseLifter();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	void SetGoal(double dist, double timeout, bool is_up) {m_distance=dist; m_waitTime=timeout; m_bMooseUp=is_up;};
 };
 
 #endif
