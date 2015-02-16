@@ -9,6 +9,7 @@ class AntlerMoose: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
+	DoubleSolenoid* m_cAntlers;
 	Solenoid* m_cLeftAntler;
 	Solenoid* m_cRightAntler;
 	bool m_bLeftDown;
@@ -17,6 +18,7 @@ public:
 	AntlerMoose();
 	~AntlerMoose();
 	void InitDefaultCommand();
+	void ControlAntlers(int status);
 	void ControlLeftAntler(bool downLeft);
 	void ControlRightAntler(bool downRight);
 	bool IsLeftDown(){return m_bLeftDown;};

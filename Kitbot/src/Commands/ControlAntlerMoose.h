@@ -7,6 +7,7 @@
 class ControlAntlerMoose: public CommandBase
 {
 private:
+	JoystickButton *m_Button;
 	JoystickButton *m_ButtonLeft;
 	JoystickButton *m_ButtonRight;
 public:
