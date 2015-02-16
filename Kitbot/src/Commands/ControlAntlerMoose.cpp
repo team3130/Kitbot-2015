@@ -1,37 +1,54 @@
 #include "ControlAntlerMoose.h"
 
 ControlAntlerMoose::ControlAntlerMoose()
-	: m_bNewStatus(true)
+	: m_bNewStatusL(true)
+	, m_bNewStatusR(true)
 {
 	Requires(antlerMoose);
-	m_Button = new JoystickButton(oi->gamepad, 7);
+	m_ButtonLeft = new JoystickButton(oi->gamepad, 5);
+	m_ButtonRight = new JoystickButton(oi->gamepad, 6);
 }
 
 ControlAntlerMoose::~ControlAntlerMoose()
 {
-	delete m_Button;
+	delete m_ButtonLeft;
+	delete m_ButtonRight;
 }
 
 // Called just before this Command runs the first time
 void ControlAntlerMoose::Initialize()
 {
-	m_bNewStatus = true;
+	m_bNewStatusL = true;
+	m_bNewStatusR = true;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ControlAntlerMoose::Execute()
 {
-	if(m_Button->Get()){
-		if(m_bNewStatus){
-			m_bNewStatus = false;
-			if(antlerMoose->IsAntlersDown()){
-				antlerMoose->ControlAntlers(-1);	//if antlers are down, move them up
+	if(m_ButtonLeft->Get()){
+		if(m_bNewStatusL){
+			m_bNewStatusL = false;
+			if(antlerMoose->IsLeftAntlerDown()){
+				antlerMoose->ControlLeftAntler(DoubleSolenoid::kReverse);	//if antlers down, move up
 			}else{
-				antlerMoose->ControlAntlers(1);		//if antlers are up, move them down
+				antlerMoose->ControlLeftAntler(DoubleSolenoid::kForward);	//if antlers up, move down
 			}
 		}
 	}else{
-		m_bNewStatus = true;
+		m_bNewStatusL = true;
+	}
+
+	if(m_ButtonRight->Get()){
+		if(m_bNewStatusR){
+			m_bNewStatusR = false;
+			if(antlerMoose->IsRightAntlerDown()){
+				antlerMoose->ControlRightAntler(DoubleSolenoid::kReverse);//if antlers down, move up
+			}else{
+				antlerMoose->ControlRightAntler(DoubleSolenoid::kForward);//if antlers up, move down
+			}
+		}
+	}else{
+		m_bNewStatusR = true;
 	}
 }
 
@@ -44,7 +61,8 @@ bool ControlAntlerMoose::IsFinished()
 // Called once after isFinished returns true
 void ControlAntlerMoose::End()
 {
-	antlerMoose->ControlAntlers(0);		//keeps antlers at current position when disabled
+	antlerMoose->ControlLeftAntler(DoubleSolenoid::kOff);	//keeps antlers at current position when disabled
+	antlerMoose->ControlRightAntler(DoubleSolenoid::kOff);
 }
 
 // Called when another command which requires one or more of the same
