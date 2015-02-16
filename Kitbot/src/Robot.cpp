@@ -17,7 +17,7 @@ private:
 		autonomousCommand = new AutonomousGroup2();
 		robotSensors = new RobotSensors();
 		lw = LiveWindow::GetInstance();
-	}
+		robotSensors->Start();	}
 	
 	void DisabledPeriodic()
 	{
@@ -28,7 +28,6 @@ private:
 	{
 		if (autonomousCommand != NULL)
 			autonomousCommand->Start();
-		robotSensors->Start();
 	}
 
 	void AutonomousPeriodic()

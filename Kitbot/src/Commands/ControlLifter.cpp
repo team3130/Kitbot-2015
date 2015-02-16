@@ -2,6 +2,7 @@
 
 ControlLifter::ControlLifter()
 	: manualMode(true)
+	, buttonHold(false)
 {
 	Requires(lifter);
 }
@@ -16,60 +17,81 @@ void ControlLifter::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlLifter::Execute()
 {
-	//determines manual control
+	const char * presetA = "LifterLevelA";
+	const char * presetB = "LifterLevelB";
+	const char * presetX = "LifterLevelX";
+	const char * presetY = "LifterLevelY";
+	const char *s_preset = presetA;
+
 	double thumb = -oi->gamepad->GetRawAxis(A_LIFTER);
 	if(fabs(thumb) > 0.1){
 		manualMode = true;
+		buttonHold = false;
 		lifter->moveLifter(thumb);
 	}else{
 		//determines whether a button has been pressed
 		bool buttonPushed = false;
 		if(oi->gamepad->GetRawButton(B_PAD_A)){
-			goal = 0;
+			preset = kA;
+			s_preset = presetA;
 			buttonPushed = true;
 		} else if(oi->gamepad->GetRawButton(B_PAD_B)){
-			goal = 1;
+			preset = kB;
+			s_preset = presetB;
 			buttonPushed = true;
 		} else if(oi->gamepad->GetRawButton(B_PAD_X)){
-			goal = 2;
+			preset = kX;
+			s_preset = presetX;
 			buttonPushed = true;
 		} else if(oi->gamepad->GetRawButton(B_PAD_Y)){
-			goal = 3;
+			preset = kY;
+			s_preset = presetY;
 			buttonPushed = true;
 		}
 
-		//kept in case weapons officer wants default
-		/*if(buttonPushed){
+		if(buttonPushed){
 			// Go to a preset position only when a button is pushed
 			// Turn off the manual mode too
 			manualMode = false;
-			lifter->toSetpoint(goal);
-		}*/
-
-		//everytime button changes from previous state deactivates manual mode and sets new previous state
-		if(buttonPushed != buttonHold){
-			manualMode = false;
-			buttonHold = buttonPushed;
-			//if button is being pressed, reset and start timer
-			if(buttonPushed){
-				timer->Reset();
-				timer->Start();
-			}else{	//if button is being released, check time and either move to goal
-				if(timer->Get() <= 3){
-					lifter->toSetpoint(goal);
-				}else{	//or change specific preset to current lifter position
-					if(goal == 1){
-						Preferences::GetInstance()->PutInt("LifterLevel1B",lifter->GetPosition());
-					}else if(goal == 2){
-						Preferences::GetInstance()->PutInt("LifterLevel1X",lifter->GetPosition());
-					}else if(goal == 3){
-						Preferences::GetInstance()->PutInt("LifterLevel1Y",lifter->GetPosition());
-					}
-				}
+			if(!buttonHold) {
+				buttonHold = true;
+				timer.Reset();
+				timer.Start();
 			}
-		}else if(manualMode){
-			// Stop the motor if nothing happened and we're still in manual mode
-			lifter->moveLifter(0);
+		}
+		else {
+			int goal = 0;
+			switch(preset) {
+			case kA:
+				s_preset = presetA;
+				goal = 0;
+				break;
+			case kB:
+				s_preset = presetB;
+				goal = Preferences::GetInstance()->GetInt(s_preset, 1682);
+				break;
+			case kX:
+				s_preset = presetX;
+				goal = Preferences::GetInstance()->GetInt(s_preset, 983);
+				break;
+			case kY:
+				s_preset = presetY;
+				goal = Preferences::GetInstance()->GetInt(s_preset, 523);
+				break;
+			}
+
+			if(buttonHold && timer.Get() > 3) {
+				Preferences::GetInstance()->PutInt(s_preset, lifter->GetPosition());
+				Preferences::GetInstance()->Save();
+			}
+			else if(manualMode){
+				// Stop the motor if nothing happened and we're still in manual mode
+				lifter->moveLifter(0);
+			}
+			else {
+				lifter->toSetpoint(goal);
+			}
+			buttonHold = false;
 		}
 	}
 }

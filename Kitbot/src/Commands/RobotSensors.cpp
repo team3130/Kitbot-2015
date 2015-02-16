@@ -4,6 +4,7 @@ RobotSensors::RobotSensors()
 {
 	// Use Requires() here to declare subsystem dependencies
 	range = new AnalogInput(1);
+	this->SetRunWhenDisabled(true);
 }
 
 // Called just before this Command runs the first time

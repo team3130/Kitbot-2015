@@ -12,8 +12,6 @@ public:
 	Joystick*	stickL;
 	Joystick*	stickR;
 	Joystick*	gamepad;
-	JoystickButton* MooseLifterToggle;
-	JoystickButton* AntlerMooseToggle;
 };
 
 #endif

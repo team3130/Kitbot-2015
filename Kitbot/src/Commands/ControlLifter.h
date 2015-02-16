@@ -6,11 +6,12 @@
 
 class ControlLifter: public CommandBase
 {
+	enum PresetButton {	kA, kB, kX, kY };
 private:
 	bool manualMode;
 	bool buttonHold;
-	int goal;
-	Timer* timer;
+	PresetButton preset;
+	Timer timer;
 public:
 	ControlLifter();
 	void Initialize();
