@@ -6,6 +6,7 @@ AutonAntlerMoose::AutonAntlerMoose()
 	m_bAntlerMooseExecute = false;
 	m_bRan = false;
 	timer = new Timer;
+	timer->Reset();
 }
 
 // Called just before this Command runs the first time
@@ -20,7 +21,6 @@ void AutonAntlerMoose::Execute()
 	if(m_bAntlerMooseExecute){
 		antlerMoose->ControlAntlers(1);
 		m_bRan = true;
-		timer->Reset();
 		timer->Start();
 	}
 }

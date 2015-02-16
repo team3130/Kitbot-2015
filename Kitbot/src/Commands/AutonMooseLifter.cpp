@@ -7,6 +7,7 @@ AutonMooseLifter::AutonMooseLifter()
 	m_bMooseOn = true;
 	m_bRan = false;
 	timer = new Timer;
+	timer->Reset();
 }
 
 // Called just before this Command runs the first time
@@ -21,7 +22,6 @@ void AutonMooseLifter::Execute()
 	if(m_bMooseExecute){
 		mooseLifter->MoveMooseLifterSolenoid(m_bMooseOn);
 		m_bRan = true;
-		timer->Reset();
 		timer->Start();
 	}
 }
