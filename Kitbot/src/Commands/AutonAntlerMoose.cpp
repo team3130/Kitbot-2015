@@ -4,8 +4,8 @@ AutonAntlerMoose::AutonAntlerMoose()
 {
 	Requires(antlerMoose);
 	m_bAntlerMooseExecute = false;
-	m_bLockDisabled = false;
 	m_bRan = false;
+	timer = new Timer;
 }
 
 // Called just before this Command runs the first time
@@ -18,15 +18,17 @@ void AutonAntlerMoose::Initialize()
 void AutonAntlerMoose::Execute()
 {
 	if(m_bAntlerMooseExecute){
-		antlerMoose->ControlAntlers(true);
+		antlerMoose->ControlAntlers(1);
 		m_bRan = true;
+		timer->Reset();
+		timer->Start();
 	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutonAntlerMoose::IsFinished()
 {
-	return m_bRan;
+	return (m_bRan and timer->Get() > 0.5);
 }
 
 // Called once after isFinished returns true

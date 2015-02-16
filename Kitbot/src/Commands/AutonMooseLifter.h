@@ -10,6 +10,7 @@ public:
 	bool m_bMooseExecute;
 	bool m_bMooseOn;
 	bool m_bRan;
+	Timer* timer;
 	AutonMooseLifter();
 	void Initialize();
 	void Execute();

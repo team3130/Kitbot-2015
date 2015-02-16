@@ -7,8 +7,8 @@
 class AutonAntlerMoose: public CommandBase
 {
 public:
+	Timer* timer;
 	bool m_bAntlerMooseExecute;
-	bool m_bLockDisabled;
 	bool m_bRan;
 	AutonAntlerMoose();
 	void Initialize();
