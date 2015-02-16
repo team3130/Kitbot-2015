@@ -6,6 +6,7 @@
 #include "AutonDriveStraight.h"
 #include "AutonAntlerMoose.h"
 #include "AutonMooseLifter.h"
+#include "AutonDumbDrive.h"
 
 class AutonomousGroup2: public CommandGroup
 {
@@ -16,6 +17,7 @@ private:
 	AutonDriveStraight* m_cAutonDrive1;
 	AutonDriveStraight* m_cAutonDrive2;
 	AutonDriveStraight* m_cAutonDrive3;
+	AutonDumbDrive* m_cAutonDumb1;
 public:
 	AutonomousGroup2();
 	~AutonomousGroup2();
