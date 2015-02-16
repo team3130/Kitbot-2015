@@ -4,13 +4,14 @@ AutonAntlerMoose::AutonAntlerMoose()
 	: m_waitTime(0)
 {
 	Requires(antlerMoose);
-	timer = new Timer;
+	timer = new Timer();
 }
 
 // Called just before this Command runs the first time
 void AutonAntlerMoose::Initialize()
 {
-	antlerMoose->ControlAntlers(DoubleSolenoid::kForward);
+	antlerMoose->ControlLeftAntler(DoubleSolenoid::kReverse);
+	antlerMoose->ControlRightAntler(DoubleSolenoid::kReverse);
 	timer->Reset();
 	timer->Start();
 }

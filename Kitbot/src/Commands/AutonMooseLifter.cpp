@@ -5,7 +5,7 @@ AutonMooseLifter::AutonMooseLifter()
 	, m_distance(0)
 	, m_bMooseUp(true)
 	, m_bDone(false)
-	, timer(new Timer)
+	, timer(new Timer())
 {
 	Requires(mooseLifter);
 }
