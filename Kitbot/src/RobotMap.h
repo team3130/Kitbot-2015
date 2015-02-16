@@ -26,8 +26,10 @@ const int INTAKEL = 9;
 //Moose
 const int MOOSEPOSITIONSENSOR = 0;
 
-//Drive
+//Pusher
 const int PUSHER_LED = 1;
+
+//Drive
 const int DRIVE_ENCODERL_A = 4;
 const int DRIVE_ENCODERL_B = 5;
 const int DRIVE_ENCODERR_A = 6;
@@ -68,7 +70,6 @@ const int B_PAD_X = 1;
 const int B_PAD_Y = 4;
 
 //intake
-
 const int B_INTAKEROTATECCW = 5;   // right button on top of joystick
 const int B_INTAKEIN = 2;		   // bottom button on top of joystick
 const int B_INTAKEROTATECW = 4;    // left button on top of joystick

@@ -18,8 +18,7 @@ void AutonAntlerMoose::Initialize()
 void AutonAntlerMoose::Execute()
 {
 	if(m_bAntlerMooseExecute){
-		antlerMoose->ControlLeftAntler(true);
-		antlerMoose->ControlRightAntler(true);
+		antlerMoose->ControlAntlers(true);
 		m_bRan = true;
 	}
 }

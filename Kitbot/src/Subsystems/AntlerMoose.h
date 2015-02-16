@@ -10,19 +10,13 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	DoubleSolenoid* m_cAntlers;
-	Solenoid* m_cLeftAntler;
-	Solenoid* m_cRightAntler;
-	bool m_bLeftDown;
-	bool m_bRightDown;
+	bool m_bAntlersDown;
 public:
 	AntlerMoose();
 	~AntlerMoose();
 	void InitDefaultCommand();
 	void ControlAntlers(int status);
-	void ControlLeftAntler(bool downLeft);
-	void ControlRightAntler(bool downRight);
-	bool IsLeftDown(){return m_bLeftDown;};
-	bool IsRightDown(){return m_bRightDown;};
+	bool IsAntlersDown(){return m_bAntlersDown;};
 };
 
 #endif
