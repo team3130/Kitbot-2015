@@ -15,10 +15,10 @@ void ControlPusher::Initialize()
 void ControlPusher::Execute()
 {
 	pusher->pushLifter(oi->gamepad->GetRawAxis(A_PUSHER));
-	if(!pusher->GetLimitSwitchIn()){
-			pusher->SwitchLED(true);
-		}else{
+	if(!pusher->GetLimitSwitchOut()){
 			pusher->SwitchLED(false);
+		}else{
+			pusher->SwitchLED(true);
 		}
 }
 

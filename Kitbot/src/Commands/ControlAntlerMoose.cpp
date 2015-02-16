@@ -25,9 +25,9 @@ void ControlAntlerMoose::Execute()
 		if(m_bNewStatus){
 			m_bNewStatus = false;
 			if(antlerMoose->IsAntlersDown()){
-				antlerMoose->ControlAntlers(1);		//if antlers are down, move them up
+				antlerMoose->ControlAntlers(-1);	//if antlers are down, move them up
 			}else{
-				antlerMoose->ControlAntlers(-1);	//if antlers are up, move them down
+				antlerMoose->ControlAntlers(1);		//if antlers are up, move them down
 			}
 		}
 	}else{
