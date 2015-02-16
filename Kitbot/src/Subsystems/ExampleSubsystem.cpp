@@ -4,6 +4,7 @@
 
 ExampleSubsystem::ExampleSubsystem()
 	: PIDSubsystem("ExampleSubsystem", 0.07, 0.0, 0.2)
+	, m_bIsUsingGyro(false)
 	, m_bSquaredDrive(true)
 	, moveSpeed(0)
 	, m_drive(LEFTFRONTMOTOR,LEFTBACKMOTOR,RIGHTFRONTMOTOR,RIGHTBACKMOTOR)
@@ -19,7 +20,6 @@ ExampleSubsystem::ExampleSubsystem()
 	m_cEncoderL->SetDistancePerPulse(70.0/468);
 	m_cEncoderR->SetDistancePerPulse(70.0/937);
 	gyro  = new Gyro(C_GYRO);
-	m_bIsUsingGyro = true;
 	GetPIDController()->Disable();
 	gyro->InitGyro();
 	gyro->Reset();

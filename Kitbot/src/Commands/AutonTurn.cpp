@@ -1,39 +1,40 @@
-#include "AutonDumbDrive.h"
+#include "AutonTurn.h"
 
-AutonDumbDrive::AutonDumbDrive()
-	: m_waitTime(0)
+AutonTurn::AutonTurn()
+	: m_angle(0)
+	, m_waitTime(0)
 {
 	Requires(chassis);
 	timer = new Timer();
 }
 
 // Called just before this Command runs the first time
-void AutonDumbDrive::Initialize()
+void AutonTurn::Initialize()
 {
-	chassis->Drive(-0.4, 0);	//starts driving backwards for a time
+	chassis->HoldAngle(m_angle);	//starts driving backwards for a time
 	timer->Reset();
 	timer->Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void AutonDumbDrive::Execute()
+void AutonTurn::Execute()
 {
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool AutonDumbDrive::IsFinished()
+bool AutonTurn::IsFinished()
 {
 	return (timer->Get() > m_waitTime);
 }
 
 // Called once after isFinished returns true
-void AutonDumbDrive::End()
+void AutonTurn::End()
 {
-	chassis->Drive(0, 0);	//stops driving
+	chassis->ReleaseAngle();	//stops holding the angle
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void AutonDumbDrive::Interrupted()
+void AutonTurn::Interrupted()
 {
 }
