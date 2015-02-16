@@ -8,6 +8,7 @@ class ControlAntlerMoose: public CommandBase
 {
 private:
 	JoystickButton *m_Button;
+	bool m_bNewStatus;
 public:
 	ControlAntlerMoose();
 	~ControlAntlerMoose();

@@ -1,6 +1,7 @@
 #include "ControlAntlerMoose.h"
 
 ControlAntlerMoose::ControlAntlerMoose()
+	: m_bNewStatus(true)
 {
 	Requires(antlerMoose);
 	m_Button = new JoystickButton(oi->gamepad, 7);
@@ -14,18 +15,23 @@ ControlAntlerMoose::~ControlAntlerMoose()
 // Called just before this Command runs the first time
 void ControlAntlerMoose::Initialize()
 {
-
+	m_bNewStatus = true;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ControlAntlerMoose::Execute()
 {
 	if(m_Button->Get()){
-		if(antlerMoose->IsAntlersDown()){
-			antlerMoose->ControlAntlers(-1);	//if antlers are down, move them up
-		}else{
-			antlerMoose->ControlAntlers(1);		//if antlers are up, move them down
+		if(m_bNewStatus){
+			m_bNewStatus = false;
+			if(antlerMoose->IsAntlersDown()){
+				antlerMoose->ControlAntlers(-1);	//if antlers are down, move them up
+			}else{
+				antlerMoose->ControlAntlers(1);		//if antlers are up, move them down
+			}
 		}
+	}else{
+		m_bNewStatus = true;
 	}
 }
 
