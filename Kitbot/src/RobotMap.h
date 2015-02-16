@@ -27,6 +27,7 @@ const int INTAKEL = 9;
 const int MOOSEPOSITIONSENSOR = 0;
 
 //Drive
+const int PUSHER_LED = 1;
 const int DRIVE_ENCODERL_A = 4;
 const int DRIVE_ENCODERL_B = 5;
 const int DRIVE_ENCODERR_A = 6;
@@ -38,9 +39,9 @@ const int DRIVE_ENCODERR_B = 7;
 const int INTAKEARML = 0;
 const int INTAKEARMR = 1;
 const int MOOSELIFTER = 2;
-const int MOOSELOCK = 3;		//Controls Antlers Solenoid
+const int LEFTANTLER = 3;		//Controls left antler
 const int MOOSEPREVENT = 4;		//Prevents Moose from going up any further
-const int MOOSELOCK2 = 5;
+const int RIGHTANTLER = 5;		//Controls right antler
 
 
 

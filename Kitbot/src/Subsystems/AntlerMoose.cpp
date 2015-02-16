@@ -5,12 +5,16 @@
 AntlerMoose::AntlerMoose()
 	: Subsystem("AntlerMoose")
 {
-	m_cAntlerMooseLock = new DoubleSolenoid(COMPRESSOR, MOOSELOCK, MOOSELOCK2);
-	m_bActivated = false;
+	m_cLeftAntler = new Solenoid(COMPRESSOR, LEFTANTLER);
+	m_cRightAntler = new Solenoid(COMPRESSOR, RIGHTANTLER);
+	//false is considered to be up. TODO: Change if orientation does
+	m_bLeftDown = false;
+	m_bRightDown = false;
 }
 
 AntlerMoose::~AntlerMoose(){
-	delete m_cAntlerMooseLock;
+	delete m_cLeftAntler;
+	delete m_cRightAntler;
 }
 
 void AntlerMoose::InitDefaultCommand()
@@ -18,14 +22,14 @@ void AntlerMoose::InitDefaultCommand()
 	SetDefaultCommand(new ControlAntlerMoose());
 }
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
-void AntlerMoose::MoveAntlerLock(bool status)
+void AntlerMoose::ControlLeftAntler(bool downLeft)
 {
-	if(status){
-		m_cAntlerMooseLock->Set(DoubleSolenoid::kForward);
-	}else{
-		m_cAntlerMooseLock->Set(DoubleSolenoid::kReverse);
-
+	m_bLeftDown = downLeft;
+	m_cLeftAntler->Set(downLeft);
 }
+
+void AntlerMoose::ControlRightAntler(bool downRight)
+{
+	m_bRightDown = downRight;
+	m_cRightAntler->Set(downRight);
 }

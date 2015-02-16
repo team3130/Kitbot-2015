@@ -24,7 +24,6 @@ void Intake::InitDefaultCommand()
 
 //Sets speed of intake mechanism
 void Intake::Speed(float speed){
-	//TODO: Change orientation later depending on actual motor orientation
 	m_cIntake_left->SetSpeed(speed);
 	m_cIntake_right->SetSpeed(-speed);
 }

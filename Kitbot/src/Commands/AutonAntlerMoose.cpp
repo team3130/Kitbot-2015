@@ -18,7 +18,8 @@ void AutonAntlerMoose::Initialize()
 void AutonAntlerMoose::Execute()
 {
 	if(m_bAntlerMooseExecute){
-		antlerMoose->MoveAntlerLock(m_bLockDisabled);
+		antlerMoose->ControlLeftAntler(true);
+		antlerMoose->ControlRightAntler(true);
 		m_bRan = true;
 	}
 }
