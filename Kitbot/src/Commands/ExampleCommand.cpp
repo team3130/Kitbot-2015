@@ -1,9 +1,6 @@
 #include "ExampleCommand.h"
 
 ExampleCommand::ExampleCommand()
-	: m_bGyroMode(false)
-	, m_bGyroPrep(true)
-	, m_GyroTimer()
 {
 	Requires(chassis);
 }
@@ -11,10 +8,7 @@ ExampleCommand::ExampleCommand()
 // Called just before this Command runs the first time
 void ExampleCommand::Initialize()
 {
-	chassis->HoldAngle();
-	m_GyroTimer.Reset();
-	m_bGyroMode = false;
-	m_bGyroPrep = true;
+	chassis->Drive(0,0);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -27,26 +21,6 @@ void ExampleCommand::Execute()
 
 	chassis->Drive(moveSpeed * speedMultiplier, moveTurn * turnMultiplier);
 	return;
-
-	if(fabs(moveTurn) > 0.1) {
-		m_bGyroMode = false;
-		m_bGyroPrep = true;
-	}
-	else if(m_bGyroPrep) {
-		m_GyroTimer.Reset();
-		m_GyroTimer.Start();
-		m_bGyroPrep = false;
-	}
-	else if(m_GyroTimer.Get() > 0.5 && !m_bGyroMode){
-		m_bGyroMode = true;
-		chassis->HoldAngle();
-	}
-
-	if(m_bGyroMode) {
-		chassis->GyroDrive(moveSpeed * speedMultiplier);
-	} else {
-		chassis->Drive(moveSpeed * speedMultiplier, moveTurn * turnMultiplier);
-	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

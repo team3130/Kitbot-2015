@@ -6,10 +6,6 @@
 
 class ExampleCommand: public CommandBase
 {
-private:
-	bool m_bGyroMode;
-	bool m_bGyroPrep;
-	Timer m_GyroTimer;
 public:
 	ExampleCommand();
 	void Initialize();
