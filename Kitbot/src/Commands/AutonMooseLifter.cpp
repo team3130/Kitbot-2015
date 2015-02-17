@@ -20,7 +20,10 @@ void AutonMooseLifter::Initialize()
 void AutonMooseLifter::Execute()
 {
 	if(!m_bDone) {
-		if(m_distance == 0 || chassis->GetDistance() >= m_distance) {
+		if(m_distance == 0
+				|| (m_distance > 0 && chassis->GetDistance() >= m_distance)
+				|| (m_distance < 0 && chassis->GetDistance() <= m_distance))
+		{
 			mooseLifter->MoveMooseLifterSolenoid(m_bMooseUp);
 			m_bDone = true;
 			timer->Reset();
