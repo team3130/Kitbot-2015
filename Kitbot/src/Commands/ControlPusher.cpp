@@ -16,10 +16,10 @@ void ControlPusher::Execute()
 {
 	pusher->pushLifter(oi->gamepad->GetRawAxis(A_PUSHER));
 	if(!pusher->GetLimitSwitchOut()){
-			pusher->SwitchLED(false);
-		}else{
-			pusher->SwitchLED(true);
-		}
+		pusher->SwitchLED(false);
+	}else{
+		pusher->SwitchLED(true);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
