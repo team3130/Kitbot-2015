@@ -6,16 +6,18 @@
 
 class AutonIntakeArms: public CommandBase
 {
-public:
+private:
 	Timer* timer;
 	double m_waitTime;
+	bool m_bExtend;
+public:
 	AutonIntakeArms();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	void SetGoal(double timeout) { m_waitTime = timeout; };
+	void SetGoal(double timeout, bool extend) { m_waitTime = timeout, m_bExtend = extend; };
 };
 
 #endif

@@ -2,6 +2,8 @@
 
 AutonomousGroup2::AutonomousGroup2()
 {
+	//Goal: Pick up both bins on step with moose, drive back while setting them down
+	//Antlers move up, and fit in the auton zone somehow, either by turning or activating arms.
 	m_cAntlerMoose1 = new AutonAntlerMoose();
 	m_cMooseLifter1 = new AutonMooseLifter();
 	m_cMooseLifter2 = new AutonMooseLifter();
@@ -63,7 +65,7 @@ void AutonomousGroup2::Initialize()
 	m_cAutonTurner->SetGoal(90, 2);
 
 		//Activate Intake Arms to fit within the Auto Zone
-	m_cAutonIntakeArms->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Intake-Arms-Time",15));
+	m_cAutonIntakeArms->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Intake-Arms-Time",15), true);
 
 	CommandBase::antlerMoose->ControlLeftAntler(DoubleSolenoid::kForward);
 	CommandBase::antlerMoose->ControlRightAntler(DoubleSolenoid::kForward);

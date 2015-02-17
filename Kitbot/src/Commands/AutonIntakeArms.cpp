@@ -2,6 +2,7 @@
 
 AutonIntakeArms::AutonIntakeArms()
 	: m_waitTime(0)
+	, m_bExtend(false)
 {
 	Requires(intakearms);
 	timer = new Timer();
@@ -10,7 +11,7 @@ AutonIntakeArms::AutonIntakeArms()
 // Called just before this Command runs the first time
 void AutonIntakeArms::Initialize()
 {
-	intakearms->ControlArms(true, true);
+	intakearms->ControlArms(m_bExtend, m_bExtend);
 	timer->Reset();
 	timer->Start();
 }

@@ -6,9 +6,10 @@
 
 class AutonAntlerMoose: public CommandBase
 {
-public:
+private:
 	Timer* timer;
 	double m_waitTime;
+public:
 	AutonAntlerMoose();
 	void Initialize();
 	void Execute();
