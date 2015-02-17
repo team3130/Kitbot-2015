@@ -20,6 +20,8 @@ void ControlAntlerMoose::Initialize()
 {
 	m_bNewStatusL = true;
 	m_bNewStatusR = true;
+	antlerMoose->ControlLeftAntler(DoubleSolenoid::kReverse);
+	antlerMoose->ControlRightAntler(DoubleSolenoid::kReverse);
 }
 
 // Called repeatedly when this Command is scheduled to run
