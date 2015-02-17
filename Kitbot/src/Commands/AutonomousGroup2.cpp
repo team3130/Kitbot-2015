@@ -17,7 +17,7 @@ AutonomousGroup2::AutonomousGroup2()
 	AddSequential(m_cAutonDrive2);
 	AddSequential(m_cAntlerMoose1);
 	AddSequential(m_cAutonDrive3);
-	AddSequential(m_cAutonTurner);
+	//AddSequential(m_cAutonTurner);
 }
 
 AutonomousGroup2::~AutonomousGroup2()
@@ -37,7 +37,7 @@ void AutonomousGroup2::Initialize()
 	// Will change values once robot speed and positioning is known.
 		//Drive
 	m_cAutonDrive1->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Distance-Step",-54), 1.5, 0.75);
-	m_cAutonDrive2->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Distance-Zone",160), 1.5, 0.5);
+	m_cAutonDrive2->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Distance-Zone",160), 5.5, 0.65);
 	m_cAutonDrive3->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Distance-Self",-40), 1.5, 0.75);
 
 		//Dumb Drive
@@ -49,14 +49,17 @@ void AutonomousGroup2::Initialize()
 			true);
 	m_cMooseLifter2->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auto-MooseDrop",140),
-			Preferences::GetInstance()->GetDouble("Auto-MooseDown-Time", 1.0),
+			Preferences::GetInstance()->GetDouble("Auto-MooseDown-Time", 2.0),
 			false);
 
 		//Antler
-	m_cAntlerMoose1->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Antlers-Time",0.5));
+	m_cAntlerMoose1->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Antlers-Time",1.5));
 
 		//Turn to fit within the Auto Zone
 	m_cAutonTurner->SetGoal(90, 2);
+
+	CommandBase::antlerMoose->ControlLeftAntler(DoubleSolenoid::kForward);
+	CommandBase::antlerMoose->ControlRightAntler(DoubleSolenoid::kForward);
 }
 
 // Called repeatedly when this Command is scheduled to run
