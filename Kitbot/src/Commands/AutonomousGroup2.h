@@ -8,6 +8,7 @@
 #include "AutonMooseLifter.h"
 #include "AutonDumbDrive.h"
 #include "AutonTurn.h"
+#include "AutonIntakeArms.h"
 
 class AutonomousGroup2: public CommandGroup
 {
@@ -20,6 +21,7 @@ private:
 	AutonDriveStraight* m_cAutonDrive3;
 	AutonDumbDrive* m_cAutonDumb1;
 	AutonTurn* m_cAutonTurner;
+	AutonIntakeArms* m_cAutonIntakeArms;
 public:
 	AutonomousGroup2();
 	~AutonomousGroup2();

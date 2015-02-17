@@ -10,6 +10,7 @@ AutonomousGroup2::AutonomousGroup2()
 	m_cAutonDrive3 = new AutonDriveStraight();
 	m_cAutonDumb1 = new AutonDumbDrive();
 	m_cAutonTurner = new AutonTurn();
+	m_cAutonIntakeArms = new AutonIntakeArms();
 	AddSequential(m_cAutonDrive1);
 	AddSequential(m_cAutonDumb1);
 	AddSequential(m_cMooseLifter1);
@@ -17,6 +18,7 @@ AutonomousGroup2::AutonomousGroup2()
 	AddSequential(m_cAutonDrive2);
 	AddSequential(m_cAntlerMoose1);
 	AddSequential(m_cAutonDrive3);
+	AddSequential(m_cAutonIntakeArms);
 	//AddSequential(m_cAutonTurner);
 }
 
@@ -29,6 +31,8 @@ AutonomousGroup2::~AutonomousGroup2()
 	delete m_cAntlerMoose1;
 	delete m_cMooseLifter1;
 	delete m_cMooseLifter2;
+	delete m_cAutonIntakeArms;
+	delete m_cAutonTurner;
 }
 
 // Called just before this Command runs the first time
@@ -57,6 +61,9 @@ void AutonomousGroup2::Initialize()
 
 		//Turn to fit within the Auto Zone
 	m_cAutonTurner->SetGoal(90, 2);
+
+		//Activate Intake Arms to fit within the Auto Zone
+	m_cAutonIntakeArms->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Intake-Arms-Time",15));
 
 	CommandBase::antlerMoose->ControlLeftAntler(DoubleSolenoid::kForward);
 	CommandBase::antlerMoose->ControlRightAntler(DoubleSolenoid::kForward);
