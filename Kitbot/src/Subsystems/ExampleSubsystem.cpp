@@ -67,6 +67,7 @@ void ExampleSubsystem::GyroDrive(double move, bool squaredInputs)
 double ExampleSubsystem::ReturnPIDInput()
 {
 	return gyro->GetAngle();
+	//return ( m_cEncoderR->GetDistance() - m_cEncoderL->GetDistance() ) / 2.38; // 1"/24" ~= 2.38 degree.
 }
 
 void ExampleSubsystem::UsePIDOutput(double outputAngle)
