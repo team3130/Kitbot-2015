@@ -15,8 +15,8 @@ public:
 	void InitDefaultCommand();
 	void pushLifter(float speed);
 	void SwitchLED(bool status){m_cInLED->Set(status);};
-	bool GetLimitSwitchOut(){return m_cPushMotor->IsRevLimitSwitchClosed();};
-	bool GetLimitSwitchIn(){return m_cPushMotor->IsFwdLimitSwitchClosed();};
+	bool GetLimitSwitchOut(){return ((-m_cPushMotor->IsRevLimitSwitchClosed())+1);};
+	bool GetLimitSwitchIn(){return ((-m_cPushMotor->IsFwdLimitSwitchClosed())+1);};
 
 };
 
