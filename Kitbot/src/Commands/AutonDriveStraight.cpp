@@ -12,10 +12,11 @@ AutonDriveStraight::AutonDriveStraight()
 	Requires(CommandBase::chassis);
 }
 
-void AutonDriveStraight::SetGoal(double dist, double thresh, double ispeed) {
-	goal=dist;
-	threshold=thresh;
+void AutonDriveStraight::SetGoal(double dist, double thresh, double ispeed, double timeout) {
+	goal = dist;
+	threshold = thresh;
 	speed = ispeed;
+	confirmTime = timeout;
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
 }
@@ -37,7 +38,20 @@ void AutonDriveStraight::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDriveStraight::IsFinished(){
-	return GetPIDController()->OnTarget();
+	char message[64];
+	if(GetPIDController()->OnTarget()) {
+		snprintf(message, sizeof(message), "On target. Time: %g", timer.Get() );
+		SmartDashboard::PutString(GetName()+"Finish", message);
+		return true;
+	}
+	else if(confirmTime > 0 && timer.Get() > confirmTime) {
+		snprintf(message, sizeof(message), "Time's up. Distance: %g", timer.Get() );
+		SmartDashboard::PutString(GetName()+"Finish", message);
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 double AutonDriveStraight::ReturnPIDInput(){
