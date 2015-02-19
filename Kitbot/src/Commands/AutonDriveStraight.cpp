@@ -30,6 +30,8 @@ void AutonDriveStraight::Initialize() {
 	CommandBase::chassis->HoldAngle(0.0);
 	GetPIDController()->Reset();
 	GetPIDController()->Enable();
+	timer.Reset();
+	timer.Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -68,6 +70,7 @@ void AutonDriveStraight::UsePIDOutput(double output){
 void AutonDriveStraight::End() {
 	GetPIDController()->Disable();
 	CommandBase::chassis->GyroDrive(0);
+	timer.Stop();
 }
 
 // Called when another command which requires one or more of the same
