@@ -10,7 +10,7 @@ AutonDumbDrive::AutonDumbDrive()
 // Called just before this Command runs the first time
 void AutonDumbDrive::Initialize()
 {
-	chassis->Drive(-0.4, 0);	//starts driving backwards for a time
+	chassis->Drive(m_driveSpeed, 0);	//starts driving backwards for a time
 	timer->Reset();
 	timer->Start();
 }

@@ -8,6 +8,7 @@ class AutonDumbDrive: public CommandBase
 {
 public:
 	Timer* timer;
+	double m_driveSpeed;
 	double m_waitTime;
 	AutonDumbDrive();
 	void Initialize();
@@ -15,7 +16,7 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	void SetGoal(double timeout) { m_waitTime = timeout; };
+	void SetGoal(double speed, double timeout) { m_driveSpeed = speed; m_waitTime = timeout; };
 };
 
 #endif
