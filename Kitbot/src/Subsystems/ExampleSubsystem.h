@@ -8,15 +8,16 @@
 
 class ExampleSubsystem: public PIDSubsystem
 {
+	friend class RobotSensors;
 private:
 	const double WHEEL_DIAMATER = 6;
 	bool m_bIsUsingGyro;
 	bool m_bSquaredDrive;
 	double moveSpeed;
-public:
 	Gyro* gyro;
 	Encoder* m_cEncoderL;
 	Encoder* m_cEncoderR;
+public:
 	RobotDrive m_drive;
 	ExampleSubsystem();
 	~ExampleSubsystem();
@@ -30,6 +31,7 @@ public:
 	virtual double ReturnPIDInput();
 	virtual void UsePIDOutput(double outputAngle);
 	double GetDistance();
+	void ResetEncoders() { m_cEncoderL->Reset(); m_cEncoderR->Reset(); };
 };
 
 #endif

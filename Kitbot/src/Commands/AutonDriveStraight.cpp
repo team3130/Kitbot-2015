@@ -4,6 +4,10 @@
 // Used be constructed with (300,0.05,1,0,0,0)
 AutonDriveStraight::AutonDriveStraight()
 	: PIDCommand(0.06, 0, 0.1)
+	, speed(0)
+	, goal(0)
+	, threshold(0)
+	, confirmTime(0)
 {
 	Requires(CommandBase::chassis);
 }
@@ -12,9 +16,6 @@ void AutonDriveStraight::SetGoal(double dist, double thresh, double ispeed) {
 	goal=dist;
 	threshold=thresh;
 	speed = ispeed;
-	SmartDashboard::PutNumber(GetName()+"Straight Goal",goal);
-	SmartDashboard::PutNumber(GetName()+"Straight Threshold",threshold);
-	SmartDashboard::PutNumber(GetName()+"Straight Speed",speed);
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
 }
@@ -24,8 +25,7 @@ void AutonDriveStraight::Initialize() {
 	GetPIDController()->Disable();
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
-	CommandBase::chassis->m_cEncoderL->Reset();
-	CommandBase::chassis->m_cEncoderR->Reset();
+	CommandBase::chassis->ResetEncoders();
 	CommandBase::chassis->HoldAngle(0.0);
 	GetPIDController()->Reset();
 	GetPIDController()->Enable();
