@@ -53,11 +53,33 @@ void AutonomousGroup::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
 		//Rollers
+	m_cAutonRollers1->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Intake-Time",5),
+			Preferences::GetInstance()->GetDouble("Auton1-Intake-Left-Status",1),
+			Preferences::GetInstance()->GetDouble("Auton1-Intake-Right-Status",-1));
+
+		//Intake Arms
+	m_cAutonIntakeArms1->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Intake-Arms-Time",5), true);
 
 		//Pusher
 
 		//Lifter
 
+		//Driving
+	m_cAutonDriveStraight1->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Distance-Tote",30),
+			Preferences::GetInstance()->GetDouble("Auton1-Tolerance-Tote",1.5),
+			Preferences::GetInstance()->GetDouble("Auton1-Speed-Tote",0.55),
+			Preferences::GetInstance()->GetDouble("Auton1-Timeout-Tote",5) );
+	m_cAutonDriveStraight2->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Distance-Zone",160),
+			Preferences::GetInstance()->GetDouble("Auton1-Tolerance-Zone",5.5),
+			Preferences::GetInstance()->GetDouble("Auton1-Speed-Zone",0.65),
+			Preferences::GetInstance()->GetDouble("Auton1-Timeout-Zone",7));
+
+		//Turning
+	m_cAutonTurn1->SetGoal(90, 2);
 }
 
 // Called repeatedly when this Command is scheduled to run
