@@ -13,15 +13,16 @@ AutonomousGroup2::AutonomousGroup2()
 	m_cAutonDumb1 = new AutonDumbDrive();
 	m_cAutonTurner = new AutonTurn();
 	m_cAutonIntakeArms = new AutonIntakeArms();
-	AddSequential(m_cAutonDrive1);
-	AddSequential(m_cAutonDumb1);
-	AddSequential(m_cMooseLifter1);
-	AddParallel(m_cMooseLifter2);
-	AddSequential(m_cAutonDrive2);
-	AddSequential(m_cAntlerMoose1);
-	AddSequential(m_cAutonDrive3);
-	AddSequential(m_cAutonIntakeArms);
-	//AddSequential(m_cAutonTurner);
+	
+	AddSequential(m_cAutonDrive1);		//Drive backwards
+	AddSequential(m_cAutonDumb1);		//Creep backwards slowly to ensure level with step
+	AddSequential(m_cMooseLifter1);		//Lift up both middle bins with moose
+	AddParallel(m_cMooseLifter2);		//While the moose is lowering, setting the bins down
+	AddSequential(m_cAutonDrive2);		//Drive forwards to the auton zone
+	AddSequential(m_cAntlerMoose1);		//Retract antlers up
+	AddSequential(m_cAutonDrive3);		//Drive back a bit into the auton zone
+	AddSequential(m_cAutonIntakeArms);	//Extend intake arms to fit in auton zone
+	//AddSequential(m_cAutonTurner);	//Turn to fit in auton zone
 }
 
 AutonomousGroup2::~AutonomousGroup2()

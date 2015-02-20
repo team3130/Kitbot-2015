@@ -1,6 +1,7 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "Commands/AutonomousGroup2.h"
+#include "Commands/AutonomousGroup.h"
 #include "Commands/RobotSensors.h"
 #include "CommandBase.h"
 
@@ -9,12 +10,16 @@ class Robot: public IterativeRobot
 private:
 	Command *autonomousCommand;
 	Command *robotSensors;
+	SendableChooser *chooser;
 	LiveWindow *lw;
 
 	void RobotInit()
 	{
 		CommandBase::init();
-		autonomousCommand = new AutonomousGroup2();
+		chooser = new SendableChooser();
+		chooser->AddDefault("Moose Bin Grabber", new AutonomousGroup2());
+		chooser->AddObject("Bin Onto Yellow Tote", new AutonomousGroup());
+		SmartDashboard::PutData("Autonomous Modes", chooser);
 		robotSensors = new RobotSensors();
 		lw = LiveWindow::GetInstance();
 		robotSensors->Start();	}
@@ -26,8 +31,8 @@ private:
 
 	void AutonomousInit()
 	{
-		if (autonomousCommand != NULL)
-			autonomousCommand->Start();
+		autonomousCommand = (Command *)chooser->GetSelected();
+		autonomousCommand->Start();
 	}
 
 	void AutonomousPeriodic()

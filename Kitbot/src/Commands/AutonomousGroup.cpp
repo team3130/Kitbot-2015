@@ -16,6 +16,19 @@ AutonomousGroup::AutonomousGroup()
 	m_cAutonDriveStraight1 = new AutonDriveStraight();
 	m_cAutonDriveStraight2 = new AutonDriveStraight();
 	m_cAutonTurn1 = new AutonTurn();
+	
+	AddSequential(m_cAutonLifter1);			//moves lifter to bin-lifting height
+	AddSequential(m_cAutonPusher1);			//moves lifter thing out to grab
+	AddSequential(m_cAutonLifter2);			//lifts bin up
+	AddSequential(m_cAutonPusher2);			//grabs bin back
+	AddSequential(m_cAutonLifter3);			//sets the bin down onto the yellow tote
+	AddSequential(m_cAutonIntakeArms1);		//Open the intake arms
+	AddParallel(m_cAutonRollers1);			//While the rollers are intaking in
+	AddParallel(m_cAutonIntakeArms2);		//And as the intake arms close in
+	AddSequential(m_cAutonDriveStraight1);	//Drive forward to grab the yellow tote
+	AddSequential(m_cAutonLifter4);			//Pick up the whole bin-tote stack
+	AddSequential(m_cAutonTurn1);			//Turns robot towards Auton Zone
+	AddSequential(m_cAutonDriveStraight2);	//Robot drives into Auton Zone
 }
 
 AutonomousGroup::~AutonomousGroup()
