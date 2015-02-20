@@ -6,9 +6,12 @@
 
 class ControlRollers: public CommandBase
 {
+	enum PresetButton {	kIdle, kIn, kOut, kCCW, kCW };
+private:
+	PresetButton preset;
+	double m_nLeftIntake;
+	double m_nRightIntake;
 public:
-	int m_nLeftIntake;
-	int m_nRightIntake;
 	ControlRollers();
 	void Initialize();
 	void Execute();

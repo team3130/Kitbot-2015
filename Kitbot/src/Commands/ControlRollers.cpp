@@ -20,21 +20,39 @@ void ControlRollers::Execute()
 	//buttons must be held down to maintain intake position
 	//intake position will default to 0 when no buttons are pressed
 	if(oi->stickR->GetRawButton(B_INTAKEIN)){
-		m_nLeftIntake = 1;
-		m_nRightIntake = -1;
+		preset = kIn;
 	}else if(oi->stickR->GetRawButton(B_INTAKEOUT)){
-		m_nLeftIntake = -1;
-		m_nRightIntake = 1;
+		preset = kOut;
 	}else if(oi->stickR->GetRawButton(B_INTAKEROTATECCW)){
-		m_nLeftIntake = 1;
-		m_nRightIntake = 1;
+		preset = kCCW;
 	}else if(oi->stickR->GetRawButton(B_INTAKEROTATECW)){
-		m_nLeftIntake = -1;
-		m_nRightIntake = -1;
+		preset = kCW;
 	}else{
-		m_nLeftIntake = 0;
-		m_nRightIntake = 0;
+		preset = kIdle;
 	}
+
+	switch(preset) {
+		case kIn:
+			m_nLeftIntake = 1;
+			m_nRightIntake = -1;
+			break;
+		case kOut:
+			m_nLeftIntake = -1;
+			m_nRightIntake = 1;
+			break;
+		case kCCW:
+			m_nLeftIntake = 1;
+			m_nRightIntake = 1;
+			break;
+		case kCW:
+			m_nLeftIntake = -1;
+			m_nRightIntake = -1;
+			break;
+		case kIdle:
+			m_nLeftIntake = 0;
+			m_nRightIntake = 0;
+			break;
+		}
 
 	intake->HandleObjects(m_nLeftIntake, m_nRightIntake);
 }

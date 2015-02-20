@@ -7,8 +7,6 @@
 class MooseLifter: public Subsystem
 {
 private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
 	DigitalInput* m_cMoosePositionSensor;
 	Solenoid* m_cMooseSolenoid;
 	Solenoid* m_cMoosePrevent;
