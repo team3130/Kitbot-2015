@@ -20,9 +20,12 @@ void ControlPusher::Execute()
 	if(fabs(thumb) > 0.1){
 		manualMode = true;
 		pusher->pushLifter(thumb);
-	}else if(direc != 0){
+	}else if(direc == 0){
 		manualMode = false;
-		pusher->pushLifter(direc);	//continues to go in one direction
+		pusher->pushLifter(1);	//continues to go out
+	}else if(direc == 4){
+		manualMode = false;
+		pusher->pushLifter(-1);	//continues to go in
 	}else if(manualMode){
 		pusher->pushLifter(0);		//only stops pusher if manual control activates
 	}
