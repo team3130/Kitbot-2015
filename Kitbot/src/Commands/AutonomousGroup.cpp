@@ -94,7 +94,7 @@ void AutonomousGroup::Initialize()
 
 		//Turning
 	m_cAutonTurn1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Angle",90),
+			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Angle",-90),
 			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Time",2));
 }
 

@@ -11,7 +11,7 @@ AutonTurn::AutonTurn()
 // Called just before this Command runs the first time
 void AutonTurn::Initialize()
 {
-	chassis->HoldAngle(m_angle);	//starts driving backwards for a time
+	chassis->HoldAngle(m_angle);	//Holds the specified angle so the robot will turn towards it
 	timer->Reset();
 	timer->Start();
 }
