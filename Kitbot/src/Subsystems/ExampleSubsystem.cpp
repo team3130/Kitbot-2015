@@ -17,8 +17,6 @@ ExampleSubsystem::ExampleSubsystem()
 
 	m_cEncoderL = new Encoder(DRIVE_ENCODERL_A,DRIVE_ENCODERL_B);
 	m_cEncoderR = new Encoder(DRIVE_ENCODERR_A,DRIVE_ENCODERR_B);
-	m_cEncoderL->SetDistancePerPulse(WHEEL_DIAMATER * M_PI / Preferences::GetInstance()->GetInt("Encoder-Left", 128)); // 70/468 = 0.15
-	m_cEncoderR->SetDistancePerPulse(WHEEL_DIAMATER * M_PI / Preferences::GetInstance()->GetInt("Encoder-Right", 256)); // 70/937 = 0.07
 	gyro  = new Gyro(C_GYRO);
 	GetPIDController()->Disable();
 	gyro->InitGyro();
@@ -67,7 +65,7 @@ void ExampleSubsystem::GyroDrive(double move, bool squaredInputs)
 double ExampleSubsystem::ReturnPIDInput()
 {
 	return gyro->GetAngle();
-	//return ( m_cEncoderR->GetDistance() - m_cEncoderL->GetDistance() ) / 2.38; // 1"/24" ~= 2.38 degree.
+	//return ( m_cEncoderL->GetDistance() - m_cEncoderR->GetDistance() ) / 2.38; // 1"/24" ~= 2.38 degree.
 }
 
 void ExampleSubsystem::UsePIDOutput(double outputAngle)
@@ -78,4 +76,12 @@ void ExampleSubsystem::UsePIDOutput(double outputAngle)
 double ExampleSubsystem::GetDistance()
 {
 	return ( m_cEncoderL->GetDistance() + m_cEncoderR->GetDistance() ) / -2.0;
+}
+
+void ExampleSubsystem::ResetEncoders()
+{
+	m_cEncoderL->Reset();
+	m_cEncoderR->Reset();
+	m_cEncoderL->SetDistancePerPulse(WHEEL_DIAMATER * M_PI / Preferences::GetInstance()->GetInt("Encoder_Left", 128)); // 70/468 = 0.15
+	m_cEncoderR->SetDistancePerPulse(WHEEL_DIAMATER * M_PI / Preferences::GetInstance()->GetInt("Encoder_Right", 256)); // 70/937 = 0.07
 }

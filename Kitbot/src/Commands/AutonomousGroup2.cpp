@@ -84,6 +84,7 @@ void AutonomousGroup2::Initialize()
 
 	CommandBase::antlerMoose->ControlLeftAntler(DoubleSolenoid::kForward);
 	CommandBase::antlerMoose->ControlRightAntler(DoubleSolenoid::kForward);
+	CommandBase::mooseLifter->MoveMooseLock(false);
 }
 
 // Called repeatedly when this Command is scheduled to run

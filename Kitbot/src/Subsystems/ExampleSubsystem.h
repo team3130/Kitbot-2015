@@ -31,7 +31,7 @@ public:
 	virtual double ReturnPIDInput();
 	virtual void UsePIDOutput(double outputAngle);
 	double GetDistance();
-	void ResetEncoders() { m_cEncoderL->Reset(); m_cEncoderR->Reset(); };
+	void ResetEncoders();
 };
 
 #endif
