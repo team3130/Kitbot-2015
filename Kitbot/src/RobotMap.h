@@ -66,6 +66,7 @@ const int C_GYRO = 0;
 //lifters
 const int A_LIFTER = 1;           //left thumbstick up and down
 const int A_PUSHER = 3;			  //right thumbstick up and down
+const int POV_PUSHER_EXTREMES = 5;	//directional pad
 const int B_PAD_A = 2;		//Face buttons are for goals for lifter
 const int B_PAD_B = 3;
 const int B_PAD_X = 1;

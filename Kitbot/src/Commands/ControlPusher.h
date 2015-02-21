@@ -6,6 +6,8 @@
 
 class ControlPusher: public CommandBase
 {
+private:
+	bool manualMode;
 public:
 	ControlPusher();
 	void Initialize();
