@@ -4,18 +4,50 @@ RobotSensors::RobotSensors()
 {
 	// Use Requires() here to declare subsystem dependencies
 	range = new AnalogInput(1);
+	arduino = new SerialPort(9600, SerialPort::kMXP);
+	timer = new Timer();
 	this->SetRunWhenDisabled(true);
+	light = '1';
+}
+
+RobotSensors::~RobotSensors()
+{
+	delete range;
+	delete arduino;
+	delete timer;
 }
 
 // Called just before this Command runs the first time
 void RobotSensors::Initialize()
 {
-
+	timer->Reset();
+	timer->Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void RobotSensors::Execute()
 {
+	if(DriverStation::GetInstance()->IsDisabled()) {
+		if(timer->Get() > 1) {
+			timer->Reset();
+			timer->Start();
+			if(light == '3') light = '1';
+			else light++;
+			arduino->Write(&light, 1);
+			SmartDashboard::PutNumber("Arduino Light",light);
+		}
+	}
+	else {
+		if( chassis->m_cEncoderL->GetRate() > 6 ) {
+			arduino->Write("3", 1);
+		}
+		else if( chassis->m_cEncoderL->GetRate() < -6 ) {
+			arduino->Write("4", 1);
+		}
+		else {
+			arduino->Write("5", 1);
+		}
+	}
 
 	SmartDashboard::PutNumber("Encoder-Value", lifter->GetPosition());
 	SmartDashboard::PutBoolean("Pusher-Out Limit Switch", pusher->GetLimitSwitchOut());

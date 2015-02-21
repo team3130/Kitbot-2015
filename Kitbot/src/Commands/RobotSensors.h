@@ -7,8 +7,12 @@ class RobotSensors: public CommandBase
 {
 private:
 	AnalogInput* range;
+	SerialPort* arduino;
+	Timer* timer;
+	char light;
 public:
 	RobotSensors();
+	~RobotSensors();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
