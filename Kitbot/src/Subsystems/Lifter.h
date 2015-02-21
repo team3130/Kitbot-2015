@@ -17,6 +17,7 @@ public:
 	bool GetLimitSwitchTop() { return m_cLiftMotor->GetForwardLimitOK(); };
 	bool GetLimitSwitchBot() { return m_cLiftMotor->GetReverseLimitOK(); };
 	double GetPosition() { return m_cLiftMotor->GetPosition(); };
+	double GetSpeed() { return m_cLiftMotor->GetSpeed(); };
 };
 
 #endif

@@ -28,25 +28,27 @@ void RobotSensors::Initialize()
 void RobotSensors::Execute()
 {
 	if(DriverStation::GetInstance()->IsDisabled()) {
-		if(timer->Get() > 1) {
+		if(timer->Get() > 4) {
 			timer->Reset();
 			timer->Start();
-			if(light == '3') light = '1';
-			else light++;
-			arduino->Write(&light, 1);
-			SmartDashboard::PutNumber("Arduino Light",light);
+			if(DriverStation::GetInstance()->IsDSAttached()) {
+				if(DriverStation::GetInstance()->GetAlliance() == DriverStation::kBlue)	arduino->Write("B", 1);
+				else if(DriverStation::GetInstance()->GetAlliance() == DriverStation::kRed)	arduino->Write("R", 1);
+				else arduino->Write("U", 1);
+			}
+			else {
+				arduino->Write("E", 1);
+			}
 		}
 	}
 	else {
-		if( chassis->m_cEncoderL->GetRate() > 6 ) {
-			arduino->Write("3", 1);
-		}
-		else if( chassis->m_cEncoderL->GetRate() < -6 ) {
-			arduino->Write("4", 1);
-		}
-		else {
-			arduino->Write("5", 1);
-		}
+		if( chassis->m_cEncoderL->GetRate() > 6 ) arduino->Write("3", 1);
+		else if( chassis->m_cEncoderL->GetRate() < -6 ) arduino->Write("4", 1);
+		else arduino->Write("5", 1);
+
+		if( lifter->GetSpeed() > 0.5 ) arduino->Write("6", 1);
+		else if(lifter->GetSpeed() < -0.5) arduino->Write("7", 1);
+		else arduino->Write("8", 1);
 	}
 
 	SmartDashboard::PutNumber("Encoder-Value", lifter->GetPosition());
