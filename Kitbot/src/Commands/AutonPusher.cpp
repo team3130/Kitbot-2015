@@ -1,48 +1,43 @@
 #include "AutonPusher.h"
 
 AutonPusher::AutonPusher()
+	: m_waitTime(0)
+	, m_nDirection(0)
 {
 	Requires(pusher);
-	m_bPusherExecute = false;
-	m_fDirection = 0;
+	timer = new Timer();
 }
 
 // Called just before this Command runs the first time
 void AutonPusher::Initialize()
 {
-
+	pusher->pushLifter(m_nDirection);
+	timer->Reset();
+	timer->Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutonPusher::Execute()
 {
-	if(m_bPusherExecute){
-		pusher->pushLifter(m_fDirection);
-	}
-
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutonPusher::IsFinished()
 {
-	if(m_fDirection > 0){
-		return pusher->GetLimitSwitchOut();
-	}else if(m_fDirection){
-		return pusher->GetLimitSwitchIn();
-	}else{
-		return false;
-	}
+	return (timer->Get() > m_waitTime ||
+			pusher->GetLimitSwitchIn() ||
+			pusher->GetLimitSwitchOut());
 }
 
 // Called once after isFinished returns true
 void AutonPusher::End()
 {
-	m_bPusherExecute = false;
+	pusher->pushLifter(0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void AutonPusher::Interrupted()
 {
-
+	End();
 }

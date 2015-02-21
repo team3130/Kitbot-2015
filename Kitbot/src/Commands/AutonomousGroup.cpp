@@ -4,7 +4,6 @@ AutonomousGroup::AutonomousGroup()
 {
 	//Goal: pick up a bin, place it on yellow tote, pick stack up, and move into auton zone
 	m_cAutonRollers1 = new AutonRollers();
-	m_cAutonRollers2 = new AutonRollers();
 	m_cAutonPusher1 = new AutonPusher();
 	m_cAutonPusher2 = new AutonPusher();
 	m_cAutonLifter1 = new AutonLifter();
@@ -38,7 +37,6 @@ AutonomousGroup::~AutonomousGroup()
 	delete m_cAutonLifter3;
 	delete m_cAutonLifter4;
 	delete m_cAutonRollers1;
-	delete m_cAutonRollers2;
 	delete m_cAutonPusher1;
 	delete m_cAutonPusher2;
 	delete m_cAutonDriveStraight1;
@@ -63,8 +61,24 @@ void AutonomousGroup::Initialize()
 			Preferences::GetInstance()->GetDouble("Auton1-Intake-Arms-Time",5), true);
 
 		//Pusher
+	m_cAutonPusher1->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Pusher-Out-Time",5), -1);
+	m_cAutonPusher2->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Pusher-In-Time",5), 1);
 
 		//Lifter
+	m_cAutonLifter1->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Time",5),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Goal",1200));
+	m_cAutonLifter2->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Time",5),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Goal",1400));
+	m_cAutonLifter3->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Time",5),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Goal",0));
+	m_cAutonLifter4->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter4-Time",5),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter4-Goal",500));
 
 		//Driving
 	m_cAutonDriveStraight1->SetGoal(
@@ -79,7 +93,9 @@ void AutonomousGroup::Initialize()
 			Preferences::GetInstance()->GetDouble("Auton1-Timeout-Zone",7));
 
 		//Turning
-	m_cAutonTurn1->SetGoal(90, 2);
+	m_cAutonTurn1->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Angle",90),
+			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Time",2));
 }
 
 // Called repeatedly when this Command is scheduled to run

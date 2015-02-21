@@ -6,15 +6,18 @@
 
 class AutonPusher: public CommandBase
 {
+private:
+	Timer* timer;
+	double m_waitTime;
+	bool m_nDirection;
 public:
-	bool m_bPusherExecute;
-	bool m_fDirection;
 	AutonPusher();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	void SetGoal(double timeout, int direction) { m_waitTime = timeout; m_nDirection = direction;};
 };
 
 #endif

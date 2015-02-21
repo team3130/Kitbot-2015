@@ -6,17 +6,18 @@
 
 class AutonLifter: public CommandBase
 {
+private:
+	Timer* timer;
+	double m_waitTime;
+	double m_dEncoderGoal;
 public:
-	bool m_bLifterExecute;
-	bool m_b2StageOn;
-	bool m_bStage1Done;
-	bool m_bStage2Done;
 	AutonLifter();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	void SetGoal(double timeout, double goal) { m_waitTime = timeout; m_dEncoderGoal = goal;};
 };
 
 #endif

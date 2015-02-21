@@ -18,7 +18,6 @@ private:
 	AutonLifter* m_cAutonLifter3;
 	AutonLifter* m_cAutonLifter4;
 	AutonRollers* m_cAutonRollers1;
-	AutonRollers* m_cAutonRollers2;
 	AutonPusher* m_cAutonPusher1;
 	AutonPusher* m_cAutonPusher2;
 	AutonIntakeArms* m_cAutonIntakeArms1;
