@@ -16,16 +16,16 @@ void ControlPusher::Initialize()
 void ControlPusher::Execute()
 {
 	double thumb = oi->gamepad->GetRawAxis(A_PUSHER);
-	double direc = oi->gamepad->GetRawAxis(POV_PUSHER_EXTREMES);
+	double direc = oi->gamepad->GetPOV(POV_PUSHER_EXTREMES);
 	if(fabs(thumb) > 0.1){
 		manualMode = true;
 		pusher->pushLifter(thumb);
 	}else if(direc == 0){
 		manualMode = false;
-		pusher->pushLifter(1);	//continues to go out
-	}else if(direc == 4){
+		pusher->pushLifter(-1);	//continues to go out
+	}else if(direc == 180){
 		manualMode = false;
-		pusher->pushLifter(-1);	//continues to go in
+		pusher->pushLifter(1);	//continues to go in
 	}else if(manualMode){
 		pusher->pushLifter(0);		//only stops pusher if manual control activates
 	}
