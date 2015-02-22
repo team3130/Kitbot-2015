@@ -34,6 +34,7 @@ bool AutonRollers::IsFinished()
 void AutonRollers::End()
 {
 	intake->HandleObjects(0, 0);	//idles rollers to end
+	timer->Stop();
 }
 
 // Called when another command which requires one or more of the same

@@ -31,10 +31,12 @@ bool AutonTurn::IsFinished()
 void AutonTurn::End()
 {
 	chassis->ReleaseAngle();	//stops holding the angle
+	timer->Stop();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void AutonTurn::Interrupted()
 {
+	End();
 }

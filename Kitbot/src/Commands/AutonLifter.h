@@ -18,9 +18,10 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	void SetGoal(double timeout, double thresh, double goal){m_waitTime = timeout;
-															m_dThreshold = thresh;
-															m_dEncoderGoal = goal;};
+	void SetGoal(double timeout, double thresh, double goal){
+		m_waitTime = timeout;
+		m_dThreshold = thresh;
+		m_dEncoderGoal = goal;};
 };
 
 #endif

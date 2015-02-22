@@ -33,6 +33,7 @@ bool AutonLifter::IsFinished()
 void AutonLifter::End()
 {
 	lifter->moveLifter(0);
+	timer->Stop();
 }
 
 // Called when another command which requires one or more of the same
