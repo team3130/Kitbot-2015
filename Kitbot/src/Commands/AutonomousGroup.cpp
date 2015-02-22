@@ -10,13 +10,12 @@ AutonomousGroup::AutonomousGroup()
 	m_cAutonDriveStraight1 = new AutonDriveStraight();
 	m_cAutonTurn1 = new AutonTurn();
 	
-	AddSequential(m_cAutonPusher1);			//moves lifter thing out to grab
 	AddSequential(m_cAutonLifter1);			//lifts bin up
 	AddSequential(m_cAutonPusher1);			//grabs bin back
 	AddSequential(m_cAutonLifter2);			//sets the bin down onto the yellow tote
 	AddSequential(m_cAutonLifter3);			//Pick up the whole bin-tote stack
-	AddSequential(m_cAutonTurn1);			//Turns robot towards Auton Zone
-	AddSequential(m_cAutonDriveStraight1);	//Robot drives into Auton Zone
+	//AddSequential(m_cAutonTurn1);			//Turns robot towards Auton Zone
+	//AddSequential(m_cAutonDriveStraight1);	//Robot drives into Auton Zone
 }
 
 AutonomousGroup::~AutonomousGroup()
@@ -35,18 +34,18 @@ void AutonomousGroup::Initialize()
 	// Will change values once robot speed and positioning is known.
 		//Pusher
 	m_cAutonPusher1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Pusher-In-Time",5), 1);
+			Preferences::GetInstance()->GetDouble("Auton1-Pusher-In-Time",5), 3);
 
 		//Lifter
 	m_cAutonLifter1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Time",5),
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Goal",1400));
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Time",3),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Goal",1600));
 	m_cAutonLifter2->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Time",7),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Time",3),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Goal",0));
 	m_cAutonLifter3->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Time",5),
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Goal",250));
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Goal",400));
 
 		//Driving
 	m_cAutonDriveStraight1->SetGoal(

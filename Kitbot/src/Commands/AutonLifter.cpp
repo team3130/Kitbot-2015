@@ -25,7 +25,7 @@ void AutonLifter::Execute()
 bool AutonLifter::IsFinished()
 {
 	return (lifter->GetPosition() == m_dEncoderGoal || timer->Get() > m_waitTime ||
-			lifter->GetLimitSwitchTop() || lifter->GetLimitSwitchBot());
+			!lifter->GetLimitSwitchTop() || !lifter->GetLimitSwitchBot());
 }
 
 // Called once after isFinished returns true

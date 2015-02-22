@@ -44,7 +44,7 @@ void AutonomousGroup2::Initialize()
 	// Will change values once robot speed and positioning is known.
 		//Drive
 	m_cAutonDrive1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auto-Distance-Step",-54),
+			Preferences::GetInstance()->GetDouble("Auto-Distance-Step",-48),
 			Preferences::GetInstance()->GetDouble("Auto-Tolerance-Step",1.5),
 			Preferences::GetInstance()->GetDouble("Auto-Speed-Step",0.75),
 			Preferences::GetInstance()->GetDouble("Auto-Timeout-Step",4) );

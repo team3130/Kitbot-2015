@@ -25,8 +25,7 @@ void AutonPusher::Execute()
 bool AutonPusher::IsFinished()
 {
 	return (timer->Get() > m_waitTime ||
-			pusher->GetLimitSwitchIn() ||
-			pusher->GetLimitSwitchOut());
+			pusher->GetLimitSwitchIn());
 }
 
 // Called once after isFinished returns true
