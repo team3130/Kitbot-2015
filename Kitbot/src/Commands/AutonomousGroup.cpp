@@ -34,7 +34,7 @@ void AutonomousGroup::Initialize()
 	// Will change values once robot speed and positioning is known.
 		//Pusher
 	m_cAutonPusher1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Pusher-In-Time",5), 3);
+			Preferences::GetInstance()->GetDouble("Auton1-Pusher-In-Time",5), 1);
 
 		//Lifter
 	m_cAutonLifter1->SetGoal(

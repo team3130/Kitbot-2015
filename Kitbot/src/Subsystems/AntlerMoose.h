@@ -7,16 +7,16 @@
 class AntlerMoose: public Subsystem
 {
 private:
-	DoubleSolenoid* m_cLeftAntler;
-	DoubleSolenoid* m_cRightAntler;
+	Solenoid* m_cLeftAntler;
+	Solenoid* m_cRightAntler;
 	bool m_bLeftAntlerDown;
 	bool m_bRightAntlerDown;
 public:
 	AntlerMoose();
 	~AntlerMoose();
 	void InitDefaultCommand();
-	void ControlLeftAntler(DoubleSolenoid::Value leftStatus);
-	void ControlRightAntler(DoubleSolenoid::Value rightStatus);
+	void ControlLeftAntler(bool Up);
+	void ControlRightAntler(bool Up);
 	bool IsLeftAntlerDown(){return m_bLeftAntlerDown;};
 	bool IsRightAntlerDown(){return m_bRightAntlerDown;};
 };

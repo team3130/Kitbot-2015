@@ -20,8 +20,8 @@ void ControlAntlerMoose::Initialize()
 {
 	m_bNewStatusL = true;
 	m_bNewStatusR = true;
-	antlerMoose->ControlLeftAntler(DoubleSolenoid::kReverse);
-	antlerMoose->ControlRightAntler(DoubleSolenoid::kReverse);
+	antlerMoose->ControlLeftAntler(false);
+	antlerMoose->ControlRightAntler(false);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -31,9 +31,9 @@ void ControlAntlerMoose::Execute()
 		if(m_bNewStatusL){
 			m_bNewStatusL = false;
 			if(antlerMoose->IsLeftAntlerDown()){
-				antlerMoose->ControlLeftAntler(DoubleSolenoid::kReverse);	//if antlers down, move up
+				antlerMoose->ControlLeftAntler(true);	//if antlers down, move up
 			}else{
-				antlerMoose->ControlLeftAntler(DoubleSolenoid::kForward);	//if antlers up, move down
+				antlerMoose->ControlLeftAntler(false);	//if antlers up, move down
 			}
 		}
 	}else{
@@ -44,9 +44,9 @@ void ControlAntlerMoose::Execute()
 		if(m_bNewStatusR){
 			m_bNewStatusR = false;
 			if(antlerMoose->IsRightAntlerDown()){
-				antlerMoose->ControlRightAntler(DoubleSolenoid::kReverse);//if antlers down, move up
+				antlerMoose->ControlRightAntler(true);//if antlers down, move up
 			}else{
-				antlerMoose->ControlRightAntler(DoubleSolenoid::kForward);//if antlers up, move down
+				antlerMoose->ControlRightAntler(false);//if antlers up, move down
 			}
 		}
 	}else{
@@ -63,8 +63,8 @@ bool ControlAntlerMoose::IsFinished()
 // Called once after isFinished returns true
 void ControlAntlerMoose::End()
 {
-	antlerMoose->ControlLeftAntler(DoubleSolenoid::kOff);	//keeps antlers at current position when disabled
-	antlerMoose->ControlRightAntler(DoubleSolenoid::kOff);
+	antlerMoose->ControlLeftAntler(true);	//keeps antlers at current position when disabled
+	antlerMoose->ControlRightAntler(true);
 }
 
 // Called when another command which requires one or more of the same

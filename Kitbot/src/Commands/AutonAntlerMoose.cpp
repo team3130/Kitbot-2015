@@ -10,8 +10,8 @@ AutonAntlerMoose::AutonAntlerMoose()
 // Called just before this Command runs the first time
 void AutonAntlerMoose::Initialize()
 {
-	antlerMoose->ControlLeftAntler(DoubleSolenoid::kReverse);
-	antlerMoose->ControlRightAntler(DoubleSolenoid::kReverse);
+	antlerMoose->ControlLeftAntler(false);
+	antlerMoose->ControlRightAntler(false);
 	timer->Reset();
 	timer->Start();
 }
