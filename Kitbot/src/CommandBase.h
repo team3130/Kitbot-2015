@@ -10,6 +10,7 @@
 #include "Subsystems/Pusher.h"
 #include "Subsystems/MooseLifter.h"
 #include "Subsystems/AntlerMoose.h"
+#include "Subsystems/Bincher.h"
 #include "OI.h"
 #include "WPILib.h"
 #include "RobotMap.h"
@@ -34,6 +35,7 @@ public:
 	static Pusher *pusher;
 	static MooseLifter *mooseLifter;
 	static AntlerMoose *antlerMoose;
+	static Bincher *bincher;
 	static Compressor *compressor;
 };
 

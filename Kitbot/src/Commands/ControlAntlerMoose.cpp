@@ -31,9 +31,9 @@ void ControlAntlerMoose::Execute()
 		if(m_bNewStatusL){
 			m_bNewStatusL = false;
 			if(antlerMoose->IsLeftAntlerDown()){
-				antlerMoose->ControlLeftAntler(true);	//if antlers down, move up
+				antlerMoose->ControlLeftAntler(false);	//if antlers down, move up
 			}else{
-				antlerMoose->ControlLeftAntler(false);	//if antlers up, move down
+				antlerMoose->ControlLeftAntler(true);	//if antlers up, move down
 			}
 		}
 	}else{
@@ -44,9 +44,9 @@ void ControlAntlerMoose::Execute()
 		if(m_bNewStatusR){
 			m_bNewStatusR = false;
 			if(antlerMoose->IsRightAntlerDown()){
-				antlerMoose->ControlRightAntler(true);//if antlers down, move up
+				antlerMoose->ControlRightAntler(false);//if antlers down, move up
 			}else{
-				antlerMoose->ControlRightAntler(false);//if antlers up, move down
+				antlerMoose->ControlRightAntler(true);//if antlers up, move down
 			}
 		}
 	}else{
@@ -63,8 +63,8 @@ bool ControlAntlerMoose::IsFinished()
 // Called once after isFinished returns true
 void ControlAntlerMoose::End()
 {
-	antlerMoose->ControlLeftAntler(true);	//keeps antlers at current position when disabled
-	antlerMoose->ControlRightAntler(true);
+	antlerMoose->ControlLeftAntler(false);
+	antlerMoose->ControlRightAntler(false);
 }
 
 // Called when another command which requires one or more of the same

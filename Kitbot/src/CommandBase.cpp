@@ -6,6 +6,7 @@
 #include "Subsystems/Pusher.h"
 #include "Subsystems/MooseLifter.h"
 #include "Subsystems/AntlerMoose.h"
+#include "Subsystems/Bincher.h"
 #include "Commands/Scheduler.h"
 #include "Commands/AccelerometerTest.h"
 #include "Commands/SavePreferences.h"
@@ -19,7 +20,7 @@ Lifter* CommandBase::lifter = NULL;
 Pusher* CommandBase::pusher = NULL;
 MooseLifter* CommandBase::mooseLifter = NULL;
 AntlerMoose* CommandBase::antlerMoose = NULL;
-
+Bincher* CommandBase::bincher = NULL;
 Compressor* CommandBase::compressor = NULL;
 //AccelerometerTest* FPS = NULL;
 SavePreferences* save = NULL;
@@ -49,6 +50,7 @@ void CommandBase::init()
 	pusher = new Pusher();
 	mooseLifter = new MooseLifter();
 	antlerMoose = new AntlerMoose();
+	bincher = new Bincher();
 	compressor = new Compressor(COMPRESSOR);
 	compressor->Start();
 	//FPS = new AccelerometerTest();

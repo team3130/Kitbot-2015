@@ -46,6 +46,7 @@ const int MOOSEPREVENT = 4;		//Prevents Moose from going up any further
 const int LEFTANTLERB = 5;		//Controls left antler
 const int RIGHTANTLERA = 6;		//Controls right antler
 const int RIGHTANTLERB = 7;		//Controls right antler
+const int BINCHER = 8;			//Controls Bin pincher
 
 
 
