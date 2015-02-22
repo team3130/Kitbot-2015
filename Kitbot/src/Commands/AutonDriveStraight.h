@@ -7,12 +7,12 @@
 
 class AutonDriveStraight: public PIDCommand{
 private:
-public:
 	Timer timer;
 	double speed;
 	double goal;
 	double threshold;
 	double confirmTime;
+public:
 	AutonDriveStraight();
 	virtual void Initialize();
 	virtual void Execute();

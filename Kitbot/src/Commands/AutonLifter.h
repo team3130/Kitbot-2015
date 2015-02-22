@@ -9,6 +9,7 @@ class AutonLifter: public CommandBase
 private:
 	Timer* timer;
 	double m_waitTime;
+	double m_dThreshold;
 	double m_dEncoderGoal;
 public:
 	AutonLifter();
@@ -17,7 +18,9 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	void SetGoal(double timeout, double goal) { m_waitTime = timeout; m_dEncoderGoal = goal;};
+	void SetGoal(double timeout, double thresh, double goal){m_waitTime = timeout;
+															m_dThreshold = thresh;
+															m_dEncoderGoal = goal;};
 };
 
 #endif

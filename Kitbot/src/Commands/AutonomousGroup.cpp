@@ -39,12 +39,15 @@ void AutonomousGroup::Initialize()
 		//Lifter
 	m_cAutonLifter1->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Time",3),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Threshold",15),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Goal",1600));
 	m_cAutonLifter2->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Time",3),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Threshold",15),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Goal",0));
 	m_cAutonLifter3->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Time",5),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Threshold",15),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Goal",400));
 
 		//Driving

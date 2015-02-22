@@ -10,6 +10,7 @@ ControlPusher::ControlPusher()
 void ControlPusher::Initialize()
 {
 	manualMode = true;
+	pusher->pushLifter(0);
 }
 
 // Called repeatedly when this Command is scheduled to run

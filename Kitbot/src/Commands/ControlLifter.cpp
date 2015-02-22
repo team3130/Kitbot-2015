@@ -12,6 +12,7 @@ void ControlLifter::Initialize()
 {
 	manualMode = true;
 	buttonHold = false;
+	lifter->moveLifter(0);
 }
 
 // Called repeatedly when this Command is scheduled to run
