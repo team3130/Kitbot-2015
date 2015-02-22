@@ -2,6 +2,7 @@
 
 AutonTurn::AutonTurn()
 	: m_angle(0)
+	, m_threshold(0)
 	, m_waitTime(0)
 {
 	Requires(chassis);
@@ -24,7 +25,7 @@ void AutonTurn::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool AutonTurn::IsFinished()
 {
-	return (timer->Get() > m_waitTime);
+	return ((fabs(chassis->GetAngle()-m_angle) < m_threshold) || timer->Get() > m_waitTime);
 }
 
 // Called once after isFinished returns true

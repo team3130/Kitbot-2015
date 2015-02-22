@@ -77,13 +77,13 @@ void AutonomousGroup2::Initialize()
 	m_cAntlerMoose1->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Antlers-Time",1.5));
 
 		//Turn to fit within the Auto Zone
-	m_cAutonTurner->SetGoal(90, 2);
+	m_cAutonTurner->SetGoal(90, Preferences::GetInstance()->GetDouble("Auto-Turn-Threshold",2.5), 2);
 
 		//Activate Intake Arms to fit within the Auto Zone
 	m_cAutonIntakeArms->SetGoal(Preferences::GetInstance()->GetDouble("Auto-Intake-Arms-Time",15), true);
 
-	CommandBase::antlerMoose->ControlLeftAntler(DoubleSolenoid::kForward);
-	CommandBase::antlerMoose->ControlRightAntler(DoubleSolenoid::kForward);
+	CommandBase::antlerMoose->ControlLeftAntler(true);
+	CommandBase::antlerMoose->ControlRightAntler(true);
 	CommandBase::mooseLifter->MoveMooseLock(false);
 }
 

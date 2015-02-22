@@ -14,8 +14,8 @@ AutonomousGroup::AutonomousGroup()
 	AddSequential(m_cAutonPusher1);			//grabs bin back
 	AddSequential(m_cAutonLifter2);			//sets the bin down onto the yellow tote
 	AddSequential(m_cAutonLifter3);			//Pick up the whole bin-tote stack
-	//AddSequential(m_cAutonTurn1);			//Turns robot towards Auton Zone
-	//AddSequential(m_cAutonDriveStraight1);	//Robot drives into Auton Zone
+	AddSequential(m_cAutonTurn1);			//Turns robot towards Auton Zone
+	AddSequential(m_cAutonDriveStraight1);	//Robot drives into Auton Zone
 }
 
 AutonomousGroup::~AutonomousGroup()
@@ -38,15 +38,15 @@ void AutonomousGroup::Initialize()
 
 		//Lifter
 	m_cAutonLifter1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Time",3),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Time",5),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Threshold",15),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Goal",1600));
 	m_cAutonLifter2->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Time",3),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Time",5),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Threshold",15),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter2-Goal",0));
 	m_cAutonLifter3->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Time",5),
+			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Time",7),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Threshold",15),
 			Preferences::GetInstance()->GetDouble("Auton1-Lifter3-Goal",400));
 
@@ -60,7 +60,7 @@ void AutonomousGroup::Initialize()
 		//Turning
 	m_cAutonTurn1->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Angle",90),
-			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Time",2));
+			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Threshold",2.5), 3);
 }
 
 // Called repeatedly when this Command is scheduled to run

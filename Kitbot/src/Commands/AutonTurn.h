@@ -9,6 +9,7 @@ class AutonTurn: public CommandBase
 private:
 	Timer* timer;
 	double m_angle;
+	double m_threshold;
 	double m_waitTime;
 public:
 	AutonTurn();
@@ -17,7 +18,9 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	void SetGoal(double angle, double timeout) { m_angle = angle, m_waitTime = timeout; };
+	void SetGoal(double angle, double thresh, double timeout) { m_angle = angle,
+																m_threshold = thresh,
+																m_waitTime = timeout; };
 };
 
 #endif
