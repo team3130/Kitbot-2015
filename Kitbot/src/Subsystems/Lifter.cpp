@@ -48,4 +48,3 @@ void Lifter::moveLifter(float goal)
 		m_cLiftMotor->SetPosition(0);
 	}
 }
-
