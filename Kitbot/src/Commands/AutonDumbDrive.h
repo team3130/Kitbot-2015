@@ -6,10 +6,11 @@
 
 class AutonDumbDrive: public CommandBase
 {
-public:
+private:
 	Timer* timer;
 	double m_driveSpeed;
 	double m_waitTime;
+public:
 	AutonDumbDrive();
 	void Initialize();
 	void Execute();

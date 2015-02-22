@@ -3,9 +3,9 @@
 
 #include "../CommandBase.h"
 #include "WPILib.h"
-#include "../Subsystems/Lifter.h"
 
-class AutonLifter: public PIDCommand{
+class AutonLifter: public CommandBase
+{
 private:
 	Timer* timer;
 	double m_waitTime;
@@ -13,14 +13,15 @@ private:
 	double m_dEncoderGoal;
 public:
 	AutonLifter();
-	virtual void Initialize();
-	virtual void Execute();
-	virtual bool IsFinished();
-	virtual void End();
-	virtual void Interrupted();
-	virtual double ReturnPIDInput();
-	void SetGoal(double timeout, double thresh, double goal);
-	virtual void UsePIDOutput(double output);
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+	void SetGoal(double timeout, double thresh, double goal){
+		m_waitTime = timeout;
+		m_dThreshold = thresh;
+		m_dEncoderGoal = goal;};
 };
 
 #endif
