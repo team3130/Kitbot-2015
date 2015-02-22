@@ -44,11 +44,11 @@ bool AutonLifter::IsFinished()
 			!CommandBase::lifter->GetLimitSwitchBot());
 }
 
-double ReturnPIDInput(){
+double AutonLifter::ReturnPIDInput(){
 	return CommandBase::lifter->GetPosition();
 }
 
-void UsePIDOutput(double output){
+void AutonLifter::UsePIDOutput(double output){
 	CommandBase::lifter->toSetpoint(output);
 }
 
