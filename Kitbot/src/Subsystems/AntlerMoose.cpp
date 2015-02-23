@@ -5,8 +5,8 @@
 AntlerMoose::AntlerMoose()
 	: Subsystem("AntlerMoose")
 {
-	m_cLeftAntler = new Solenoid(COMPRESSOR, LEFTANTLERA);
-	m_cRightAntler = new Solenoid(COMPRESSOR, RIGHTANTLERA);
+	m_cLeftAntler = new Solenoid(COMPRESSOR, LEFTANTLER);
+	m_cRightAntler = new Solenoid(COMPRESSOR, RIGHTANTLER);
 	m_bLeftAntlerDown = false;
 	m_bRightAntlerDown = false;
 	m_cLeftAntler->Set(true);	//initially idles
