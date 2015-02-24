@@ -5,7 +5,7 @@
 Bincher::Bincher() : Subsystem("Bincher")
 {
 	m_cBincher = new Solenoid(COMPRESSOR, BINCHER);
-	m_bIsPinching = false;
+	m_bIsPinching = true;
 }
 
 Bincher::~Bincher(){
@@ -23,4 +23,5 @@ void Bincher::InitDefaultCommand()
 void Bincher::SetPinch(bool isPinch)
 {
 	m_cBincher->Set(isPinch);
+	m_bIsPinching = isPinch;
 }
