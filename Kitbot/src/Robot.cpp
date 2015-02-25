@@ -2,6 +2,8 @@
 #include "Commands/Command.h"
 #include "Commands/AutonomousGroup2.h"
 #include "Commands/AutonomousGroup.h"
+#include "Commands/AutonomousGroup3.h"
+#include "Commands/AutonomousGroup4.h"
 #include "Commands/RobotSensors.h"
 #include "CommandBase.h"
 
@@ -18,7 +20,9 @@ private:
 		CommandBase::init();
 		chooser = new SendableChooser();
 		chooser->AddDefault("Moose Bin Grabber", new AutonomousGroup2());
-		chooser->AddObject("Bin Onto Yellow Tote", new AutonomousGroup());
+		chooser->AddObject("Pick Up Yellow Tote", new AutonomousGroup());
+		chooser->AddObject("Drive into Auton Zone", new AutonomousGroup3());
+		chooser->AddObject("Pick Up Bin", new AutonomousGroup4());
 		SmartDashboard::PutData("Autonomous Modes", chooser);
 		robotSensors = new RobotSensors();
 		lw = LiveWindow::GetInstance();

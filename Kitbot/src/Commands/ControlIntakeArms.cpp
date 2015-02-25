@@ -30,12 +30,12 @@ bool ControlIntakeArms::IsFinished()
 // Called once after isFinished returns true
 void ControlIntakeArms::End()
 {
-
+	intakearms->ControlArms(true, true);	//Intake Arms go out when disabled
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ControlIntakeArms::Interrupted()
 {
-
+	End();
 }

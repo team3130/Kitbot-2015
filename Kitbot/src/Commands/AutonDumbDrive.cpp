@@ -2,6 +2,7 @@
 
 AutonDumbDrive::AutonDumbDrive()
 	: m_waitTime(0)
+	, m_driveSpeed(0)
 {
 	Requires(chassis);
 	timer = new Timer();

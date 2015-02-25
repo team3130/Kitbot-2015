@@ -27,7 +27,7 @@ void AutonDriveStraight::Initialize() {
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
 	CommandBase::chassis->ResetEncoders();
-	CommandBase::chassis->HoldAngle(0.0);
+	//CommandBase::chassis->HoldAngle(0.0);
 	GetPIDController()->Reset();
 	GetPIDController()->Enable();
 	timer.Reset();

@@ -43,8 +43,8 @@ const int INTAKEARMR = 1;
 const int MOOSELIFTER = 2;
 const int LEFTANTLER = 3;		//Controls left antler
 const int MOOSEPREVENT = 4;		//Prevents Moose from going up any further
-const int RIGHTANTLER = 6;		//Controls right antler
-const int BINCHER = 5;			//Controls Bin pincher
+const int RIGHTANTLER = 6;		//Controls right antler TODO: Switch Right Antler back to 5
+const int BINCHER = 5;			//Controls Bin pincher TODO: Switch BINCHER back to 6
 
 
 
