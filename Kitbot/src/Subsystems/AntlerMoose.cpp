@@ -32,5 +32,5 @@ void AntlerMoose::ControlLeftAntler(bool Up)
 void AntlerMoose::ControlRightAntler(bool Up)
 {
 	m_cRightAntler->Set(Up);
-	m_bLeftAntlerDown = Up;
+	m_bRightAntlerDown = Up;
 }
