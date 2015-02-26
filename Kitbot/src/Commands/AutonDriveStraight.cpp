@@ -69,7 +69,7 @@ void AutonDriveStraight::UsePIDOutput(double output){
 // Called once after isFinished returns true
 void AutonDriveStraight::End() {
 	GetPIDController()->Disable();
-	CommandBase::chassis->m_drive(0,0);
+	CommandBase::chassis->m_drive.TankDrive(float(0),float(0));
 	timer.Stop();
 }
 
