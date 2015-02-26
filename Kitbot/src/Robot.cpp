@@ -4,6 +4,7 @@
 #include "Commands/AutonomousGroup.h"
 #include "Commands/AutonomousGroup3.h"
 #include "Commands/AutonomousGroup4.h"
+#include "Commands/AutonomousGroup5.h"
 #include "Commands/RobotSensors.h"
 #include "CommandBase.h"
 
@@ -23,6 +24,7 @@ private:
 		chooser->AddObject("Pick Up Yellow Tote", new AutonomousGroup());
 		chooser->AddObject("Drive into Auton Zone", new AutonomousGroup3());
 		chooser->AddObject("Pick Up Bin", new AutonomousGroup4());
+		chooser->AddObject("No Auton", new AutonomousGroup5());
 		SmartDashboard::PutData("Autonomous Modes", chooser);
 		robotSensors = new RobotSensors();
 		lw = LiveWindow::GetInstance();
