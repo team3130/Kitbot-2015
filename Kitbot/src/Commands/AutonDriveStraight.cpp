@@ -63,13 +63,13 @@ double AutonDriveStraight::ReturnPIDInput(){
 void AutonDriveStraight::UsePIDOutput(double output){
 	if(output > speed) output = speed;
 	if(output < -speed) output = -speed;
-	CommandBase::chassis->GyroDrive(-output);
+	CommandBase::chassis->m_drive.TankDrive(-output,-output);
 }
 
 // Called once after isFinished returns true
 void AutonDriveStraight::End() {
 	GetPIDController()->Disable();
-	CommandBase::chassis->GyroDrive(0);
+	CommandBase::chassis->m_drive(0,0);
 	timer.Stop();
 }
 

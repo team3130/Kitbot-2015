@@ -3,14 +3,14 @@
 AutonomousGroup3::AutonomousGroup3()
 {
 	//Goal: Drive Forward into the auton zone and fit somehow
-	m_cAutonDriveStraight1 = new AutonDriveStraight();
+	m_cAutonDumbDrive1 = new AutonDumbDrive();
 	
-	AddSequential(m_cAutonDriveStraight1);	//Robot drives into Auton Zone
+	AddSequential(m_cAutonDumbDrive1);	//Robot drives into Auton Zone
 }
 
 AutonomousGroup3::~AutonomousGroup3()
 {
-	delete m_cAutonDriveStraight1;
+	delete m_cAutonDumbDrive1;
 }
 
 // Called just before this Command runs the first time
@@ -18,9 +18,7 @@ void AutonomousGroup3::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
 		//Driving
-	m_cAutonDriveStraight1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton3-Distance-Zone",78),
-			Preferences::GetInstance()->GetDouble("Auton3-Threshold-Zone",1.5),
+	m_cAutonDumbDrive1->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton3-Speed-Zone",-0.40),
 			Preferences::GetInstance()->GetDouble("Auton3-Timeout-Zone",3));
 }
