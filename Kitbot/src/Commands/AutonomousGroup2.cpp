@@ -61,12 +61,12 @@ void AutonomousGroup2::Initialize()
 
 		//Dumb Drive
 	m_cAutonDumb1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auto-Dumb-Speed", -0.55),
+			Preferences::GetInstance()->GetDouble("Auto-Dumb-Speed", 0.55),
 			Preferences::GetInstance()->GetDouble("Auto-Dumb-Time", 1.2));
 
 		//Moose Lifter
 	m_cMooseLifter1->SetGoal(0,
-			Preferences::GetInstance()->GetDouble("Auto-MooseUp-Time", 1.0),
+			Preferences::GetInstance()->GetDouble("Auto-MooseUp-Time", 2.0),
 			true);
 	m_cMooseLifter2->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auto-MooseDrop",140),
