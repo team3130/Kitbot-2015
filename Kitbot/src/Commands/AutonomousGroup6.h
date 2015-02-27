@@ -1,26 +1,27 @@
-#ifndef AUTONOMOUS_GROUP_4_H
-#define AUTONOMOUS_GROUP_4_H
+#ifndef AUTONOMOUS_GROUP_6_H
+#define AUTONOMOUS_GROUP_6_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 #include "AutonDriveStraight.h"
 #include "AutonLifter.h"
 #include "AutonPusher.h"
-#include "AutonTurn.h"
+#include "AutonDumbTurn.h"
 #include "AutonBincher.h"
 
-class AutonomousGroup4: public CommandGroup
+class AutonomousGroup6: public CommandGroup
 {
 private:
 	AutonLifter* m_cAutonLifter1;
+	AutonLifter* m_cAutonLifter2;
+	AutonLifter* m_cAutonLifter3;
 	AutonPusher* m_cAutonPusher1;
-	AutonPusher* m_cAutonPusher2;
 	AutonDriveStraight* m_cAutonDriveStraight1;
-	AutonTurn* m_cAutonTurn1;
+	AutonDumbTurn* m_cAutonTurn1;
 	AutonBincher* m_cAutonBincher1;
 public:
-	AutonomousGroup4();
-	~AutonomousGroup4();
+	AutonomousGroup6();
+	~AutonomousGroup6();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

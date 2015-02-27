@@ -8,10 +8,12 @@ AutonomousGroup4::AutonomousGroup4()
 	m_cAutonLifter1 = new AutonLifter();
 	m_cAutonDriveStraight1 = new AutonDriveStraight();
 	m_cAutonTurn1 = new AutonTurn();
+	m_cAutonBincher1= new AutonBincher();
 	
 	AddSequential(m_cAutonPusher1);			//extend pusher a little for bin
 	AddSequential(m_cAutonLifter1);			//lifts bin up
 	AddSequential(m_cAutonPusher2);			//grabs bin back
+	AddSequential(m_cAutonBincher1);
 	//AddSequential(m_cAutonTurn1);			//Turns robot towards Auton Zone
 	//AddSequential(m_cAutonDriveStraight1);	//Robot drives into Auton Zone
 }
@@ -52,6 +54,9 @@ void AutonomousGroup4::Initialize()
 	m_cAutonTurn1->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Angle",40),
 			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Threshold",2.5), 3);
+
+		//Bincher
+	m_cAutonBincher1->SetDir(true);
 }
 
 // Called repeatedly when this Commsand is scheduled to run
