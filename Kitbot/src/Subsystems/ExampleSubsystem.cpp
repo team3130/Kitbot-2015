@@ -62,9 +62,19 @@ void ExampleSubsystem::GyroDrive(double move, bool squaredInputs)
 	}
 }
 
+double ExampleSubsystem::GetAngle()
+{
+	return ( m_cEncoderL->GetDistance() - m_cEncoderR->GetDistance() ) / -2.38;
+	/*
+	 *  1"/24" ~= 2.38 degree. That's approximate geometry of the bot
+	 *  Negative because our encoders connected backwards
+	 */
+	//return gyro->GetAngle();
+}
+
 double ExampleSubsystem::ReturnPIDInput()
 {
-	return ( m_cEncoderL->GetDistance() - m_cEncoderR->GetDistance() ) / 2.38; // 1"/24" ~= 2.38 degree.
+	return GetAngle();
 }
 
 void ExampleSubsystem::UsePIDOutput(double outputAngle)

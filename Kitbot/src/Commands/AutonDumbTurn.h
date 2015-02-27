@@ -7,9 +7,9 @@
 class AutonDumbTurn: public CommandBase
 {
 private:
-	Timer* timer;
-	double m_driveTurn;
 	double m_waitTime;
+	double m_driveTurn;
+	Timer* timer;
 public:
 	AutonDumbTurn();
 	void Initialize();

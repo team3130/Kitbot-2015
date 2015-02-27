@@ -23,7 +23,7 @@ public:
 	~ExampleSubsystem();
 	void InitDefaultCommand();
 	void Drive(double move, double turn, bool squaredInputs = true);
-	double GetAngle() {return gyro->GetAngle();};
+	double GetAngle();
 	bool IsUsingGyro() {return m_bIsUsingGyro;};
 	void HoldAngle(double angle = 0);
 	void ReleaseAngle() { GetPIDController()->Disable(); };

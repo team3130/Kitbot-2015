@@ -8,8 +8,8 @@ class AutonDumbDrive: public CommandBase
 {
 private:
 	Timer* timer;
-	double m_driveSpeed;
 	double m_waitTime;
+	double m_driveSpeed;
 public:
 	AutonDumbDrive();
 	void Initialize();
