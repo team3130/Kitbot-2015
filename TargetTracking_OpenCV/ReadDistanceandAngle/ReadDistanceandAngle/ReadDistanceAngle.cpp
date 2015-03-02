@@ -4,7 +4,11 @@
 #include "opencv2/highgui/highgui.hpp"
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string>
+
+//#define RNG rng(12345)
 
 std::vector<cv::Point2f> Generate2DPoints();
 std::vector<cv::Point3f> Generate3DPoints();
@@ -43,6 +47,7 @@ int main(int argc, char** argv)
 	cv::inRange(Im, cv::Scalar(iLowB, iLowG, iLowR), cv::Scalar(iHighB, iHighG, iHighR), YellowIm);
 	cv::namedWindow("Yellow", CV_WINDOW_AUTOSIZE);
 	cv::imshow("Yellow", YellowIm);
+	cv::waitKey(0);
 	//Morphology
 	
 	//morphological opening (remove small objects from the foreground)
@@ -52,16 +57,38 @@ int main(int argc, char** argv)
 	//morphological closing (fill small holes in the foreground)
 	cv::dilate(YellowIm, YellowIm, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)));
 	cv::erode(YellowIm, YellowIm, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)));
-
+	cv::medianBlur(YellowIm, YellowIm, 21);
+	cv::imshow("Yellow", YellowIm);
 	
 	cv::waitKey(0);
-
+	 
 	//Extract Contours
-
+	std::vector<std::vector<cv::Point>> contours;
+	std::vector<cv::Vec4i> hierarchy;
+	cv::Mat YellowCopy = YellowIm;
+	findContours(YellowIm, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 	// Find Largest Contour
-
+	int maxid = 0;
+	double maxarea = 0;
+	for (int i = 0; i < contours.size(); i++)
+	{	
+		double contourArea = cv::contourArea(contours[i]);
+		if (contourArea>maxarea)
+		{
+			maxid = i;
+			maxarea = contourArea;
+		}
+	}
+	std::cout << "\n" << maxid << " " << maxarea << std::endl;
 	//Extract Convex Hull of the Largest Contour
-
+	std::vector < cv::Point > hull;
+	cv::convexHull(contours[maxid], hull, true);
+	std::cout << "\n Hull computed: " << hull.size() <<  std::endl;
+	//cv::Scalar color = ;
+	
+	//cv::drawContours(YellowIm, hull, 1, cv::Scalar(255, 0, 0), 1, 8, std::vector<cv::Vec4i>(), 0, cv::Point());
+	cv::imshow("Yellow", YellowCopy);
+	cv::waitKey(0);
 	// Read points
 	std::vector<cv::Point2f> imagePoints = Generate2DPoints();
 	std::vector<cv::Point3f> objectPoints = Generate3DPoints();
