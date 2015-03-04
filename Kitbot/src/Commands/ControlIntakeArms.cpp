@@ -3,7 +3,7 @@
 ControlIntakeArms::ControlIntakeArms()
 {
 	Requires(intakearms);
-	m_bArmsExtended = false;
+	m_bArmsExtended = true;
 }
 
 // Called just before this Command runs the first time
@@ -15,8 +15,8 @@ void ControlIntakeArms::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlIntakeArms::Execute()
 {
-	bool extL = oi->stickL->GetTrigger();
-	bool extR = oi->stickR->GetTrigger();
+	bool extL = !oi->stickL->GetTrigger();
+	bool extR = !oi->stickR->GetTrigger();
 	intakearms->ControlArms(extL, extR);
 	m_bArmsExtended = extL & extR;
 }

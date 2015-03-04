@@ -8,6 +8,7 @@ class AutonBincher: public CommandBase
 {
 private:
 	bool m_bDirection;
+	bool m_bRan;
 public:
 	AutonBincher();
 	~AutonBincher();

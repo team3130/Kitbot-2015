@@ -8,6 +8,7 @@ class AutonPusher: public CommandBase
 {
 private:
 	Timer* timer;
+	Timer* timer2;
 	double m_waitTime;
 	bool m_nDirection;
 public:

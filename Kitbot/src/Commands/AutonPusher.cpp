@@ -6,6 +6,7 @@ AutonPusher::AutonPusher()
 {
 	Requires(pusher);
 	timer = new Timer();
+	timer2 = new Timer();
 }
 
 // Called just before this Command runs the first time
