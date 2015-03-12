@@ -73,9 +73,31 @@ AutonomousGroup7::~AutonomousGroup7()
 	delete m_cAutonLifter1;
 	delete m_cAutonLifter2;
 	delete m_cAutonLifter3;
+	delete m_cAutonLifter4;
+	delete m_cAutonLifter5;
+	delete m_cAutonLifter6;
+	delete m_cAutonLifter7;
+	delete m_cAutonLifter8;
+	delete m_cAutonLifter9;
 	delete m_cAutonPusher1;
 	delete m_cAutonDriveStraight1;
+	delete m_cAutonDriveStraight2;
+	delete m_cAutonDriveStraight3;
+	delete m_cAutonDriveStraight4;
 	delete m_cAutonTurn1;
+	delete m_cAutonBincher1;
+	delete m_cAutonBincher2;
+	delete m_cAutonArms1;
+	delete m_cAutonArms2;
+	delete m_cAutonArms3;
+	delete m_cAutonArms4;
+	delete m_cAutonArms5;
+	delete m_cAutonArms6;
+	delete m_cAutonRollers1;
+	delete m_cAutonRollers2;
+	delete m_cAutonRollers3;
+	delete m_cAutonRollers4;
+	delete m_cAutonRollers5;
 }
 
 // Called just before this Command runs the first time

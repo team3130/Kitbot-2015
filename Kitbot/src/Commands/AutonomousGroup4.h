@@ -17,7 +17,6 @@ private:
 	AutonPusher* m_cAutonPusher2;
 	AutonDriveStraight* m_cAutonDriveStraight1;
 	AutonTurn* m_cAutonTurn1;
-	AutonBincher* m_cAutonBincher1;
 public:
 	AutonomousGroup4();
 	~AutonomousGroup4();

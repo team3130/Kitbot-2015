@@ -22,11 +22,13 @@ private:
 		CommandBase::init();
 		chooser = new SendableChooser();
 		chooser->AddDefault("Moose Bin Grabber", new AutonomousGroup2());
-		chooser->AddObject("Pick Up Yellow Tote", new AutonomousGroup());
+		//chooser->AddObject("Pick Up Yellow Tote", new AutonomousGroup());
 		chooser->AddObject("Drive into Auton Zone", new AutonomousGroup3());
-		chooser->AddObject("Pick Up Bin - No Bincher", new AutonomousGroup4());
+		//chooser->AddObject("Pick Up Bin - No Bincher", new AutonomousGroup4());
 		chooser->AddObject("No Auton", new AutonomousGroup5());
 		chooser->AddObject("Bin into Bincher", new AutonomousGroup6());
+		chooser->AddObject("3 Tote + Bin", new AutonomousGroup7());
+		chooser->AddObject("1 Tote + Bin", new AutonomousGroup8());
 		SmartDashboard::PutData("Autonomous Modes", chooser);
 		robotSensors = new RobotSensors();
 		lw = LiveWindow::GetInstance();

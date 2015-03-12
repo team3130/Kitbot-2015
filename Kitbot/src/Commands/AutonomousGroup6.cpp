@@ -31,9 +31,13 @@ AutonomousGroup6::~AutonomousGroup6()
 	delete m_cAutonLifter1;
 	delete m_cAutonLifter2;
 	delete m_cAutonLifter3;
+	delete m_cAutonLifter4;
 	delete m_cAutonPusher1;
 	delete m_cAutonDriveStraight1;
 	delete m_cAutonTurn1;
+	delete m_cAutonBincher1;
+	delete m_cAutonBincher2;
+	delete m_cAutonArms1;
 }
 
 // Called just before this Command runs the first time
