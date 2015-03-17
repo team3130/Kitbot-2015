@@ -49,6 +49,10 @@ void RobotSensors::Execute()
 		if( lifter->GetSpeed() > 0.5 ) arduino->Write("6", 1);
 		else if(lifter->GetSpeed() < -0.5) arduino->Write("7", 1);
 		else arduino->Write("8", 1);
+
+		if( CommandBase::pusher->GetDir() > 0) arduino->Write("9", 1);
+		else if( CommandBase::pusher->GetDir() < 0) arduino->Write("10", 1);
+		else arduino->Write("11", 1);
 	}
 
 	SmartDashboard::PutNumber("Encoder-Value", lifter->GetPosition());
