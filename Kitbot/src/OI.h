@@ -12,6 +12,7 @@ public:
 	Joystick*	stickL;
 	Joystick*	stickR;
 	Joystick*	gamepad;
+	JoystickButton* straightTest;
 };
 
 #endif

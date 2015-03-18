@@ -6,6 +6,8 @@
 #include "Commands/AutonomousGroup4.h"
 #include "Commands/AutonomousGroup5.h"
 #include "Commands/AutonomousGroup6.h"
+#include "Commands/AutonomousGroup7.h"
+#include "Commands/AutonomousGroup8.h"
 #include "Commands/RobotSensors.h"
 #include "CommandBase.h"
 
