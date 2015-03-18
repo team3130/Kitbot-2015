@@ -12,6 +12,7 @@ Lifter::Lifter()
 	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	m_cLiftMotor->SetSensorDirection(false);
 	m_cLiftMotor->SetPID(0.05,0,0);
+	m_cLiftMotor->SetVoltageRampRate(18.0);
 }
 
 Lifter::~Lifter(){
