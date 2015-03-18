@@ -28,8 +28,10 @@ void Lifter::InitDefaultCommand()
 void Lifter::toSetpoint(int goal)
 {
 	double termP = Preferences::GetInstance()->GetInt("LifterPIDtermP", 5);
+	double termI = Preferences::GetInstance()->GetInt("LifterPIDtermI", 0);
+	double termD = Preferences::GetInstance()->GetInt("LifterPIDtermD", 0);
 	m_cLiftMotor->SetControlMode(CANSpeedController::kPosition);
-	m_cLiftMotor->SetPID(termP,0,0);
+	m_cLiftMotor->SetPID(termP,termI,termD);
 	m_cLiftMotor->Set(goal);
 	m_cLiftMotor->EnableControl();
 }
@@ -38,14 +40,18 @@ void Lifter::moveLifter(float goal)
 {
 	if(goal > 0 and GetLimitSwitchTop()){
 		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
-		m_cLiftMotor->Set(goal);
+		if(GetPosition() < Preferences::GetInstance()->GetInt("LifterSlowZoneBot", 200)){
+			m_cLiftMotor->Set(0.5*goal);
+		}else{
+			m_cLiftMotor->Set(goal);
+		}
 	}else if(goal < 0 and GetLimitSwitchBot()){
 		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
-		m_cLiftMotor->Set(goal);
-	}else if((goal < 0 and GetPosition() < Preferences::GetInstance()->GetInt("LifterSlowZoneBot", 200))
-			or (goal > 0 and GetPosition() > Preferences::GetInstance()->GetInt("LifterSlowZoneTop", 6185))){
-		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
-		m_cLiftMotor->Set(0.5*goal);
+		if(GetPosition() > Preferences::GetInstance()->GetInt("LifterSlowZoneTop", 6185)){
+			m_cLiftMotor->Set(0.5*goal);
+		}else{
+			m_cLiftMotor->Set(goal);
+		}
 	}else if(m_cLiftMotor->GetControlMode() == CANSpeedController::kPercentVbus){
 		toSetpoint(GetPosition());
 	}
