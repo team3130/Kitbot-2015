@@ -41,6 +41,9 @@ void Lifter::moveLifter(float goal)
 	}else if(goal < 0 and GetLimitSwitchBot()){
 		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 		m_cLiftMotor->Set(goal);
+	}else if(goal < 0 and GetPosition() < Preferences::GetInstance()->GetInt("LifterSlowZone", 200)){
+		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
+		m_cLiftMotor->Set(0.5*goal);
 	}else if(m_cLiftMotor->GetControlMode() == CANSpeedController::kPercentVbus){
 		toSetpoint(GetPosition());
 	}
