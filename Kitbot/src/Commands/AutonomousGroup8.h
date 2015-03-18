@@ -21,14 +21,13 @@ private:
 	AutonLifter* m_cAutonLifter5;
 	AutonPusher* m_cAutonPusher1;
 	AutonDriveStraight* m_cAutonDriveStraight1;
-	AutonDriveStraight* m_cAutonDriveStraight4;
+	AutonDriveStraight* m_cAutonDriveStraight2;
 	AutonDumbTurn* m_cAutonTurn1;
 	AutonBincher* m_cAutonBincher1;
 	AutonBincher* m_cAutonBincher2;
 	AutonIntakeArms* m_cAutonArms1;
 	AutonIntakeArms* m_cAutonArms2;
 	AutonRollers* m_cAutonRollers1;
-	AutonRollers* m_cAutonRollers2;
 public:
 	AutonomousGroup8();
 	~AutonomousGroup8();

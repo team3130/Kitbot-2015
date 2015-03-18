@@ -10,6 +10,8 @@
  * floating around.
  */
 
+const double ROBOT_GAUGE = 25.5;	//inches of distance between wheels
+
 /****** PWM ports ************************/
 
 const int LEFTBACKMOTOR = 0;

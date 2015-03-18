@@ -2,7 +2,7 @@
 
 AutonomousGroup6::AutonomousGroup6()
 {
-	//Goal: pick up a bin
+	//Goal: pick up a bin and put into bincher
 	m_cAutonPusher1 = new AutonPusher();
 	m_cAutonLifter1 = new AutonLifter();
 	m_cAutonLifter2 = new AutonLifter();
@@ -14,7 +14,7 @@ AutonomousGroup6::AutonomousGroup6()
 	m_cAutonTurn1 = new AutonDumbTurn();
 	m_cAutonArms1 = new AutonIntakeArms();
 	
-	AddParallel(m_cAutonArms1);
+	AddParallel(m_cAutonArms1);				//opens arms
 	AddSequential(m_cAutonBincher1);		//opens bincher
 	AddSequential(m_cAutonLifter4);			//lifts bin up
 	AddSequential(m_cAutonPusher1);			//grabs bin back

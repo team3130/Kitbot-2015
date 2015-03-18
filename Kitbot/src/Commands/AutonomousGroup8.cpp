@@ -2,7 +2,7 @@
 
 AutonomousGroup8::AutonomousGroup8()
 {
-	//Goal: pick up a bin
+	//Goal: pick up a bin into bincher, then intake yellow tote
 	m_cAutonPusher1 = new AutonPusher();
 	m_cAutonLifter1 = new AutonLifter();
 	m_cAutonLifter2 = new AutonLifter();
@@ -12,12 +12,11 @@ AutonomousGroup8::AutonomousGroup8()
 	m_cAutonBincher1 = new AutonBincher();
 	m_cAutonBincher2 = new AutonBincher();
 	m_cAutonDriveStraight1 = new AutonDriveStraight();
-	m_cAutonDriveStraight4 = new AutonDriveStraight();
+	m_cAutonDriveStraight2 = new AutonDriveStraight();
 	m_cAutonTurn1 = new AutonDumbTurn();
 	m_cAutonArms1 = new AutonIntakeArms();
 	m_cAutonArms2 = new AutonIntakeArms();
 	m_cAutonRollers1 = new AutonRollers();
-	m_cAutonRollers2 = new AutonRollers();
 	
 	AddParallel(m_cAutonArms1);				//opens arms
 	AddSequential(m_cAutonBincher1);		//opens bincher
@@ -27,15 +26,14 @@ AutonomousGroup8::AutonomousGroup8()
 	AddSequential(m_cAutonBincher2);		//Binches bin
 	AddSequential(m_cAutonLifter2);			//lowers lifter
 
-	AddSequential(m_cAutonDriveStraight1);
-	AddParallel(m_cAutonRollers1);
-	AddSequential(m_cAutonArms2);
-	AddSequential(m_cAutonLifter5);
-	AddParallel(m_cAutonLifter3);
-	AddParallel(m_cAutonRollers2);
+	AddParallel(m_cAutonRollers1);			//While rollers are running
+	AddParallel(m_cAutonDriveStraight1);	//drive forward to intake tote
+	AddSequential(m_cAutonArms2);			//Close arms
+	AddSequential(m_cAutonLifter5);			//Lower lifter for tote
+	AddSequential(m_cAutonLifter3);			//Lifts tote
 
 	//AddSequential(m_cAutonTurn1);
-	//AddSequential(m_cAutonDriveStraight4);
+	//AddSequential(m_cAutonDriveStraight2);
 
 
 }
@@ -49,14 +47,13 @@ AutonomousGroup8::~AutonomousGroup8()
 	delete m_cAutonLifter5;
 	delete m_cAutonPusher1;
 	delete m_cAutonDriveStraight1;
-	delete m_cAutonDriveStraight4;
+	delete m_cAutonDriveStraight2;
 	delete m_cAutonTurn1;
 	delete m_cAutonBincher1;
 	delete m_cAutonBincher2;
 	delete m_cAutonArms1;
 	delete m_cAutonArms2;
 	delete m_cAutonRollers1;
-	delete m_cAutonRollers2;
 }
 
 // Called just before this Command runs the first time
@@ -91,16 +88,16 @@ void AutonomousGroup8::Initialize()
 
 
 		//Driving
-	m_cAutonDriveStraight4->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton8-Distance-Tote4",146),
-			Preferences::GetInstance()->GetDouble("Auton8-Tolerance-Tote4",2.5),
-			Preferences::GetInstance()->GetDouble("Auton8-Speed-Tote4",-0.65),
-			Preferences::GetInstance()->GetDouble("Auton8-Timeout-Tote4",3));
 	m_cAutonDriveStraight1->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton8-Distance-Tote1",22.25),
 			Preferences::GetInstance()->GetDouble("Auton8-Tolerance-Tote1",2.5),
 			Preferences::GetInstance()->GetDouble("Auton8-Speed-Tote1",.65),
 			Preferences::GetInstance()->GetDouble("Auton8-Timeout-Tote1",3));
+	m_cAutonDriveStraight2->SetGoal(
+			Preferences::GetInstance()->GetDouble("Auton8-Distance-Tote2",146),
+			Preferences::GetInstance()->GetDouble("Auton8-Tolerance-Tote2",2.5),
+			Preferences::GetInstance()->GetDouble("Auton8-Speed-Tote2",-0.65),
+			Preferences::GetInstance()->GetDouble("Auton8-Timeout-Tote2",3));
 
 		//Turning - Unfinished
 	m_cAutonTurn1->SetGoal(
@@ -118,17 +115,13 @@ void AutonomousGroup8::Initialize()
 			Preferences::GetInstance()->GetDouble("Auton8-Arms-Opentime",10),
 			false);
 	m_cAutonArms2->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton8-Arms2-Opentime",2),
+			Preferences::GetInstance()->GetDouble("Auton8-Arms-Closetime",2),
 			true);
 
 		//Rollers
 	m_cAutonRollers1->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton8-Rollers1-Runtime",2),
 			1,
-			-1);
-	m_cAutonRollers2->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton8-Rollers2-Runtime",2),
-			-1,
 			-1);
 }
 

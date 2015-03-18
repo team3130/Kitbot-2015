@@ -2,7 +2,7 @@
 
 AutonomousGroup7::AutonomousGroup7()
 {
-	//Goal: pick up a bin
+	//Goal: pick up a bin into bincher, then intake all yellow totes
 	m_cAutonPusher1 = new AutonPusher();
 	m_cAutonLifter1 = new AutonLifter();
 	m_cAutonLifter2 = new AutonLifter();
