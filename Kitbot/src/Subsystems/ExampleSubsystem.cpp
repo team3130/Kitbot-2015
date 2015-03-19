@@ -64,7 +64,7 @@ void ExampleSubsystem::GyroDrive(double move, bool squaredInputs)
 
 double ExampleSubsystem::GetAngle()
 {
-	return ( m_cEncoderL->GetDistance() - m_cEncoderR->GetDistance() ) * 180 / (ROBOT_GAUGE * M_PI);
+	return ( m_cEncoderL->GetDistance() - m_cEncoderR->GetDistance() ) * -180 / (ROBOT_GAUGE * M_PI);
 	/*
 	 *  Angle is 180 degrees times encoder difference over Pi * the distance between the wheels
 	 *	Made from geometry and relation between angle fraction and arc fraction with semicircles.
