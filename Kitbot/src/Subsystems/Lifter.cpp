@@ -12,7 +12,7 @@ Lifter::Lifter()
 	m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	m_cLiftMotor->SetSensorDirection(false);
 	m_cLiftMotor->SetPID(0.05,0,0);
-	m_cLiftMotor->SetVoltageRampRate(300.0);
+	m_cLiftMotor->SetVoltageRampRate(125.0);
 }
 
 Lifter::~Lifter(){
@@ -27,6 +27,7 @@ void Lifter::InitDefaultCommand()
 
 void Lifter::toSetpoint(int goal)
 {
+	m_cLiftMotor->SetVoltageRampRate(125.0);
 	double termP = Preferences::GetInstance()->GetInt("LifterPIDtermP", 5);
 	double termI = Preferences::GetInstance()->GetInt("LifterPIDtermI", 0);
 	double termD = Preferences::GetInstance()->GetInt("LifterPIDtermD", 0);
@@ -38,6 +39,7 @@ void Lifter::toSetpoint(int goal)
 
 void Lifter::moveLifter(float goal)
 {
+	m_cLiftMotor->SetVoltageRampRate(125.0);
 	if(goal > 0 and GetLimitSwitchTop()){
 		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
 		if(GetPosition() > Preferences::GetInstance()->GetInt("LifterSlowZoneTop", 4700)){	//Default number is 5450
