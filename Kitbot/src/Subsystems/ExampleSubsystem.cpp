@@ -50,6 +50,7 @@ void ExampleSubsystem::HoldAngle(double angle)
 {
 	GetPIDController()->SetSetpoint(GetAngle() + angle);
 	GetPIDController()->Enable();
+	m_bIsUsingGyro = true;
 }
 
 void ExampleSubsystem::GyroDrive(double move, bool squaredInputs)
@@ -78,9 +79,9 @@ double ExampleSubsystem::ReturnPIDInput()
 	return GetAngle();
 }
 
-void ExampleSubsystem::UsePIDOutput(double outputAngle)
+void ExampleSubsystem::UsePIDOutput(double bias)
 {
-	m_drive.TankDrive(moveSpeed-outputAngle, moveSpeed+outputAngle, m_bSquaredDrive);
+	m_drive.TankDrive(moveSpeed-bias, moveSpeed+bias, m_bSquaredDrive);
 }
 
 double ExampleSubsystem::GetDistance()
