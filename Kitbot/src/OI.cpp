@@ -7,5 +7,5 @@ OI::OI()
 	stickR = new Joystick(1);
 	gamepad = new Joystick(2);
 	straightTest = new JoystickButton(stickR, 10);
-	straightTest->WhileHeld(new DriveStraightTest());
+	straightTest->WhenPressed(new DriveStraightTest());
 }

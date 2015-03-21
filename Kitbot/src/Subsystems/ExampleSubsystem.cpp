@@ -17,6 +17,7 @@ ExampleSubsystem::ExampleSubsystem()
 
 	m_cEncoderL = new Encoder(DRIVE_ENCODERL_A,DRIVE_ENCODERL_B);
 	m_cEncoderR = new Encoder(DRIVE_ENCODERR_A,DRIVE_ENCODERR_B);
+	ResetEncoders();
 	gyro  = new Gyro(C_GYRO);
 	GetPIDController()->Disable();
 	gyro->InitGyro();

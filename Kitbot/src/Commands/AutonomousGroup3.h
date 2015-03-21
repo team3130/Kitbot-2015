@@ -3,12 +3,12 @@
 
 #include "../CommandBase.h"
 #include "WPILib.h"
-#include "AutonDumbDrive.h"
+#include "AutonDriveStraight.h"
 
 class AutonomousGroup3: public CommandGroup
 {
 private:
-	AutonDumbDrive* m_cAutonDumbDrive1;
+	AutonDriveStraight* m_cAutonDumbDrive1;
 public:
 	AutonomousGroup3();
 	~AutonomousGroup3();

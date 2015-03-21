@@ -21,7 +21,7 @@ void DriveStraightTest::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool DriveStraightTest::IsFinished()
 {
-	return false;
+	return !oi->straightTest->Get();
 }
 
 // Called once after isFinished returns true

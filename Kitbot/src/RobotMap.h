@@ -10,7 +10,7 @@
  * floating around.
  */
 
-const double ROBOT_GAUGE = 25.5;	//inches of distance between wheels
+const double ROBOT_GAUGE = 26.5;	//inches of distance between wheels
 
 /****** PWM ports ************************/
 
