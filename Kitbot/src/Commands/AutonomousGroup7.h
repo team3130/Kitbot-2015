@@ -6,7 +6,7 @@
 #include "AutonDriveStraight.h"
 #include "AutonLifter.h"
 #include "AutonPusher.h"
-#include "AutonDumbTurn.h"
+#include "AutonSmartTurn.h"
 #include "AutonBincher.h"
 #include "AutonIntakeArms.h"
 #include "AutonRollers.h"
@@ -14,24 +14,30 @@
 class AutonomousGroup7: public CommandGroup
 {
 private:
-	AutonLifter* m_cAutonLifter1;
-	AutonLifter* m_cAutonLifter2;
-	AutonLifter* m_cAutonLifter3;
+	AutonLifter* m_cAutonLifter1; 				//binch
+	AutonLifter* m_cAutonLifter2; 				//binch
+	AutonLifter* m_cAutonLifter3; 				//binch
 	AutonLifter* m_cAutonLifter4;
 	AutonLifter* m_cAutonLifter5;
 	AutonLifter* m_cAutonLifter6;
 	AutonLifter* m_cAutonLifter7;
 	AutonLifter* m_cAutonLifter8;
 	AutonLifter* m_cAutonLifter9;
-	AutonPusher* m_cAutonPusher1;
+	AutonPusher* m_cAutonPusher1; 				// binch
 	AutonDriveStraight* m_cAutonDriveStraight1;
 	AutonDriveStraight* m_cAutonDriveStraight2;
 	AutonDriveStraight* m_cAutonDriveStraight3;
 	AutonDriveStraight* m_cAutonDriveStraight4;
-	AutonDumbTurn* m_cAutonTurn1;
-	AutonBincher* m_cAutonBincher1;
-	AutonBincher* m_cAutonBincher2;
-	AutonIntakeArms* m_cAutonArms1;
+	AutonDriveStraight* m_cAutonDriveStraight5;
+	AutonDriveStraight* m_cAutonDriveStraight6;
+	AutonDriveStraight* m_cAutonDriveStraight7;
+	AutonDriveStraight* m_cAutonDriveStraight8;
+	AutonDriveStraight* m_cAutonDriveStraight9;
+	AutonSmartTurn* m_cAutonTurn1;
+	AutonSmartTurn* m_cAutonTurn2;
+	AutonBincher* m_cAutonBincher1;				//binch
+	AutonBincher* m_cAutonBincher2;				//binch
+	AutonIntakeArms* m_cAutonArms1;				//binch
 	AutonIntakeArms* m_cAutonArms2;
 	AutonIntakeArms* m_cAutonArms3;
 	AutonIntakeArms* m_cAutonArms4;
@@ -42,6 +48,7 @@ private:
 	AutonRollers* m_cAutonRollers3;
 	AutonRollers* m_cAutonRollers4;
 	AutonRollers* m_cAutonRollers5;
+	AutonRollers* m_cAutonRollers6;
 public:
 	AutonomousGroup7();
 	~AutonomousGroup7();

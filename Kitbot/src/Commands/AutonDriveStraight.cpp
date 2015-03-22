@@ -26,7 +26,7 @@ void AutonDriveStraight::Initialize() {
 	GetPIDController()->Disable();
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
-	//CommandBase::chassis->ResetEncoders();
+	CommandBase::chassis->ResetEncoders();
 	//CommandBase::chassis->HoldAngle(0.0);
 	GetPIDController()->Reset();
 	GetPIDController()->Enable();
