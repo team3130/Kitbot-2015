@@ -7,11 +7,11 @@
 class AutonSmartTurn: public CommandBase
 {
 public:
-	Timer cTimer;
-	double dTimeout;
-	double dAngle;
-	double dDriveSpeed;
-	double dDistGoal;
+	Timer m_cTimer;
+	double m_dTimeout;
+	double m_dAngle;
+	double m_dDriveSpeed;
+	double m_dDistGoal;
 	AutonSmartTurn();
 	void Initialize();
 	void Execute();
@@ -19,8 +19,8 @@ public:
 	void End();
 	void Interrupted();
 	void SetGoal(double angle, double timeout){
-		dAngle = angle;
-		dTimeout = timeout;
+		m_dAngle = angle;
+		m_dTimeout = timeout;
 	}
 };
 

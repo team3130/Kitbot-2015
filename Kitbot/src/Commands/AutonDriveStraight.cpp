@@ -12,11 +12,12 @@ AutonDriveStraight::AutonDriveStraight()
 	Requires(CommandBase::chassis);
 }
 
-void AutonDriveStraight::SetGoal(double dist, double thresh, double ispeed, double timeout) {
+void AutonDriveStraight::SetGoal(double dist, double thresh, double ispeed, double timeout, double angle) {
 	goal = dist;
 	threshold = thresh;
 	speed = ispeed;
 	confirmTime = timeout;
+	dAngle = angle;
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
 }
@@ -27,7 +28,7 @@ void AutonDriveStraight::Initialize() {
 	GetPIDController()->SetSetpoint(goal);
 	GetPIDController()->SetAbsoluteTolerance(threshold);
 	CommandBase::chassis->ResetEncoders();
-	//CommandBase::chassis->HoldAngle(0.0);
+	CommandBase::chassis->HoldAngle(dAngle);
 	GetPIDController()->Reset();
 	GetPIDController()->Enable();
 	timer.Reset();
@@ -63,7 +64,7 @@ double AutonDriveStraight::ReturnPIDInput(){
 void AutonDriveStraight::UsePIDOutput(double output){
 	if(output > speed) output = speed;
 	if(output < -speed) output = -speed;
-	CommandBase::chassis->m_drive.TankDrive(-output,-output);
+	CommandBase::chassis->GyroDrive(-output);
 }
 
 // Called once after isFinished returns true

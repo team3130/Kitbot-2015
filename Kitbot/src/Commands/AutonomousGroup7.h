@@ -10,6 +10,7 @@
 #include "AutonBincher.h"
 #include "AutonIntakeArms.h"
 #include "AutonRollers.h"
+#include "AutonDelay.h"
 
 class AutonomousGroup7: public CommandGroup
 {
@@ -49,6 +50,7 @@ private:
 	AutonRollers* m_cAutonRollers4;
 	AutonRollers* m_cAutonRollers5;
 	AutonRollers* m_cAutonRollers6;
+	AutonDelay* m_cAutonDelay1;
 public:
 	AutonomousGroup7();
 	~AutonomousGroup7();

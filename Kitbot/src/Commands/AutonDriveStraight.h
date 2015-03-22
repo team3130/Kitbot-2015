@@ -12,6 +12,7 @@ private:
 	double goal;
 	double threshold;
 	double confirmTime;
+	double dAngle;
 public:
 	AutonDriveStraight();
 	virtual void Initialize();
@@ -20,7 +21,7 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 	virtual double ReturnPIDInput();
-	void SetGoal(double dist, double thresh=0.5, double ispeed=0.5, double timout=0);
+	void SetGoal(double dist, double thresh=0.5, double ispeed=0.5, double timout=0, double angle=0);
 	virtual void UsePIDOutput(double output);
 };
 

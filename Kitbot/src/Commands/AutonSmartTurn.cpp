@@ -3,14 +3,16 @@
 AutonSmartTurn::AutonSmartTurn()
 {
 	Requires(chassis);
-	cTimer = new Timer();
+
 }
 
 // Called just before this Command runs the first time
 void AutonSmartTurn::Initialize()
 {
-	CommandBase::chassis->HoldAngle(dAngle);
+	m_cTimer.Reset();
+	CommandBase::chassis->HoldAngle(m_dAngle);
 	CommandBase::chassis->GyroDrive(0);
+	m_cTimer.Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -22,7 +24,7 @@ void AutonSmartTurn::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool AutonSmartTurn::IsFinished()
 {
-	return ((CommandBase::chassis->OnTarget()) or (cTimer.Get() > dTimeout));
+	return ((CommandBase::chassis->OnTarget()) or (m_cTimer.Get() > m_dTimeout));
 }
 
 // Called once after isFinished returns true
