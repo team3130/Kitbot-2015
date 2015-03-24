@@ -30,6 +30,8 @@ const int MOOSEPOSITIONSENSOR = 0;
 
 //Pusher
 const int PUSHER_LED = 1;
+const int PUSHER_LIMIT_OUT = 2;
+const int PUSHER_LIMIT_IN = 3;
 
 //Drive
 const int DRIVE_ENCODERL_A = 4;
