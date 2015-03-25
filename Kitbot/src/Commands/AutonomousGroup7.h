@@ -25,6 +25,7 @@ private:
 	AutonLifter* m_cAutonLifter8;
 	AutonLifter* m_cAutonLifter9;
 	AutonPusher* m_cAutonPusher1; 				// binch
+	AutonDriveStraight* m_cAutonDriveStraight0;
 	AutonDriveStraight* m_cAutonDriveStraight1;
 	AutonDriveStraight* m_cAutonDriveStraight2;
 	AutonDriveStraight* m_cAutonDriveStraight3;

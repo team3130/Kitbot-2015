@@ -61,5 +61,5 @@ void ControlPusher::End()
 // subsystems is scheduled to run
 void ControlPusher::Interrupted()
 {
-
+	End();
 }
