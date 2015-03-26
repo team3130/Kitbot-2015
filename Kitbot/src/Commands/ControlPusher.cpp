@@ -33,15 +33,19 @@ void ControlPusher::Execute()
 
 	if(pusher->GetLimitSwitchOut()){
 		pusher->SwitchLED(false);
-		manualMode = true;
-		pusher->pushLifter(0);
+		if(!manualMode) {
+			manualMode = true;
+			pusher->pushLifter(0);
+		}
 	}else{
 		pusher->SwitchLED(true);
 	}
 
 	if(pusher->GetLimitSwitchIn()){
-		pusher->pushLifter(0);
-		manualMode = true;
+		if(!manualMode) {
+			pusher->pushLifter(0);
+			manualMode = true;
+		}
 	}
 }
 

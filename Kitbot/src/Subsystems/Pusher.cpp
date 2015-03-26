@@ -31,8 +31,10 @@ void Pusher::pushLifter(float speed)
 {
 	m_cPushMotor->SetControlMode(CANSpeedController::kPercentVbus);
 	//m_cPushMotor->Set(speed);
-	if((speed > 0 and !GetLimitSwitchOut()) or (speed < 0 and !GetLimitSwitchIn()) or speed == 0){
+	if((speed < 0 and !GetLimitSwitchOut()) or (speed > 0 and !GetLimitSwitchIn()) or speed == 0){
 		m_cPushMotor->Set(speed);
 	}
+	else {
+		m_cPushMotor->Set(0);
 	}
 }
