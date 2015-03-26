@@ -8,7 +8,7 @@ Pusher::Pusher()
 	m_cPushMotor = new CANTalon(PUSHER);
 	m_cPushMotor->ConfigNeutralMode(CANTalon::kNeutralMode_Brake);
 	m_cPushMotor->SetControlMode(CANSpeedController::kPercentVbus);
-	m_cPushMotor->ConfigLimitMode(CANTalon::kLimitMode_SwitchInputsOnly);
+	m_cPushMotor->ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 	m_cInLED = new DigitalOutput(PUSHER_LED);
 	m_cSwitchIn = new DigitalInput(PUSHER_LIMIT_IN);
 	m_cSwitchOut = new DigitalInput(PUSHER_LIMIT_OUT);
@@ -30,8 +30,9 @@ void Pusher::InitDefaultCommand()
 void Pusher::pushLifter(float speed)
 {
 	m_cPushMotor->SetControlMode(CANSpeedController::kPercentVbus);
-	m_cPushMotor->Set(speed);
-	//if((speed > 0 and !GetLimitSwitchOut()) or (speed < 0 and !GetLimitSwitchIn())){
-		//m_cPushMotor->Set(speed);
-
+	//m_cPushMotor->Set(speed);
+	if((speed > 0 and !GetLimitSwitchOut()) or (speed < 0 and !GetLimitSwitchIn()) or speed == 0){
+		m_cPushMotor->Set(speed);
+	}
+	}
 }
