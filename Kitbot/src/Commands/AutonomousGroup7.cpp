@@ -44,7 +44,7 @@ AutonomousGroup7::AutonomousGroup7()
 	AddParallel(m_cAutonArms1);				//opens arms
 	AddSequential(m_cAutonBincher1);		//opens bincher
 	AddSequential(m_cAutonLifter1);			//lifts bin up
-	AddSequential(m_cAutonPusher1);			//grabs bin back
+	//AddSequential(m_cAutonPusher1);			//grabs bin back
 	AddSequential(m_cAutonLifter2);			//lifts bin up
 	AddSequential(m_cAutonBincher2);		//Binches bin
 	AddSequential(m_cAutonLifter3);			//lowers lifter
@@ -151,7 +151,8 @@ void AutonomousGroup7::Initialize()
 	m_cAutonLifter2->SetGoal(	//second
 			Preferences::GetInstance()->GetDouble("Auton7-Lifter1-Time",2),
 			Preferences::GetInstance()->GetDouble("Auton7-Lifter1-Threshold",15),
-			Preferences::GetInstance()->GetDouble("Auton7-Lifter1-Goal",6385));
+			Preferences::GetInstance()->GetDouble("Auton7-Lifter1-Goal",6385),
+			AutonLifter::kIn);
 	m_cAutonLifter3->SetGoal(	//third
 			Preferences::GetInstance()->GetDouble("Auton7-Lifter2-Time",2),
 			Preferences::GetInstance()->GetDouble("Auton7-Lifter2-Threshold",15),
