@@ -12,15 +12,17 @@ public:
 	double m_dAngle;
 	double m_dDriveSpeed;
 	double m_dDistGoal;
+	double m_dTolerance;
 	AutonSmartTurn();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	void SetGoal(double angle, double timeout){
+	void SetGoal(double angle, double timeout, double tolerance=1.0){
 		m_dAngle = angle;
 		m_dTimeout = timeout;
+		m_dTolerance = tolerance;
 	}
 };
 
