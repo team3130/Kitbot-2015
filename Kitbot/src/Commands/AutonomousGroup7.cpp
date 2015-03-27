@@ -52,19 +52,20 @@ AutonomousGroup7::AutonomousGroup7()
 	//AddSequential(m_cAutonDriveStraight0);
 	AddSequential(m_cAutonTurn1);
 	AddParallel(m_cAutonRollers1);
-	AddSequential(m_cAutonDriveStraight1);
-	AddSequential(m_cAutonArms2);
-	AddParallel(m_cAutonDriveStraight2);
+	AddSequential(m_cAutonDriveStraight1);	//Step forward to the tote
+	AddSequential(m_cAutonArms2);			//Close arms
+	AddSequential(m_cAutonTurn2);
+	AddParallel(m_cAutonDriveStraight2);	//Go forward and suck the tote
 	AddSequential(m_cAutonLifter4);
 	AddSequential(m_cAutonDelay1);
 	AddParallel(m_cAutonLifter5);
 
 
-	AddSequential(m_cAutonDriveStraight2);
+	AddSequential(m_cAutonDriveStraight3);
 	AddParallel(m_cAutonRollers2);
-	AddParallel(m_cAutonDriveStraight3);
+	AddParallel(m_cAutonDriveStraight4);
 	AddSequential(m_cAutonArms3);
-	AddSequential(m_cAutonDriveStraight4);
+	AddSequential(m_cAutonDriveStraight5);
 	AddParallel(m_cAutonArms4);
 	AddSequential(m_cAutonRollers3);
 	AddSequential(m_cAutonLifter6);
@@ -80,7 +81,7 @@ AutonomousGroup7::AutonomousGroup7()
 	AddSequential(m_cAutonLifter8);
 	AddParallel(m_cAutonLifter9);
 
-	AddSequential(m_cAutonTurn2);
+	AddSequential(m_cAutonTurn3);
 	AddSequential(m_cAutonDriveStraight8);
 	AddParallel(m_cAutonRollers6);
 	AddParallel(m_cAutonDriveStraight9);
@@ -243,10 +244,10 @@ void AutonomousGroup7::Initialize()
 		//Turning
 	m_cAutonTurn1->SetGoal(
 			-33,//-51
-			1);
+			2);
 	m_cAutonTurn2->SetGoal(
-			-90,
-			1);
+			-20,
+			2);
 
 		//Bincher
 	m_cAutonBincher1->SetDir(
@@ -259,7 +260,7 @@ void AutonomousGroup7::Initialize()
 			Preferences::GetInstance()->GetDouble("Auton7-Arms-Opentime",10),
 			false);
 	m_cAutonArms2->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton7-Arms2-Opentime",20),
+			Preferences::GetInstance()->GetDouble("Auton7-Arms2-Opentime",1),
 			true);
 	m_cAutonArms3->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton7-Arms3-Opentime",2),
