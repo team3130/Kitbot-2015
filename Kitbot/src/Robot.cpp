@@ -30,7 +30,7 @@ private:
 		chooser->AddObject("Moose Bin Grabber", new AutonomousGroup2());
 		chooser->AddObject("Bin into Bincher", new AutonomousGroup6());
 		chooser->AddObject("3 Tote + Bin", new AutonomousGroup7());
-		//chooser->AddObject("1 Tote + Bin", new AutonomousGroup8());
+		chooser->AddObject("3 Tote + Bin 2", new AutonomousGroup8());
 		SmartDashboard::PutData("Autonomous Modes", chooser);
 		robotSensors = new RobotSensors();
 		lw = LiveWindow::GetInstance();
