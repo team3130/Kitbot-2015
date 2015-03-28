@@ -40,6 +40,8 @@ AutonomousGroup7::AutonomousGroup7()
 	m_cAutonRollers5 = new AutonRollers();
 	m_cAutonRollers6 = new AutonRollers();
 	m_cAutonDelay1 = new AutonDelay();
+	m_cToteBinDrive1 = new Auton3ToteDriveGroup();
+	m_cToteBinDrive2 = new Auton3ToteDriveGroup();
 	
 	AddParallel(m_cAutonArms1);				//opens arms
 	AddSequential(m_cAutonBincher1);		//opens bincher
@@ -60,7 +62,8 @@ AutonomousGroup7::AutonomousGroup7()
 	AddSequential(m_cAutonDelay1);
 	AddParallel(m_cAutonLifter5);
 
-
+	AddSequential(m_cToteBinDrive1);
+	/*
 	AddSequential(m_cAutonDriveStraight3);
 	AddParallel(m_cAutonRollers2);
 	AddParallel(m_cAutonDriveStraight4);
@@ -70,6 +73,8 @@ AutonomousGroup7::AutonomousGroup7()
 	AddSequential(m_cAutonRollers3);
 	AddSequential(m_cAutonLifter6);
 	AddParallel(m_cAutonLifter7);
+	*/
+	AddSequential(m_cToteBinDrive2);
 	/*
 	AddSequential(m_cAutonDriveStraight5);
 	AddParallel(m_cAutonRollers4);
@@ -128,6 +133,9 @@ AutonomousGroup7::~AutonomousGroup7()
 	delete m_cAutonRollers5;
 	delete m_cAutonRollers6;
 	delete m_cAutonDelay1;
+
+	delete m_cToteBinDrive1;
+	delete m_cToteBinDrive2;
 }
 
 // Called just before this Command runs the first time

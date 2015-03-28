@@ -11,6 +11,7 @@
 #include "AutonIntakeArms.h"
 #include "AutonRollers.h"
 #include "AutonDelay.h"
+#include "Auton3ToteDriveGroup.h"
 
 class AutonomousGroup7: public CommandGroup
 {
@@ -52,6 +53,8 @@ private:
 	AutonRollers* m_cAutonRollers5;
 	AutonRollers* m_cAutonRollers6;
 	AutonDelay* m_cAutonDelay1;
+	Auton3ToteDriveGroup* m_cToteBinDrive1;
+	Auton3ToteDriveGroup* m_cToteBinDrive2;
 public:
 	AutonomousGroup7();
 	~AutonomousGroup7();
