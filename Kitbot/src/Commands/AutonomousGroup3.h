@@ -4,11 +4,13 @@
 #include "../CommandBase.h"
 #include "WPILib.h"
 #include "AutonDriveStraight.h"
+#include "AutonSmartTurn.h"
 
 class AutonomousGroup3: public CommandGroup
 {
 private:
 	AutonDriveStraight* m_cAutonDumbDrive1;
+	AutonSmartTurn* m_cTurn1;
 public:
 	AutonomousGroup3();
 	~AutonomousGroup3();

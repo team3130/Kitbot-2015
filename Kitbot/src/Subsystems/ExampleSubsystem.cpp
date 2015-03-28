@@ -81,7 +81,14 @@ double ExampleSubsystem::ReturnPIDInput()
 
 void ExampleSubsystem::UsePIDOutput(double bias)
 {
-	m_drive.TankDrive(moveSpeed-bias, moveSpeed+bias, m_bSquaredDrive);
+	const double speedLimit = 0.75;
+	double speed_L = moveSpeed-bias;
+	double speed_R = moveSpeed+bias;
+	if(speed_L < -speedLimit) speed_L = -speedLimit;
+	if(speed_L >  speedLimit) speed_L =  speedLimit;
+	if(speed_R < -speedLimit) speed_R = -speedLimit;
+	if(speed_R >  speedLimit) speed_R =  speedLimit;
+	m_drive.TankDrive(speed_L, speed_R, m_bSquaredDrive);
 }
 
 double ExampleSubsystem::GetDistance()

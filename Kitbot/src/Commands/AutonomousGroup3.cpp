@@ -4,13 +4,15 @@ AutonomousGroup3::AutonomousGroup3()
 {
 	//Goal: Drive Forward into the auton zone and fit somehow
 	m_cAutonDumbDrive1 = new AutonDriveStraight();
+	m_cTurn1 = new AutonSmartTurn();
 	
-	AddSequential(m_cAutonDumbDrive1);	//Robot drives into Auton Zone
+	AddSequential(m_cTurn1);	//Robot drives into Auton Zone
 }
 
 AutonomousGroup3::~AutonomousGroup3()
 {
 	delete m_cAutonDumbDrive1;
+	delete m_cTurn1;
 }
 
 // Called just before this Command runs the first time
@@ -21,6 +23,7 @@ void AutonomousGroup3::Initialize()
 	m_cAutonDumbDrive1->SetGoal(6,0.5,.2,6);
 		//	Preferences::GetInstance()->GetDouble("Auton3-Speed-Zone",-0.40),
 		//	Preferences::GetInstance()->GetDouble("Auton3-Timeout-Zone",3));
+	m_cTurn1->SetGoal(-20,2,2);
 }
 
 // Called repeatedly when this Command is scheduled to run

@@ -147,7 +147,7 @@ void AutonomousGroup7::Initialize()
 	m_cAutonLifter1->SetGoal(	//first
 			Preferences::GetInstance()->GetDouble("Auton7-Lifter4-Time",2),
 			Preferences::GetInstance()->GetDouble("Auton7-Lifter4-Threshold",15),
-			Preferences::GetInstance()->GetDouble("Auton7-Lifter4-Goal",3000));
+			Preferences::GetInstance()->GetDouble("Auton7-Lifter4-Goal",1000));
 	m_cAutonLifter2->SetGoal(	//second
 			Preferences::GetInstance()->GetDouble("Auton7-Lifter1-Time",2),
 			Preferences::GetInstance()->GetDouble("Auton7-Lifter1-Threshold",15),
@@ -201,10 +201,10 @@ void AutonomousGroup7::Initialize()
 			Preferences::GetInstance()->GetDouble("Auton7-Speed-Tote2",.5),
 			Preferences::GetInstance()->GetDouble("Auton7-Timeout-Tote2",1));
 	m_cAutonDriveStraight3->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton7-Distance-Tote3",32),
+			Preferences::GetInstance()->GetDouble("Auton7-Distance-Tote3",40),
 			Preferences::GetInstance()->GetDouble("Auton7-Tolerance-Tote3",.5),
 			Preferences::GetInstance()->GetDouble("Auton7-Speed-Tote3",.65),
-			Preferences::GetInstance()->GetDouble("Auton7-Timeout-Tote3",1)
+			Preferences::GetInstance()->GetDouble("Auton7-Timeout-Tote3",2)
 			-10);
 	m_cAutonDriveStraight4->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton7-Distance-Tote4",30),
@@ -244,11 +244,11 @@ void AutonomousGroup7::Initialize()
 
 		//Turning
 	m_cAutonTurn1->SetGoal(
-			-33,//-51
-			2);
+			-15,//-51
+			0.8);
 	m_cAutonTurn2->SetGoal(
-			-20,
-			2);
+			-28,
+			1.1);
 
 		//Bincher
 	m_cAutonBincher1->SetDir(
@@ -258,22 +258,22 @@ void AutonomousGroup7::Initialize()
 
 		//Intake Arms
 	m_cAutonArms1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton7-Arms-Opentime",10),
+			Preferences::GetInstance()->GetDouble("Auton7-Arms-Opentime",1),
 			false);
 	m_cAutonArms2->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auton7-Arms2-Opentime",1),
 			true);
 	m_cAutonArms3->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton7-Arms3-Opentime",2),
+			Preferences::GetInstance()->GetDouble("Auton7-Arms3-Opentime",1),
 			false);
 	m_cAutonArms4->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton7-Arms4-Opentime",2),
+			Preferences::GetInstance()->GetDouble("Auton7-Arms4-Opentime",1),
 			true);
 	m_cAutonArms5->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton7-Arms5-Opentime",2),
+			Preferences::GetInstance()->GetDouble("Auton7-Arms5-Opentime",1),
 			false);
 	m_cAutonArms6->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton7-Arms6-Opentime",2),
+			Preferences::GetInstance()->GetDouble("Auton7-Arms6-Opentime",1),
 			true);
 
 		//Rollers
