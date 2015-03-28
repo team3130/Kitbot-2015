@@ -23,7 +23,7 @@ void AutonomousGroup3::Initialize()
 	m_cAutonDumbDrive1->SetGoal(6,0.5,.2,6);
 		//	Preferences::GetInstance()->GetDouble("Auton3-Speed-Zone",-0.40),
 		//	Preferences::GetInstance()->GetDouble("Auton3-Timeout-Zone",3));
-	m_cTurn1->SetGoal(-20,2,2);
+	m_cTurn1->SetGoal(-20,20,2);
 }
 
 // Called repeatedly when this Command is scheduled to run

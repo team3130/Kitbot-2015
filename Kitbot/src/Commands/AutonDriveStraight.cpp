@@ -64,7 +64,7 @@ double AutonDriveStraight::ReturnPIDInput(){
 void AutonDriveStraight::UsePIDOutput(double output){
 	if(output > speed) output = speed;
 	if(output < -speed) output = -speed;
-	CommandBase::chassis->GyroDrive(-output);
+	CommandBase::chassis->GyroDrive(-output, true);
 }
 
 // Called once after isFinished returns true

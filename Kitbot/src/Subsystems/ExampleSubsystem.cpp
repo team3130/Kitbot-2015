@@ -3,7 +3,7 @@
 #include "../Commands/ExampleCommand.h"
 
 ExampleSubsystem::ExampleSubsystem()
-	: PIDSubsystem("ExampleSubsystem", 0.07, 0.0, 0.2)
+	: PIDSubsystem("ExampleSubsystem", 0.05, 0.00, 0.15)
 	, m_bIsUsingGyro(false)
 	, m_bSquaredDrive(true)
 	, moveSpeed(0)
@@ -22,6 +22,9 @@ ExampleSubsystem::ExampleSubsystem()
 	GetPIDController()->Disable();
 	gyro->InitGyro();
 	gyro->Reset();
+	SmartDashboard::PutNumber("TurnPID_P",0.03);
+	SmartDashboard::PutNumber("TurnPID_I",0.00);
+	SmartDashboard::PutNumber("TurnPID_D",0.00);
 }
 
 ExampleSubsystem::~ExampleSubsystem()
@@ -60,8 +63,14 @@ void ExampleSubsystem::GyroDrive(double move, bool squaredInputs)
 	if(!m_bIsUsingGyro)
 	{
 		m_bIsUsingGyro = true;
+	/*	GetPIDController()->SetPID(
+				SmartDashboard::GetNumber("TurnPID_P",0.0),
+				SmartDashboard::GetNumber("TurnPID_I",0.00),
+				SmartDashboard::GetNumber("TurnPID_D",0.0)
+				); */
 		GetPIDController()->Enable();
 	}
+	SmartDashboard::PutNumber("Check PID P",GetPIDController()->GetP());
 }
 
 double ExampleSubsystem::GetAngle()
@@ -81,7 +90,8 @@ double ExampleSubsystem::ReturnPIDInput()
 
 void ExampleSubsystem::UsePIDOutput(double bias)
 {
-	const double speedLimit = 0.75;
+	const double speedLimit = 0.65;
+	SmartDashboard::PutNumber("Turn PID bias",bias);
 	if(bias >  speedLimit) bias = speedLimit;
 	if(bias < -speedLimit) bias = -speedLimit;
 	double speed_L = moveSpeed-bias;

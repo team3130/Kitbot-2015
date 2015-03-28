@@ -16,7 +16,7 @@ void DriveStraightTest::Execute()
 {
 	double moveSpeed = CommandBase::oi->stickL->GetY();
 	double speedMultiplier = (-0.5 * CommandBase::oi->stickL->GetZ()) + 0.5;
-	CommandBase::chassis->GyroDrive(moveSpeed * speedMultiplier);
+	CommandBase::chassis->GyroDrive(moveSpeed * speedMultiplier, false);
 }
 
 // Make this return true when this Command no longer needs to run execute()

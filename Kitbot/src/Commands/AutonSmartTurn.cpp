@@ -15,7 +15,7 @@ void AutonSmartTurn::Initialize()
 {
 	m_cTimer.Reset();
 	CommandBase::chassis->HoldAngle(m_dAngle);
-	CommandBase::chassis->GyroDrive(0);
+	CommandBase::chassis->GyroDrive(0, false);
 	m_cTimer.Start();
 }
 
