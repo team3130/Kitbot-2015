@@ -17,7 +17,8 @@ class AutonomousGroup8: public CommandGroup
 private:
 	AutonLifter* m_cAutonLifter1; 				//binch
 	AutonLifter* m_cAutonLifter2; 				//binch
-	AutonLifter* m_cAutonLifter3; 				//binch
+	AutonLifter* m_cAutonLifterAssure; 				//binch
+	AutonLifter* m_cAutonLifterUnbinch; 				//binch
 	AutonLifter* m_cAutonLifter4;
 	AutonLifter* m_cAutonLifter5;
 	AutonLifter* m_cAutonLifterDown2;
