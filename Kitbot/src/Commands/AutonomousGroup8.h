@@ -24,6 +24,7 @@ private:
 	AutonLifter* m_cAutonLifter7;
 	AutonLifter* m_cAutonLifter8;
 	AutonLifter* m_cAutonLifter9;
+	AutonLifter* m_cAutonLifter10;
 	AutonPusher* m_cAutonPusher1; 				// binch
 	AutonDriveStraight* m_cAutonDriveStraight0;
 	AutonDriveStraight* m_cAutonDriveStraight1;
@@ -43,6 +44,7 @@ private:
 	AutonDriveStraight* m_cAutonDriveAfterTurn3;
 	AutonSmartTurn* m_cAutonTurn1;
 	AutonSmartTurn* m_cAutonTurn2;
+	AutonSmartTurn* m_cAutonTurn3;
 	AutonBincher* m_cAutonBincher1;				//binch
 	AutonBincher* m_cAutonBincher2;				//binch
 	AutonIntakeArms* m_cAutonArms1;				//binch
@@ -53,6 +55,10 @@ private:
 	AutonIntakeArms* m_cAutonArms6;
 	AutonRollers* m_cAutonRollers1;
 	AutonRollers* m_cAutonRollers2;
+	AutonRollers* m_cAutonRollers3;
+	AutonRollers* m_cAutonRollers4;
+	AutonRollers* m_cAutonRollers5;
+	AutonRollers* m_cAutonRollers6;
 	AutonDelay* m_cAutonDelay1;
 	AutonDelay* m_cAutonDelay2;
 public:
