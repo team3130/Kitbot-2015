@@ -20,25 +20,24 @@ private:
 	AutonLifter* m_cAutonLifter3; 				//binch
 	AutonLifter* m_cAutonLifter4;
 	AutonLifter* m_cAutonLifter5;
-	AutonLifter* m_cAutonLifter6;
-	AutonLifter* m_cAutonLifter7;
-	AutonLifter* m_cAutonLifter8;
-	AutonLifter* m_cAutonLifter9;
-	AutonLifter* m_cAutonLifter10;
-	AutonPusher* m_cAutonPusher1; 				// binch
+	AutonLifter* m_cAutonLifterDown2;
+	AutonLifter* m_cAutonLifterUp2;
+	AutonLifter* m_cAutonLifterDown3;
+	AutonLifter* m_cAutonLifterUp3;
+	AutonLifter* m_cAutonLifterDrop;
 	AutonDriveStraight* m_cAutonDriveStraight0;
 	AutonDriveStraight* m_cAutonDriveStraight1;
 	AutonDriveStraight* m_cAutonDriveStraight2;
-	AutonDriveStraight* m_cAutonDriveStraight3;
-	AutonDriveStraight* m_cAutonDriveStraight4;
+	AutonDriveStraight* m_cAutonApproach2;
+	AutonDriveStraight* m_cAutonDriveAutozone;
 	AutonDriveStraight* m_cAutonDriveStraight5;
 	AutonDriveStraight* m_cAutonDriveStraight6;
-	AutonDriveStraight* m_cAutonDriveStraight7;
+	AutonDriveStraight* m_cAutonDriveBackout;
 	AutonDriveStraight* m_cAutonDriveStraight8;
 	AutonDriveStraight* m_cAutonDriveStraight9;
 	AutonSmartTurn* m_cAutonDriveTurn2;
 	AutonDriveStraight* m_cAutonDriveIntake2;
-	AutonDriveStraight* m_cAutonDriveAfterTurn2;
+	AutonDriveStraight* m_cAutonApproach3;
 	AutonSmartTurn* m_cAutonDriveTurn3;
 	AutonDriveStraight* m_cAutonDriveIntake3;
 	AutonDriveStraight* m_cAutonDriveAfterTurn3;
@@ -49,18 +48,18 @@ private:
 	AutonBincher* m_cAutonBincher2;				//binch
 	AutonIntakeArms* m_cAutonArms1;				//binch
 	AutonIntakeArms* m_cAutonArms2;
-	AutonIntakeArms* m_cAutonArms3;
-	AutonIntakeArms* m_cAutonArms4;
-	AutonIntakeArms* m_cAutonArms5;
-	AutonIntakeArms* m_cAutonArms6;
+	AutonIntakeArms* m_cAutonArmsOpen2;
+	AutonIntakeArms* m_cAutonArmsClose2;
+	AutonIntakeArms* m_cAutonArmsOpen3;
+	AutonIntakeArms* m_cAutonArmsClose3;
 	AutonRollers* m_cAutonRollers1;
-	AutonRollers* m_cAutonRollers2;
-	AutonRollers* m_cAutonRollers3;
-	AutonRollers* m_cAutonRollers4;
-	AutonRollers* m_cAutonRollers5;
-	AutonRollers* m_cAutonRollers6;
-	AutonDelay* m_cAutonDelay1;
-	AutonDelay* m_cAutonDelay2;
+	AutonRollers* m_cAutonRollersEject;
+	AutonRollers* m_cAutonRollersOut2;
+	AutonRollers* m_cAutonRollersIn2;
+	AutonRollers* m_cAutonRollersOut3;
+	AutonRollers* m_cAutonRollersIn3;
+	AutonDelay* m_cAutonDelayBottom;
+	AutonDelay* m_cAutonDelaySuck;
 public:
 	AutonomousGroup8();
 	~AutonomousGroup8();
