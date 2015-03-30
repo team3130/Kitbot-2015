@@ -11,56 +11,51 @@
 #include "AutonIntakeArms.h"
 #include "AutonRollers.h"
 #include "AutonDelay.h"
+#include "AutonWaitForFinished.h"
+#include "AutonomousGroupBincher.h"
+#include "AutonomousGroupReload.h"
 
 class AutonomousGroup8: public CommandGroup
 {
 private:
-	AutonLifter* m_cAutonLifter1; 				//binch
-	AutonLifter* m_cAutonLifter2; 				//binch
-	AutonLifter* m_cAutonLifterAssure; 				//binch
-	AutonLifter* m_cAutonLifterUnbinch; 				//binch
-	AutonLifter* m_cAutonLifter4;
-	AutonLifter* m_cAutonLifter5;
-	AutonLifter* m_cAutonLifterDown2;
-	AutonLifter* m_cAutonLifterUp2;
-	AutonLifter* m_cAutonLifterDown3;
-	AutonLifter* m_cAutonLifterUp3;
-	AutonLifter* m_cAutonLifterDrop;
-	AutonDriveStraight* m_cAutonDriveStraight0;
-	AutonDriveStraight* m_cAutonDriveStraight1;
-	AutonDriveStraight* m_cAutonDriveStraight2;
-	AutonDriveStraight* m_cAutonApproach2;
-	AutonDriveStraight* m_cAutonDriveAutozone;
-	AutonDriveStraight* m_cAutonDriveStraight5;
-	AutonDriveStraight* m_cAutonDriveStraight6;
-	AutonDriveStraight* m_cAutonDriveBackout;
-	AutonDriveStraight* m_cAutonDriveStraight8;
-	AutonDriveStraight* m_cAutonDriveStraight9;
-	AutonSmartTurn* m_cAutonDriveTurn2;
-	AutonDriveStraight* m_cAutonDriveIntake2;
-	AutonDriveStraight* m_cAutonApproach3;
-	AutonSmartTurn* m_cAutonDriveTurn3;
-	AutonDriveStraight* m_cAutonDriveIntake3;
-	AutonDriveStraight* m_cAutonDriveAfterTurn3;
+	AutonomousGroupBincher* m_cAutonGroupBincher;
+
+	AutonLifter* m_cAutonLifterStart1; 				//binch
+	AutonLifter* m_cAutonLifterGrab1; 				//binch
 	AutonSmartTurn* m_cAutonTurn1;
+	AutonDriveStraight* m_cAutonApproach1;
+	AutonDriveStraight* m_cAutonDriveIntake1;
+	AutonIntakeArms* m_cAutonArmsOpen1;
+	AutonIntakeArms* m_cAutonArmsClose1;
+	AutonRollers* m_cAutonRollers1;
+	AutonWaitForFinished* m_cAutonWaitForBin;
+	AutonWaitForFinished* m_cAutonWaitForBincher;
+
 	AutonSmartTurn* m_cAutonTurn2;
-	AutonSmartTurn* m_cAutonTurn3;
-	AutonBincher* m_cAutonBincher1;				//binch
-	AutonBincher* m_cAutonBincher2;				//binch
-	AutonIntakeArms* m_cAutonArms1;				//binch
-	AutonIntakeArms* m_cAutonArms2;
+	AutonDriveStraight* m_cAutonApproach2;
+	AutonDriveStraight* m_cAutonDriveIntake2;
 	AutonIntakeArms* m_cAutonArmsOpen2;
 	AutonIntakeArms* m_cAutonArmsClose2;
-	AutonIntakeArms* m_cAutonArmsOpen3;
-	AutonIntakeArms* m_cAutonArmsClose3;
-	AutonRollers* m_cAutonRollers1;
-	AutonRollers* m_cAutonRollersEject;
 	AutonRollers* m_cAutonRollersOut2;
 	AutonRollers* m_cAutonRollersIn2;
+	AutonomousGroupReload* m_cAutonReload2;
+	AutonWaitForFinished* m_cAutonWaitForReload2;
+
+	AutonSmartTurn* m_cAutonTurn3;
+	AutonDriveStraight* m_cAutonApproach3;
+	AutonDriveStraight* m_cAutonDriveIntake3;
+	AutonIntakeArms* m_cAutonArmsOpen3;
+	AutonIntakeArms* m_cAutonArmsClose3;
 	AutonRollers* m_cAutonRollersOut3;
 	AutonRollers* m_cAutonRollersIn3;
-	AutonDelay* m_cAutonDelayBottom;
-	AutonDelay* m_cAutonDelaySuck;
+	AutonomousGroupReload* m_cAutonReload3;
+	AutonWaitForFinished* m_cAutonWaitForReload3;
+
+	AutonDriveStraight* m_cAutonDriveAutozone;
+	AutonLifter* m_cAutonLifterDrop;
+	AutonRollers* m_cAutonRollersEject;
+	AutonDriveStraight* m_cAutonDriveBackout;
+
 public:
 	AutonomousGroup8();
 	~AutonomousGroup8();
