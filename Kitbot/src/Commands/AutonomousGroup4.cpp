@@ -2,60 +2,63 @@
 
 AutonomousGroup4::AutonomousGroup4()
 {
-	//Goal: pick up a bin
-	m_cAutonPusher1 = new AutonPusher();
-	m_cAutonPusher2 = new AutonPusher();
-	m_cAutonLifter1 = new AutonLifter();
-	m_cAutonDriveStraight1 = new AutonDriveStraight();
-	m_cAutonTurn1 = new AutonTurn();
+	//Goal: Pick up both bins on step with moose, drive back while setting them down
+	//Antlers move up, and fit in the auton zone somehow, either by turning or activating arms.
+
+	m_cMooseLifter1 = new AutonMooseLifter();
+	m_cAutonDrive1 = new AutonDriveStraight();
+	m_cAutonDrive2 = new AutonDriveStraight();
+	m_cAutonDumb1 = new AutonDumbDrive();
+
 	
-	AddSequential(m_cAutonPusher1);			//extend pusher a little for bin
-	AddSequential(m_cAutonLifter1);			//lifts bin up
-	AddSequential(m_cAutonPusher2);			//grabs bin back
-	//AddSequential(m_cAutonTurn1);			//Turns robot towards Auton Zone
-	//AddSequential(m_cAutonDriveStraight1);	//Robot drives into Auton Zone
+	AddSequential(m_cAutonDrive1);		//Drive backwards
+	AddSequential(m_cAutonDumb1);		//Creep backwards slowly to ensure level with step
+	AddSequential(m_cMooseLifter1);		//Lift up both middle bins with moose
+	AddSequential(m_cAutonDrive2);		//Drive forwards to the auton zone
+
 }
 
 AutonomousGroup4::~AutonomousGroup4()
 {
-	delete m_cAutonLifter1;
-	delete m_cAutonPusher1;
-	delete m_cAutonPusher2;
-	delete m_cAutonDriveStraight1;
-	delete m_cAutonTurn1;
+	delete m_cAutonDrive1;
+	delete m_cAutonDrive2;
+	delete m_cAutonDumb1;
+	delete m_cMooseLifter1;
 }
 
 // Called just before this Command runs the first time
 void AutonomousGroup4::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
-		//Pusher
-	m_cAutonPusher1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Pusher-Out-Time",3), 1);
-	m_cAutonPusher2->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Pusher-In-Time",5), -1);
+		//Drive
+	m_cAutonDrive1->SetGoal(
+			-53,
+			1.5,
+			0.75,
+			3);
+	m_cAutonDrive2->SetGoal(
+			53,
+			5.5,
+			0.65,
+			7);
 
-		//Lifter
-	m_cAutonLifter1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Time",5),
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Threshold",15),
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Goal",2000));
+		//Dumb Drive
+	m_cAutonDumb1->SetGoal(
+			0.55,
+			0.5);
 
-		//Driving
-	m_cAutonDriveStraight1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Distance-Tote",20),
-			Preferences::GetInstance()->GetDouble("Auton1-Tolerance-Tote",2.5),
-			Preferences::GetInstance()->GetDouble("Auton1-Speed-Tote",0.65),
-			Preferences::GetInstance()->GetDouble("Auton1-Timeout-Tote",3));
+		//Moose Lifter
+	m_cMooseLifter1->SetGoal(
+			0,
+			1.0,
+			true);
 
-		//Turning
-	m_cAutonTurn1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Angle",40),
-			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Threshold",2.5), 3);
-
+	CommandBase::antlerMoose->ControlLeftAntler(true);
+	CommandBase::antlerMoose->ControlRightAntler(true);
+	CommandBase::mooseLifter->MoveMooseLock(false);
 }
 
-// Called repeatedly when this Commsand is scheduled to run
+// Called repeatedly when this Command is scheduled to run
 void AutonomousGroup4::Execute()
 {
 }
