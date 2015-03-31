@@ -4,6 +4,7 @@
 AutonomousGroup8::AutonomousGroup8()
 {
 	m_cAutonGroupBincher = new AutonomousGroupBincher();
+	m_cAutonLifterOut1 = new AutonLifter();
 	m_cAutonLifterStart1 = new AutonLifter();
 	m_cAutonLifterGrab1 = new AutonLifter();
 	m_cAutonWaitForBin = new AutonWaitForFinished(5.0);	// Parameter is a regular timeout
@@ -38,8 +39,10 @@ AutonomousGroup8::AutonomousGroup8()
 	m_cAutonRollersIn3 = new AutonRollers();
 	
 	AddParallel(m_cAutonArmsOpen1);				//opens arms
+	AddSequential(m_cAutonLifterOut1);			//Release the flaps
 	AddSequential(m_cAutonLifterStart1);		//lifts bin up a bit
-	AddParallel(m_cAutonLifterGrab1);			//lifts bin up and pull it in
+	AddParallel(m_cAutonGroupBincher);
+	//AddParallel(m_cAutonLifterGrab1);			//lifts bin up and pull it in
 
 	AddSequential(m_cAutonTurn1);
 	AddParallel(m_cAutonRollers1);
@@ -47,17 +50,16 @@ AutonomousGroup8::AutonomousGroup8()
 	AddSequential(m_cAutonArmsClose1);			//Close arms
 	AddParallel(m_cAutonDriveIntake1);			//Go forward and suck the tote
 
-	AddSequential(m_cAutonWaitForBin);
-	AddParallel(m_cAutonGroupBincher, 4.0);
+	//AddSequential(m_cAutonWaitForBin);
 
 	AddSequential(m_cAutonApproach2);	// Approach the second set
 	AddParallel(m_cAutonRollersOut2);
 	AddSequential(m_cAutonTurn2);
 //	AddSequential(m_cAutonArmsOpen2);
+	AddSequential(m_cAutonWaitForBincher);
 	AddParallel(m_cAutonRollersIn2);
 	AddSequential(m_cAutonDriveIntake2);
 	AddSequential(m_cAutonArmsClose2);	// This must be sequential to use its timer to suck the tote in
-	AddSequential(m_cAutonWaitForBincher);
 	AddParallel(m_cAutonReload2);
 
 	AddSequential(m_cAutonApproach3);
@@ -72,13 +74,14 @@ AutonomousGroup8::AutonomousGroup8()
 
 	AddSequential(m_cAutonDriveAutozone);	// Turn and drive toward Autozone
 	AddSequential(m_cAutonWaitForReload3);
-	AddSequential(m_cAutonLifterDrop);	// Drop the stack
+	AddParallel(m_cAutonLifterDrop);	// Drop the stack
 	AddParallel(m_cAutonRollersEject);	// Spit the stack out
 	AddSequential(m_cAutonDriveBackout); // Backout
 }
 
 AutonomousGroup8::~AutonomousGroup8()
 {
+	delete m_cAutonLifterOut1;
 	delete m_cAutonLifterStart1;
 	delete m_cAutonLifterGrab1;
 	delete m_cAutonWaitForBin;
@@ -115,12 +118,13 @@ AutonomousGroup8::~AutonomousGroup8()
 // Called just before this Command runs the first time
 void AutonomousGroup8::Initialize()
 {
-		//Lifter
+		//Lifter (double timeout, double thresh, double goal, PushDirection push=kNone)
 			//Bincher
+	m_cAutonLifterOut1->SetGoal(3, 25, 750, AutonLifter::kOut);	// Release the Kraken
 	m_cAutonLifterStart1->SetGoal(2, 25, 1000);	//first
 	m_cAutonLifterGrab1->SetGoal(3, 25, 2400, AutonLifter::kIn);	//second
 	m_cAutonWaitForBin->SetGoal(m_cAutonLifterGrab1);
-	m_cAutonGroupBincher->SetGoal(4000, 2014);	// The top position and where to return the lifter to
+	m_cAutonGroupBincher->SetGoal(5150, 2014);	// The top position and where to return the lifter to
 	m_cAutonWaitForBincher->SetGoal(m_cAutonGroupBincher);
 
 	m_cAutonReload2->SetGoal(2014);

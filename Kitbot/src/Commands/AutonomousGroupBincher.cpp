@@ -7,13 +7,15 @@ AutonomousGroupBincher::AutonomousGroupBincher()
 	m_cAutonLifterLower = new AutonLifter();
 	m_cAutonBincherOpen = new AutonBincher();
 	m_cAutonBincherClamp = new AutonBincher();
+	m_cAutonDelayBottom = new AutonDelay();
+	m_cAutonDelayTop = new AutonDelay();
 	
 	AddParallel(m_cAutonBincherOpen);		//opens bincher
-	AddSequential(m_cAutonLifterDown);
-	AddSequential(new WaitCommand(0.15));
+	//AddSequential(m_cAutonDelayBottom);
 	AddSequential(m_cAutonLifterUp);
 	AddSequential(m_cAutonBincherClamp);		//Binches bin
-	AddSequential(new WaitCommand(0.15));
+	AddSequential(m_cAutonDelayTop);
+	AddSequential(m_cAutonLifterDown);
 	AddSequential(m_cAutonLifterLower);			//lowers lifter
 }
 
@@ -24,6 +26,8 @@ AutonomousGroupBincher::~AutonomousGroupBincher()
 	delete m_cAutonLifterLower;
 	delete m_cAutonBincherOpen;
 	delete m_cAutonBincherClamp;
+	delete m_cAutonDelayBottom;
+	delete m_cAutonDelayTop;
 }
 
 // Called just before this Command runs the first time
@@ -32,24 +36,20 @@ void AutonomousGroupBincher::Initialize()
 	//Bincher (bool bDirection)
 	m_cAutonBincherOpen->SetDir(true);
 	m_cAutonBincherClamp->SetDir(false);
+	m_cAutonDelayBottom->SetWait(0.15);
+	m_cAutonDelayTop->SetWait(0.15);
 }
 
 void AutonomousGroupBincher::SetGoal(double top, double end)
 {
-	m_cAutonLifterDown->SetGoal(2, 25, 0);	// All the way down to pickup the tote
-	m_cAutonLifterUp->SetGoal(2, 25, top);	// Up to the height to clamp the bin
-	m_cAutonLifterLower->SetGoal(2, 25, end);	// Lower the tote when the bin is secured in the bincher
+	m_cAutonLifterUp->SetGoal(3, 25, top, AutonLifter::kIn);	// Up to the height to clamp the bin
+	m_cAutonLifterDown->SetGoal(3, 25, 0);	// All the way down to pickup the tote
+	m_cAutonLifterLower->SetGoal(3, 25, end);	// Lower the tote when the bin is secured in the bincher
 }
 
 // Called repeatedly when this Commsand is scheduled to run
 void AutonomousGroupBincher::Execute()
 {
-}
-
-// Make this return true when this Command no longer needs to run execute()
-bool AutonomousGroupBincher::IsFinished()
-{
-	return m_cAutonLifterLower->IsFinished();
 }
 
 // Called once after isFinished returns true

@@ -20,6 +20,7 @@ class AutonomousGroup8: public CommandGroup
 private:
 	AutonomousGroupBincher* m_cAutonGroupBincher;
 
+	AutonLifter* m_cAutonLifterOut1;
 	AutonLifter* m_cAutonLifterStart1; 				//binch
 	AutonLifter* m_cAutonLifterGrab1; 				//binch
 	AutonSmartTurn* m_cAutonTurn1;

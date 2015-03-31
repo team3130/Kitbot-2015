@@ -4,9 +4,10 @@ AutonomousGroupReload::AutonomousGroupReload()
 {
 	m_cAutonLifterUp = new AutonLifter();
 	m_cAutonLifterDown = new AutonLifter();
+	m_cAutonDelayBottom = new AutonDelay();
 	
 	AddSequential(m_cAutonLifterDown);
-	AddSequential(new WaitCommand(0.15));
+	AddSequential(m_cAutonDelayBottom);
 	AddSequential(m_cAutonLifterUp);
 }
 
@@ -14,11 +15,13 @@ AutonomousGroupReload::~AutonomousGroupReload()
 {
 	delete m_cAutonLifterUp;
 	delete m_cAutonLifterDown;
+	delete m_cAutonDelayBottom;
 }
 
 // Called just before this Command runs the first time
 void AutonomousGroupReload::Initialize()
 {
+	m_cAutonDelayBottom->SetWait(0.15);
 }
 
 void AutonomousGroupReload::SetGoal(double endingHeight)
@@ -30,12 +33,6 @@ void AutonomousGroupReload::SetGoal(double endingHeight)
 // Called repeatedly when this Commsand is scheduled to run
 void AutonomousGroupReload::Execute()
 {
-}
-
-// Make this return true when this Command no longer needs to run execute()
-bool AutonomousGroupReload::IsFinished()
-{
-	return m_cAutonLifterUp->IsFinished();
 }
 
 // Called once after isFinished returns true

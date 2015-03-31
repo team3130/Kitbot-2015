@@ -5,6 +5,7 @@
 #include "AutonLifter.h"
 #include "AutonBincher.h"
 #include "AutonWaitForFinished.h"
+#include "AutonDelay.h"
 
 class AutonomousGroupBincher: public CommandGroup
 {
@@ -14,13 +15,14 @@ private:
 	AutonLifter* m_cAutonLifterLower;
 	AutonBincher* m_cAutonBincherOpen;
 	AutonBincher* m_cAutonBincherClamp;
+	AutonDelay* m_cAutonDelayBottom;
+	AutonDelay* m_cAutonDelayTop;
 public:
 	AutonomousGroupBincher();
 	~AutonomousGroupBincher();
 	void Initialize();
 	void SetGoal(double top, double end);
 	void Execute();
-	bool IsFinished();
 	void End();
 	void Interrupted();
 };

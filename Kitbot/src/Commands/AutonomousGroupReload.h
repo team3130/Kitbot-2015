@@ -3,19 +3,20 @@
 
 #include "WPILib.h"
 #include "AutonLifter.h"
+#include "AutonDelay.h"
 
 class AutonomousGroupReload: public CommandGroup
 {
 private:
 	AutonLifter* m_cAutonLifterDown;
 	AutonLifter* m_cAutonLifterUp;
+	AutonDelay* m_cAutonDelayBottom;
 public:
 	AutonomousGroupReload();
 	~AutonomousGroupReload();
 	void Initialize();
 	void SetGoal(double endingHeight);
 	void Execute();
-	bool IsFinished();
 	void End();
 	void Interrupted();
 };
