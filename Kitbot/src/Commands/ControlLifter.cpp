@@ -3,6 +3,7 @@
 ControlLifter::ControlLifter()
 	: manualMode(true)
 	, buttonHold(false)
+	, preset(kA)
 {
 	Requires(lifter);
 }

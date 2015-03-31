@@ -5,7 +5,7 @@
 ExampleSubsystem::ExampleSubsystem()
 	: PIDSubsystem("ExampleSubsystem", 0.05, 0.00, 0.15)
 	, m_bIsUsingGyro(false)
-	, m_bSquaredDrive(true)
+	, m_bSquaredDrive(false)
 	, moveSpeed(0)
 	, m_drive(LEFTFRONTMOTOR,LEFTBACKMOTOR,RIGHTFRONTMOTOR,RIGHTBACKMOTOR)
 {

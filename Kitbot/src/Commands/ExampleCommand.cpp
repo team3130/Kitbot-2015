@@ -19,7 +19,9 @@ void ExampleCommand::Execute()
 	double speedMultiplier = (-0.5 * CommandBase::oi->stickL->GetZ()) + 0.5;
 	double turnMultiplier = (-0.5 * CommandBase::oi->stickR->GetZ()) + 0.5;
 
-	chassis->Drive(moveSpeed * speedMultiplier, moveTurn * turnMultiplier);
+	// Only driving manual should require Quadratic inputs. By default it should be turned off
+	// Therefore here we turn it on explicitly.
+	chassis->Drive(moveSpeed * speedMultiplier, moveTurn * turnMultiplier, true);
 	return;
 }
 

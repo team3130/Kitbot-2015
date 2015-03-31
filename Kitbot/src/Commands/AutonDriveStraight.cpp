@@ -8,6 +8,7 @@ AutonDriveStraight::AutonDriveStraight()
 	, goal(0)
 	, threshold(0)
 	, confirmTime(0)
+	, dAngle(0)
 {
 	Requires(CommandBase::chassis);
 }

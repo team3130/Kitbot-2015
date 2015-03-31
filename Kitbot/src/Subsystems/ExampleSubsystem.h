@@ -22,12 +22,12 @@ public:
 	ExampleSubsystem();
 	~ExampleSubsystem();
 	void InitDefaultCommand();
-	void Drive(double move, double turn, bool squaredInputs = true);
+	void Drive(double move, double turn, bool squaredInputs = false);
 	double GetAngle();
 	bool IsUsingGyro() {return m_bIsUsingGyro;};
 	void HoldAngle(double angle = 0);
-	void ReleaseAngle() { GetPIDController()->Disable(); };
-	void GyroDrive(double move, bool squaredInputs = true);
+	void ReleaseAngle() { GetPIDController()->Disable(); m_bIsUsingGyro=false; };
+	void GyroDrive(double move, bool squaredInputs = false);
 	virtual double ReturnPIDInput();
 	virtual void UsePIDOutput(double outputAngle);
 	double GetDistance();

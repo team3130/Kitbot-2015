@@ -4,6 +4,7 @@ AutonLifter::AutonLifter()
 	: m_waitTime(0)
 	, m_dThreshold(0)
 	, m_dEncoderGoal(0)
+	, m_Push(kNone)
 	, m_bPusherDone(true)
 {
 	Requires(lifter);

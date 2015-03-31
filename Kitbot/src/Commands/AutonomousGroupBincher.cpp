@@ -11,11 +11,11 @@ AutonomousGroupBincher::AutonomousGroupBincher()
 	m_cAutonDelayTop = new AutonDelay();
 	
 	AddParallel(m_cAutonBincherOpen);		//opens bincher
-	//AddSequential(m_cAutonDelayBottom);
 	AddSequential(m_cAutonLifterUp);
 	AddSequential(m_cAutonBincherClamp);		//Binches bin
 	AddSequential(m_cAutonDelayTop);
 	AddSequential(m_cAutonLifterDown);
+	AddSequential(m_cAutonDelayBottom);
 	AddSequential(m_cAutonLifterLower);			//lowers lifter
 }
 
