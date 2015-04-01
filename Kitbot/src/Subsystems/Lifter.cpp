@@ -1,6 +1,7 @@
 #include "Lifter.h"
 #include "../RobotMap.h"
 #include "../Commands/ControlLifter.h"
+#include "../Commands/RobotSensors.h"
 
 Lifter::Lifter()
 	: Subsystem("Lifter")
@@ -59,6 +60,7 @@ void Lifter::moveLifter(float goal)
 	}
 	if(!GetLimitSwitchBot()){
 		m_cLiftMotor->SetPosition(0);
+		RobotSensors::LifterReset();
 	}
 }
 

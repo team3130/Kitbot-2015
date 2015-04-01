@@ -22,9 +22,6 @@ ExampleSubsystem::ExampleSubsystem()
 	GetPIDController()->Disable();
 	gyro->InitGyro();
 	gyro->Reset();
-	SmartDashboard::PutNumber("TurnPID_P",0.03);
-	SmartDashboard::PutNumber("TurnPID_I",0.00);
-	SmartDashboard::PutNumber("TurnPID_D",0.00);
 }
 
 ExampleSubsystem::~ExampleSubsystem()
@@ -63,14 +60,8 @@ void ExampleSubsystem::GyroDrive(double move, bool squaredInputs)
 	if(!m_bIsUsingGyro)
 	{
 		m_bIsUsingGyro = true;
-	/*	GetPIDController()->SetPID(
-				SmartDashboard::GetNumber("TurnPID_P",0.0),
-				SmartDashboard::GetNumber("TurnPID_I",0.00),
-				SmartDashboard::GetNumber("TurnPID_D",0.0)
-				); */
 		GetPIDController()->Enable();
 	}
-	SmartDashboard::PutNumber("Check PID P",GetPIDController()->GetP());
 }
 
 double ExampleSubsystem::GetAngle()

@@ -27,7 +27,7 @@ void AutonomousGroupReload::Initialize()
 void AutonomousGroupReload::SetGoal(double endingHeight)
 {
 	m_cAutonLifterDown->SetGoal(2, 25, 0);	// All the way down to pickup the tote
-	m_cAutonLifterUp->SetGoal(2, 25, endingHeight);	// Up to the ordered height
+	m_cAutonLifterUp->SetGoal(2, 45, endingHeight);	// Up to the ordered height
 }
 
 // Called repeatedly when this Commsand is scheduled to run

@@ -25,6 +25,7 @@ void AutonLifter::Initialize()
 	}
 	timer->Reset();
 	timer->Start();
+	std::cerr << "DEBUG: Lifter " << this->GetName() << "initialized" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run

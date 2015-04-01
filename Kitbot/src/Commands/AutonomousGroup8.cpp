@@ -53,10 +53,10 @@ AutonomousGroup8::AutonomousGroup8()
 	//AddSequential(m_cAutonWaitForBin);
 
 	AddSequential(m_cAutonApproach2);	// Approach the second set
+	AddSequential(m_cAutonWaitForBincher);
 	AddParallel(m_cAutonRollersOut2);
 	AddSequential(m_cAutonTurn2);
 //	AddSequential(m_cAutonArmsOpen2);
-	AddSequential(m_cAutonWaitForBincher);
 	AddParallel(m_cAutonRollersIn2);
 	AddSequential(m_cAutonDriveIntake2);
 	AddSequential(m_cAutonArmsClose2);	// This must be sequential to use its timer to suck the tote in
@@ -65,16 +65,16 @@ AutonomousGroup8::AutonomousGroup8()
 	AddSequential(m_cAutonApproach3);
 	AddParallel(m_cAutonRollersOut3);
 	AddSequential(m_cAutonTurn3);
+	AddSequential(m_cAutonWaitForReload2);
 //	AddSequential(m_cAutonArmsOpen3);
 	AddParallel(m_cAutonRollersIn3);
 	AddSequential(m_cAutonDriveIntake3);
 	AddSequential(m_cAutonArmsClose3);	// This must be sequential to use its timer to suck the tote in
-	AddSequential(m_cAutonWaitForReload2);
-	AddParallel(m_cAutonReload3);
+//	AddParallel(m_cAutonReload3);
 
-	AddSequential(m_cAutonDriveAutozone);	// Turn and drive toward Autozone
-	AddSequential(m_cAutonWaitForReload3);
-	AddParallel(m_cAutonLifterDrop);	// Drop the stack
+	AddParallel(m_cAutonDriveAutozone);	// Turn and drive toward Autozone
+//	AddSequential(m_cAutonWaitForReload3);
+	AddSequential(m_cAutonLifterDrop);	// Drop the stack
 	AddParallel(m_cAutonRollersEject);	// Spit the stack out
 	AddSequential(m_cAutonDriveBackout); // Backout
 }
@@ -135,28 +135,30 @@ void AutonomousGroup8::Initialize()
 
 
 		//Driving (double dist, double thresh, double ispeed, double timeout, double angle=0)
-	m_cAutonApproach1->SetGoal(27, .5, .65, 1);
-	m_cAutonDriveIntake1->SetGoal(6, 1, .5, 1);
-	m_cAutonApproach2->SetGoal(52, .5,	.70, 2, -35); // This was -7 when Turn2(-28) was active
-	m_cAutonDriveAutozone->SetGoal(90, .5, 0.85, 3, -75);
-	m_cAutonDriveBackout->SetGoal(-15, 0.5, 0.75, 1);
+	m_cAutonApproach1->SetGoal(27, 1.5, .65, 1);
+	m_cAutonDriveIntake1->SetGoal(6, 1.5, .5, 1);
 
-	m_cAutonDriveIntake2->SetGoal(50,1,0.65,2);
-	m_cAutonApproach3->SetGoal(29,1,0.70,2);
-	m_cAutonDriveIntake3->SetGoal(50,1,0.75,2);
+	m_cAutonApproach2->SetGoal(52, 2.5,	.75, 2, -35); // This was -7 when Turn2(-28) was active
+	m_cAutonDriveIntake2->SetGoal(50, 1.5,0.65,2);
+
+	m_cAutonApproach3->SetGoal(33,2.5,0.75,2);
+	m_cAutonDriveIntake3->SetGoal(50, 1.5,0.75,2);
+
+	m_cAutonDriveAutozone->SetGoal(70, 3.5, 0.70, 3, -90);
+	m_cAutonDriveBackout->SetGoal(-15, 0.5, 0.75, 1);
 
 		//Turning (double angle, double timeout, double tolerance=1.0)
 	m_cAutonTurn1->SetGoal(-15, 0.8);
-	m_cAutonTurn2->SetGoal(47, 1.5);
-	m_cAutonTurn3->SetGoal(-50, 1.5);
+	m_cAutonTurn2->SetGoal(43, 1.5);
+	m_cAutonTurn3->SetGoal(-47, 1.5);
 
 		//Intake Arms (double timeout, bool extend)
 	m_cAutonArmsOpen1->SetGoal(1, false);
 	m_cAutonArmsClose1->SetGoal(0.25, true);
 	m_cAutonArmsOpen2->SetGoal(1, false);
-	m_cAutonArmsClose2->SetGoal(0.4, true);
+	m_cAutonArmsClose2->SetGoal(0.25, true);
 	m_cAutonArmsOpen3->SetGoal(1, false);
-	m_cAutonArmsClose3->SetGoal(0.4, true);
+	m_cAutonArmsClose3->SetGoal(0.25, true);
 
 		//Rollers (double timeout, double leftStatus, double rightStatus)
 	m_cAutonRollers1->SetGoal(15,  1, -1);

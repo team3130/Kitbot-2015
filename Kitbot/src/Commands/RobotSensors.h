@@ -6,10 +6,9 @@
 class RobotSensors: public CommandBase
 {
 private:
-	AnalogInput* range;
+	static bool lifterZero;
 	SerialPort* arduino;
 	Timer* timer;
-	char light;
 public:
 	RobotSensors();
 	~RobotSensors();
@@ -18,6 +17,7 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	static void LifterReset() { lifterZero = true; };
 };
 
 #endif
