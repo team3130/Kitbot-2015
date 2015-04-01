@@ -8,6 +8,7 @@ class Lifter: public Subsystem
 {
 private:
 	CANTalon* m_cLiftMotor;
+	bool m_bOnPID;
 public:
 	Lifter();
 	~Lifter();
@@ -18,6 +19,7 @@ public:
 	bool GetLimitSwitchBot() { return m_cLiftMotor->GetReverseLimitOK(); };
 	double GetPosition() { return m_cLiftMotor->GetPosition(); };
 	double GetSpeed() { return m_cLiftMotor->GetSpeed(); };
+	bool CheckZero();
 };
 
 #endif

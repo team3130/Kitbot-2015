@@ -36,6 +36,7 @@ void AutonLifter::Execute()
 		pusher->pushLifter(0);
 		m_bPusherDone = true;
 	}
+	lifter->CheckZero();
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -44,8 +45,8 @@ bool AutonLifter::IsFinished()
 	if(timer->Get() > m_waitTime) return true;
 	return (
 			(	fabs(lifter->GetPosition() - m_dEncoderGoal) < m_dThreshold
-				|| !lifter->GetLimitSwitchTop()
-				|| !lifter->GetLimitSwitchBot()	)
+				|| (lifter->GetPosition() < m_dEncoderGoal && !lifter->GetLimitSwitchTop())
+				|| (lifter->GetPosition() > m_dEncoderGoal && !lifter->GetLimitSwitchBot())	)
 			&& m_bPusherDone );
 }
 

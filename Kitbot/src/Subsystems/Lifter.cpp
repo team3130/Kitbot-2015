@@ -5,6 +5,7 @@
 
 Lifter::Lifter()
 	: Subsystem("Lifter")
+	, m_bOnPID(false)
 {
 	m_cLiftMotor = new CANTalon(LIFTER);
 	m_cLiftMotor->ConfigLimitMode(CANTalon::kLimitMode_SwitchInputsOnly);
@@ -28,18 +29,22 @@ void Lifter::InitDefaultCommand()
 
 void Lifter::toSetpoint(int goal)
 {
-	m_cLiftMotor->SetVoltageRampRate(125.0);
-	double termP = Preferences::GetInstance()->GetInt("LifterPIDtermP", 5);
-	double termI = Preferences::GetInstance()->GetInt("LifterPIDtermI", 0);
-	double termD = Preferences::GetInstance()->GetInt("LifterPIDtermD", 0);
-	m_cLiftMotor->SetControlMode(CANSpeedController::kPosition);
-	m_cLiftMotor->SetPID(termP,termI,termD);
+	if(!m_bOnPID) {
+		m_bOnPID = true;
+		double termP = Preferences::GetInstance()->GetInt("LifterPIDtermP", 5);
+		double termI = Preferences::GetInstance()->GetInt("LifterPIDtermI", 0);
+		double termD = Preferences::GetInstance()->GetInt("LifterPIDtermD", 0);
+		m_cLiftMotor->SetVoltageRampRate(125.0);
+		m_cLiftMotor->SetControlMode(CANSpeedController::kPosition);
+		m_cLiftMotor->SetPID(termP,termI,termD);
+		m_cLiftMotor->EnableControl();
+	}
 	m_cLiftMotor->Set(goal);
-	m_cLiftMotor->EnableControl();
 }
 
 void Lifter::moveLifter(float goal)
 {
+	m_bOnPID = false;
 	m_cLiftMotor->SetVoltageRampRate(125.0);
 	if(goal > 0 and GetLimitSwitchTop()){
 		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
@@ -58,9 +63,15 @@ void Lifter::moveLifter(float goal)
 	}else if(m_cLiftMotor->GetControlMode() == CANSpeedController::kPercentVbus){
 		toSetpoint(GetPosition());
 	}
+	CheckZero();
+}
+
+bool Lifter::CheckZero() {
 	if(!GetLimitSwitchBot()){
 		m_cLiftMotor->SetPosition(0);
 		RobotSensors::LifterReset();
+		return true;
 	}
+	else return false;
 }
 
