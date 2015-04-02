@@ -11,7 +11,6 @@ AutonDumbDrive::AutonDumbDrive()
 // Called just before this Command runs the first time
 void AutonDumbDrive::Initialize()
 {
-	chassis->Drive(m_driveSpeed, 0);	//starts driving backwards for a time
 	timer->Reset();
 	timer->Start();
 }
@@ -19,6 +18,7 @@ void AutonDumbDrive::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void AutonDumbDrive::Execute()
 {
+	chassis->Drive(m_driveSpeed, 0);	//starts driving backwards for a time
 }
 
 // Make this return true when this Command no longer needs to run execute()
