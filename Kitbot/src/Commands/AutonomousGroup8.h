@@ -52,6 +52,7 @@ private:
 	AutonomousGroupReload* m_cAutonReload3;
 	AutonWaitForFinished* m_cAutonWaitForReload3;
 
+	AutonSmartTurn* m_cAutonTurn4;
 	AutonDriveStraight* m_cAutonDriveAutozone;
 	AutonLifter* m_cAutonLifterDrop;
 	AutonRollers* m_cAutonRollersEject;
