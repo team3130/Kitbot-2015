@@ -67,7 +67,7 @@ void Lifter::moveLifter(float goal)
 }
 
 bool Lifter::CheckZero() {
-	if(GetLimitSwitchBot()){
+	if(!GetLimitSwitchBot()){
 		m_cLiftMotor->SetPosition(0);
 		RobotSensors::LifterReset();
 		return true;
