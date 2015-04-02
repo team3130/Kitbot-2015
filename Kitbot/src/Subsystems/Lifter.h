@@ -9,6 +9,7 @@ class Lifter: public Subsystem
 private:
 	CANTalon* m_cLiftMotor;
 	bool m_bOnPID;
+	const int m_nLIFTERMULTIPLIER = 2;
 public:
 	Lifter();
 	~Lifter();

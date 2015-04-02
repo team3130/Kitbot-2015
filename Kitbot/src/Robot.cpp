@@ -27,7 +27,7 @@ private:
 		//chooser->AddObject("Pick Up Yellow Tote", new AutonomousGroup());
 		chooser->AddObject("Code Testing - Do Not Use", new AutonomousGroup3());
 		chooser->AddObject("Lazy Moose", new AutonomousGroup4());
-		chooser->AddObject("Moose Bin Grabber", new AutonomousGroup2());
+		chooser->AddObject("Normal Moose", new AutonomousGroup2());
 		chooser->AddObject("Bin into Bincher", new AutonomousGroup6());
 		//chooser->AddObject("3 Tote + Bin", new AutonomousGroup7());
 		chooser->AddObject("3 Tote + Bin 2", new AutonomousGroup8());
