@@ -16,8 +16,8 @@ public:
 	void InitDefaultCommand();
 	void toSetpoint(int goal);
 	void moveLifter(float goal);
-	bool GetLimitSwitchTop() { return m_cLiftMotor->GetForwardLimitOK(); };
-	bool GetLimitSwitchBot() { return m_cLiftMotor->GetReverseLimitOK(); };
+	bool GetLimitSwitchTop() { return !m_cLiftMotor->IsFwdLimitSwitchClosed(); };
+	bool GetLimitSwitchBot() { return !m_cLiftMotor->IsRevLimitSwitchClosed(); };
 	double GetPosition() { return m_cLiftMotor->GetPosition(); };
 	double GetSpeed() { return m_cLiftMotor->GetSpeed(); };
 	bool CheckZero();
