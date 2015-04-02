@@ -6,23 +6,23 @@
 #include "AutonDriveStraight.h"
 #include "AutonLifter.h"
 #include "AutonPusher.h"
-#include "AutonDumbTurn.h"
+#include "AutonSmartTurn.h"
 #include "AutonBincher.h"
 #include "AutonIntakeArms.h"
+#include "AutonRollers.h"
+#include "AutonDelay.h"
+#include "AutonWaitForFinished.h"
+#include "AutonomousGroupBincher.h"
+#include "AutonomousGroupReload.h"
 
 class AutonomousGroup6: public CommandGroup
 {
 private:
-	AutonLifter* m_cAutonLifter1;
-	AutonLifter* m_cAutonLifter2;
-	AutonLifter* m_cAutonLifter3;
-	AutonLifter* m_cAutonLifter4;
-	AutonPusher* m_cAutonPusher1;
-	AutonDriveStraight* m_cAutonDriveStraight1;
-	AutonDumbTurn* m_cAutonTurn1;
-	AutonBincher* m_cAutonBincher1;
-	AutonBincher* m_cAutonBincher2;
-	AutonIntakeArms* m_cAutonArms1;
+	AutonIntakeArms* m_cAutonArmsOpen1;
+	AutonLifter* m_cAutonLifterOut1;
+	AutonLifter* m_cAutonLifterStart1; 				//binch
+	AutonomousGroupBincher* m_cAutonGroupBincher;
+
 public:
 	AutonomousGroup6();
 	~AutonomousGroup6();
