@@ -2,47 +2,39 @@
 
 AutonomousGroup::AutonomousGroup()
 {
-	//Goal: pick up a yellow tote and move into auton zone
-	m_cAutonLifter1 = new AutonLifter();
-	m_cAutonDriveStraight1 = new AutonDriveStraight();
-	m_cAutonTurn1 = new AutonTurn();
-	
-	AddSequential(m_cAutonLifter1);			//lifts tote up
-	//AddSequential(m_cAutonTurn1);			//Turns robot towards Auton Zone
-	//AddSequential(m_cAutonDriveStraight1);	//Robot drives into Auton Zone
+	m_cAutonArmsOpen1 = new AutonIntakeArms();
+	m_cAutonLifterOut1 = new AutonLifter();
+	m_cAutonLifterStart1 = new AutonLifter();
+	m_cAutonGroupBincher = new AutonomousGroupBincher();
+	m_cAutonDriveBack1 = new AutonDriveStraight();
+
+	//Goal: pick up a bin and put into bincher
+	AddParallel(m_cAutonArmsOpen1);				//opens arms
+	AddSequential(m_cAutonLifterOut1);			//Release the flaps
+	AddSequential(m_cAutonLifterStart1);		//lifts bin up a bit
+	AddParallel(m_cAutonGroupBincher);
+	AddSequential(m_cAutonDriveBack1);
 }
 
 AutonomousGroup::~AutonomousGroup()
 {
-	delete m_cAutonLifter1;
-	delete m_cAutonDriveStraight1;
-	delete m_cAutonTurn1;
+	delete m_cAutonArmsOpen1;
+	delete m_cAutonLifterOut1;
+	delete m_cAutonLifterStart1;
+	delete m_cAutonGroupBincher;
 }
 
 // Called just before this Command runs the first time
 void AutonomousGroup::Initialize()
 {
-	// Will change values once robot speed and positioning is known.
-		//Lifter
-	m_cAutonLifter1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Time",5),
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Threshold",15),
-			Preferences::GetInstance()->GetDouble("Auton1-Lifter1-Goal",1000));
-
-		//Driving
-	m_cAutonDriveStraight1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Distance-Tote",40),
-			Preferences::GetInstance()->GetDouble("Auton1-Tolerance-Tote",2.5),
-			Preferences::GetInstance()->GetDouble("Auton1-Speed-Tote",0.65),
-			Preferences::GetInstance()->GetDouble("Auton1-Timeout-Tote",3));
-
-		//Turning
-	m_cAutonTurn1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Angle",40),
-			Preferences::GetInstance()->GetDouble("Auton1-Turn1-Threshold",2.5), 3);
+	m_cAutonLifterOut1->SetGoal(3, 25, 750, AutonLifter::kOut);	// Release the Kraken
+	m_cAutonLifterStart1->SetGoal(2, 25, 1000);	//first
+	m_cAutonGroupBincher->SetGoal(5150, 2014);	// The top position and where to return the lifter to
+	m_cAutonArmsOpen1->SetGoal(1, false);
+	m_cAutonDriveBack1->SetGoal(-70,3,0.60,5,20);
 }
 
-// Called repeatedly when this Command is scheduled to run
+// Called repeatedly when this Commsand is scheduled to run
 void AutonomousGroup::Execute()
 {
 }

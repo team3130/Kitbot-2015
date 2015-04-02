@@ -24,7 +24,7 @@ private:
 		CommandBase::init();
 		chooser = new SendableChooser();
 		chooser->AddDefault("No Auton", new AutonomousGroup5());
-		//chooser->AddObject("Pick Up Yellow Tote", new AutonomousGroup());
+		chooser->AddObject("Bincher into Zone", new AutonomousGroup());
 		chooser->AddObject("Code Testing - Do Not Use", new AutonomousGroup3());
 		chooser->AddObject("Lazy Moose", new AutonomousGroup4());
 		chooser->AddObject("Normal Moose", new AutonomousGroup2());
