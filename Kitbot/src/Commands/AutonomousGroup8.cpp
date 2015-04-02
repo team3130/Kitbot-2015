@@ -25,6 +25,7 @@ AutonomousGroup8::AutonomousGroup8()
 	m_cAutonTurn1 = new AutonSmartTurn();
 	m_cAutonTurn2 = new AutonSmartTurn();
 	m_cAutonTurn3 = new AutonSmartTurn();
+	m_cAutonTurn4 = new AutonSmartTurn();
 	m_cAutonArmsOpen1 = new AutonIntakeArms();
 	m_cAutonArmsClose1 = new AutonIntakeArms();
 	m_cAutonArmsOpen2 = new AutonIntakeArms();
@@ -42,7 +43,6 @@ AutonomousGroup8::AutonomousGroup8()
 	AddSequential(m_cAutonLifterOut1);			//Release the flaps
 	AddSequential(m_cAutonLifterStart1);		//lifts bin up a bit
 	AddParallel(m_cAutonGroupBincher);
-	//AddParallel(m_cAutonLifterGrab1);			//lifts bin up and pull it in
 
 	AddSequential(m_cAutonTurn1);
 	AddParallel(m_cAutonRollers1);
@@ -54,6 +54,7 @@ AutonomousGroup8::AutonomousGroup8()
 
 	AddSequential(m_cAutonApproach2);	// Approach the second set
 	AddSequential(m_cAutonWaitForBincher);
+	AddParallel(m_cAutonLifterGrab1);			//lifts first tote for reload
 	AddParallel(m_cAutonRollersOut2);
 	AddSequential(m_cAutonTurn2);
 //	AddSequential(m_cAutonArmsOpen2);
@@ -72,9 +73,10 @@ AutonomousGroup8::AutonomousGroup8()
 	AddSequential(m_cAutonArmsClose3);	// This must be sequential to use its timer to suck the tote in
 //	AddParallel(m_cAutonReload3);
 
-	AddParallel(m_cAutonDriveAutozone);	// Turn and drive toward Autozone
+	AddSequential(m_cAutonTurn4);
+	AddParallel(m_cAutonLifterDrop);	// Drop the stack
+	AddSequential(m_cAutonDriveAutozone);	// Turn and drive toward Autozone
 //	AddSequential(m_cAutonWaitForReload3);
-	AddSequential(m_cAutonLifterDrop);	// Drop the stack
 	AddParallel(m_cAutonRollersEject);	// Spit the stack out
 	AddSequential(m_cAutonDriveBackout); // Backout
 }
@@ -101,6 +103,7 @@ AutonomousGroup8::~AutonomousGroup8()
 	delete m_cAutonTurn1;
 	delete m_cAutonTurn2;
 	delete m_cAutonTurn3;
+	delete m_cAutonTurn4;
 	delete m_cAutonArmsOpen1;
 	delete m_cAutonArmsClose1;
 	delete m_cAutonArmsOpen2;
@@ -122,7 +125,7 @@ void AutonomousGroup8::Initialize()
 			//Bincher
 	m_cAutonLifterOut1->SetGoal(3, 25, 750, AutonLifter::kOut);	// Release the Kraken
 	m_cAutonLifterStart1->SetGoal(2, 25, 1000);	//first
-	m_cAutonLifterGrab1->SetGoal(3, 25, 2400, AutonLifter::kIn);	//second
+	m_cAutonLifterGrab1->SetGoal(3, 25, 1700);
 	m_cAutonWaitForBin->SetGoal(m_cAutonLifterGrab1);
 	m_cAutonGroupBincher->SetGoal(5150, 2014);	// The top position and where to return the lifter to
 	m_cAutonWaitForBincher->SetGoal(m_cAutonGroupBincher);
@@ -144,13 +147,14 @@ void AutonomousGroup8::Initialize()
 	m_cAutonApproach3->SetGoal(33,2.5,0.75,2);
 	m_cAutonDriveIntake3->SetGoal(50, 1.5,0.75,2);
 
-	m_cAutonDriveAutozone->SetGoal(70, 3.5, 0.70, 3, -90);
+	m_cAutonDriveAutozone->SetGoal(70, 3.5, 0.70, 3);
 	m_cAutonDriveBackout->SetGoal(-15, 0.5, 0.75, 1);
 
 		//Turning (double angle, double timeout, double tolerance=1.0)
 	m_cAutonTurn1->SetGoal(-15, 0.8);
 	m_cAutonTurn2->SetGoal(43, 1.5);
 	m_cAutonTurn3->SetGoal(-47, 1.5);
+	m_cAutonTurn4->SetGoal(-80, 1.8);
 
 		//Intake Arms (double timeout, bool extend)
 	m_cAutonArmsOpen1->SetGoal(1, false);

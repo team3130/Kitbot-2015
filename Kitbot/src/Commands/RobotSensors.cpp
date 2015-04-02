@@ -26,6 +26,7 @@ void RobotSensors::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void RobotSensors::Execute()
 {
+	lifter->CheckZero();
 	if(DriverStation::GetInstance()->IsDisabled()) {
 		if(timer->Get() > 4) {
 			timer->Reset();
