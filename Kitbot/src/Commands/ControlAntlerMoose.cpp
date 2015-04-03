@@ -20,8 +20,8 @@ void ControlAntlerMoose::Initialize()
 {
 	m_bNewStatusL = true;
 	m_bNewStatusR = true;
-	antlerMoose->ControlLeftAntler(false);
-	antlerMoose->ControlRightAntler(false);
+	antlerMoose->RestoreLeftAntler();
+	antlerMoose->RestoreRightAntler();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -63,8 +63,8 @@ bool ControlAntlerMoose::IsFinished()
 // Called once after isFinished returns true
 void ControlAntlerMoose::End()
 {
-	antlerMoose->ControlLeftAntler(false);
-	antlerMoose->ControlRightAntler(false);
+	//antlerMoose->ControlLeftAntler(false);
+	//antlerMoose->ControlRightAntler(false);
 }
 
 // Called when another command which requires one or more of the same

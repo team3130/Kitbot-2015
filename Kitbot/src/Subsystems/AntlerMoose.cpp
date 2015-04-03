@@ -35,13 +35,13 @@ void AntlerMoose::ControlRightAntler(bool Up)
 	m_bRightAntlerDown = Up;
 }
 
-bool AntlerMoose::RestoreLeftAntler()
+bool AntlerMoose::RestoreRightAntler()
 {
 	m_cRightAntler->Set(m_bRightAntlerDown);
 	return m_bRightAntlerDown;
 }
 
-bool AntlerMoose::RestoreRightAntler()
+bool AntlerMoose::RestoreLeftAntler()
 {
 	m_cLeftAntler->Set(m_bLeftAntlerDown);
 	return m_bLeftAntlerDown;

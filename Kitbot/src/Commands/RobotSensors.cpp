@@ -46,21 +46,22 @@ void RobotSensors::Execute()
 		}
 	}
 	else {
-		if( chassis->m_cEncoderL->GetRate() > 6 ) arduino->Write("3", 1);
-		else if( chassis->m_cEncoderL->GetRate() < -6 ) arduino->Write("4", 1);
-		else arduino->Write("5", 1);
-
-		if( lifter->GetSpeed() > 0.5 ) arduino->Write("6", 1);
-		else if(lifter->GetSpeed() < -0.5) arduino->Write("7", 1);
-		else arduino->Write("8", 1);
-
-		if( CommandBase::pusher->GetDir() > 0) arduino->Write("9", 1);
-		else if( CommandBase::pusher->GetDir() < 0) arduino->Write("10", 1);
-		else arduino->Write("11", 1);
-
-		if(timer->Get() > 4) {
+		if(timer->Get() > 1.0) {
 			timer->Reset();
 			timer->Start();
+
+			if( chassis->m_cEncoderL->GetRate() > 6 ) arduino->Write("3", 1);
+			else if( chassis->m_cEncoderL->GetRate() < -6 ) arduino->Write("4", 1);
+			else arduino->Write("5", 1);
+
+			if( lifter->GetSpeed() > 0.5 ) arduino->Write("6", 1);
+			else if(lifter->GetSpeed() < -0.5) arduino->Write("7", 1);
+			else arduino->Write("8", 1);
+
+			if( CommandBase::pusher->GetDir() > 0) arduino->Write("9", 1);
+			else if( CommandBase::pusher->GetDir() < 0) arduino->Write("10", 1);
+			else arduino->Write("11", 1);
+
 			if(!lifterZero) {
 				arduino->Write("Z", 1);
 			}
