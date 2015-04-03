@@ -20,7 +20,7 @@ AutonomousGroup2::AutonomousGroup2()
 	AddParallel(m_cMooseLifter2);		//While the moose is lowering, setting the bins down
 	AddSequential(m_cAutonDrive2);		//Drive forwards to the auton zone
 	AddSequential(m_cAntlerMoose1);		//Retract antlers up
-	AddSequential(m_cAutonDrive3);		//Drive back a bit into the auton zone
+	//AddSequential(m_cAutonDrive3);		//Drive back a bit into the auton zone
 	AddSequential(m_cAutonIntakeArms);	//Extend intake arms to fit in auton zone
 	//AddSequential(m_cAutonTurner);	//Turn to fit in auton zone
 }
@@ -49,7 +49,7 @@ void AutonomousGroup2::Initialize()
 			Preferences::GetInstance()->GetDouble("Auto-Speed-Step",0.65),
 			Preferences::GetInstance()->GetDouble("Auto-Timeout-Step",8) );
 	m_cAutonDrive2->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auto-Distance-Zone",164),
+			Preferences::GetInstance()->GetDouble("Auto-Distance-Zone",170),
 			Preferences::GetInstance()->GetDouble("Auto-Tolerance-Zone",1.5),
 			Preferences::GetInstance()->GetDouble("Auto-Speed-Zone",0.65),
 			Preferences::GetInstance()->GetDouble("Auto-Timeout-Zone",7) );
@@ -69,7 +69,7 @@ void AutonomousGroup2::Initialize()
 			Preferences::GetInstance()->GetDouble("Auto-MooseUp-Time", 1.0),
 			true);
 	m_cMooseLifter2->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auto-MooseDrop",140),
+			Preferences::GetInstance()->GetDouble("Auto-MooseDrop",134),
 			Preferences::GetInstance()->GetDouble("Auto-MooseDown-Time", 2.0),
 			false);
 
