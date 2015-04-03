@@ -14,14 +14,9 @@ class AutonomousGroup4: public CommandGroup
 {
 private:
 	AutonMooseLifter* m_cMooseLifter1;
-	AutonMooseLifter* m_cMooseLifter2;
-	AutonAntlerMoose* m_cAntlerMoose1;
 	AutonDriveStraight* m_cAutonDrive1;
 	AutonDriveStraight* m_cAutonDrive2;
-	AutonDriveStraight* m_cAutonDrive3;
 	AutonDumbDrive* m_cAutonDumb1;
-	AutonTurn* m_cAutonTurner;
-	AutonIntakeArms* m_cAutonIntakeArms;
 public:
 	AutonomousGroup4();
 	~AutonomousGroup4();

@@ -48,14 +48,14 @@ void Lifter::moveLifter(float goal)
 	m_cLiftMotor->SetVoltageRampRate(125.0);
 	if(goal > 0 and GetLimitSwitchTop()){
 		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
-		if(GetPosition() > Preferences::GetInstance()->GetInt("LifterSlowZoneTop", 4700)){	//Default number is 5450
+		if(GetPosition() > 4700){	//Default number is 5450
 			m_cLiftMotor->Set(0.5*goal);
 		}else{
 			m_cLiftMotor->Set(goal);
 		}
 	}else if(goal < 0 and GetLimitSwitchBot()){
 		m_cLiftMotor->SetControlMode(CANSpeedController::kPercentVbus);
-		if(GetPosition() < Preferences::GetInstance()->GetInt("LifterSlowZoneBot", 600)){	//Default number is 400
+		if(GetPosition() < 600){	//Default number is 400
 			m_cLiftMotor->Set(0.5*goal);
 		}else{
 			m_cLiftMotor->Set(goal);
