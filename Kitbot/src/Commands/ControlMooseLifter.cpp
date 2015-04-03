@@ -17,8 +17,10 @@ ControlMooseLifter::~ControlMooseLifter()
 void ControlMooseLifter::Initialize()
 {
 	m_bNewStatus = true;
-	m_bWatchLoop = false;
-	mooseLifter->MoveMooseLifterSolenoid(false);
+	m_bWatchLoop = mooseLifter->isUp();
+	//mooseLifter->MoveMooseLifterSolenoid(false);
+	mooseLifter->RestoreLifterSolenoid();
+
 }
 
 // Called repeatedly when this Command is scheduled to run

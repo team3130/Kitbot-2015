@@ -32,3 +32,9 @@ void MooseLifter::MoveMooseLifterSolenoid(bool bActivate)
 	m_bActivated = bActivate;
 	m_cMooseSolenoid->Set(bActivate);
 }
+
+bool MooseLifter::RestoreLifterSolenoid()
+{
+	m_cMooseSolenoid->Set(m_bActivated);
+	return m_bActivated;
+}

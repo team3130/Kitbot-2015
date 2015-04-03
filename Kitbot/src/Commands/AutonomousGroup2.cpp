@@ -51,7 +51,7 @@ void AutonomousGroup2::Initialize()
 	m_cAutonDrive2->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auto-Distance-Zone",170),
 			Preferences::GetInstance()->GetDouble("Auto-Tolerance-Zone",1.5),
-			Preferences::GetInstance()->GetDouble("Auto-Speed-Zone",0.65),
+			Preferences::GetInstance()->GetDouble("Auto-Speed-Zone",0.60),
 			Preferences::GetInstance()->GetDouble("Auto-Timeout-Zone",7) );
 	m_cAutonDrive3->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auto-Distance-Self",-40),

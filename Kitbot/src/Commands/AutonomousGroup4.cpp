@@ -11,6 +11,7 @@ AutonomousGroup4::AutonomousGroup4()
 	
 	AddSequential(m_cAutonDrive1);		//Drive backwards
 	AddSequential(m_cAutonDumb1);		//Creep backwards slowly to ensure level with step
+	AddSequential(new WaitCommand(1.0));
 	AddSequential(m_cMooseLifter1);		//Lift up both middle bins with moose
 	AddSequential(m_cAutonDrive2);		//Drive forwards to the auton zone
 }
@@ -36,7 +37,7 @@ void AutonomousGroup4::Initialize()
 	m_cAutonDrive2->SetGoal(
 			60,
 			1.5,
-			0.65,
+			0.60,
 			7);
 
 		//Dumb Drive

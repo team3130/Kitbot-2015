@@ -19,6 +19,8 @@ public:
 	void ControlRightAntler(bool Up);
 	bool IsLeftAntlerDown(){return m_bLeftAntlerDown;};
 	bool IsRightAntlerDown(){return m_bRightAntlerDown;};
+	bool RestoreLeftAntler();
+	bool RestoreRightAntler();
 };
 
 #endif
