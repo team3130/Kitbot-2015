@@ -46,7 +46,7 @@ void AutonomousGroup2::Initialize()
 	m_cAutonDrive1->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auto-Distance-Step",-53),
 			Preferences::GetInstance()->GetDouble("Auto-Tolerance-Step",1.5),
-			Preferences::GetInstance()->GetDouble("Auto-Speed-Step",0.65),
+			Preferences::GetInstance()->GetDouble("Auto-Speed-Step",0.50),
 			Preferences::GetInstance()->GetDouble("Auto-Timeout-Step",8) );
 	m_cAutonDrive2->SetGoal(
 			Preferences::GetInstance()->GetDouble("Auto-Distance-Zone",170),
@@ -61,8 +61,8 @@ void AutonomousGroup2::Initialize()
 
 		//Dumb Drive
 	m_cAutonDumb1->SetGoal(
-			Preferences::GetInstance()->GetDouble("Auto-Dumb-Speed", 0.55),
-			Preferences::GetInstance()->GetDouble("Auto-Dumb-Time", 0.2));
+			Preferences::GetInstance()->GetDouble("Auto-Dumb-Speed", 0.50),
+			Preferences::GetInstance()->GetDouble("Auto-Dumb-Time", 1));
 
 		//Moose Lifter
 	m_cMooseLifter1->SetGoal(0,

@@ -17,16 +17,15 @@ ControlMooseLifter::~ControlMooseLifter()
 void ControlMooseLifter::Initialize()
 {
 	m_bNewStatus = true;
+	mooseLifter->RestoreLifterSolenoid();
 	m_bWatchLoop = mooseLifter->isUp();
 	//mooseLifter->MoveMooseLifterSolenoid(false);
-	mooseLifter->RestoreLifterSolenoid();
-
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ControlMooseLifter::Execute()
 {
-	if(m_bWatchLoop) {
+	if(m_bWatchLoop and (!CommandBase::antlerMoose->IsLeftAntlerDown() or !CommandBase::antlerMoose->IsRightAntlerDown())) {
 		if(mooseLifter->isUp() &&  mooseLifter->isHighEnough())
 		{
 				mooseLifter->MoveMooseLock(true);

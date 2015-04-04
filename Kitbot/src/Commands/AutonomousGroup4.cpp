@@ -32,7 +32,7 @@ void AutonomousGroup4::Initialize()
 	m_cAutonDrive1->SetGoal(
 			-53,
 			1.5,
-			0.65,
+			0.50,
 			3);
 	m_cAutonDrive2->SetGoal(
 			60,
@@ -42,8 +42,8 @@ void AutonomousGroup4::Initialize()
 
 		//Dumb Drive
 	m_cAutonDumb1->SetGoal(
-			0.55,
-			0.2);
+			0.50,
+			1);
 
 		//Moose Lifter
 	m_cMooseLifter1->SetGoal(0,
