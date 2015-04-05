@@ -42,7 +42,7 @@ void AutonomousGroup4::Initialize()
 
 		//Dumb Drive
 	m_cAutonDumb1->SetGoal(
-			0.50,
+			0.40,
 			1);
 
 		//Moose Lifter
