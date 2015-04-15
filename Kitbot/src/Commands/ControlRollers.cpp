@@ -37,8 +37,8 @@ void ControlRollers::Execute()
 			m_nRightIntake = -1;
 			break;
 		case kOut:
-			m_nLeftIntake = -1;
-			m_nRightIntake = 1;
+			m_nLeftIntake = -0.5;
+			m_nRightIntake = 0.5;
 			break;
 		case kCCW:
 			m_nLeftIntake = 1;
