@@ -27,6 +27,8 @@ private:
 	AutonDriveStraight* drv_AutonToteIn2;
 	AutonDriveStraight* drv_AutonZone1;
 	AutonDriveStraight* drv_AutonZone2;
+	AutonDriveStraight* drv_AutonBack1;
+	AutonDriveStraight* drv_AutonBack2;
 	AutonSmartTurn* trn_AutonKnockBin1;
 	AutonSmartTurn* trn_AutonKnockBin2;
 	AutonSmartTurn* trn_AutonZoneTurn1;
