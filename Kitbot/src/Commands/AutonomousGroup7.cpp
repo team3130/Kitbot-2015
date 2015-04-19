@@ -25,8 +25,10 @@ AutonomousGroup7::AutonomousGroup7()
 
 	whl_AutonIntakeIn1 = new AutonRollers();
 	whl_AutonIntakeIn2 = new AutonRollers();
+	whl_AutonIntakeIn0 = new AutonRollers();
 	whl_AutonIntakeOut1 = new AutonRollers();
 
+	AddParallel(whl_AutonIntakeIn0);
 	AddParallel(lft_AutonUp1);
 	AddSequential(drv_AutonBack1);
 	AddSequential(drv_AutonToBin1);
@@ -75,6 +77,7 @@ AutonomousGroup7::~AutonomousGroup7()
 	delete trn_AutonZoneTurn1;
 	delete whl_AutonIntakeIn1;
 	delete whl_AutonIntakeIn2;
+	delete whl_AutonIntakeIn0;
 	delete whl_AutonIntakeOut1;
 }
 
@@ -82,28 +85,29 @@ AutonomousGroup7::~AutonomousGroup7()
 void AutonomousGroup7::Initialize()
 {
 	// Will change values once robot speed and positioning is known.
-	lft_AutonDown1->SetGoal(2,2,5);
-	lft_AutonDown2->SetGoal(2,2,5);
-	lft_AutonDown3->SetGoal(2,2,5);
+	lft_AutonDown1->SetGoal(2,2,2);
+	lft_AutonDown2->SetGoal(2,2,2);
+	lft_AutonDown3->SetGoal(0,2,2);
 	lft_AutonUp1->SetGoal(2,15,1400);
 	lft_AutonUp2->SetGoal(2,15,1400);
 	lft_AutonUp3->SetGoal(2,15,200);
 
-	drv_AutonToBin1->SetGoal(54,1,.75,10,30);
-	drv_AutonToBin2->SetGoal(54,1,.75,10,60);
-	drv_AutonToteIn1->SetGoal(42,1,.5,10);
-	drv_AutonToteIn2->SetGoal(42,1,.5,10);
-	drv_AutonZone1->SetGoal(5,1,.75,2);
-	drv_AutonZone2->SetGoal(-5,1,.5,2);
-	drv_AutonBack1->SetGoal(-10,1,.5,5);
-	drv_AutonBack2->SetGoal(-15,1,.5,5);
+	drv_AutonToBin1->SetGoal(55,2,.75,10,30);
+	drv_AutonToBin2->SetGoal(55,2,.70,10,40);
+	drv_AutonToteIn1->SetGoal(46,4,.55,6);
+	drv_AutonToteIn2->SetGoal(46,5,.5,5);
+	drv_AutonZone1->SetGoal(82,3,.75,10);
+	drv_AutonZone2->SetGoal(-12,1,.5,2);
+	drv_AutonBack1->SetGoal(-12,3,.55,5);
+	drv_AutonBack2->SetGoal(-15,3,.55,5);
 
 	trn_AutonKnockBin1->SetGoal(-60,1,2);
-	trn_AutonKnockBin2->SetGoal(-60,1,2);
-	trn_AutonZoneTurn1->SetGoal(90,1,2);
+	trn_AutonKnockBin2->SetGoal(-55,1,2);
+	trn_AutonZoneTurn1->SetGoal(95,1,2);
 
 	whl_AutonIntakeIn1->SetGoal(5,1,-1);
 	whl_AutonIntakeIn2->SetGoal(5,1,-1);
+	whl_AutonIntakeIn0->SetGoal(3,1,-1);
 	whl_AutonIntakeOut1->SetGoal(5,-1,1);
 
 }

@@ -34,6 +34,7 @@ private:
 	AutonSmartTurn* trn_AutonZoneTurn1;
 	AutonRollers* whl_AutonIntakeIn1;
 	AutonRollers* whl_AutonIntakeIn2;
+	AutonRollers* whl_AutonIntakeIn0;
 	AutonRollers* whl_AutonIntakeOut1;
 
 
