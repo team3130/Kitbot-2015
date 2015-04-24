@@ -36,7 +36,8 @@ private:
 	AutonRollers* whl_AutonIntakeIn2;
 	AutonRollers* whl_AutonIntakeIn0;
 	AutonRollers* whl_AutonIntakeOut1;
-
+	AutonDelay* dly_BackDelay1;
+	AutonDelay* dly_BackDelay2;
 
 public:
 	AutonomousGroup7();

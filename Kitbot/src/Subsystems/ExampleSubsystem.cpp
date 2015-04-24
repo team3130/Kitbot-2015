@@ -99,6 +99,6 @@ void ExampleSubsystem::ResetEncoders()
 {
 	m_cEncoderL->Reset();
 	m_cEncoderR->Reset();
-	m_cEncoderL->SetDistancePerPulse(WHEEL_DIAMATER * M_PI / Preferences::GetInstance()->GetInt("Encoder_Left", 128)); // 70/468 = 0.15
-	m_cEncoderR->SetDistancePerPulse(WHEEL_DIAMATER * M_PI / Preferences::GetInstance()->GetInt("Encoder_Right", 256)); // 70/937 = 0.07
+	m_cEncoderL->SetDistancePerPulse(WHEEL_DIAMATER * M_PI / 128); // 70/468 = 0.15
+	m_cEncoderR->SetDistancePerPulse(WHEEL_DIAMATER * M_PI /256); // 70/937 = 0.07
 }
