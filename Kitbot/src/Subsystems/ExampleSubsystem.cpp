@@ -5,6 +5,7 @@
 ExampleSubsystem::ExampleSubsystem()
 	: PIDSubsystem("ExampleSubsystem", 0.05, 0.00, 0.15)
 	, m_bIsUsingGyro(false)
+	, m_bIsUsingEncoders(false)
 	, m_bSquaredDrive(false)
 	, moveSpeed(0)
 	, m_drive(LEFTFRONTMOTOR,LEFTBACKMOTOR,RIGHTFRONTMOTOR,RIGHTBACKMOTOR)
@@ -39,19 +40,37 @@ void ExampleSubsystem::InitDefaultCommand()
 void ExampleSubsystem::Drive(double move, double turn, bool quad)
 {
 	m_drive.ArcadeDrive(move, turn, quad);
-	if(m_bIsUsingGyro)
+	if(m_bIsUsingGyro || m_bIsUsingEncoders)
 	{
 		m_bIsUsingGyro = false;
+		m_bIsUsingEncoders = false;
 		GetPIDController()->Disable();
 	}
 }
 
 void ExampleSubsystem::HoldAngle(double angle)
 {
+	m_bIsUsingGyro = false;
+	m_bIsUsingEncoders = true;
 	GetPIDController()->SetSetpoint(GetAngle() + angle);
 	GetPIDController()->Enable();
-	m_bIsUsingGyro = true;
 }
+
+void ExampleSubsystem::TurnAngle(double angle)
+{
+	m_bIsUsingGyro = true;
+	m_bIsUsingEncoders = false;
+	GetPIDController()->SetSetpoint(GetAngle() + angle);
+	GetPIDController()->Enable();
+}
+
+void ExampleSubsystem::ReleaseAngle()
+{
+	GetPIDController()->Disable();
+	m_bIsUsingGyro=false;
+	m_bIsUsingEncoders = false;
+}
+
 
 void ExampleSubsystem::GyroDrive(double move, bool squaredInputs)
 {
@@ -60,18 +79,36 @@ void ExampleSubsystem::GyroDrive(double move, bool squaredInputs)
 	if(!m_bIsUsingGyro)
 	{
 		m_bIsUsingGyro = true;
+		m_bIsUsingEncoders = false;
+		GetPIDController()->Enable();
+	}
+}
+
+void ExampleSubsystem::EncodersDrive(double move, bool squaredInputs)
+{
+	m_bSquaredDrive = squaredInputs;
+	moveSpeed = move;
+	if(!m_bIsUsingEncoders)
+	{
+		m_bIsUsingEncoders = true;
+		m_bIsUsingGyro = false;
 		GetPIDController()->Enable();
 	}
 }
 
 double ExampleSubsystem::GetAngle()
 {
-	return ( m_cEncoderL->GetDistance() - m_cEncoderR->GetDistance() ) * -180 / (ROBOT_GAUGE * M_PI);
-	/*
-	 *  Angle is 180 degrees times encoder difference over Pi * the distance between the wheels
-	 *	Made from geometry and relation between angle fraction and arc fraction with semicircles.
-	 *  Negative because our encoders connected backwards
-	 */
+	if(m_bIsUsingEncoders) {
+		return ( m_cEncoderL->GetDistance() - m_cEncoderR->GetDistance() ) * -180 / (ROBOT_GAUGE * M_PI);
+		/*
+		 *  Angle is 180 degrees times encoder difference over Pi * the distance between the wheels
+		 *	Made from geometry and relation between angle fraction and arc fraction with semicircles.
+		 *  Negative because our encoders connected backwards
+		 */
+	}
+	else {
+		return gyro->GetAngle();
+	}
 }
 
 double ExampleSubsystem::ReturnPIDInput()

@@ -1,7 +1,9 @@
 #include "AutonSmartTurn.h"
 
 AutonSmartTurn::AutonSmartTurn()
-	: m_dTimeout(0)
+	: m_bConfirming(false)
+	, m_dTimeout(0)
+	, m_dTimeConfirm(0)
 	, m_dAngle(0)
 	, m_dDriveSpeed(0)
 	, m_dDistGoal(0)
@@ -28,8 +30,21 @@ void AutonSmartTurn::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool AutonSmartTurn::IsFinished()
 {
-	return( fabs(CommandBase::chassis->GetPosition() - CommandBase::chassis->GetSetpoint()) < m_dTolerance
-	or m_cTimer.Get() > m_dTimeout );
+	if( m_cTimer.Get() > m_dTimeout ) return true;
+
+	if( fabs(CommandBase::chassis->GetPosition() - CommandBase::chassis->GetSetpoint()) < m_dTolerance ) {
+		if(m_bConfirming) {
+			if(m_tCooldown.Get() > m_dTimeConfirm) return true;
+		}
+		else {
+			m_bConfirming = true;
+			m_tCooldown.Reset();
+			m_tCooldown.Start();
+		}
+	}
+	else {
+		m_bConfirming = false;
+	}
 }
 
 // Called once after isFinished returns true

@@ -12,6 +12,7 @@ class ExampleSubsystem: public PIDSubsystem
 private:
 	const double WHEEL_DIAMATER = 6;
 	bool m_bIsUsingGyro;
+	bool m_bIsUsingEncoders;
 	bool m_bSquaredDrive;
 	double moveSpeed;
 	Gyro* gyro;
@@ -26,8 +27,10 @@ public:
 	double GetAngle();
 	bool IsUsingGyro() {return m_bIsUsingGyro;};
 	void HoldAngle(double angle = 0);
-	void ReleaseAngle() { GetPIDController()->Disable(); m_bIsUsingGyro=false; };
+	void TurnAngle(double angle = 0);
+	void ReleaseAngle();
 	void GyroDrive(double move, bool squaredInputs = false);
+	void EncodersDrive(double move, bool squaredInputs = false);
 	virtual double ReturnPIDInput();
 	virtual void UsePIDOutput(double outputAngle);
 	double GetDistance();
