@@ -45,10 +45,6 @@ void ControlLifter::Execute()
 			preset = kX;
 			s_preset = presetX;
 			buttonPushed = true;
-		} else if(oi->gamepad->GetRawButton(B_PAD_Y)){
-			preset = kY;
-			s_preset = presetY;
-			buttonPushed = true;
 		}
 
 		if(buttonPushed){
@@ -75,10 +71,6 @@ void ControlLifter::Execute()
 			case kX:
 				s_preset = presetX;
 				goal = Preferences::GetInstance()->GetInt(s_preset, 983);
-				break;
-			case kY:
-				s_preset = presetY;
-				goal = Preferences::GetInstance()->GetInt(s_preset, 523);
 				break;
 			}
 

@@ -15,7 +15,7 @@ void ExampleCommand::Initialize()
 void ExampleCommand::Execute()
 {
 	double moveSpeed = CommandBase::oi->stickL->GetY();
-	double moveTurn = CommandBase::oi->stickR->GetX();
+	double moveTurn = CommandBase::oi->stickL->GetX();
 	double speedMultiplier = (-0.5 * CommandBase::oi->stickL->GetZ()) + 0.5;
 	double turnMultiplier = (-0.5 * CommandBase::oi->stickR->GetZ()) + 0.5;
 

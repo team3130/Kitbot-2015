@@ -15,10 +15,9 @@ void ControlIntakeArms::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlIntakeArms::Execute()
 {
-	bool extL = !oi->stickL->GetTrigger();
-	bool extR = !oi->stickR->GetTrigger();
-	intakearms->ControlArms(extL, extR);
-	m_bArmsExtended = extL & extR;
+	bool extB = !oi->gamepad->GetRawButton(B_PAD_Y)();
+	intakearms->ControlArms(extB, extB);
+	m_bArmsExtended = extB;
 }
 
 // Make this return true when this Command no longer needs to run execute()
