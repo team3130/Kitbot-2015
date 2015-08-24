@@ -15,7 +15,7 @@ void ControlIntakeArms::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlIntakeArms::Execute()
 {
-	bool extB = !oi->gamepad->GetRawButton(B_PAD_Y)();
+	bool extB = !oi->gamepad->GetRawButton(B_PAD_Y);
 	intakearms->ControlArms(extB, extB);
 	m_bArmsExtended = extB;
 }
