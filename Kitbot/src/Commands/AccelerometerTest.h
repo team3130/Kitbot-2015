@@ -8,12 +8,10 @@ class AccelerometerTest: public CommandBase
 {
 private:
 	double dT;
-	double x;
-	double y;
-	double xSpeed;
-	double ySpeed;
-	double xAcceleration;
-	double yAcceleration;
+	double x,y,z;
+	double x0,y0,z0;
+	double xSpeed,ySpeed,zSpeed;
+	double xAcceleration,yAcceleration,zAcceleration;
 	BuiltInAccelerometer* accelerometer;
 	Timer* timer;
 public:

@@ -22,7 +22,7 @@ MooseLifter* CommandBase::mooseLifter = NULL;
 AntlerMoose* CommandBase::antlerMoose = NULL;
 Bincher* CommandBase::bincher = NULL;
 Compressor* CommandBase::compressor = NULL;
-//AccelerometerTest* FPS = NULL;
+AccelerometerTest* FPS = NULL;
 SavePreferences* save = NULL;
 
 CommandBase::CommandBase(char const *name) :
@@ -53,7 +53,7 @@ void CommandBase::init()
 	bincher = new Bincher();
 	compressor = new Compressor(COMPRESSOR);
 	compressor->Start();
-	//FPS = new AccelerometerTest();
+	FPS = new AccelerometerTest();
 	//FPS->Start();
-	//SmartDashboard::PutData(FPS);
+	SmartDashboard::PutData(FPS);
 }
