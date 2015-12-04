@@ -15,9 +15,6 @@ void AccelerometerTest::Initialize()
 {
 	timer->Reset();
 	timer->Start();
-	x0 = accelerometer->GetX() * GRAVITY_ACC;
-	y0 = accelerometer->GetY() * GRAVITY_ACC;
-	z0 = accelerometer->GetZ() * GRAVITY_ACC;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -37,23 +34,6 @@ void AccelerometerTest::Execute()
 	SmartDashboard::PutNumber("Y Acceleration", yAcceleration);
 	SmartDashboard::PutNumber("Z Acceleration", zAcceleration);
 
-	//"integral" of accleration = speed
-	xSpeed += xAcceleration * dT;
-	ySpeed += yAcceleration * dT;
-	zSpeed += zAcceleration * dT;
-
-	SmartDashboard::PutNumber("X Speed", xSpeed);
-	SmartDashboard::PutNumber("Y Speed", ySpeed);
-	SmartDashboard::PutNumber("Z Speed", zSpeed);
-
-	//"integral" of speed = position
-	x += xSpeed * dT;
-	y += ySpeed * dT;
-	z += zSpeed * dT;
-
-	SmartDashboard::PutNumber("X", x);
-	SmartDashboard::PutNumber("Y", y);
-	SmartDashboard::PutNumber("Z", z);
 }
 
 // Make this return true when this Command no longer needs to run execute()
