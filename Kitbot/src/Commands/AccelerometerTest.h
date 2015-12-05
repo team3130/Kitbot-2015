@@ -3,15 +3,14 @@
 
 #include "../CommandBase.h"
 #include "WPILib.h"
+#include "valarray"
 
 class AccelerometerTest: public CommandBase
 {
 private:
 	double dT;
-	double x,y,z;
-	double x0,y0,z0;
-	double xSpeed,ySpeed,zSpeed;
-	double xAcceleration,yAcceleration,zAcceleration;
+	std::valarray<double> a;
+	std::valarray<double> g;
 	BuiltInAccelerometer* accelerometer;
 	Timer* timer;
 public:
