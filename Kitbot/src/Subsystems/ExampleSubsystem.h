@@ -14,7 +14,7 @@ private:
 	bool m_bIsUsingGyro;
 	bool m_bSquaredDrive;
 	double moveSpeed;
-	Gyro* gyro;
+//	Gyro* gyro;
 	Encoder* m_cEncoderL;
 	Encoder* m_cEncoderR;
 public:

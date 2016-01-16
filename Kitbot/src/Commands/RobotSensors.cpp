@@ -28,18 +28,18 @@ void RobotSensors::Execute()
 {
 	CommandBase::lifter->CheckZero();
 
-	if(DriverStation::GetInstance()->IsDisabled()) {
+	if(false /* DriverStation::GetInstance()->IsDisabled() */) {
 		if(timer->Get() > 4) {
 			timer->Reset();
 			timer->Start();
 			if(!lifterZero) {
 				arduino->Write("Z", 1);
 			}
-			else if(DriverStation::GetInstance()->IsDSAttached()) {
+/*			else if(DriverStation::GetInstance()->IsDSAttached()) {
 				if(DriverStation::GetInstance()->GetAlliance() == DriverStation::kBlue)	arduino->Write("B", 1);
 				else if(DriverStation::GetInstance()->GetAlliance() == DriverStation::kRed)	arduino->Write("R", 1);
 				else arduino->Write("U", 1);
-			}
+			} */
 			else {
 				arduino->Write("E", 1);
 			}
@@ -74,8 +74,8 @@ void RobotSensors::Execute()
 	SmartDashboard::PutBoolean("Lifter-Top Limit Switch", lifter->GetLimitSwitchTop());
 	SmartDashboard::PutBoolean("Lifter-Bottom Limit Switch", lifter->GetLimitSwitchBot());
 	SmartDashboard::PutBoolean("Magnet Sensor",CommandBase::mooseLifter->isHighEnough());
-	SmartDashboard::PutNumber("Gyro Current Angle: ", chassis->gyro->GetAngle());
-	SmartDashboard::PutNumber("Gyro Rotation rate: ", chassis->gyro->GetRate());
+//	SmartDashboard::PutNumber("Gyro Current Angle: ", chassis->gyro->GetAngle());
+//	SmartDashboard::PutNumber("Gyro Rotation rate: ", chassis->gyro->GetRate());
 	SmartDashboard::PutNumber("Encoder Angle: ", chassis->GetAngle());
 	SmartDashboard::PutBoolean("Is Using Gyro", chassis->IsUsingGyro());
 	SmartDashboard::PutBoolean("Is Left Antler Down", antlerMoose->IsLeftAntlerDown());
@@ -84,7 +84,7 @@ void RobotSensors::Execute()
 	SmartDashboard::PutNumber("Right Encoder", chassis->m_cEncoderR->GetDistance());
 	SmartDashboard::PutNumber("Distance", chassis->GetDistance());
 	SmartDashboard::PutNumber("Angle Setpoint", chassis->GetPIDController()->GetSetpoint());
-	SmartDashboard::PutNumber("SDB Test", SmartDashboard::GetNumber("SDB Test"));
+//	SmartDashboard::PutNumber("SDB Test", SmartDashboard::GetNumber("SDB Test"));
 }
 
 // Make this return true when this Command no longer needs to run execute()
